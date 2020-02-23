@@ -1,0 +1,70 @@
+<div class="content" id="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Meal Vendor Data</h2>
+      <div class=" card">
+        <div class=" card-body">
+          <form #FormMealVendor="ngForm" (ngSubmit)="submit()">
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Code</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for code here...." name="code"
+                  required [(ngModel)]="model.code" #code="ngModel"
+                  [ngClass]="{'is-invalid': code.invalid && (code.dirty || code.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for name here...." name="name"
+                  required [(ngModel)]="model.name" #name="ngModel"
+                  [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Contact Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for Contact Name here...." name="contactName" required
+                  [(ngModel)]="model.contactName" #contactName="ngModel"
+                  [ngClass]="{'is-invalid': contactName.invalid && (contactName.dirty || contactName.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+
+
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Contact Phone</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for Contact Phone here...." name="contactPhone" required
+                  [(ngModel)]="model.contactPhone" #contactPhone="ngModel"
+                  [ngClass]="{'is-invalid': contactPhone.invalid && (contactPhone.dirty || contactPhone.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Contact Email</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for Contact Email here...." name="contactEmail" required
+                  [(ngModel)]="model.contactEmail" #contactEmail="ngModel"
+                  [ngClass]="{'is-invalid': contactEmail.invalid && (contactEmail.dirty || contactEmail.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 offset-sm-3">
+                <button class="btn btn-success animation-on-hover btn-sm" type="submit"
+                  [disabled]="!FormMealVendor.valid">
+                  {{!update ? 'Add' : 'Update'}}
+                </button>
+                <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button"
+                  [routerLink]="['/mealVendor']">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
