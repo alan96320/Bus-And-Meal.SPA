@@ -43,6 +43,9 @@ import { MealOrderVerficationFormComponent } from './pages/transaction/mealOrder
 import { MealVendorListResolver, MealVendorDetailResolver } from './_resolvers/mealVendorResolver';
 import { MealTypeListResolver, MealTypeDetailResolver } from './_resolvers/mealTypeResolver';
 import { DormitoryBlockListResolver, DormitoryBlockDetailResolver } from './_resolvers/dormitoryBlockResolver';
+import { BusTimeListResolver, BusTimeDetailResolver } from './_resolvers/busTimeResolver';
+import { BusTimeListComponent } from './pages/configuration/busTime/busTimeList/busTimeList.component';
+import { BusTimeFormComponent } from './pages/configuration/busTime/busTimeForm/busTimeForm.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -85,6 +88,8 @@ export function tokenGetter() {
     RolesFormComponent,
     UserListComponent,
     UserFormComponent,
+    BusTimeListComponent,
+    BusTimeFormComponent,
     //decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
@@ -109,6 +114,8 @@ export function tokenGetter() {
     MealTypeDetailResolver,
     DormitoryBlockListResolver,
     DormitoryBlockDetailResolver,
+    BusTimeListResolver,
+    BusTimeDetailResolver,
   ],
   bootstrap: [AppComponent]
 })

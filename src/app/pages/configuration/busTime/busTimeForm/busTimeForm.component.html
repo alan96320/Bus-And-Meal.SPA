@@ -1,0 +1,50 @@
+<div class="content content-custom" id="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Bus Time Data</h2>
+      <div class=" card">
+        <div class=" card-body">
+          <form #FormDormitory="ngForm" (ngSubmit)="submit()">
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Code</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for code here...." name="code"
+                  required [(ngModel)]="model.code" #code="ngModel"
+                  [ngClass]="{'is-invalid': code.invalid && (code.dirty || code.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Depart Time</label>
+              <div class="col-sm-8 24hr-example">
+                <input type="time" class="form-control" placeholder="Please input for depart time here...." name="time"
+                  required [(ngModel)]="model.time" #time="ngModel" [ngClass]="{'is-invalid': time.invalid && (time.dirty || time.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Type Direction</label>
+              <div class="col-sm-8">
+                <select name="directionEnum" class="form-control" required [(ngModel)]="model.directionEnum" #directionEnum="ngModel">
+                  <option *ngFor="let direction of listDirection" [value]="direction.id">
+                    {{direction.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 offset-sm-3">
+                <button class="btn btn-success animation-on-hover btn-sm" type="submit"
+                  [disabled]="!FormDormitory.valid">
+                  {{!update ? 'Add' : 'Update'}}
+                </button>
+                <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button"
+                  [routerLink]="['/busTime']">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

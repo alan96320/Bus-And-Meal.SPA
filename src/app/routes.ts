@@ -28,6 +28,9 @@ import { MealOrderVerficationFormComponent } from './pages/transaction/mealOrder
 import { MealVendorListResolver, MealVendorDetailResolver } from './_resolvers/mealVendorResolver';
 import { MealTypeDetailResolver, MealTypeListResolver } from './_resolvers/mealTypeResolver';
 import { DormitoryBlockListResolver, DormitoryBlockDetailResolver } from './_resolvers/dormitoryBlockResolver';
+import { BusTimeListComponent } from './pages/configuration/busTime/busTimeList/busTimeList.component';
+import { BusTimeFormComponent } from './pages/configuration/busTime/busTimeForm/busTimeForm.component';
+import { BusTimeListResolver, BusTimeDetailResolver } from './_resolvers/busTimeResolver';
 
 export const appRouting:Routes = [
     { path: '', component: HomeComponent },
@@ -50,6 +53,9 @@ export const appRouting:Routes = [
             { path: 'mealVendor', component: MealVendorListComponent, resolve: { mealVendor: MealVendorListResolver }},
             { path: 'formMealVendor', component: MealVendorFormComponent },
             { path: 'formMealVendor/:id', component: MealVendorFormComponent, resolve: { mealVendor: MealVendorDetailResolver } },
+            { path: 'busTime', component: BusTimeListComponent, resolve: { BusTime: BusTimeListResolver } },
+            { path: 'formBusTime', component: BusTimeFormComponent },
+            { path: 'formBusTime/:id', component: BusTimeFormComponent, resolve: { BusTime: BusTimeDetailResolver } },
             { path: 'roles', component: RolesListComponent },
             { path: 'formRoles', component: RolesFormComponent },
             { path: 'formRoles/:id', component: RolesFormComponent },

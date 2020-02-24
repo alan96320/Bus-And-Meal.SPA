@@ -15,25 +15,25 @@ export class DormitoryBlockService {
 
    constructor(private http: HttpClient, ) { }
 
-   //for add data DormitoryBlock
+   
    addDormitoryBlock(model: any) {
       return this.http.post(this.baseUrl + "DormitoryBlock/", model);
    }
 
-   //for delete data DormitoryBlock
+   
    deleteDormitoryBlock(id: any) {
       return this.http.delete(this.baseUrl + "DormitoryBlock/" + id);
    }
-   //get by ID after update
+   
    getDormitoryBlock(id: any): Observable<DormitoryBlock> {
       return this.http.get<DormitoryBlock>(this.baseUrl + 'DormitoryBlock/' + id);
    }
-   //for edit DormitoryBlock
+   
    editDormitoryBlock(id: any, model: any) {
       return this.http.put(this.baseUrl + "DormitoryBlock/" + id, model);
    }
 
-   //get all
+   
    getDormitoryBlocks(page?, itemsPerPage?, DormitoryBlockParams?): Observable<PaginatedResult<DormitoryBlock[]>> {
       const paginatedResult: PaginatedResult<DormitoryBlock[]> = new PaginatedResult<DormitoryBlock[]>();
 
