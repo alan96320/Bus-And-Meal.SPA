@@ -23,6 +23,7 @@ export class BusTimeListComponent implements OnInit {
    pagination: Pagination;
    BusTimeParams: any = {};
    model: any = {};
+   listDirection: any;
 
    constructor(
       private BusTimeService: BusTimeService,
@@ -36,6 +37,13 @@ export class BusTimeListComponent implements OnInit {
          this.BusTimes = data["BusTime"].result;
          this.pagination = data["BusTime"].pagination;
       });
+
+      this.listDirection = [
+         { id: 1, name: 'Domitory -> Office' },
+         { id: 2, name: 'Office -> Domitory' },
+         { id: 3, name: 'Office -> Domitory(Night)' }
+      ]
+
    }
 
    arrayPage() {
@@ -100,10 +108,11 @@ export class BusTimeListComponent implements OnInit {
       this.loadBusTime();
    }
 
-   OrderBy(code, time) {
-      if (code !== null || time !== null) {
+   OrderBy(code, time, direction) {
+      if (code !== null || time !== null || direction != null) {
          this.BusTimeParams.code = code;
          this.BusTimeParams.time = time;
+         this.BusTimeParams.direction = direction;
          this.loadBusTime();
       }
    }
@@ -112,6 +121,7 @@ export class BusTimeListComponent implements OnInit {
       if (status == "Filter") {
          this.BusTimeParams.code = null;
          this.BusTimeParams.time = null;
+         this.BusTimeParams.direction = null;
          this.loadBusTime();
       }
    }

@@ -49,6 +49,9 @@ export class BusTimeService {
          if (BusTimeParams.time != null) {
             params = params.append('time', BusTimeParams.time);
          }
+         if (BusTimeParams.direction != null) {
+            params = params.append('DirectionEnum', BusTimeParams.direction);
+         }
          if (BusTimeParams.OrderBy != null) {
             params = params.append('OrderBy', BusTimeParams.OrderBy);
             params = params.append('isDescending', BusTimeParams.isDesc);

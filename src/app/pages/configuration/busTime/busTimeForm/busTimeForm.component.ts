@@ -4,7 +4,6 @@ import { BusTimeService } from 'src/app/_services/BusTime.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 
 @Component({
    selector: 'app-busTimeForm',
@@ -78,19 +77,4 @@ export class BusTimeFormComponent implements OnInit {
          this.sweetAlert.warning(error);
       });
    }
-
-   darkTheme: NgxMaterialTimepickerTheme = {
-      container: {
-         bodyBackgroundColor: '#424242',
-         buttonColor: '#fff'
-      },
-      dial: {
-         dialBackgroundColor: '#555',
-      },
-      clockFace: {
-         clockFaceBackgroundColor: '#555',
-         clockHandColor: '#9fbd90',
-         clockFaceTimeInactiveColor: '#fff'
-      }
-   };
 }
