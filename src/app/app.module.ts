@@ -52,6 +52,7 @@ import { CounterListComponent } from './pages/configuration/counter/counterList/
 import { CounterFormComponent } from './pages/configuration/counter/CounterForm/CounterForm.component';
 import { EmployeeListComponent } from './pages/configuration/employee/employeeList/employeeList.component';
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
+import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -128,6 +129,8 @@ export function tokenGetter() {
     DormitoryBlockDetailResolver,
     BusTimeListResolver,
     BusTimeDetailResolver,
+    CounterListResolver,
+    CounterDetailResolver,
   ],
   bootstrap: [AppComponent]
 })

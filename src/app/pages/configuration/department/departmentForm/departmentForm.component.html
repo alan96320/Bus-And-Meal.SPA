@@ -8,14 +8,16 @@
                   <div class="form-group row no-border">
                      <label class="col-sm-2 offset-sm-1 col-form-label">Code</label>
                      <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="Please input for code here...." name="code" required [(ngModel)]="model.code" #code="ngModel" [ngClass]="{'is-invalid': code.invalid && (code.dirty || code.touched) }">
+                        <input type="text" class="form-control" placeholder="Please input for code here...." name="code" required [(ngModel)]="model.code" #code="ngModel" 
+                        [ngClass]="{'is-invalid': code.invalid && (code.dirty || code.touched) }">
                         <div class="invalid-feedback">Is required</div>
                      </div>
                   </div>
                   <div class="form-group row no-border">
                      <label class="col-sm-2 offset-sm-1 col-form-label">Name</label>
                      <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="Please input for name here...." name="name" required [(ngModel)]="model.name" #name="ngModel" [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched) }">
+                        <input type="text" class="form-control" placeholder="Please input for name here...." name="name" required [(ngModel)]="model.name" #name="ngModel" 
+                        [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched) }">
                         <div class="invalid-feedback">Is required</div>
                      </div>
                   </div>

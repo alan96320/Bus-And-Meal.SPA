@@ -37,6 +37,7 @@ import { CounterListComponent } from './pages/configuration/counter/counterList/
 import { CounterFormComponent } from './pages/configuration/counter/CounterForm/CounterForm.component';
 import { EmployeeListComponent } from './pages/configuration/employee/employeeList/employeeList.component';
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
+import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
 
 export const appRouting:Routes = [
     { path: '', component: HomeComponent },
@@ -73,9 +74,9 @@ export const appRouting:Routes = [
             { path: 'formConfiguration', component: ConfigurationFormComponent },
             { path: 'formConfiguration/:id', component: ConfigurationFormComponent },
 
-            { path: 'counter', component: CounterListComponent },
+            { path: 'counter', component: CounterListComponent, resolve: { counter: CounterListResolver } },
             { path: 'formCounter', component: CounterFormComponent },
-            { path: 'formCounter/:id', component: CounterFormComponent },
+            { path: 'formCounter/:id', component: CounterFormComponent, resolve: { counter: CounterDetailResolver } },
 
             { path: 'employee', component: EmployeeListComponent },
             { path: 'formEmployee', component: EmployeeFormComponent },
