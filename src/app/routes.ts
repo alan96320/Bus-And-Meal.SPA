@@ -38,6 +38,7 @@ import { EmployeeListComponent } from './pages/configuration/employee/employeeLi
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
 import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
+import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
 
 export const appRouting:Routes = [
     { path: '', component: HomeComponent },
@@ -69,16 +70,14 @@ export const appRouting:Routes = [
             { path: 'user', component: UserListComponent },
             { path: 'formUser', component: UserFormComponent },
             { path: 'formUser/:id', component: UserFormComponent },
-
             { path: 'formConfiguration/:id', component: ConfigurationFormComponent, resolve: { configuration: ConfigurationDetailResolver } },
-
             { path: 'counter', component: CounterListComponent, resolve: { counter: CounterListResolver } },
             { path: 'formCounter', component: CounterFormComponent },
             { path: 'formCounter/:id', component: CounterFormComponent, resolve: { counter: CounterDetailResolver } },
 
-            { path: 'employee', component: EmployeeListComponent },
+            { path: 'employee', component: EmployeeListComponent, resolve: { employee: EmployeeListResolver } },
             { path: 'formEmployee', component: EmployeeFormComponent },
-            { path: 'formEmployee/:id', component: EmployeeFormComponent },
+            { path: 'formEmployee/:id', component: EmployeeFormComponent, resolve: { employee: EmployeeDetailResolver } },
 
             //path for menu transaction
             { path: 'busOrderEntry', component: BusOrderEntryListComponent },

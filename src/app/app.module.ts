@@ -53,6 +53,7 @@ import { EmployeeListComponent } from './pages/configuration/employee/employeeLi
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
 import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
+import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -131,6 +132,8 @@ export function tokenGetter() {
     CounterListResolver,
     CounterDetailResolver,
     ConfigurationDetailResolver,
+    EmployeeListResolver,
+    EmployeeDetailResolver,
   ],
   bootstrap: [AppComponent]
 })

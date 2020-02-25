@@ -1,3 +1,83 @@
-<p>
-  employeeForm works!
-</p>
+<div class="content content-custom" id="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Employee Data</h2>
+      <div class=" card">
+        <div class=" card-body">
+          <form #FormEmployee="ngForm" (ngSubmit)="submit()">
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">HrCore No</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for HrCore No here...." name="hrCoreNo"
+                  required [(ngModel)]="model.hrCoreNo" #hrCoreNo="ngModel"
+                  [ngClass]="{'is-invalid': hrCoreNo.invalid && (hrCoreNo.dirty || hrCoreNo.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">First Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for First Name here...." name="firstname" required 
+                [(ngModel)]="model.firstname" #firstname="ngModel"
+                  [ngClass]="{'is-invalid': firstname.invalid && (firstname.dirty || firstname.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Last Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for Last Name here...." name="lastname" required
+                  [(ngModel)]="model.lastname" #lastname="ngModel"
+                  [ngClass]="{'is-invalid': lastname.invalid && (lastname.dirty || lastname.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Full name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for Full Name here...." name="fullname" required
+                  [(ngModel)]="model.fullname" #fullname="ngModel"
+                  [ngClass]="{'is-invalid': fullname.invalid && (fullname.dirty || fullname.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">HID No</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Please input for HID No here...." name="hidNo" required
+                  [(ngModel)]="model.hidNo" #hidNo="ngModel"
+                  [ngClass]="{'is-invalid': hidNo.invalid && (hidNo.dirty || hidNo.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Department</label>
+              <div class="col-sm-8">
+                <select name="departmentId" class="form-control" required [(ngModel)]="model.departmentId" #departmentId="ngModel" required [ngClass]="{'is-invalid': departmentId.invalid && (departmentId.dirty || departmentId.touched) }">
+                  <option *ngFor="let department of listDepartments" [value]="department.id">
+                    {{department.name}}
+                  </option>
+                </select>
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 offset-sm-3">
+                <button class="btn btn-success animation-on-hover btn-sm" type="submit"
+                  [disabled]="!FormEmployee.valid">
+                  {{!update ? 'Add' : 'Update'}}
+                </button>
+                <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button"
+                  [routerLink]="['/employee']">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
