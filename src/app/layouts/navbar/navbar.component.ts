@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit {
       this.sweetAlert.error('Incorrect username or password');
       // this.alertify.warning('Login Failed');
     }, () => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/home']);
     });
   }
 

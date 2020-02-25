@@ -11,13 +11,24 @@ export class SweetAlertService {
    constructor() { }
 
    success(message: string) {
-      swal.fire({
-         position: 'center',
+      Toast.fire({
+         // position: 'center',
+         // icon: 'success',
+         // title: message,
+         // background: '#00000000',
+         // showConfirmButton: false,
+         // timer: 1500
+         // toast: true,
+         // position: 'top-end',
+         // showConfirmButton: false,
+         // timer: 3000,
+         // timerProgressBar: true,
+         // onOpen: (toast) => {
+         //    toast.addEventListener('mouseenter', Swal.stopTimer)
+         //    toast.addEventListener('mouseleave', Swal.resumeTimer)
+         // }
          icon: 'success',
-         title: message,
-         background: '#00000000',
-         showConfirmButton: false,
-         timer: 1500
+         title: 'Signed in successfully'
       })
    }
    successAdd(message: string) {
@@ -80,3 +91,16 @@ export class SweetAlertService {
    
 
 }
+
+
+const Toast = swal.mixin({ 
+   toast: true,
+   position: 'bottom-end',
+   showConfirmButton: false,
+   timer: 3000,
+   timerProgressBar: true,
+   onOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+   }
+})
