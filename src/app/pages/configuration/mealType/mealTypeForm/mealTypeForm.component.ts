@@ -36,7 +36,7 @@ export class MealTypeFormComponent implements OnInit {
          this.route.data.subscribe(data => {
             this.model.code = data['MealType'].code;
             this.model.name = data['MealType'].name;
-            this.model.mealVendorId = data['MealType'].mealVendorId;
+            this.model.mealVendorId = data['MealType'].mealVendor.id;
             this.update = true;
          });
       }

@@ -29,11 +29,8 @@
                            <th class="sort-custom" (click)="sortActive('name')">Name
                               <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscName===false}"></i>
                            </th>
-                           <th class="sort-custom" (click)="sortActive('vendorCode')">Vendor Code
-                              <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': vendorCode==true}"></i>
-                           </th>
-                           <th class="sort-custom" (click)="sortActive('vendorName')">Vendor Name
-                              <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': vendorName===true}"></i>
+                           <th class="sort-custom" (click)="sortActive('mealVendor')">Vendor Name
+                              <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': mealVendor===true}"></i>
                            </th>
                            <th class="text-right">Actions</th>
                         </tr>
@@ -42,33 +39,22 @@
                         <tr *ngIf="!filter">
                            <td class="form-group no-border">
                               <input type="text" class="form-control" placeholder="Order By Code" #box
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''" />
                            </td>
                            <td class="form-group no-border">
                               <input type="text" class="form-control" placeholder="Order By Name" #box1
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
-                           </td>
-                           <!-- <td class="form-group no-border">
-                              <input type="text" class="form-control" placeholder="Order By ContactName" #box2
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''" />
                            </td>
                            <td class="form-group no-border">
-                              <input type="text" class="form-control" placeholder="Order By ContactPhone" #box3
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
-                           </td> -->
-                           <td></td>
-                           <td></td>
+                              <input type="text" class="form-control" placeholder="Order By Vendor Name" #box2
+                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''" />
+                           </td>
                            <td></td>
                         </tr>
                         <tr *ngFor="let MealType of MealTypes">
                            <td>{{MealType.code}}</td>
                            <td>{{MealType.name}}</td>
-                           <td *ngFor="let vendor of MealVendors" [ngClass]="{'d-lg-none': vendor.id !== MealType.mealVendorId}">
-                              {{vendor.code}}
-                           </td>
-                           <td *ngFor="let vendor of MealVendors" [ngClass]="{'d-lg-none': vendor.id !== MealType.mealVendorId}">
-                              {{vendor.name}}
-                           </td>
+                           <td>{{MealType.mealVendor.name}}</td>
                            <td class="td-actions text-right">
                            <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
                               placement="left" type="button" [routerLink]="['/formMealType',MealType.id]">

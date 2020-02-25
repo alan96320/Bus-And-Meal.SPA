@@ -49,12 +49,15 @@ export class MealTypeService {
          if (MealTypeParams.name != null) {
             params = params.append('name', MealTypeParams.name);
          }
+         if (MealTypeParams.mealVendor != null) {
+            params = params.append('vendorName', MealTypeParams.mealVendor);
+         }
          if (MealTypeParams.OrderBy != null) {
             params = params.append('OrderBy', MealTypeParams.OrderBy);
             params = params.append('isDescending', MealTypeParams.isDesc);
          }
       }
-
+      
       return this.http.get<MealType[]>(this.baseUrl + 'MealType/paged', { observe: 'response', params })
          .pipe(
             map(response => {

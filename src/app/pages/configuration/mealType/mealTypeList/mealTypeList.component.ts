@@ -18,8 +18,7 @@ export class MealTypeListComponent implements OnInit {
    //deklarasi untuk pagination custom
    sortAscCode: boolean;
    sortAscName: boolean;
-   vendorCode: boolean;
-   vendorName: boolean;
+   mealVendor: boolean;
    filter: boolean = true;
 
    //deklarasi untuk get data
@@ -42,7 +41,6 @@ export class MealTypeListComponent implements OnInit {
          this.MealTypes = data["MealType"].result;
          this.pagination = data["MealType"].pagination;
       });
-      this.loadMealVendors();
    }
 
 
@@ -63,16 +61,10 @@ export class MealTypeListComponent implements OnInit {
          this.MealTypeParams.isDesc = this.sortAscName;
          this.loadMealTypes();
       }
-      if (getName == "vendorCode") {
-         this.vendorCode = !this.vendorCode;
-         this.MealTypeParams.OrderBy = 'mealVendorId';
-         this.MealTypeParams.isDesc = this.vendorCode;
-         this.loadMealTypes();
-      }
-      if (getName == "vendorName") {
-         this.vendorName = !this.vendorName;
-         this.MealTypeParams.OrderBy = 'mealVendorId';
-         this.MealTypeParams.isDesc = this.vendorName;
+      if (getName == "mealVendor") {
+         this.mealVendor = !this.mealVendor;
+         this.MealTypeParams.OrderBy = getName;
+         this.MealTypeParams.isDesc = this.mealVendor;
          this.loadMealTypes();
       }
    }
@@ -114,10 +106,11 @@ export class MealTypeListComponent implements OnInit {
       this.loadMealTypes();
    }
 
-   OrderBy(code, name) {
-      if (code !== null || name !== null) {
+   OrderBy(code, name, mealVendor) {
+      if (code !== null || name !== null || mealVendor != null) {
          this.MealTypeParams.code = code;
          this.MealTypeParams.name = name;
+         this.MealTypeParams.mealVendor = mealVendor;
          this.loadMealTypes();
       }
    }
@@ -126,6 +119,7 @@ export class MealTypeListComponent implements OnInit {
       if (status == "Filter") {
          this.MealTypeParams.code = null;
          this.MealTypeParams.name = null;
+         this.MealTypeParams.mealVendor = null;
          this.loadMealTypes();
       }
    }
@@ -170,14 +164,6 @@ export class MealTypeListComponent implements OnInit {
                this.sweetAlert.error(error);
             }
          );
-   }
-
-   loadMealVendors() {
-      this.http.get('http://localhost:5000/api/MealVendor').subscribe(response => {
-         this.MealVendors = response;
-      }, error => {
-            this.sweetAlert.error(error);
-      });
    }
 
 }
