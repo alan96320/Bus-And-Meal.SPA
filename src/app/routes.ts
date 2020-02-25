@@ -31,13 +31,13 @@ import { DormitoryBlockListResolver, DormitoryBlockDetailResolver } from './_res
 import { BusTimeListComponent } from './pages/configuration/busTime/busTimeList/busTimeList.component';
 import { BusTimeFormComponent } from './pages/configuration/busTime/busTimeForm/busTimeForm.component';
 import { BusTimeListResolver, BusTimeDetailResolver } from './_resolvers/busTimeResolver';
-import { ConfigurationListComponent } from './pages/configuration/configuration/configurationList/configurationList.component';
-import { ConfigurationFormComponent } from './pages/configuration/configuration/configurationForm/configurationForm.component';
+import { ConfigurationFormComponent } from './pages/configuration/configuration/configurationForm.component';
 import { CounterListComponent } from './pages/configuration/counter/counterList/counterList.component';
 import { CounterFormComponent } from './pages/configuration/counter/CounterForm/CounterForm.component';
 import { EmployeeListComponent } from './pages/configuration/employee/employeeList/employeeList.component';
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
+import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
 
 export const appRouting:Routes = [
     { path: '', component: HomeComponent },
@@ -70,9 +70,7 @@ export const appRouting:Routes = [
             { path: 'formUser', component: UserFormComponent },
             { path: 'formUser/:id', component: UserFormComponent },
 
-            { path: 'configuration', component: ConfigurationListComponent },
-            { path: 'formConfiguration', component: ConfigurationFormComponent },
-            { path: 'formConfiguration/:id', component: ConfigurationFormComponent },
+            { path: 'formConfiguration/:id', component: ConfigurationFormComponent, resolve: { configuration: ConfigurationDetailResolver } },
 
             { path: 'counter', component: CounterListComponent, resolve: { counter: CounterListResolver } },
             { path: 'formCounter', component: CounterFormComponent },

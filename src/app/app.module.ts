@@ -46,13 +46,13 @@ import { DormitoryBlockListResolver, DormitoryBlockDetailResolver } from './_res
 import { BusTimeListResolver, BusTimeDetailResolver } from './_resolvers/busTimeResolver';
 import { BusTimeListComponent } from './pages/configuration/busTime/busTimeList/busTimeList.component';
 import { BusTimeFormComponent } from './pages/configuration/busTime/busTimeForm/busTimeForm.component';
-import { ConfigurationListComponent } from './pages/configuration/configuration/configurationList/configurationList.component';
-import { ConfigurationFormComponent } from './pages/configuration/configuration/configurationForm/configurationForm.component';
+import { ConfigurationFormComponent } from './pages/configuration/configuration/configurationForm.component';
 import { CounterListComponent } from './pages/configuration/counter/counterList/counterList.component';
 import { CounterFormComponent } from './pages/configuration/counter/CounterForm/CounterForm.component';
 import { EmployeeListComponent } from './pages/configuration/employee/employeeList/employeeList.component';
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
+import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -97,7 +97,6 @@ export function tokenGetter() {
     UserFormComponent,
     BusTimeListComponent,
     BusTimeFormComponent,
-    ConfigurationListComponent,
     ConfigurationFormComponent,
     CounterListComponent,
     CounterFormComponent,
@@ -131,6 +130,7 @@ export function tokenGetter() {
     BusTimeDetailResolver,
     CounterListResolver,
     CounterDetailResolver,
+    ConfigurationDetailResolver,
   ],
   bootstrap: [AppComponent]
 })
