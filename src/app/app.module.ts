@@ -54,6 +54,7 @@ import { EmployeeFormComponent } from './pages/configuration/employee/employeeFo
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
 import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
 import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
+import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -103,6 +104,8 @@ export function tokenGetter() {
     CounterFormComponent,
     EmployeeListComponent,
     EmployeeFormComponent,
+    UserListComponent,
+    UserFormComponent,
     //decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
@@ -134,6 +137,8 @@ export function tokenGetter() {
     ConfigurationDetailResolver,
     EmployeeListResolver,
     EmployeeDetailResolver,
+    UsersListResolver,
+    UsersDetailResolver,
   ],
   bootstrap: [AppComponent]
 })

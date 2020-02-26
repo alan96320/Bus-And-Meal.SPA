@@ -1,3 +1,65 @@
-<p>
-  userForm works!
-</p>
+<div class="content content-custom" id="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">Update User Data</h2>
+      <div class=" card">
+        <div class=" card-body">
+          <form #FormEmployee="ngForm" (ngSubmit)="submit()">
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">521 ID</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="hrCoreNo" required [(ngModel)]="model.hrCoreNo" readonly>
+              </div>
+              <div class=" form-check col-sm-4 offset-sm-1">
+                <label class=" form-check-label">
+                  <input class=" form-check-input" type="checkbox" value="" name="adminStatus" [(ngModel)]="model.adminStatus">
+                  <span class=" form-check-sign">
+                    <span class=" check">Admin</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">First Name</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Please input for First Name here...."
+                  name="firstname" required [(ngModel)]="model.firstname" #firstname="ngModel" [ngClass]="{'is-invalid': firstname.invalid && (firstname.dirty || firstname.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+              <div class=" form-check col-sm-4 offset-sm-1">
+                <label class=" form-check-label">
+                  <input class=" form-check-input" type="checkbox" value="" name="lockTransStatus" [(ngModel)]="model.lockTransStatus">
+                  <span class=" form-check-sign">
+                    <span class=" check">Can Entry at locked Transaction</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Last Name</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Please input for Last Name here...."
+                  name="lastname" required [(ngModel)]="model.lastname" #lastname="ngModel"
+                  [ngClass]="{'is-invalid': lastname.invalid && (lastname.dirty || lastname.touched) }">
+                <div class="invalid-feedback">Is required</div>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Full name</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="fullname" [(ngModel)]="model.fullname" value="{{firstname.value+' '+lastname.value}}" readonly>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 offset-sm-3">
+                <button class="btn btn-success animation-on-hover btn-sm" type="submit" [disabled]="!FormEmployee.valid"> Save </button>
+                <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button"
+                  [routerLink]="['/user']">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,6 +39,7 @@ import { EmployeeFormComponent } from './pages/configuration/employee/employeeFo
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
 import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
 import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
+import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
 
 export const appRouting:Routes = [
     { path: '', component: HomeComponent },
@@ -67,9 +68,11 @@ export const appRouting:Routes = [
             { path: 'roles', component: RolesListComponent },
             { path: 'formRoles', component: RolesFormComponent },
             { path: 'formRoles/:id', component: RolesFormComponent },
-            { path: 'user', component: UserListComponent },
+
+            { path: 'user', component: UserListComponent, resolve: { user: UsersListResolver } },
             { path: 'formUser', component: UserFormComponent },
-            { path: 'formUser/:id', component: UserFormComponent },
+            { path: 'formUser/:id', component: UserFormComponent, resolve: { user: UsersDetailResolver } },
+
             { path: 'formConfiguration/:id', component: ConfigurationFormComponent, resolve: { configuration: ConfigurationDetailResolver } },
             { path: 'counter', component: CounterListComponent, resolve: { counter: CounterListResolver } },
             { path: 'formCounter', component: CounterFormComponent },

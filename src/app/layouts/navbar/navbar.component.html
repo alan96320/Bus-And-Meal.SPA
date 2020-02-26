@@ -34,8 +34,8 @@
                   Trasaction
                </a>
                <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/mealOrderEntry']" (click)="activeLinkTrasaction()"  ngbDropdownItem>
+                  <li class=" nav-link" >
+                     <a class="nav-item "  [routerLink]="['/mealOrderEntry']" (click)="activeLinkTrasaction()"  ngbDropdownItem>
                         Meal Order Entry
                      </a>
                   </li>
@@ -45,9 +45,7 @@
                      </a>
                   </li>
                   <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/busOrderEntry']" (click)="activeLinkTrasaction()" ngbDropdownItem>
-                        Bus Order Entry
-                     </a>
+                     <button class="nav-item" [routerLink]="['/busOrderEntry']" (click)="activeLinkTrasaction()" ngbDropdownItem>Bus Order Entry</button>
                   </li>
                   <li class=" nav-link">
                      <a class=" nav-item" [routerLink]="['/busOrderVerification']" (click)="activeLinkTrasaction()" ngbDropdownItem>
