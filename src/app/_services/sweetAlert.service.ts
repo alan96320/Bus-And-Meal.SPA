@@ -12,79 +12,42 @@ export class SweetAlertService {
 
    success(message: string) {
       Toast.fire({
-         // position: 'center',
-         // icon: 'success',
-         // title: message,
-         // background: '#00000000',
-         // showConfirmButton: false,
-         // timer: 1500
-         // toast: true,
-         // position: 'top-end',
-         // showConfirmButton: false,
-         // timer: 3000,
-         // timerProgressBar: true,
-         // onOpen: (toast) => {
-         //    toast.addEventListener('mouseenter', Swal.stopTimer)
-         //    toast.addEventListener('mouseleave', Swal.resumeTimer)
-         // }
          icon: 'success',
-         title: 'Signed in successfully'
+         title: message,
       })
    }
    successAdd(message: string) {
-      swal.fire({
-         position: 'bottom-end',
+      Toast.fire({
          icon: 'success',
          title: message,
-         background: '#00000000',
-         showConfirmButton: false,
-         timer: 1500
       })
    }
 
    error(message: string) {
-      swal.fire({
-         position: 'center',
+      Toast.fire({
          icon: 'error',
-         title: 'Opsss',
          text: message,
-         background: '#00000000',
-         showConfirmButton: false,
-         timer: 5000
       })
    }
 
    warning(message: string) {
-      swal.fire({
-         position: 'center',
+      Toast.fire({
          icon: 'warning',
          title: message,
-         background: '#00000000',
-         showConfirmButton: false,
-         timer: 1500
       })
    }
 
    warningDel() {
-      swal.fire({
-         position: 'bottom-end',
+      Toast.fire({
          icon: 'warning',
-         title: 'Deleted!',
-         text: "Your file has been deleted.",
-         background: '#00000000',
-         showConfirmButton: false,
-         timer: 1500
+         title: "Your file has been deleted.",
       })
    }
 
    message(message: string) {
-      swal.fire({
-         position: 'center',
+      Toast.fire({
          icon: 'info',
          title: message,
-         background: '#00000000',
-         showConfirmButton: false,
-         timer: 5000
       })
    }
 
