@@ -41,6 +41,7 @@ export class EmployeeListComponent implements OnInit {
       this.route.data.subscribe(data => {
          this.employees = data["employee"].result;
          this.pagination = data["employee"].pagination;
+         // console.log(data['employee'].department.id);
       });
       this.loadDepartment();
    }
@@ -135,17 +136,18 @@ export class EmployeeListComponent implements OnInit {
    }
 
    //kita buat fungsi untuk Order By
-   OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo) {
-      if (hrCoreNo !== null || firstname !== null || lastname !== null || fullname !== null || hIDNo !== null) {
+   OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
+      if (hrCoreNo !== null || firstname !== null || lastname !== null || fullname !== null || hIDNo !== null || department !== null) {
          this.employeeParams.hrCoreNo = hrCoreNo;
          this.employeeParams.firstname = firstname;
          this.employeeParams.lastname = lastname;
          this.employeeParams.fullname = fullname;
          this.employeeParams.hIDNo = hIDNo;
+         this.employeeParams.departmentName = department;
          this.loadEmployee();
       }
    }
-
+   
    //lkita buat fungsi cancel Filter
    cancelFilter(status) {
       if (status == "Filter") {
@@ -154,6 +156,7 @@ export class EmployeeListComponent implements OnInit {
          this.employeeParams.lastname = null;
          this.employeeParams.fullname = null;
          this.employeeParams.hIDNo = null;
+         this.employeeParams.departmentName = null;
          this.loadEmployee();
       }
    }

@@ -6,6 +6,7 @@ export interface Employee {
     fullname: string;
     hidNo: string;
     departmentId: number;
+    department: any;
 }
 
 

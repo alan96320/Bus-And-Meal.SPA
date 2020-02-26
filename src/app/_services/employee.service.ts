@@ -59,6 +59,9 @@ export class EmployeeService {
          if (employeeParams.hIDNo != null) {
             params = params.append('HIDNo', employeeParams.hIDNo);
          }
+         if (employeeParams.departmentName != null) {
+            params = params.append('DepartmentName', employeeParams.departmentName);
+         }
          if (employeeParams.OrderBy != null) {
             params = params.append('OrderBy', employeeParams.OrderBy);
             params = params.append('isDescending', employeeParams.isDesc);
