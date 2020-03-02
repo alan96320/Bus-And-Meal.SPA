@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/_services/Users.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { Users } from 'src/app/_models/Users';
-import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { UsersService } from "src/app/_services/users.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { ActivatedRoute } from "@angular/router";
+import { Users } from "src/app/_models/users";
+import { Pagination, PaginatedResult } from "src/app/_models/pagination";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import swal from "sweetalert2";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-userList',
-  templateUrl: './userList.component.html',
+  selector: "app-userList",
+  templateUrl: "./userList.component.html"
 })
 export class UserListComponent implements OnInit {
   sortAscHrCoreNo: boolean;
@@ -34,8 +34,8 @@ export class UserListComponent implements OnInit {
     private alertify: AlertifyService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
-    private http: HttpClient,
-  ) { }
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -102,7 +102,14 @@ export class UserListComponent implements OnInit {
 
   //kita buat fungsi untuk Order By
   OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
-    if (hrCoreNo !== null || firstname !== null || lastname !== null || fullname !== null || hIDNo !== null || department !== null) {
+    if (
+      hrCoreNo !== null ||
+      firstname !== null ||
+      lastname !== null ||
+      fullname !== null ||
+      hIDNo !== null ||
+      department !== null
+    ) {
       this.UsersParams.hrCoreNo = hrCoreNo;
       this.UsersParams.firstname = firstname;
       this.UsersParams.lastname = lastname;
@@ -128,27 +135,29 @@ export class UserListComponent implements OnInit {
 
   //for delete data
   deleteUsers(id: number) {
-    confirm.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.usersService.deleteUser(id).subscribe(
-          () => {
-            this.sweetAlert.warningDel();
-            this.loadUsers();
-          },
-          error => {
-            this.sweetAlert.warning(error);
-          }
-        );
-      }
-    })
+    confirm
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      })
+      .then(result => {
+        if (result.value) {
+          this.usersService.deleteUser(id).subscribe(
+            () => {
+              this.sweetAlert.warningDel();
+              this.loadUsers();
+            },
+            error => {
+              this.sweetAlert.warning(error);
+            }
+          );
+        }
+      });
   }
 
   // for laod data
@@ -171,21 +180,22 @@ export class UserListComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
-      this.listDepartments = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+    this.http.get("http://localhost:5000/api/department").subscribe(
+      response => {
+        this.listDepartments = response;
+      },
+      error => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
-
 }
-
 
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger"
   },
   buttonsStyling: false
-})
+});

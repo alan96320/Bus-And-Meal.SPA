@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from 'src/app/_services/Auth.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { Router } from '@angular/router';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { AuthService } from "src/app/_services/auth.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { Router } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 @Component({
   selector: "app-navbar",
@@ -10,7 +10,6 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-  
   activeTrasaction = false;
   activeReport = false;
   activeConfiguration = false;
@@ -21,27 +20,27 @@ export class NavbarComponent implements OnInit {
     public authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
-    private sweetAlert: SweetAlertService) { }
-  
-  ngOnInit() {
-  }
+    private sweetAlert: SweetAlertService
+  ) {}
 
-  activeLinkTrasaction(){
+  ngOnInit() {}
+
+  activeLinkTrasaction() {
     this.activeTrasaction = true;
     this.activeReport = false;
     this.activeConfiguration = false;
   }
-  activeLinkReport(){
+  activeLinkReport() {
     this.activeTrasaction = false;
     this.activeReport = true;
     this.activeConfiguration = false;
   }
-  activeLinkConfiguration(){
+  activeLinkConfiguration() {
     this.activeTrasaction = false;
     this.activeReport = false;
     this.activeConfiguration = true;
   }
-  destroyActiveLink(){
+  destroyActiveLink() {
     this.activeTrasaction = false;
     this.activeReport = false;
     this.activeConfiguration = false;
@@ -52,14 +51,20 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(next => {
-      this.sweetAlert.success('Welcome to Aplication Bus And Meal, '+ this.model.username);
-    }, error => {
-      this.sweetAlert.error('Incorrect username or password');
-      // this.alertify.warning('Login Failed');
-    }, () => {
-      this.router.navigate(['/home']);
-    });
+    this.authService.login(this.model).subscribe(
+      next => {
+        this.sweetAlert.success(
+          "Welcome to Aplication Bus And Meal, " + this.model.username
+        );
+      },
+      error => {
+        this.sweetAlert.error("Incorrect username or password");
+        // this.alertify.warning('Login Failed');
+      },
+      () => {
+        this.router.navigate(["/home"]);
+      }
+    );
   }
 
   loggedIn() {
@@ -69,11 +74,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.sweetAlert.warning('Logout Sukses');
-    this.router.navigate(['/home']);
+    localStorage.removeItem("token");
+    this.sweetAlert.warning("Logout Sukses");
+    this.router.navigate(["/home"]);
   }
-
-
-
 }
