@@ -44,7 +44,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-9 offset-sm-3">
-                          <button class="btn btn-success animation-on-hover btn-sm" type="submit" [disabled]="!FormCounter.valid">
+                          <button class="btn btn-default animation-on-hover btn-sm" type="submit" [disabled]="!FormCounter.valid">
                             {{!update ? 'Add' : 'Update'}}
                           </button>
                           <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button" [routerLink]="['/counter']" >Cancel</button>

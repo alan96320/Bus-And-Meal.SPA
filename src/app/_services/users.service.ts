@@ -72,6 +72,7 @@ export class UsersService {
   }
 
   editUser(id: any, model: any) {
+    console.log(model); 
     return this.http.put(this.baseUrl + "User/" + id, model);
   }
 

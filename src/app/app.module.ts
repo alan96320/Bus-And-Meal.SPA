@@ -55,6 +55,7 @@ import { CounterListResolver, CounterDetailResolver } from './_resolvers/counter
 import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
 import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
 import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -78,6 +79,7 @@ export function tokenGetter() {
       }
     }),
     PaginationModule.forRoot(),
+    AngularMultiSelectModule
   ],
   declarations: [
     AppComponent,

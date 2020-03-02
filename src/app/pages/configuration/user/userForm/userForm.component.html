@@ -8,7 +8,7 @@
             <div class="form-group row no-border">
               <label class="col-sm-2 offset-sm-1 col-form-label">521 ID</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="hrCoreNo" required [(ngModel)]="model.hrCoreNo" readonly>
+                <input type="text" class="form-control" name="gddbId" required [(ngModel)]="model.gddbId" readonly>
               </div>
               <div class=" form-check col-sm-4 offset-sm-1">
                 <label class=" form-check-label">
@@ -50,9 +50,78 @@
                 <input type="text" class="form-control" name="fullname" [(ngModel)]="model.fullname" value="{{firstname.value+' '+lastname.value}}" readonly>
               </div>
             </div>
+            <div class="row ml-2 mr-2">
+              <div class="table-responsive col-sm-6" style="max-height: 300px; overflow: auto;">
+                <table class="table"> 
+                  <thead class="" style="border-top: medium;">
+                    <tr>
+                      <th>Description</th>
+                      <th style="width: 50px;" >Read</th>
+                      <th style="width: 50px;" >Write</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let moduleRight of userModule; let i = index">
+                      <td>{{moduleRight.moduleRights.description}}</td>
+                      <td class="text-center">
+                        <div class=" form-check">
+                          <label class=" form-check-label">
+                            <input class=" form-check-input" type="checkbox"  name="{{'read'+i}}" [(ngModel)]="moduleRight.read" value="">
+                            <span class=" form-check-sign">
+                              <span class=" check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <div class=" form-check">
+                          <label class=" form-check-label">
+                            <input class=" form-check-input" type="checkbox" name="{{'write'+i}}" [(ngModel)]="moduleRight.write">
+                            <span class=" form-check-sign">
+                              <span class=" check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-responsive col-sm-6" style="max-height: 300px; overflow: auto;">
+                <table class="table">
+                  <thead class="" style="border-top: medium;">
+                    <tr>
+                      <th>Department</th>
+                      <th style="width: 50px;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let department of listDepartments; let i = index">
+                      <td>{{department.name}}</td>
+                      <td class="text-center">
+                        <div class=" form-check">
+                          <label class=" form-check-label">
+                            <!-- <input class=" form-check-input" type="checkbox" name="{{'check'+i}}" (change)="departmentCheck($event)" 
+                            value="{{department.id}}" [ngClass]="{'d-lg-none': department.id === item}"
+                            > -->
+                            <input class=" form-check-input" type="checkbox" name="{{'check'+i}}" (change)="departmentCheck($event)"
+                              value="{{department.id}}" [checked]="checkedStatus.includes(department.id)" >
+                            <span class=" form-check-sign">
+                              <span class=" check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
             <div class="row">
               <div class="col-sm-9 offset-sm-3">
-                <button class="btn btn-success animation-on-hover btn-sm" type="submit" [disabled]="!FormEmployee.valid"> Save </button>
+                <button class="btn btn-default animation-on-hover btn-sm" type="submit" [disabled]="!FormEmployee.valid"> Save </button>
                 <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button"
                   [routerLink]="['/user']">Cancel</button>
               </div>

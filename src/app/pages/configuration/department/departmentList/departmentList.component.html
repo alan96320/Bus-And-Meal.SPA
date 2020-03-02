@@ -67,7 +67,7 @@
           <ul class="pagination">
             <li>
               <label class="mr-1">Item Per Page</label>
-              <select class="btn btn-primary btn-simple btn-icon mr-5" style="height: 31px; width: 50px;" #Size
+              <select class="btn btn-default btn-simple btn-icon mr-5" style="height: 31px; width: 50px;" #Size
                 (change)="changeSize(Size.value)">
                 <option value="5">5</option>
                 <option value="10">10</option>
@@ -76,31 +76,31 @@
               </select>
             </li>
             <li (click)="startPage()" [ngClass]="{'d-lg-none': pagination.currentPage === 1}">
-              <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-icon btn-sm ">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm ">
                 <i class="tim-icons icon-double-left"></i>
               </a>
             </li>
             <li [ngClass]="{'d-lg-none': pagination.currentPage === 1}" (click)="prevPage()">
-              <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-icon btn-sm">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
                 <i class="tim-icons icon-minimal-left"></i>
               </a>
             </li>
             <li *ngFor="let item of arrayPage(); let i = index;">
-              <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-icon btn-sm"
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm"
                 [ngClass]="{'active': i+1 === pagination.currentPage,'d-lg-none': i+1 > pagination.currentPage+2 || i+1 < pagination.currentPage}" (click)="clickMe(i+1)">
                 <b>{{i+1}}</b>
               </a>
             </li>
             <li [ngClass]="{'d-lg-none': pagination.totalPages < 3 || pagination.totalPages === pagination.currentPage }">
-              <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-icon btn-sm">...</a>
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">...</a>
             </li>
             <li (click)="nextPage()" [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-              <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-icon btn-sm">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
                 <i class="tim-icons icon-minimal-right"></i>
               </a>
             </li>
             <li (click)="endPage(pagination.totalPages)" [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-              <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-icon btn-sm">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
                 <i class="tim-icons icon-double-right"></i>
               </a>
             </li>
