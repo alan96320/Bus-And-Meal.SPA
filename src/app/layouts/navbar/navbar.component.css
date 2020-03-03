@@ -1,6 +1,16 @@
 .bg-custom{
     background:#f3f4f8;
 }
+
+.navbar-nav li a.disable{
+    pointer-events: none;
+    color: red;
+}
+.link-disable:hover{
+    cursor: no-drop;
+    background-color: #f3f4f8;
+}
+
 .custom-color, .search-bar.input-group i, .navbar-nav li a{
     color: #1d253b;
 }
@@ -31,3 +41,4 @@
     overflow: hidden;
     font-size: medium;
 }
+
