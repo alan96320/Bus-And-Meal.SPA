@@ -1,45 +1,47 @@
-@import '../node_modules/alertifyjs/build/css/alertify.min.css';
-@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
-@import '~compass-mixins/lib/compass/css3';
+@import "../node_modules/alertifyjs/build/css/alertify.min.css";
+@import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+@import "../node_modules/stimulsoft-reports-js/Css/stimulsoft.viewer.office2013.whiteblue.css";
+@import "~compass-mixins/lib/compass/css3";
 /* You can add global styles to this file, and also import other style files */
-.box-shadow-custom{
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
+.box-shadow-custom {
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
-.lineUp-custom{
-    background: rgba(0, 0, 0, 0.12);
-    height: auto;
-    width: 1px;
+.lineUp-custom {
+  background: rgba(0, 0, 0, 0.12);
+  height: auto;
+  width: 1px;
 }
-.hover-custom{
-    min-width: 64px;
-    height: 64px;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.card-custom{
-    padding: 30px;
-}
-.table-custom{
-    max-height: 360px;
-    min-height: 360px;
-}
-.sort-custom{
-    cursor: pointer;
-}
-.sort-active{
-    @include transform(rotate(-180deg)); 
-}
-#content{
-    padding-left: 400px;
-    padding-right: 400px;
+.hover-custom {
+  min-width: 64px;
+  height: 64px;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
-.img-custom{
-    margin-top: 70px;
-    background-color: #ffffff;
-    height: 830px;
+.card-custom {
+  padding: 30px;
 }
-.overflow-custom{
-    overflow: auto;
+.table-custom {
+  max-height: 360px;
+  min-height: 360px;
+}
+.sort-custom {
+  cursor: pointer;
+}
+.sort-active {
+  @include transform(rotate(-180deg));
+}
+#content {
+  padding-left: 400px;
+  padding-right: 400px;
+}
+
+.img-custom {
+  margin-top: 70px;
+  background-color: #ffffff;
+  height: 830px;
+}
+.overflow-custom {
+  overflow: auto;
 }

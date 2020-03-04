@@ -61,6 +61,8 @@ import {
 } from "./_resolvers/usersResolver";
 import { BusOrderVerificationListComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component";
 import { BusOrderVerificationFormComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component";
+import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
+import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
 
 export const appRouting: Routes = [
   { path: "", component: HomeComponent },
@@ -70,6 +72,10 @@ export const appRouting: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "dashboard", component: DashboardComponent },
+      // report path
+      { path: "report/department", component: DepartmentReportComponent },
+      { path: "report/employee", component: EmployeeReportComponent },
+      // menu for report
       //path for menu configuration
       {
         path: "department",

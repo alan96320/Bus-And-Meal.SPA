@@ -77,6 +77,8 @@ import {
   UsersDetailResolver
 } from "./_resolvers/usersResolver";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
+import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
+import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -128,6 +130,7 @@ export function tokenGetter() {
     EmployeeFormComponent,
     UserListComponent,
     UserFormComponent,
+
     //decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
@@ -136,9 +139,11 @@ export function tokenGetter() {
     MealOrderEntryListComponent,
     MealOrderEntryFormComponent,
     MealOrderVerficationListComponent,
-    MealOrderVerficationFormComponent
+    MealOrderVerficationFormComponent,
 
     //decaration for menu report
+    DepartmentReportComponent,
+    EmployeeReportComponent
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
