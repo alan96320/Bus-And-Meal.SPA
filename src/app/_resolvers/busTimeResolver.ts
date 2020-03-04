@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { BusTime } from '../_models/BusTime';
-import { BusTimeService } from '../_services/BusTime.service';
+import { BusTime } from '../_models/busTime';
+import { BusTimeService } from '../_services/busTime.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';

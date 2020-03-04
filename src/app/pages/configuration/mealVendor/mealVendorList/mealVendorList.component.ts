@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MealVendorService } from 'src/app/_services/MealVendor.service';
+import { MealVendorService } from 'src/app/_services/mealVendor.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { MealVendor } from 'src/app/_models/MealVendor';
+import { MealVendor } from 'src/app/_models/mealVendor';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';

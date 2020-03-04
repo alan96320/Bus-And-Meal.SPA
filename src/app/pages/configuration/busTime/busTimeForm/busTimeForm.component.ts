@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { BusTime } from 'src/app/_models/BusTime';
-import { BusTimeService } from 'src/app/_services/BusTime.service';
+import { BusTime } from 'src/app/_models/busTime';
+import { BusTimeService } from 'src/app/_services/busTime.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';

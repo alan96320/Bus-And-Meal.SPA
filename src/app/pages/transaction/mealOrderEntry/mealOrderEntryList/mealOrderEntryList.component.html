@@ -71,12 +71,12 @@
                     </span>
                   </td>
                   <td class="td-actions text-center">
-                    <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
-                      placement="left" type="button">
+                    <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data" placement="left" type="button" 
+                    >
                       <i class=" tim-icons icon-pencil"></i>
                     </button>
                     <button class=" btn btn-link btn-danger btn-icon btn-sm" container="body" ngbTooltip="Remove Data"
-                      placement="left" type="button">
+                      placement="left" type="button" (click)="deleteMealOrderEntrys(MealOrderEntry.id)">
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>

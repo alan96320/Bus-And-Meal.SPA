@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Counter } from '../_models/Counter';
-import { CounterService } from '../_services/Counter.service';
+import { Counter } from '../_models/counter';
+import { CounterService } from '../_services/counter.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';

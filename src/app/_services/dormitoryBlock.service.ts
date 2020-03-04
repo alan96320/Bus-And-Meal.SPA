@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DormitoryBlock } from '../_models/DormitoryBlock';
+import { DormitoryBlock } from '../_models/dormitoryBlock';
 import { PaginatedResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
 

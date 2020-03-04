@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { DormitoryBlock } from 'src/app/_models/DormitoryBlock';
-import { DormitoryBlockService } from 'src/app/_services/DormitoryBlock.service';
+import { DormitoryBlock } from 'src/app/_models/dormitoryBlock';
+import { DormitoryBlockService } from 'src/app/_services/dormitoryBlock.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';

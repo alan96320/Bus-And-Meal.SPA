@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Configuration } from 'src/app/_models/Configuration';
-import { ConfigurationService } from 'src/app/_services/Configuration.service';
+import { Configuration } from 'src/app/_models/configuration';
+import { ConfigurationService } from 'src/app/_services/configuration.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';

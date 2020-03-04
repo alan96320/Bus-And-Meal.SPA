@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { Employee } from 'src/app/_models/Employee';
+import { Employee } from 'src/app/_models/employee';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';

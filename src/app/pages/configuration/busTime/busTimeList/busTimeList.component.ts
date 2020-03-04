@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BusTimeService } from 'src/app/_services/BusTime.service';
+import { BusTimeService } from 'src/app/_services/busTime.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { BusTime } from 'src/app/_models/BusTime';
+import { BusTime } from 'src/app/_models/busTime';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';

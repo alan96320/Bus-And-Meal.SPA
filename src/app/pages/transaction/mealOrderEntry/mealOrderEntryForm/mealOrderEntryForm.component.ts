@@ -3,7 +3,6 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
-import { MealTypeService } from 'src/app/_services/MealType.service';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
 
 @Component({
@@ -32,7 +31,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment();
     this.loadMealType();
-    
+
 
   }
 
@@ -58,7 +57,7 @@ export class MealOrderEntryFormComponent implements OnInit {
         delete items.mealOrderVerificationDetails;
       });
       console.log(this.mealTypes);
-      
+
 
     }, error => {
       this.sweetAlert.error(error);
@@ -70,7 +69,7 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.model.UserId = localStorage.getItem('id_user');
     this.model.MealOrderDetails = this.mealTypes;
     console.log(this.model);
-    
+
     this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {
       this.sweetAlert.successAdd('Add Successfully');
       this.router.navigate(['/mealOrderEntry']);

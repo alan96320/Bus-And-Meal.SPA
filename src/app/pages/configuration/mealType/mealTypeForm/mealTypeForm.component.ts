@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { MealTypeService } from 'src/app/_services/MealType.service';
-import { MealType } from 'src/app/_models/MealType';
+import { MealTypeService } from 'src/app/_services/mealType.service';
+import { MealType } from 'src/app/_models/mealType';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -53,12 +53,11 @@ export class MealTypeFormComponent implements OnInit {
    }
 
    addMealType() {
-      console.log(this.model);
       this.MealTypeService.addMealType(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/mealType']);
       }, error => {
-         this.sweetAlert.warning(error);
+         this.sweetAlert.warning(error.error.MealVendorId);
       });
    }
 
@@ -67,7 +66,6 @@ export class MealTypeFormComponent implements OnInit {
    }
 
    updateMealType() {
-      console.log(this.model);
       this.MealTypeService.editMealType(this.id, this.model).subscribe(() => {
          this.sweetAlert.successAdd('Edit Successfully');
          this.router.navigate(['/mealType']);

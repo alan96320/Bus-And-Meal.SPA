@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { DormitoryBlock } from '../_models/DormitoryBlock';
-import { DormitoryBlockService } from '../_services/DormitoryBlock.service';
+import { DormitoryBlock } from '../_models/dormitoryBlock';
+import { DormitoryBlockService } from '../_services/dormitoryBlock.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';

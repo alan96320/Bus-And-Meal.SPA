@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Counter } from 'src/app/_models/Counter';
-import { CounterService } from 'src/app/_services/Counter.service';
+import { Counter } from 'src/app/_models/counter';
+import { CounterService } from 'src/app/_services/counter.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';

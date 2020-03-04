@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Counter } from '../_models/Counter';
+import { Counter } from '../_models/counter';
 import { PaginatedResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
 

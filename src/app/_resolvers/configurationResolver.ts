@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Configuration } from '../_models/Configuration';
-import { ConfigurationService } from '../_services/Configuration.service';
+import { Configuration } from '../_models/configuration';
+import { ConfigurationService } from '../_services/configuration.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';

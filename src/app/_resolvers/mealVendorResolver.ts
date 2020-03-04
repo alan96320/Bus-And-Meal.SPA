@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { MealVendor } from '../_models/MealVendor';
-import { MealVendorService } from '../_services/MealVendor.service';
+import { MealVendor } from '../_models/mealVendor';
+import { MealVendorService } from '../_services/mealVendor.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';

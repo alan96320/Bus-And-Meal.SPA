@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/_services/Users.service';
+import { UsersService } from 'src/app/_services/users.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { Users } from 'src/app/_models/Users';
+import { Users } from 'src/app/_models/users';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';

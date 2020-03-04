@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { MealVendor } from 'src/app/_models/MealVendor';
-import { MealVendorService } from 'src/app/_services/MealVendor.service';
+import { MealVendor } from 'src/app/_models/mealVendor';
+import { MealVendorService } from 'src/app/_services/mealVendor.service';
 
 @Component({
    // tslint:disable-next-line:component-selector
@@ -51,7 +51,6 @@ export class MealVendorFormComponent implements OnInit {
    }
 
    addMealVendor() {
-      console.log(this.model);
       this.mealVendorService.addMealVendor(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/mealVendor']);
@@ -65,7 +64,6 @@ export class MealVendorFormComponent implements OnInit {
    }
 
    updateMealVendor() {
-      console.log(this.model);
       this.mealVendorService.editMealVendor(this.id, this.model).subscribe(() => {
          this.sweetAlert.successAdd('Edit Successfully');
          this.router.navigate(['/mealVendor']);
