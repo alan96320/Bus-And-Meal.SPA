@@ -28,7 +28,6 @@
                <a class="nav-link btn btn-success btn-simple animation-on-hover" (click)="destroyActiveLink()" [routerLink]="['/dashboard']" routerLinkActive="active" >Dashboard</a>
             </li> -->
 
-            <!-- <div class="lineUp-custom"></div> -->
 
             <li class="nav-item" ngbDropdown> <!-- for transaction -->
                <a class="btn btn-default animation-on-hover" [ngClass]="{'active': activeTrasaction }" data-toggle="dropdown"
@@ -46,7 +45,7 @@
                         Meal Order Verification
                      </a>
                   </li>
-                  <li class=" nav-link link-disable" *ngFor="let item of authService.decodedToken?.role" [ngClass]="{'d-none': item !== 'Bus Order Entry.R'}">
+                  <li class=" nav-link">
                      <a class="nav-item" [routerLink]="['/busOrderEntry']" (click)="activeLinkTrasaction()" ngbDropdownItem>Bus Order Entry</a>
                   </li>
                   <li class=" nav-link">

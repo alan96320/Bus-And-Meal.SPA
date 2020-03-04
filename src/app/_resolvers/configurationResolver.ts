@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Configuration } from '../_models/Configuration';
 import { ConfigurationService } from '../_services/Configuration.service';
@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
-export class ConfigurationDetailResolver implements Resolve<Configuration>{
+export class ConfigurationDetailResolver implements Resolve<Configuration> {
     constructor(
         private configurationService: ConfigurationService,
         private router: Router,
@@ -17,12 +17,12 @@ export class ConfigurationDetailResolver implements Resolve<Configuration>{
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Configuration> {
-        return this.configurationService.getConfiguration(route.params['id']).pipe(
+        return this.configurationService.getConfiguration(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/depart']);
-                return of;
-                // return of(null);
+                // return of;
+                return of(null);
             })
         );
     }

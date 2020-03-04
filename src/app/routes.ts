@@ -7,7 +7,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DepartmentListComponent } from './pages/configuration/department/departmentList/departmentList.component';
 import { DepartmentFormComponent } from './pages/configuration/department/departmentForm/departmentForm.component';
+// tslint:disable-next-line:max-line-length
 import { DormitoryBlokAreaFormComponent } from './pages/configuration/dormitoryBlokArea/dormitoryBlokAreaForm/dormitoryBlokAreaForm.component';
+// tslint:disable-next-line:max-line-length
 import { DormitoryBlokAreaListComponent } from './pages/configuration/dormitoryBlokArea/dormitoryBlokAreaList/dormitoryBlokAreaList.component';
 import { MealTypeListComponent } from './pages/configuration/mealType/mealTypeList/mealTypeList.component';
 import { MealTypeFormComponent } from './pages/configuration/mealType/mealTypeForm/mealTypeForm.component';
@@ -19,11 +21,15 @@ import { UserListComponent } from './pages/configuration/user/userList/userList.
 import { UserFormComponent } from './pages/configuration/user/userForm/userForm.component';
 import { BusOrderEntryListComponent } from './pages/transaction/busOrderEntry/busOrderEntryList/busOrderEntryList.component';
 import { BusOrderEntryFormComponent } from './pages/transaction/busOrderEntry/busOrderEntryForm/busOrderEntryForm.component';
+// tslint:disable-next-line:max-line-length
 import { BusOrderVerificationListComponent } from './pages/transaction/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component';
+// tslint:disable-next-line:max-line-length
 import { BusOrderVerificationFormComponent } from './pages/transaction/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component';
 import { MealOrderEntryListComponent } from './pages/transaction/mealOrderEntry/mealOrderEntryList/mealOrderEntryList.component';
 import { MealOrderEntryFormComponent } from './pages/transaction/mealOrderEntry/mealOrderEntryForm/mealOrderEntryForm.component';
+// tslint:disable-next-line:max-line-length
 import { MealOrderVerficationListComponent } from './pages/transaction/mealOrderVerfication/mealOrderVerficationList/mealOrderVerficationList.component';
+// tslint:disable-next-line:max-line-length
 import { MealOrderVerficationFormComponent } from './pages/transaction/mealOrderVerfication/mealOrderVerficationForm/mealOrderVerficationForm.component';
 import { MealVendorListResolver, MealVendorDetailResolver } from './_resolvers/mealVendorResolver';
 import { MealTypeDetailResolver, MealTypeListResolver } from './_resolvers/mealTypeResolver';
@@ -40,21 +46,23 @@ import { CounterListResolver, CounterDetailResolver } from './_resolvers/counter
 import { ConfigurationDetailResolver } from './_resolvers/configurationResolver';
 import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
 import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
+import { MealOrderEntryListResolver, MealOrderEntryDetailResolver } from './_resolvers/mealOrderEntryResolver';
 
-export const appRouting:Routes = [
+export const appRouting: Routes = [
     { path: '', component: HomeComponent },
     {
-        path :'',
-        runGuardsAndResolvers:'always',
-        canActivate:[AuthGuard],
-        children:[
+        path : '',
+        runGuardsAndResolvers: 'always',
+        canActivate: [AuthGuard],
+        children: [
             { path: 'dashboard', component: DashboardComponent },
-            //path for menu configuration
+            // path for menu configuration
             { path: 'department', component: DepartmentListComponent, resolve: { department: DepartmentListResolver }},
             { path: 'formDepartment', component: DepartmentFormComponent },
             { path: 'formDepartment/:id', component: DepartmentFormComponent, resolve: { department: DepartmentDetailResolver } },
             { path: 'dormitory', component: DormitoryBlokAreaListComponent, resolve: { DormitoryBlock: DormitoryBlockListResolver }},
             { path: 'formDormitory', component: DormitoryBlokAreaFormComponent },
+            // tslint:disable-next-line:max-line-length
             { path: 'formDormitory/:id', component: DormitoryBlokAreaFormComponent, resolve: { DormitoryBlock: DormitoryBlockDetailResolver } },
             { path: 'mealType', component: MealTypeListComponent, resolve: { MealType: MealTypeListResolver }},
             { path: 'formMealType', component: MealTypeFormComponent },
@@ -73,6 +81,7 @@ export const appRouting:Routes = [
             { path: 'formUser', component: UserFormComponent },
             { path: 'formUser/:id', component: UserFormComponent, resolve: { user: UsersDetailResolver } },
 
+            // tslint:disable-next-line:max-line-length
             { path: 'formConfiguration/:id', component: ConfigurationFormComponent, resolve: { configuration: ConfigurationDetailResolver } },
             { path: 'counter', component: CounterListComponent, resolve: { counter: CounterListResolver } },
             { path: 'formCounter', component: CounterFormComponent },
@@ -82,22 +91,23 @@ export const appRouting:Routes = [
             { path: 'formEmployee', component: EmployeeFormComponent },
             { path: 'formEmployee/:id', component: EmployeeFormComponent, resolve: { employee: EmployeeDetailResolver } },
 
-            //path for menu transaction
+            // path for menu transaction
             { path: 'busOrderEntry', component: BusOrderEntryListComponent },
             { path: 'formBusOrderEntry', component: BusOrderEntryFormComponent },
             { path: 'formBusOrderEntry/:id', component: BusOrderEntryFormComponent },
             { path: 'busOrderVerification', component: BusOrderVerificationListComponent },
             { path: 'formBusOrderVerification', component: BusOrderVerificationFormComponent },
             { path: 'formBusOrderVerification/:id', component: BusOrderVerificationFormComponent },
-            { path: 'mealOrderEntry', component: MealOrderEntryListComponent },
+            { path: 'mealOrderEntry', component: MealOrderEntryListComponent, resolve: { mealOrderEntry: MealOrderEntryListResolver }  },
             { path: 'formMealOrderEntry', component: MealOrderEntryFormComponent },
-            { path: 'formMealOrderEntry/:id', component: MealOrderEntryFormComponent },
+            // tslint:disable-next-line:max-line-length
+            { path: 'formMealOrderEntry/:id', component: MealOrderEntryFormComponent, resolve: { mealOrderEntry: MealOrderEntryDetailResolver } },
             { path: 'mealOrderVerification', component: MealOrderVerficationListComponent },
             { path: 'formMealOrderVerification', component: MealOrderVerficationFormComponent },
             { path: 'formMealOrderVerification/:id', component: MealOrderVerficationFormComponent },
 
         ]
     },
-    
+
     { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

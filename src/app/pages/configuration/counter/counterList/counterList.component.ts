@@ -8,24 +8,26 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-counterList',
    templateUrl: './counterList.component.html',
 })
 export class CounterListComponent implements OnInit {
-   //deklarasi untuk pagination custom
+   // deklarasi untuk pagination custom
    sortAscCode: boolean;
    sortAscName: boolean;
    sortAscLocation: boolean;
    sortAscStatus: boolean;
-   filter: boolean = true;
+   filter = true;
 
-   //deklarasi untuk get data
+   // deklarasi untuk get data
    Counters: Counter[];
    pagination: Pagination;
    CounterParams: any = {};
    model: any = {};
 
    constructor(
+      // tslint:disable-next-line:no-shadowed-variable
       private CounterService: CounterService,
       private alertify: AlertifyService,
       private route: ActivatedRoute,
@@ -34,12 +36,12 @@ export class CounterListComponent implements OnInit {
 
    ngOnInit() {
       this.route.data.subscribe(data => {
-         this.Counters = data["counter"].result;
-         this.pagination = data["counter"].pagination;
+         this.Counters = data.counter.result;
+         this.pagination = data.counter.pagination;
       });
    }
 
-   //karena paginationnya di rancang sendiri jadi, jadi kita harus buat function untuk paginationnya
+   // karena paginationnya di rancang sendiri jadi, jadi kita harus buat function untuk paginationnya
    // kita array kan dulu jumlah data yang kita dapatkan
    arrayPage() {
       return Array(this.pagination.totalPages);
@@ -47,25 +49,25 @@ export class CounterListComponent implements OnInit {
 
    // kita buat fungsi untuk sorting by asc or desc
    sortActive(getName) {
-      if (getName == "code") {
+      if (getName === 'code') {
          this.sortAscCode = !this.sortAscCode;
          this.CounterParams.OrderBy = getName;
          this.CounterParams.isDesc = this.sortAscCode;
          this.loadCounter();
       }
-      if (getName == "name") {
+      if (getName === 'name') {
          this.sortAscName = !this.sortAscName;
          this.CounterParams.OrderBy = getName;
          this.CounterParams.isDesc = this.sortAscName;
          this.loadCounter();
       }
-      if (getName == "location") {
+      if (getName === 'location') {
          this.sortAscLocation = !this.sortAscLocation;
          this.CounterParams.OrderBy = getName;
          this.CounterParams.isDesc = this.sortAscLocation;
          this.loadCounter();
       }
-      if (getName == "status") {
+      if (getName === 'status') {
          this.sortAscStatus = !this.sortAscStatus;
          this.CounterParams.OrderBy = getName;
          this.CounterParams.isDesc = this.sortAscStatus;
@@ -79,31 +81,31 @@ export class CounterListComponent implements OnInit {
       this.loadCounter();
    }
 
-   //kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
+   // kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
    nextPage() {
-      if (this.pagination.currentPage != this.pagination.totalPages) {
+      if (this.pagination.currentPage !== this.pagination.totalPages) {
          this.pagination.currentPage = this.pagination.currentPage + 1;
          this.loadCounter();
       }
    }
 
-   //kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
+   // kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
    prevPage() {
-      if (this.pagination.currentPage != 1) {
+      if (this.pagination.currentPage !== 1) {
          this.pagination.currentPage = this.pagination.currentPage - 1;
          this.loadCounter();
       }
    }
 
-   //kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
+   // kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
    endPage(Page) {
-      if (this.pagination.currentPage != Page) {
+      if (this.pagination.currentPage !== Page) {
          this.pagination.currentPage = Page;
          this.loadCounter();
       }
    }
 
-   //kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
+   // kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
    startPage() {
       this.pagination.currentPage = 1;
       this.loadCounter();
@@ -116,7 +118,7 @@ export class CounterListComponent implements OnInit {
       this.loadCounter();
    }
 
-   //kita buat fungsi untuk Order By
+   // kita buat fungsi untuk Order By
    OrderBy(code, name, location, status) {
       if (code !== null || name !== null || location !== null) {
          this.CounterParams.code = code;
@@ -127,9 +129,9 @@ export class CounterListComponent implements OnInit {
       }
    }
 
-   //lkita buat fungsi cancel Filter
+   // lkita buat fungsi cancel Filter
    cancelFilter(status) {
-      if (status == "Filter") {
+      if (status === 'Filter') {
          this.CounterParams.code = null;
          this.CounterParams.name = null;
          this.CounterParams.location = null;
@@ -138,11 +140,11 @@ export class CounterListComponent implements OnInit {
       }
    }
 
-   //for delete data
+   // for delete data
    deleteCounter(id: number) {
       confirm.fire({
          title: 'Are you sure?',
-         text: "You won't be able to revert this!",
+         text: 'You won\'t be able to revert this!',
          icon: 'question',
          showCancelButton: true,
          confirmButtonText: 'Yes, delete it!',
@@ -160,7 +162,7 @@ export class CounterListComponent implements OnInit {
                }
             );
          }
-      })
+      });
    }
 
    // for laod data
@@ -191,4 +193,4 @@ const confirm = swal.mixin({
       cancelButton: 'btn btn-danger'
    },
    buttonsStyling: false
-})
+});

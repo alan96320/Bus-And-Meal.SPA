@@ -6,15 +6,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-departmentForm',
    templateUrl: './departmentForm.component.html'
 })
 export class DepartmentFormComponent implements OnInit {
    @Output() cancelAdd = new EventEmitter();
    model: any = {};
-   update: boolean = false;
+   update = false;
    department: Department;
-   id = +this.route.snapshot.params['id'];
+   id = +this.route.snapshot.params.id;
 
    constructor(
       private departmentService: DepartmentService,
@@ -31,8 +32,8 @@ export class DepartmentFormComponent implements OnInit {
    loadDepartment() {
       if (this.id) {
          this.route.data.subscribe(data => {
-            this.model.code = data['department'].code;
-            this.model.name = data['department'].name;
+            this.model.code = data.department.code;
+            this.model.name = data.department.name;
             this.update = true;
          });
       }

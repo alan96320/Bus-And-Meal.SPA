@@ -6,17 +6,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-dormitoryBlokAreaForm',
    templateUrl: './dormitoryBlokAreaForm.component.html',
 })
 export class DormitoryBlokAreaFormComponent implements OnInit {
    @Output() cancelAdd = new EventEmitter();
    model: any = {};
-   update: boolean = false;
+   update = false;
    DormitoryBlock: DormitoryBlock;
-   id = +this.route.snapshot.params['id'];
+   id = +this.route.snapshot.params.id;
 
    constructor(
+      // tslint:disable-next-line:no-shadowed-variable
       private DormitoryBlockService: DormitoryBlockService,
       private alertify: AlertifyService,
       private router: Router,
@@ -31,8 +33,8 @@ export class DormitoryBlokAreaFormComponent implements OnInit {
    loadDormitoryBlock() {
       if (this.id) {
          this.route.data.subscribe(data => {
-            this.model.code = data['DormitoryBlock'].code;
-            this.model.name = data['DormitoryBlock'].name;
+            this.model.code = data.DormitoryBlock.code;
+            this.model.name = data.DormitoryBlock.name;
             this.update = true;
          });
       }

@@ -11,17 +11,18 @@ import { MealVendor } from 'src/app/_models/MealVendor';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-mealTypeList',
    templateUrl: './mealTypeList.component.html'
 })
 export class MealTypeListComponent implements OnInit {
-   //deklarasi untuk pagination custom
+   // deklarasi untuk pagination custom
    sortAscCode: boolean;
    sortAscName: boolean;
    mealVendor: boolean;
-   filter: boolean = true;
+   filter = true;
 
-   //deklarasi untuk get data
+   // deklarasi untuk get data
    MealTypes: MealType[];
    pagination: Pagination;
    MealTypeParams: any = {};
@@ -29,6 +30,7 @@ export class MealTypeListComponent implements OnInit {
    MealVendors: any;
 
    constructor(
+      // tslint:disable-next-line:no-shadowed-variable
       private MealTypeService: MealTypeService,
       private alertify: AlertifyService,
       private route: ActivatedRoute,
@@ -38,8 +40,8 @@ export class MealTypeListComponent implements OnInit {
 
    ngOnInit() {
       this.route.data.subscribe(data => {
-         this.MealTypes = data["MealType"].result;
-         this.pagination = data["MealType"].pagination;
+         this.MealTypes = data.MealType.result;
+         this.pagination = data.MealType.pagination;
       });
    }
 
@@ -49,19 +51,19 @@ export class MealTypeListComponent implements OnInit {
    }
 
    sortActive(getName) {
-      if (getName == "code") {
+      if (getName === 'code') {
          this.sortAscCode = !this.sortAscCode;
          this.MealTypeParams.OrderBy = getName;
          this.MealTypeParams.isDesc = this.sortAscCode;
          this.loadMealTypes();
       }
-      if (getName == "name") {
+      if (getName === 'name') {
          this.sortAscName = !this.sortAscName;
          this.MealTypeParams.OrderBy = getName;
          this.MealTypeParams.isDesc = this.sortAscName;
          this.loadMealTypes();
       }
-      if (getName == "mealVendor") {
+      if (getName === 'mealVendor') {
          this.mealVendor = !this.mealVendor;
          this.MealTypeParams.OrderBy = getName;
          this.MealTypeParams.isDesc = this.mealVendor;
@@ -75,21 +77,21 @@ export class MealTypeListComponent implements OnInit {
    }
 
    nextPage() {
-      if (this.pagination.currentPage != this.pagination.totalPages) {
+      if (this.pagination.currentPage !== this.pagination.totalPages) {
          this.pagination.currentPage = this.pagination.currentPage + 1;
          this.loadMealTypes();
       }
    }
 
    prevPage() {
-      if (this.pagination.currentPage != 1) {
+      if (this.pagination.currentPage !== 1) {
          this.pagination.currentPage = this.pagination.currentPage - 1;
          this.loadMealTypes();
       }
    }
 
    endPage(Page) {
-      if (this.pagination.currentPage != Page) {
+      if (this.pagination.currentPage !== Page) {
          this.pagination.currentPage = Page;
          this.loadMealTypes();
       }
@@ -116,7 +118,7 @@ export class MealTypeListComponent implements OnInit {
    }
 
    cancelFilter(status) {
-      if (status == "Filter") {
+      if (status === 'Filter') {
          this.MealTypeParams.code = null;
          this.MealTypeParams.name = null;
          this.MealTypeParams.mealVendor = null;
@@ -127,7 +129,7 @@ export class MealTypeListComponent implements OnInit {
    deleteMealType(id: number) {
       confirm.fire({
          title: 'Are you sure?',
-         text: "You won't be able to revert this!",
+         text: 'You won\'t be able to revert this!',
          icon: 'question',
          showCancelButton: true,
          confirmButtonText: 'Yes, delete it!',
@@ -145,7 +147,7 @@ export class MealTypeListComponent implements OnInit {
                }
             );
          }
-      })
+      });
    }
 
    loadMealTypes() {
@@ -176,4 +178,4 @@ const confirm = swal.mixin({
       cancelButton: 'btn btn-danger'
    },
    buttonsStyling: false
-})
+});

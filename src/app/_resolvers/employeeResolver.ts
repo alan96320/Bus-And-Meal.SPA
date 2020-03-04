@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Employee } from '../_models/Employee';
 import { EmployeeService } from '../_services/employee.service';
@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
-export class EmployeeListResolver implements Resolve<Employee[]>{
+export class EmployeeListResolver implements Resolve<Employee[]> {
     pageNumber: number;
     pageSize: number;
     constructor(
@@ -23,7 +23,7 @@ export class EmployeeListResolver implements Resolve<Employee[]>{
         this.pageSize = this.employeeService.itemPerPage;
         return this.employeeService.getEmployees(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -33,7 +33,7 @@ export class EmployeeListResolver implements Resolve<Employee[]>{
 }
 
 @Injectable()
-export class EmployeeDetailResolver implements Resolve<Employee>{
+export class EmployeeDetailResolver implements Resolve<Employee> {
     constructor(
         private employeeService: EmployeeService,
         private router: Router,
@@ -42,12 +42,12 @@ export class EmployeeDetailResolver implements Resolve<Employee>{
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Employee> {
-        return this.employeeService.getEmployee(route.params['id']).pipe(
+        return this.employeeService.getEmployee(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/depart']);
-                return of;
-                // return of(null);
+                // return of;
+                return of(null);
             })
         );
     }

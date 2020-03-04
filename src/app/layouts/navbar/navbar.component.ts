@@ -1,19 +1,22 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { AuthService } from 'src/app/_services/Auth.service';
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.css"]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
+
   activeTrasaction = false;
   activeReport = false;
   activeConfiguration = false;
+
+  status: boolean;
+  status1: string;
   public isCollapsed = true;
 
   model: any = {};
@@ -22,26 +25,26 @@ export class NavbarComponent implements OnInit {
     private alertify: AlertifyService,
     private router: Router,
     private sweetAlert: SweetAlertService) { }
-  
+
   ngOnInit() {
   }
 
-  activeLinkTrasaction(){
+  activeLinkTrasaction() {
     this.activeTrasaction = true;
     this.activeReport = false;
     this.activeConfiguration = false;
   }
-  activeLinkReport(){
+  activeLinkReport() {
     this.activeTrasaction = false;
     this.activeReport = true;
     this.activeConfiguration = false;
   }
-  activeLinkConfiguration(){
+  activeLinkConfiguration() {
     this.activeTrasaction = false;
     this.activeReport = false;
     this.activeConfiguration = true;
   }
-  destroyActiveLink(){
+  destroyActiveLink() {
     this.activeTrasaction = false;
     this.activeReport = false;
     this.activeConfiguration = false;
@@ -53,7 +56,7 @@ export class NavbarComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      this.sweetAlert.success('Welcome to Aplication Bus And Meal, '+ this.model.username);
+      this.sweetAlert.success('Welcome to Aplication Bus And Meal, ' + this.model.username);
     }, error => {
       this.sweetAlert.error('Incorrect username or password');
       // this.alertify.warning('Login Failed');
@@ -73,7 +76,6 @@ export class NavbarComponent implements OnInit {
     this.sweetAlert.warning('Logout Sukses');
     this.router.navigate(['/home']);
   }
-
 
 
 }

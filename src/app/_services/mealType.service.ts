@@ -15,25 +15,25 @@ export class MealTypeService {
 
    constructor(private http: HttpClient, ) { }
 
-   //for add data MealType
+   // for add data MealType
    addMealType(model: any) {
       return this.http.post(this.baseUrl + 'MealType/', model);
    }
 
-   //for delete data MealType
+   // for delete data MealType
    deleteMealType(id: any) {
       return this.http.delete(this.baseUrl + 'MealType/' + id);
    }
-   //get by ID after update
+   // get by ID after update
    getMealType(id: any): Observable<MealType> {
       return this.http.get<MealType>(this.baseUrl + 'MealType/' + id);
    }
-   //for edit MealType
+   // for edit MealType
    editMealType(id: any, model: any) {
       return this.http.put(this.baseUrl + 'MealType/' + id, model);
    }
 
-   //get all
+   // get all for per page
    getMealTypes(page?, itemsPerPage?, MealTypeParams?): Observable<PaginatedResult<MealType[]>> {
       const paginatedResult: PaginatedResult<MealType[]> = new PaginatedResult<MealType[]>();
 
@@ -57,16 +57,18 @@ export class MealTypeService {
             params = params.append('isDescending', MealTypeParams.isDesc);
          }
       }
-      
+
       return this.http.get<MealType[]>(this.baseUrl + 'MealType/paged', { observe: 'response', params })
          .pipe(
             map(response => {
                paginatedResult.result = response.body;
                if (response.headers.get('Pagination') != null) {
-                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
                }
                return paginatedResult;
             })
          );
    }
+
+
 }

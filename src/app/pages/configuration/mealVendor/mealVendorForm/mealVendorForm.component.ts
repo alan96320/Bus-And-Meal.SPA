@@ -6,15 +6,16 @@ import { MealVendor } from 'src/app/_models/MealVendor';
 import { MealVendorService } from 'src/app/_services/MealVendor.service';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-mealVendorForm',
    templateUrl: './mealVendorForm.component.html'
 })
 export class MealVendorFormComponent implements OnInit {
    @Output() cancelAdd = new EventEmitter();
    model: any = {};
-   update: boolean = false;
+   update = false;
    mealVendors: MealVendor;
-   id = +this.route.snapshot.params['id'];
+   id = +this.route.snapshot.params.id;
 
    constructor(
       private mealVendorService: MealVendorService,
@@ -31,11 +32,11 @@ export class MealVendorFormComponent implements OnInit {
    loadMealVendors() {
       if (this.id) {
          this.route.data.subscribe(data => {
-         this.model.code = data['mealVendor'].code;
-         this.model.name = data['mealVendor'].name;
-         this.model.contactName = data['mealVendor'].contactName;
-         this.model.contactPhone = data['mealVendor'].contactPhone;
-         this.model.contactEmail = data['mealVendor'].contactEmail;
+         this.model.code = data.mealVendor.code;
+         this.model.name = data.mealVendor.name;
+         this.model.contactName = data.mealVendor.contactName;
+         this.model.contactPhone = data.mealVendor.contactPhone;
+         this.model.contactEmail = data.mealVendor.contactEmail;
          this.update = true;
          });
       }

@@ -1,12 +1,12 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule, enableProdMode } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { RouterModule } from "@angular/router";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, enableProdMode } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 
-import { NgbModule, NgbPagination } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { appRouting } from './routes';
@@ -22,7 +22,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { PaginationModule } from '../../node_modules/ngx-bootstrap';
 import { DepartmentListComponent } from './pages/configuration/department/departmentList/departmentList.component';
 import { DepartmentFormComponent } from './pages/configuration/department/departmentForm/departmentForm.component';
+// tslint:disable-next-line:max-line-length
 import { DormitoryBlokAreaListComponent } from './pages/configuration/dormitoryBlokArea/dormitoryBlokAreaList/dormitoryBlokAreaList.component';
+// tslint:disable-next-line:max-line-length
 import { DormitoryBlokAreaFormComponent } from './pages/configuration/dormitoryBlokArea/dormitoryBlokAreaForm/dormitoryBlokAreaForm.component';
 import { MealTypeListComponent } from './pages/configuration/mealType/mealTypeList/mealTypeList.component';
 import { MealTypeFormComponent } from './pages/configuration/mealType/mealTypeForm/mealTypeForm.component';
@@ -34,11 +36,15 @@ import { UserListComponent } from './pages/configuration/user/userList/userList.
 import { UserFormComponent } from './pages/configuration/user/userForm/userForm.component';
 import { BusOrderEntryListComponent } from './pages/transaction/busOrderEntry/busOrderEntryList/busOrderEntryList.component';
 import { BusOrderEntryFormComponent } from './pages/transaction/busOrderEntry/busOrderEntryForm/busOrderEntryForm.component';
+// tslint:disable-next-line:max-line-length
 import { BusOrderVerificationListComponent } from './pages/transaction/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component';
+// tslint:disable-next-line:max-line-length
 import { BusOrderVerificationFormComponent } from './pages/transaction/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component';
 import { MealOrderEntryListComponent } from './pages/transaction/mealOrderEntry/mealOrderEntryList/mealOrderEntryList.component';
 import { MealOrderEntryFormComponent } from './pages/transaction/mealOrderEntry/mealOrderEntryForm/mealOrderEntryForm.component';
+// tslint:disable-next-line:max-line-length
 import { MealOrderVerficationListComponent } from './pages/transaction/mealOrderVerfication/mealOrderVerficationList/mealOrderVerficationList.component';
+// tslint:disable-next-line:max-line-length
 import { MealOrderVerficationFormComponent } from './pages/transaction/mealOrderVerfication/mealOrderVerficationForm/mealOrderVerficationForm.component';
 import { MealVendorListResolver, MealVendorDetailResolver } from './_resolvers/mealVendorResolver';
 import { MealTypeListResolver, MealTypeDetailResolver } from './_resolvers/mealTypeResolver';
@@ -56,6 +62,7 @@ import { ConfigurationDetailResolver } from './_resolvers/configurationResolver'
 import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
 import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { MealOrderEntryListResolver, MealOrderEntryDetailResolver } from './_resolvers/mealOrderEntryResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -73,7 +80,7 @@ export function tokenGetter() {
     RouterModule.forRoot(appRouting),
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
+        tokenGetter,
         whitelistedDomains: ['localhost:5000'],
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
@@ -86,7 +93,7 @@ export function tokenGetter() {
     NavbarComponent,
     HomeComponent,
     DashboardComponent,
-    //declarations for menu configuration
+    // declarations for menu configuration
     DepartmentListComponent,
     DepartmentFormComponent,
     DormitoryBlokAreaListComponent,
@@ -108,7 +115,7 @@ export function tokenGetter() {
     EmployeeFormComponent,
     UserListComponent,
     UserFormComponent,
-    //decaration for menu transaction
+    // decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
     BusOrderVerificationListComponent,
@@ -118,7 +125,7 @@ export function tokenGetter() {
     MealOrderVerficationListComponent,
     MealOrderVerficationFormComponent,
 
-    //decaration for menu report
+    // decaration for menu report
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
@@ -141,6 +148,8 @@ export function tokenGetter() {
     EmployeeDetailResolver,
     UsersListResolver,
     UsersDetailResolver,
+    MealOrderEntryListResolver,
+    MealOrderEntryDetailResolver,
   ],
   bootstrap: [AppComponent]
 })

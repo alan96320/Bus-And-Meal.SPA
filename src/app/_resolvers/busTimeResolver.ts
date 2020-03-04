@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { BusTime } from '../_models/BusTime';
 import { BusTimeService } from '../_services/BusTime.service';
@@ -8,10 +8,11 @@ import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
-export class BusTimeListResolver implements Resolve<BusTime[]>{
+export class BusTimeListResolver implements Resolve<BusTime[]> {
     pageNumber: number;
     pageSize: number;
     constructor(
+        // tslint:disable-next-line:no-shadowed-variable
         private BusTimeService: BusTimeService,
         private router: Router,
         private alertify: AlertifyService,
@@ -23,7 +24,7 @@ export class BusTimeListResolver implements Resolve<BusTime[]>{
         this.pageSize = this.BusTimeService.itemPerPage;
         return this.BusTimeService.getBusTimes(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -33,8 +34,9 @@ export class BusTimeListResolver implements Resolve<BusTime[]>{
 }
 
 @Injectable()
-export class BusTimeDetailResolver implements Resolve<BusTime>{
+export class BusTimeDetailResolver implements Resolve<BusTime> {
     constructor(
+        // tslint:disable-next-line:no-shadowed-variable
         private BusTimeService: BusTimeService,
         private router: Router,
         private alertify: AlertifyService,
@@ -42,12 +44,12 @@ export class BusTimeDetailResolver implements Resolve<BusTime>{
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<BusTime> {
-        return this.BusTimeService.getBusTime(route.params['id']).pipe(
+        return this.BusTimeService.getBusTime(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/depart']);
-                return of;
-                // return of(null);
+                // return of;
+                return of(null);
             })
         );
     }

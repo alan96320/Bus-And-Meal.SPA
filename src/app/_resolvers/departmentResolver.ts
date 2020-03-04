@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Department } from '../_models/department';
 import { DepartmentService } from '../_services/department.service';
@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
-export class DepartmentListResolver implements Resolve<Department[]>{
+export class DepartmentListResolver implements Resolve<Department[]> {
     pageNumber: number;
     pageSize: number;
     constructor(
@@ -17,13 +17,13 @@ export class DepartmentListResolver implements Resolve<Department[]>{
         private alertify: AlertifyService,
         private sweetAlert: SweetAlertService,
     ) { }
-    
+
     resolve(route: ActivatedRouteSnapshot): Observable<Department[]> {
         this.pageNumber = 1;
         this.pageSize = this.departmentService.itemPerPage;
         return this.departmentService.getDepartments(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -33,7 +33,7 @@ export class DepartmentListResolver implements Resolve<Department[]>{
 }
 
 @Injectable()
-export class DepartmentDetailResolver implements Resolve<Department>{
+export class DepartmentDetailResolver implements Resolve<Department> {
     constructor(
         private departmentService: DepartmentService,
         private router: Router,
@@ -42,12 +42,12 @@ export class DepartmentDetailResolver implements Resolve<Department>{
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Department> {
-        return this.departmentService.getDepartment(route.params['id']).pipe(
+        return this.departmentService.getDepartment(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/depart']);
-                return of;
-                // return of(null);
+                // return of;
+                return of(null);
             })
         );
     }

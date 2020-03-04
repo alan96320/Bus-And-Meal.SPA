@@ -9,6 +9,7 @@ import swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-employeeList',
    templateUrl: './employeeList.component.html'
 })
@@ -19,11 +20,11 @@ export class EmployeeListComponent implements OnInit {
    sortAscFullname: boolean;
    sortAscHIDNo: boolean;
    sortAscDepartmentId: boolean;
-   filter: boolean = true;
+   filter = true;
 
    listDepartments: any;
 
-   //deklarasi untuk get data
+   // deklarasi untuk get data
    employees: Employee[];
    pagination: Pagination;
    employeeParams: any = {};
@@ -39,14 +40,14 @@ export class EmployeeListComponent implements OnInit {
 
    ngOnInit() {
       this.route.data.subscribe(data => {
-         this.employees = data["employee"].result;
-         this.pagination = data["employee"].pagination;
+         this.employees = data.employee.result;
+         this.pagination = data.employee.pagination;
          // console.log(data['employee'].department.id);
       });
       this.loadDepartment();
    }
 
-   //karena paginationnya di rancang sendiri jadi, jadi kita harus buat function untuk paginationnya
+   // karena paginationnya di rancang sendiri jadi, jadi kita harus buat function untuk paginationnya
    // kita array kan dulu jumlah data yang kita dapatkan
    arrayPage() {
       return Array(this.pagination.totalPages);
@@ -54,75 +55,75 @@ export class EmployeeListComponent implements OnInit {
 
    // kita buat fungsi untuk sorting by asc or desc
    sortActive(getName) {
-      if (getName == "hrCoreNo") {
+      if (getName === 'hrCoreNo') {
          this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
          this.employeeParams.OrderBy = getName;
          this.employeeParams.isDesc = this.sortAscHrCoreNo;
          this.loadEmployee();
       }
-      if (getName == "firstname") {
+      if (getName === 'firstname') {
          this.sortAscFirstname = !this.sortAscFirstname;
          this.employeeParams.OrderBy = getName;
          this.employeeParams.isDesc = this.sortAscFirstname;
          this.loadEmployee();
       }
-      if (getName == "lastname") {
+      if (getName === 'lastname') {
          this.sortAscLastname = !this.sortAscLastname;
          this.employeeParams.OrderBy = getName;
          this.employeeParams.isDesc = this.sortAscLastname;
          this.loadEmployee();
       }
-      if (getName == "fullname") {
+      if (getName === 'fullname') {
          this.sortAscFullname = !this.sortAscFullname;
          this.employeeParams.OrderBy = getName;
          this.employeeParams.isDesc = this.sortAscFullname;
          this.loadEmployee();
       }
-      if (getName == "hidNo") {
+      if (getName === 'hidNo') {
          this.sortAscHIDNo = !this.sortAscHIDNo;
          this.employeeParams.OrderBy = getName;
          this.employeeParams.isDesc = this.sortAscHIDNo;
          this.loadEmployee();
       }
-      if (getName == "departmentId") {
+      if (getName === 'departmentId') {
          this.sortAscDepartmentId = !this.sortAscDepartmentId;
          this.employeeParams.OrderBy = getName;
          this.employeeParams.isDesc = this.sortAscDepartmentId;
          this.loadEmployee();
       }
    }
-   
+
    // kita buat fungsi untuk ketika tombol page di click
    clickMe(pageMe) {
       this.pagination.currentPage = pageMe;
       this.loadEmployee();
    }
 
-   //kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
+   // kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
    nextPage() {
-      if (this.pagination.currentPage != this.pagination.totalPages) {
+      if (this.pagination.currentPage !== this.pagination.totalPages) {
          this.pagination.currentPage = this.pagination.currentPage + 1;
          this.loadEmployee();
       }
    }
 
-   //kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
+   // kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
    prevPage() {
-      if (this.pagination.currentPage != 1) {
+      if (this.pagination.currentPage !== 1) {
          this.pagination.currentPage = this.pagination.currentPage - 1;
          this.loadEmployee();
       }
    }
 
-   //kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
+   // kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
    endPage(Page) {
-      if (this.pagination.currentPage != Page) {
+      if (this.pagination.currentPage !== Page) {
          this.pagination.currentPage = Page;
          this.loadEmployee();
       }
    }
 
-   //kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
+   // kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
    startPage() {
       this.pagination.currentPage = 1;
       this.loadEmployee();
@@ -135,7 +136,7 @@ export class EmployeeListComponent implements OnInit {
       this.loadEmployee();
    }
 
-   //kita buat fungsi untuk Order By
+   // kita buat fungsi untuk Order By
    OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
       if (hrCoreNo !== null || firstname !== null || lastname !== null || fullname !== null || hIDNo !== null || department !== null) {
          this.employeeParams.hrCoreNo = hrCoreNo;
@@ -147,10 +148,10 @@ export class EmployeeListComponent implements OnInit {
          this.loadEmployee();
       }
    }
-   
-   //lkita buat fungsi cancel Filter
+
+   // lkita buat fungsi cancel Filter
    cancelFilter(status) {
-      if (status == "Filter") {
+      if (status === 'Filter') {
          this.employeeParams.hrCoreNo = null;
          this.employeeParams.firstname = null;
          this.employeeParams.lastname = null;
@@ -160,12 +161,12 @@ export class EmployeeListComponent implements OnInit {
          this.loadEmployee();
       }
    }
-   
-   //for delete data
+
+   // for delete data
    deleteEmployee(id: number) {
       confirm.fire({
          title: 'Are you sure?',
-         text: "You won't be able to revert this!",
+         text: 'You won\'t be able to revert this!',
          icon: 'question',
          showCancelButton: true,
          confirmButtonText: 'Yes, delete it!',
@@ -183,7 +184,7 @@ export class EmployeeListComponent implements OnInit {
                }
             );
          }
-      })
+      });
    }
 
    // for laod data
@@ -223,4 +224,4 @@ const confirm = swal.mixin({
       cancelButton: 'btn btn-danger'
    },
    buttonsStyling: false
-})
+});

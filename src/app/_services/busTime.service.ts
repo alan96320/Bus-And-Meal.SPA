@@ -12,17 +12,17 @@ import { map } from 'rxjs/operators';
 export class BusTimeService {
    baseUrl = environment.apiUrl;
    itemPerPage = 5;
-   
+
    constructor(private http: HttpClient, ) { }
 
 
    addBusTime(model: any) {
-      return this.http.post(this.baseUrl + "BusTime/", model);
+      return this.http.post(this.baseUrl + 'BusTime/', model);
    }
 
 
    deleteBusTime(id: any) {
-      return this.http.delete(this.baseUrl + "BusTime/" + id);
+      return this.http.delete(this.baseUrl + 'BusTime/' + id);
    }
 
    getBusTime(id: any): Observable<BusTime> {
@@ -30,7 +30,7 @@ export class BusTimeService {
    }
 
    editBusTime(id: any, model: any) {
-      return this.http.put(this.baseUrl + "BusTime/" + id, model);
+      return this.http.put(this.baseUrl + 'BusTime/' + id, model);
    }
 
 
@@ -63,7 +63,7 @@ export class BusTimeService {
             map(response => {
                paginatedResult.result = response.body;
                if (response.headers.get('Pagination') != null) {
-                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
                }
                return paginatedResult;
             })

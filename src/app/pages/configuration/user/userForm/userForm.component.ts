@@ -7,15 +7,16 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-userForm',
   templateUrl: './userForm.component.html',
 })
 export class UserFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
-  update: boolean = false;
+  update = false;
   user: Users;
-  id = +this.route.snapshot.params['id'];
+  id = +this.route.snapshot.params.id;
   listDepartments: any;
   userModule: any = {};
   departmentSubmit: any = [];
@@ -35,27 +36,29 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.loadUsers();
     this.loadDepartment();
-    
+
   }
 
   loadUsers() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.gddbId = data['user'].gddbId;
-        this.model.username = data['user'].username;
-        this.model.firstname = data['user'].firstName;
-        this.model.lastname = data['user'].lastName;
-        this.model.fullname = data['user'].fullName;
-        this.model.adminStatus = data['user'].adminStatus;
-        this.model.lockTransStatus = data['user'].lockTransStatus;
-        this.userModule = data['user'].userModuleRights;
+        this.model.gddbId = data.user.gddbId;
+        this.model.username = data.user.username;
+        this.model.firstname = data.user.firstName;
+        this.model.lastname = data.user.lastName;
+        this.model.fullname = data.user.fullName;
+        this.model.adminStatus = data.user.adminStatus;
+        this.model.lockTransStatus = data.user.lockTransStatus;
+        this.userModule = data.user.userModuleRights;
         this.userModule.sort((a, b) => a.moduleRights.description > b.moduleRights.description ? 1 : -1); // for sorting asc by description
-        this.model.userDepartment = data['user'].userDepartment;
+        this.model.userDepartments = data.user.userDepartments;
         this.update = true;
-        this.model.userDepartment.map(item => {
-          this.checkedStatus.push(item.departmentId);
-        });
-        this.checkedList = JSON.parse(JSON.stringify(this.checkedStatus));        
+        if (this.model.userDepartments !== null) {
+          this.model.userDepartments.map(item => {
+            this.checkedStatus.push(item.departmentId);
+          });
+        }
+        this.checkedList = JSON.parse(JSON.stringify(this.checkedStatus));
       });
     }
   }
@@ -69,11 +72,11 @@ export class UserFormComponent implements OnInit {
   }
 
   departmentCheck(event) {
-    if (event.target.checked == true) {
-        this.checkedList.push(event.target.value)
+    if (event.target.checked === true) {
+        this.checkedList.push(event.target.value);
     } else {
-     let index = this.checkedList.indexOf(event.target.value);
-      this.checkedList.splice(index, 1);
+     const index = this.checkedList.indexOf(event.target.value);
+     this.checkedList.splice(index, 1);
     }
   }
 
@@ -84,24 +87,24 @@ export class UserFormComponent implements OnInit {
         this.departmentSubmit.push({
           departmentId: item,
           userId: this.id
-        })
+        });
     });
 
     // update module right
-    var moduleRightSubmit = JSON.parse(JSON.stringify(this.userModule));
+    const moduleRightSubmit = JSON.parse(JSON.stringify(this.userModule));
     moduleRightSubmit.map(data => {
       delete data.moduleRights;
-    })
+    });
 
     // update model with new data before send to server
-    this.model.userDepartment = this.departmentSubmit;
+    this.model.userDepartments = this.departmentSubmit;
     this.model.userModuleRights = moduleRightSubmit;
-    
+
     // console.log(this.model);
-    
+
     this.usersService.editUser(this.id, this.model).subscribe(() => {
       this.sweetAlert.successAdd('Edit Successfully');
-      this.router.navigate(['/user']);  
+      this.router.navigate(['/user']);
     }, error => {
       this.sweetAlert.warning(error);
     });

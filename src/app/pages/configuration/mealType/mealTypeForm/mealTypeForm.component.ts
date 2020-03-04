@@ -7,17 +7,19 @@ import { MealType } from 'src/app/_models/MealType';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-mealTypeForm',
    templateUrl: './mealTypeForm.component.html'
 })
 export class MealTypeFormComponent implements OnInit {
    @Output() cancelAdd = new EventEmitter();
    model: any = {};
-   update: boolean = false;
+   update = false;
    mealTypes: MealType;
-   id = +this.route.snapshot.params['id'];
+   id = +this.route.snapshot.params.id;
    MealVendors: any;
    constructor(
+      // tslint:disable-next-line:no-shadowed-variable
       private MealTypeService: MealTypeService,
       private alertify: AlertifyService,
       private router: Router,
@@ -34,9 +36,9 @@ export class MealTypeFormComponent implements OnInit {
    loadMealTypes() {
       if (this.id) {
          this.route.data.subscribe(data => {
-            this.model.code = data['MealType'].code;
-            this.model.name = data['MealType'].name;
-            this.model.mealVendorId = data['MealType'].mealVendor.id;
+            this.model.code = data.MealType.code;
+            this.model.name = data.MealType.name;
+            this.model.mealVendorId = data.MealType.mealVendor.id;
             this.update = true;
          });
       }

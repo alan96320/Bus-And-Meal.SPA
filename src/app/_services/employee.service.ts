@@ -16,25 +16,25 @@ export class EmployeeService {
 
    constructor(private http: HttpClient, ) { }
 
-   //for add data Employee
+   // for add data Employee
    addEmployee(model: any) {
-      return this.http.post(this.baseUrl + "employee/", model);
+      return this.http.post(this.baseUrl + 'employee/', model);
    }
 
-   //for delete data Employee
+   // for delete data Employee
    deleteEmployee(id: any) {
-      return this.http.delete(this.baseUrl + "employee/" + id);
+      return this.http.delete(this.baseUrl + 'employee/' + id);
    }
-   //get by ID after update
+   // get by ID after update
    getEmployee(id: any): Observable<Employee> {
       return this.http.get<Employee>(this.baseUrl + 'employee/' + id);
    }
-   //for edit Employee
+   // for edit Employee
    editEmployee(id: any, model: any) {
-      return this.http.put(this.baseUrl + "employee/" + id, model);
+      return this.http.put(this.baseUrl + 'employee/' + id, model);
    }
 
-   //get all
+   // get all
    getEmployees(page?, itemsPerPage?, employeeParams?): Observable<PaginatedResult<Employee[]>> {
       const paginatedResult: PaginatedResult<Employee[]> = new PaginatedResult<Employee[]>();
 
@@ -73,7 +73,7 @@ export class EmployeeService {
             map(response => {
                paginatedResult.result = response.body;
                if (response.headers.get('Pagination') != null) {
-                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
                }
                return paginatedResult;
             })

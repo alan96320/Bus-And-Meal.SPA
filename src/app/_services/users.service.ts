@@ -60,7 +60,7 @@ export class UsersService {
         map(response => {
           paginatedResult.result = response.body;
           if (response.headers.get('Pagination') != null) {
-            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
           }
           return paginatedResult;
         })
@@ -68,12 +68,12 @@ export class UsersService {
   }
 
   deleteUser(id: any) {
-    return this.http.delete(this.baseUrl + "User/" + id);
+    return this.http.delete(this.baseUrl + 'User/' + id);
   }
 
   editUser(id: any, model: any) {
-    console.log(model); 
-    return this.http.put(this.baseUrl + "User/" + id, model);
+    console.log(model);
+    return this.http.put(this.baseUrl + 'User/' + id, model);
   }
 
 }

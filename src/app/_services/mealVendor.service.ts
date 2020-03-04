@@ -15,25 +15,25 @@ export class MealVendorService {
 
    constructor(private http: HttpClient, ) { }
 
-   //for add data MealVendor
+   // for add data MealVendor
    addMealVendor(model: any) {
       return this.http.post(this.baseUrl + 'mealVendor/', model);
    }
 
-   //for delete data MealVendor
+   // for delete data MealVendor
    deleteMealVendor(id: any) {
       return this.http.delete(this.baseUrl + 'mealVendor/' + id);
    }
-   //get by ID after update
+   // get by ID after update
    getMealVendor(id: any): Observable<MealVendor> {
       return this.http.get<MealVendor>(this.baseUrl + 'mealVendor/' + id);
    }
-   //for edit MealVendor
+   // for edit MealVendor
    editMealVendor(id: any, model: any) {
       return this.http.put(this.baseUrl + 'mealVendor/' + id, model);
    }
 
-   //get all
+   // get all
    getMealVendors(page?, itemsPerPage?, MealVendorParams?): Observable<PaginatedResult<MealVendor[]>> {
       const paginatedResult: PaginatedResult<MealVendor[]> = new PaginatedResult<MealVendor[]>();
 
@@ -69,7 +69,7 @@ export class MealVendorService {
             map(response => {
                paginatedResult.result = response.body;
                if (response.headers.get('Pagination') != null) {
-                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
                }
                return paginatedResult;
             })

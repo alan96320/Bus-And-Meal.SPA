@@ -15,26 +15,26 @@ export class DepartmentService {
   itemPerPage = 5;
 
   constructor(private http: HttpClient, ) { }
-  
-  //for add data department
-  addDepartment(model: any){
-    return this.http.post(this.baseUrl + "department/", model);
+
+  // for add data department
+  addDepartment(model: any) {
+    return this.http.post(this.baseUrl + 'department/', model);
   }
 
-  //for delete data department
-  deleteDepartment(id:any){
-    return this.http.delete(this.baseUrl + "department/" + id);
+  // for delete data department
+  deleteDepartment(id: any) {
+    return this.http.delete(this.baseUrl + 'department/' + id);
   }
-  //get by ID after update
-  getDepartment(id: any): Observable<Department>{
+  // get by ID after update
+  getDepartment(id: any): Observable<Department> {
     return this.http.get<Department>(this.baseUrl + 'department/' + id);
   }
-  //for edit department
-  editDepartment(id: any, model: any){
-    return this.http.put(this.baseUrl + "department/"+ id, model);
+  // for edit department
+  editDepartment(id: any, model: any) {
+    return this.http.put(this.baseUrl + 'department/' + id, model);
   }
 
-  //get all
+  // get all
   getDepartments(page?, itemsPerPage?, departmentParams?): Observable<PaginatedResult<Department[]>> {
     const paginatedResult: PaginatedResult<Department[]> = new PaginatedResult<Department[]>();
 
@@ -61,7 +61,7 @@ export class DepartmentService {
       map(response => {
         paginatedResult.result = response.body;
         if (response.headers.get('Pagination') != null) {
-          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
         return paginatedResult;
       })

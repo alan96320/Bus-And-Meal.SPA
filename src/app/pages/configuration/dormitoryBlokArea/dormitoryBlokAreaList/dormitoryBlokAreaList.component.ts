@@ -8,22 +8,24 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-dormitoryBlokAreaList',
    templateUrl: './dormitoryBlokAreaList.component.html',
 })
 export class DormitoryBlokAreaListComponent implements OnInit {
-   //deklarasi untuk pagination custom
+   // deklarasi untuk pagination custom
    sortAscCode: boolean;
    sortAscName: boolean;
-   filter: boolean = true;
+   filter = true;
 
-   //deklarasi untuk get data
+   // deklarasi untuk get data
    DormitoryBlocks: DormitoryBlock[];
    pagination: Pagination;
    DormitoryBlockParams: any = {};
    model: any = {};
-   
+
    constructor(
+      // tslint:disable-next-line:no-shadowed-variable
       private DormitoryBlockService: DormitoryBlockService,
       private alertify: AlertifyService,
       private route: ActivatedRoute,
@@ -32,23 +34,23 @@ export class DormitoryBlokAreaListComponent implements OnInit {
 
    ngOnInit() {
       this.route.data.subscribe(data => {
-         this.DormitoryBlocks = data["DormitoryBlock"].result;
-         this.pagination = data["DormitoryBlock"].pagination;
+         this.DormitoryBlocks = data.DormitoryBlock.result;
+         this.pagination = data.DormitoryBlock.pagination;
       });
    }
-   
+
    arrayPage() {
       return Array(this.pagination.totalPages);
    }
 
    sortActive(getName) {
-      if (getName == "code") {
+      if (getName === 'code') {
          this.sortAscCode = !this.sortAscCode;
          this.DormitoryBlockParams.OrderBy = getName;
          this.DormitoryBlockParams.isDesc = this.sortAscCode;
          this.loadDormitoryBlock();
       }
-      if (getName == "name") {
+      if (getName === 'name') {
          this.sortAscName = !this.sortAscName;
          this.DormitoryBlockParams.OrderBy = getName;
          this.DormitoryBlockParams.isDesc = this.sortAscName;
@@ -62,21 +64,21 @@ export class DormitoryBlokAreaListComponent implements OnInit {
    }
 
    nextPage() {
-      if (this.pagination.currentPage != this.pagination.totalPages) {
+      if (this.pagination.currentPage !== this.pagination.totalPages) {
          this.pagination.currentPage = this.pagination.currentPage + 1;
          this.loadDormitoryBlock();
       }
    }
 
    prevPage() {
-      if (this.pagination.currentPage != 1) {
+      if (this.pagination.currentPage !== 1) {
          this.pagination.currentPage = this.pagination.currentPage - 1;
          this.loadDormitoryBlock();
       }
    }
 
    endPage(Page) {
-      if (this.pagination.currentPage != Page) {
+      if (this.pagination.currentPage !== Page) {
          this.pagination.currentPage = Page;
          this.loadDormitoryBlock();
       }
@@ -102,7 +104,7 @@ export class DormitoryBlokAreaListComponent implements OnInit {
    }
 
    cancelFilter(status) {
-      if (status == "Filter") {
+      if (status === 'Filter') {
          this.DormitoryBlockParams.code = null;
          this.DormitoryBlockParams.name = null;
          this.loadDormitoryBlock();
@@ -112,7 +114,7 @@ export class DormitoryBlokAreaListComponent implements OnInit {
    deleteDormitoryBlock(id: number) {
       confirm.fire({
          title: 'Are you sure?',
-         text: "You won't be able to revert this!",
+         text: 'You won\'t be able to revert this!',
          icon: 'question',
          showCancelButton: true,
          confirmButtonText: 'Yes, delete it!',
@@ -130,7 +132,7 @@ export class DormitoryBlokAreaListComponent implements OnInit {
                }
             );
          }
-      })
+      });
    }
 
    loadDormitoryBlock() {
@@ -160,4 +162,4 @@ const confirm = swal.mixin({
       cancelButton: 'btn btn-danger'
    },
    buttonsStyling: false
-})
+});

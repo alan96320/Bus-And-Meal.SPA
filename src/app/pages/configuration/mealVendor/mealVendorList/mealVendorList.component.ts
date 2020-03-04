@@ -8,19 +8,20 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-mealVendorList',
    templateUrl: './mealVendorList.component.html'
 })
 export class MealVendorListComponent implements OnInit {
-   //deklarasi untuk pagination custom
+   // deklarasi untuk pagination custom
    sortAscCode: boolean;
    sortAscName: boolean;
    ContactName: boolean;
    ContactPhone: boolean;
    ContactEmail: boolean;
-   filter: boolean = true;
+   filter = true;
 
-   //deklarasi untuk get data
+   // deklarasi untuk get data
    mealVendors: MealVendor[];
    pagination: Pagination;
    mealVendorParams: any = {};
@@ -35,41 +36,41 @@ export class MealVendorListComponent implements OnInit {
 
    ngOnInit() {
       this.route.data.subscribe(data => {
-         this.mealVendors = data["mealVendor"].result;
-         this.pagination = data["mealVendor"].pagination;
+         this.mealVendors = data.mealVendor.result;
+         this.pagination = data.mealVendor.pagination;
       });
    }
-   
+
    arrayPage() {
       return Array(this.pagination.totalPages);
    }
 
    sortActive(getName) {
-      if (getName == "code") {
+      if (getName === 'code') {
          this.sortAscCode = !this.sortAscCode;
          this.mealVendorParams.OrderBy = getName;
          this.mealVendorParams.isDesc = this.sortAscCode;
          this.loadMealVendors();
       }
-      if (getName == "name") {
+      if (getName === 'name') {
          this.sortAscName = !this.sortAscName;
          this.mealVendorParams.OrderBy = getName;
          this.mealVendorParams.isDesc = this.sortAscName;
          this.loadMealVendors();
       }
-      if (getName == "ContactName") {
+      if (getName === 'ContactName') {
          this.ContactName = !this.ContactName;
          this.mealVendorParams.OrderBy = getName;
          this.mealVendorParams.isDesc = this.ContactName;
          this.loadMealVendors();
       }
-      if (getName == "ContactPhone") {
+      if (getName === 'ContactPhone') {
          this.ContactPhone = !this.ContactPhone;
          this.mealVendorParams.OrderBy = getName;
          this.mealVendorParams.isDesc = this.ContactPhone;
          this.loadMealVendors();
       }
-      if (getName == "ContactEmail") {
+      if (getName === 'ContactEmail') {
          this.ContactEmail = !this.ContactEmail;
          this.mealVendorParams.OrderBy = getName;
          this.mealVendorParams.isDesc = this.ContactEmail;
@@ -83,21 +84,21 @@ export class MealVendorListComponent implements OnInit {
    }
 
    nextPage() {
-      if (this.pagination.currentPage != this.pagination.totalPages) {
+      if (this.pagination.currentPage !== this.pagination.totalPages) {
          this.pagination.currentPage = this.pagination.currentPage + 1;
          this.loadMealVendors();
       }
    }
 
    prevPage() {
-      if (this.pagination.currentPage != 1) {
+      if (this.pagination.currentPage !== 1) {
          this.pagination.currentPage = this.pagination.currentPage - 1;
          this.loadMealVendors();
       }
    }
 
    endPage(Page) {
-      if (this.pagination.currentPage != Page) {
+      if (this.pagination.currentPage !== Page) {
          this.pagination.currentPage = Page;
          this.loadMealVendors();
       }
@@ -126,7 +127,7 @@ export class MealVendorListComponent implements OnInit {
    }
 
    cancelFilter(status) {
-      if (status == "Filter") {
+      if (status === 'Filter') {
          this.mealVendorParams.code = null;
          this.mealVendorParams.name = null;
          this.mealVendorParams.ContactName = null;
@@ -139,7 +140,7 @@ export class MealVendorListComponent implements OnInit {
    deleteMealVendor(id: number) {
       confirm.fire({
          title: 'Are you sure?',
-         text: "You won't be able to revert this!",
+         text: 'You won\'t be able to revert this!',
          icon: 'question',
          showCancelButton: true,
          confirmButtonText: 'Yes, delete it!',
@@ -157,7 +158,7 @@ export class MealVendorListComponent implements OnInit {
                }
             );
          }
-      })
+      });
    }
 
    loadMealVendors() {
@@ -187,4 +188,4 @@ const confirm = swal.mixin({
       cancelButton: 'btn btn-danger'
    },
    buttonsStyling: false
-})
+});

@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { MealVendor } from '../_models/MealVendor';
-import { MealVendorService } from '../_services/MealVendor.service';
+import { MealOrderEntryService } from '../_services/mealOrderEntry.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
+import { MealOrderEntry } from '../_models/mealOrderEntry';
 
 @Injectable()
-export class MealVendorListResolver implements Resolve<MealVendor[]> {
+export class MealOrderEntryListResolver implements Resolve<MealOrderEntry[]> {
     pageNumber: number;
     pageSize: number;
     constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private MealVendorService: MealVendorService,
+        private mealOrderEntryService: MealOrderEntryService,
         private router: Router,
         private alertify: AlertifyService,
         private sweetAlert: SweetAlertService,
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<MealVendor[]> {
+    resolve(route: ActivatedRouteSnapshot): Observable<MealOrderEntry[]> {
         this.pageNumber = 1;
-        this.pageSize = this.MealVendorService.itemPerPage;
-        return this.MealVendorService.getMealVendors(this.pageNumber, this.pageSize).pipe(
+        this.pageSize = this.mealOrderEntryService.itemPerPage;
+        return this.mealOrderEntryService.getMealOrderEntrys(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/home']);
@@ -34,17 +33,16 @@ export class MealVendorListResolver implements Resolve<MealVendor[]> {
 }
 
 @Injectable()
-export class MealVendorDetailResolver implements Resolve<MealVendor> {
+export class MealOrderEntryDetailResolver implements Resolve<MealOrderEntry> {
     constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private MealVendorService: MealVendorService,
+        private mealOrderEntryService: MealOrderEntryService,
         private router: Router,
         private alertify: AlertifyService,
         private sweetAlert: SweetAlertService,
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<MealVendor> {
-        return this.MealVendorService.getMealVendor(route.params.id).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<MealOrderEntry> {
+        return this.mealOrderEntryService.getMealOrderEntry(route.params.id).pipe(
             catchError(error => {
                 this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/depart']);

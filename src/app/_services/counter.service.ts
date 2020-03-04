@@ -15,25 +15,25 @@ export class CounterService {
 
    constructor(private http: HttpClient, ) { }
 
-   //for add data Counter
+   // for add data Counter
    addCounter(model: any) {
-      return this.http.post(this.baseUrl + "counter/", model);
+      return this.http.post(this.baseUrl + 'counter/', model);
    }
 
-   //for delete data Counter
+   // for delete data Counter
    deleteCounter(id: any) {
-      return this.http.delete(this.baseUrl + "counter/" + id);
+      return this.http.delete(this.baseUrl + 'counter/' + id);
    }
-   //get by ID after update
+   // get by ID after update
    getCounter(id: any): Observable<Counter> {
       return this.http.get<Counter>(this.baseUrl + 'counter/' + id);
    }
-   //for edit Counter
+   // for edit Counter
    editCounter(id: any, model: any) {
-      return this.http.put(this.baseUrl + "counter/" + id, model);
+      return this.http.put(this.baseUrl + 'counter/' + id, model);
    }
 
-   //get all
+   // get all
    getCounters(page?, itemsPerPage?, counterParams?): Observable<PaginatedResult<Counter[]>> {
       const paginatedResult: PaginatedResult<Counter[]> = new PaginatedResult<Counter[]>();
 
@@ -66,7 +66,7 @@ export class CounterService {
             map(response => {
                paginatedResult.result = response.body;
                if (response.headers.get('Pagination') != null) {
-                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
                }
                return paginatedResult;
             })

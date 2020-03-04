@@ -15,25 +15,25 @@ export class DormitoryBlockService {
 
    constructor(private http: HttpClient, ) { }
 
-   
+
    addDormitoryBlock(model: any) {
-      return this.http.post(this.baseUrl + "DormitoryBlock/", model);
+      return this.http.post(this.baseUrl + 'DormitoryBlock/', model);
    }
 
-   
+
    deleteDormitoryBlock(id: any) {
-      return this.http.delete(this.baseUrl + "DormitoryBlock/" + id);
+      return this.http.delete(this.baseUrl + 'DormitoryBlock/' + id);
    }
-   
+
    getDormitoryBlock(id: any): Observable<DormitoryBlock> {
       return this.http.get<DormitoryBlock>(this.baseUrl + 'DormitoryBlock/' + id);
    }
-   
+
    editDormitoryBlock(id: any, model: any) {
-      return this.http.put(this.baseUrl + "DormitoryBlock/" + id, model);
+      return this.http.put(this.baseUrl + 'DormitoryBlock/' + id, model);
    }
 
-   
+
    getDormitoryBlocks(page?, itemsPerPage?, DormitoryBlockParams?): Observable<PaginatedResult<DormitoryBlock[]>> {
       const paginatedResult: PaginatedResult<DormitoryBlock[]> = new PaginatedResult<DormitoryBlock[]>();
 
@@ -60,7 +60,7 @@ export class DormitoryBlockService {
             map(response => {
                paginatedResult.result = response.body;
                if (response.headers.get('Pagination') != null) {
-                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+                  paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
                }
                return paginatedResult;
             })

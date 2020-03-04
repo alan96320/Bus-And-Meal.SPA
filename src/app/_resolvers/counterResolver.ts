@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Counter } from '../_models/Counter';
 import { CounterService } from '../_services/Counter.service';
@@ -8,10 +8,11 @@ import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
-export class CounterListResolver implements Resolve<Counter[]>{
+export class CounterListResolver implements Resolve<Counter[]> {
     pageNumber: number;
     pageSize: number;
     constructor(
+        // tslint:disable-next-line:no-shadowed-variable
         private CounterService: CounterService,
         private router: Router,
         private alertify: AlertifyService,
@@ -23,7 +24,7 @@ export class CounterListResolver implements Resolve<Counter[]>{
         this.pageSize = this.CounterService.itemPerPage;
         return this.CounterService.getCounters(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -33,8 +34,9 @@ export class CounterListResolver implements Resolve<Counter[]>{
 }
 
 @Injectable()
-export class CounterDetailResolver implements Resolve<Counter>{
+export class CounterDetailResolver implements Resolve<Counter> {
     constructor(
+        // tslint:disable-next-line:no-shadowed-variable
         private CounterService: CounterService,
         private router: Router,
         private alertify: AlertifyService,
@@ -42,12 +44,12 @@ export class CounterDetailResolver implements Resolve<Counter>{
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Counter> {
-        return this.CounterService.getCounter(route.params['id']).pipe(
+        return this.CounterService.getCounter(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error("Problem Retrieving Data ");
+                this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/depart']);
-                return of;
-                // return of(null);
+                // return of;
+                return of(null);
             })
         );
     }
