@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ViewEncapsulation } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
+import { DepartmentService } from "src/app/_services/department.service";
+import { ActivatedRoute } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { Department } from "src/app/_models/department";
 
 declare var Stimulsoft: any;
-var data: any = [];
 
 @Component({
   selector: "app-departmentReport",
@@ -11,262 +14,30 @@ var data: any = [];
   styleUrls: ["./departmentReport.component.css"]
 })
 export class DepartmentReportComponent implements OnInit {
-  constructor() {}
+  departments: Department[];
+
+  constructor(
+    private departmentService: DepartmentService,
+    private route: ActivatedRoute,
+    private sweetAlert: SweetAlertService
+  ) {}
 
   ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.departments = data["department"];
+    });
+
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile("../assets/reports/Department.mrt");
     report.dictionary.variables.getByName("title").valueObject =
       "Department List";
-    data = [
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      },
-      {
-        id: 1,
-        code: "D001",
-        name: "Name 1"
-      },
-      {
-        id: 1,
-        code: "D002",
-        name: "Name 2"
-      },
-      {
-        id: 1,
-        code: "D003",
-        name: "Name 3"
-      },
-      {
-        id: 1,
-        code: "D004",
-        name: "Name 4"
-      }
-    ];
-    report.regData("DataSet", "DataSet", data);
+
+    report.regData("DataSet", "DataSet", this.departments);
 
     options.width = "100%";
-    options.height = "800px";
+    options.height = "850px";
     options.appearance.scrollbarsMode = true;
-    options.appearance.openLinksWindow = "_blank";
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;

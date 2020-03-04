@@ -79,6 +79,7 @@ import {
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
 import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
+import { DepartmentReportResolver } from "./_resolvers/reportResolver";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -165,7 +166,8 @@ export function tokenGetter() {
     EmployeeListResolver,
     EmployeeDetailResolver,
     UsersListResolver,
-    UsersDetailResolver
+    UsersDetailResolver,
+    DepartmentReportResolver
   ],
   bootstrap: [AppComponent]
 })
