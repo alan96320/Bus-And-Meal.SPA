@@ -13,7 +13,7 @@ import { appRouting } from './routes';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthService } from './_services/Auth.service';
+import { AuthService } from './_services/auth.service';
 import { DepartmentService } from './_services/department.service';
 import { DepartmentDetailResolver } from './_resolvers/departmentResolver';
 import { DepartmentListResolver } from './_resolvers/departmentResolver';
@@ -54,7 +54,7 @@ import { BusTimeListComponent } from './pages/configuration/busTime/busTimeList/
 import { BusTimeFormComponent } from './pages/configuration/busTime/busTimeForm/busTimeForm.component';
 import { ConfigurationFormComponent } from './pages/configuration/configuration/configurationForm.component';
 import { CounterListComponent } from './pages/configuration/counter/counterList/counterList.component';
-import { CounterFormComponent } from './pages/configuration/counter/CounterForm/CounterForm.component';
+import { CounterFormComponent } from './pages/configuration/counter/counterForm/counterForm.component';
 import { EmployeeListComponent } from './pages/configuration/employee/employeeList/employeeList.component';
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';

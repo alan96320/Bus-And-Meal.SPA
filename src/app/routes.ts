@@ -39,7 +39,7 @@ import { BusTimeFormComponent } from './pages/configuration/busTime/busTimeForm/
 import { BusTimeListResolver, BusTimeDetailResolver } from './_resolvers/busTimeResolver';
 import { ConfigurationFormComponent } from './pages/configuration/configuration/configurationForm.component';
 import { CounterListComponent } from './pages/configuration/counter/counterList/counterList.component';
-import { CounterFormComponent } from './pages/configuration/counter/CounterForm/CounterForm.component';
+import { CounterFormComponent } from './pages/configuration/counter/counterForm/counterForm.component';
 import { EmployeeListComponent } from './pages/configuration/employee/employeeList/employeeList.component';
 import { EmployeeFormComponent } from './pages/configuration/employee/employeeForm/employeeForm.component';
 import { CounterListResolver, CounterDetailResolver } from './_resolvers/counterResolver';
