@@ -66,7 +66,6 @@ import { BusTimeListComponent } from "./pages/configuration/busTime/busTimeList/
 import { BusTimeFormComponent } from "./pages/configuration/busTime/busTimeForm/busTimeForm.component";
 import { ConfigurationFormComponent } from "./pages/configuration/configuration/configurationForm.component";
 import { CounterListComponent } from "./pages/configuration/counter/counterList/counterList.component";
-import { CounterFormComponent } from "./pages/configuration/counter/CounterForm/CounterForm.component";
 import { EmployeeListComponent } from "./pages/configuration/employee/employeeList/employeeList.component";
 import { EmployeeFormComponent } from "./pages/configuration/employee/employeeForm/employeeForm.component";
 import {
@@ -87,6 +86,7 @@ import {
   MealOrderEntryListResolver,
   MealOrderEntryDetailResolver
 } from "./_resolvers/mealOrderEntryResolver";
+import { CounterFormComponent } from "./pages/configuration/counter/CounterForm/CounterForm.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
