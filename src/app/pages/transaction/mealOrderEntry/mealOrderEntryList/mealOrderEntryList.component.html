@@ -1,3 +1,6 @@
+<script>
+ 
+</script>
 <div class="content">
   <div class=" row">
     <div class=" col-12">
@@ -17,17 +20,17 @@
         </div>
         <li class="dropdown-divider"></li>
         <div class=" card-body row" style="margin-top: -20px;">
-          <div class=" table-responsive table-custom col-sm-6">
+          <div class=" table-responsive col-sm-6" id="scrolLeft" style="overflow-y: auto;">
             <table class="table">
               <thead>
                 <tr>
                   <th class="sort-custom" (click)="sortActive('date')">Date
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscHrCoreNo===true}"></i>
+                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDate===true}"></i>
                   </th>
                   <th class="sort-custom" (click)="sortActive('departmentName')">Department Name
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscFirstname===false}"></i>
+                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDepartmentName===false}"></i>
                   </th>
-                  <th class="sort-custom" (click)="sortActive('lastname')">Status
+                  <th class="sort-custom">Status
                   </th>
                   <th class="sort-custom text-center">Action
                 </tr>
@@ -35,30 +38,16 @@
               <tbody>
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By HrCore No" #box
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
+                    <input type="date" class="form-control" #box
+                      (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By First Name" #box1
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
+                      <select class="form-control" #box1 (change)="OrderBy(box.value,box1.value);box.value='';">
+                        <option value="">Select One</option>
+                        <option *ngFor="let item of listDepartments" value="{{item.id}}">{{item.name}}</option>
+                      </select>
                   </td>
-                  <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Last Name" #box2
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
-                  </td>
-                  <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Full Name" #box3
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
-                  </td>
-                  <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By HID No" #box4
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
-                  </td>
-                  <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Department" #box5
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
-                  </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
                   <td>{{MealOrderEntry.orderEntryDate}}</td>
@@ -72,7 +61,7 @@
                   </td>
                   <td class="td-actions text-center">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data" placement="left" type="button" 
-                    >
+                     [routerLink]="['/formMealOrderEntry',MealOrderEntry.id]">
                       <i class=" tim-icons icon-pencil"></i>
                     </button>
                     <button class=" btn btn-link btn-danger btn-icon btn-sm" container="body" ngbTooltip="Remove Data"
@@ -84,8 +73,8 @@
               </tbody>
             </table>
           </div>
-          <div class="table-responsive table-custome col-sm-6">
-            <table class="table">
+          <div class="table-responsive col-sm-6"id="scrolRight" style="overflow-y: auto;">
+            <table class="table ">
               <thead>
                 <tr>
                   <th *ngFor="let MealOrderDetail of mealTypes" class="text-center">
@@ -94,7 +83,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MealOrderEntry of MealOrderEntrys" style="height: 55px;" class="text-center">
+                <tr *ngIf="!filter" style="height: 63px;">
+                  <td colspan="4"></td>
+                </tr>
+                <tr *ngFor="let MealOrderEntry of MealOrderEntrys" class="text-center" style="height: 55px;">
                   <td *ngFor="let item of MealOrderEntry.mealOrderDetails">{{item.orderQty}}</td>
                 </tr>
               </tbody>
@@ -155,4 +147,3 @@
 </div>
 
 
-<!-- <p *ngFor="let item of MealOrderEntrys.mealOrderDetails; let i = index">{{item[0].mealTypeId}} {{i}}</p> -->
