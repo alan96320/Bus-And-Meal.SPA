@@ -7,8 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
-import { DatePipe } from '@angular/common';
-import { getTime } from 'ngx-bootstrap/chronos/utils/date-getters';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderEntryList',

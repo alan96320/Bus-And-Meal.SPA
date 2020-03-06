@@ -63,6 +63,7 @@ import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/emplo
 import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { MealOrderEntryListResolver, MealOrderEntryDetailResolver } from './_resolvers/mealOrderEntryResolver';
+import { MealOrderVerificationListResolver, MealOrderVerificationDetailResolver } from './_resolvers/mealOrderVerificationResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -150,6 +151,8 @@ export function tokenGetter() {
     UsersDetailResolver,
     MealOrderEntryListResolver,
     MealOrderEntryDetailResolver,
+    MealOrderVerificationListResolver,
+    MealOrderVerificationDetailResolver,
   ],
   bootstrap: [AppComponent]
 })

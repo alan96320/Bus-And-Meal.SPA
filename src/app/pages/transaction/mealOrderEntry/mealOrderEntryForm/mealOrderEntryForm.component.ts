@@ -18,6 +18,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   id = +this.route.snapshot.params.id;
   listDepartments: any;
   mealTypes: any;
+  currenDate = new Date();
 
   constructor(
     private alertify: AlertifyService,
@@ -32,6 +33,27 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.loadDepartment();
     this.loadMealType();
     this.loadMealOrderEntry();
+    this.converCurrenDate();
+
+  }
+  converCurrenDate() {
+    const month = this.currenDate.getMonth() + 1;
+    const day = this.currenDate.getDate();
+    if (month < 9) {
+      if (day < 9) {
+        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
+      } else {
+        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-' + day;
+      }
+    } else if (day < 9) {
+      if (month < 9) {
+        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
+      } else {
+        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-' + month + '-0' + day;
+      }
+    } else {
+      this.model.OrderEntryDate = this.currenDate.getFullYear() + '-' + month + '-' + day;
+    }
   }
 
   loadDepartment() {

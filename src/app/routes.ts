@@ -47,6 +47,7 @@ import { ConfigurationDetailResolver } from './_resolvers/configurationResolver'
 import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/employeeResolver';
 import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
 import { MealOrderEntryListResolver, MealOrderEntryDetailResolver } from './_resolvers/mealOrderEntryResolver';
+import { MealOrderVerificationListResolver, MealOrderVerificationDetailResolver } from './_resolvers/mealOrderVerificationResolver';
 
 export const appRouting: Routes = [
     { path: '', component: HomeComponent },
@@ -103,10 +104,12 @@ export const appRouting: Routes = [
             // tslint:disable-next-line:max-line-length
             { path: 'formMealOrderEntry/:id', component: MealOrderEntryFormComponent, resolve: { mealOrderEntry: MealOrderEntryDetailResolver } },
 
-            { path: 'mealOrderVerification', component: MealOrderVerficationListComponent },
+            // tslint:disable-next-line:max-line-length
+            { path: 'mealOrderVerification', component: MealOrderVerficationListComponent, resolve: {mealOrderVerification: MealOrderVerificationListResolver}},
             // tslint:disable-next-line:max-line-length
             { path: 'formMealOrderVerification', component: MealOrderVerficationFormComponent},
-            { path: 'formMealOrderVerification/:id', component: MealOrderVerficationFormComponent },
+            // tslint:disable-next-line:max-line-length
+            { path: 'formMealOrderVerification/:id', component: MealOrderVerficationFormComponent, resolve: {mealOrderVerification: MealOrderVerificationDetailResolver}},
 
         ]
     },

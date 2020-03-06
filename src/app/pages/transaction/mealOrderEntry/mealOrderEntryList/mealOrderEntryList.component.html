@@ -1,6 +1,3 @@
-<script>
- 
-</script>
 <div class="content">
   <div class=" row">
     <div class=" col-12">
@@ -50,7 +47,7 @@
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
-                  <td>{{MealOrderEntry.orderEntryDate}}</td>
+                  <td>{{MealOrderEntry.orderEntryDate | date:'fullDate'}}</td>
                   <td *ngFor="let item of listDepartments" [ngClass]="{'d-none': item.id !== MealOrderEntry.departmentId}">
                     {{item.name}}
                   </td>

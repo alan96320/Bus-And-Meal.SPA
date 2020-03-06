@@ -53,7 +53,7 @@ export class MealOrderEntryService {
       }
     }
     // console.log(MealOrderEntryParams.date);
-    
+
     return this.http.get<MealOrderEntry[]>(this.baseUrl + 'MealOrder/paged', { observe: 'response', params })
       .pipe(
         map(response => {
