@@ -28,16 +28,5 @@
     -webkit-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
 }
-.simple-text-custom{
-    text-transform: uppercase;
-    padding: 0.5rem 0;
-    display: block;
-    white-space: nowrap;
-    color: #1d253b;
-    text-decoration: none;
-    font-weight: 400;
-    line-height: 30px;
-    overflow: hidden;
-    font-size: medium;
-}
+
 

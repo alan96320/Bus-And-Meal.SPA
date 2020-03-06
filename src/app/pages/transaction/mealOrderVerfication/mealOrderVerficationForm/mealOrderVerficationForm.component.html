@@ -1,3 +1,186 @@
-<p>
-  mealOrderVerficationForm works!
+<div class="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">Meal Order Entry Veryfication</h2>
+      <div class=" card card-custom">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-6 text-left">
+              <div class="form-group row">
+                <label for="orderNo" class="col-sm-2 col-form-label text-right">Order No :</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="orderNo" placeholder="Order No">
+                </div>
+                <label for="orderDate" class="col-sm-2 col-form-label text-right">Order Date :</label>
+                <div class="col-sm-4">
+                  <input type="date" class="form-control" id="orderDate" #orderDate (blur)="OrderBy(orderDate.value)" value="{{dateVal | date:'yyyy-MM-dd'}}">
+                </div>
+              </div>
+            </div>
+            <div class=" col-sm-6 text-right">
+              <div class=" form-check">
+                <label class=" form-check-label">
+                  <input class=" form-check-input" type="checkbox" value="">
+                  <span class=" form-check-sign">
+                    <span class=" check">Close</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <li class="dropdown-divider"></li>
+        <div class=" card-body row" style="margin-top: -20px;">
+          <div class=" table-responsive col-sm-6" id="scrolLeft" style="overflow-y: hidden; max-height: 300px; min-height: 300px; ">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Department Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
+                  <td>{{MealOrderEntry.orderEntryDate | date:'fullDate'}}</td>
+                  <td *ngFor="let item of listDepartments"
+                    [ngClass]="{'d-none': item.id !== MealOrderEntry.departmentId}">
+                    {{item.name}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive col-sm-6" id="scrolRight" style="overflow-y: auto; max-height: 300px; min-height: 300px; " (scroll) = "scrolRight()">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th *ngFor="let MealOrderDetail of mealTypes" class="text-center">
+                    {{MealOrderDetail.name}}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MealOrderEntry of MealOrderEntrys" class="text-center">
+                  <td *ngFor="let item of MealOrderEntry.mealOrderDetails">{{item.orderQty}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-2 offset-sm-4 table-responsive text-right" style="overflow: auto;">
+            <table class="table">
+              <tbody style="text-transform: uppercase;">
+                <tr>
+                  <th>total</th>
+                </tr>
+                <tr style="height: 51px;">
+                  <th>adjustment</th>
+                </tr>
+                <tr>
+                  <th>total order</th>
+                </tr>
+                <tr style="height: 51px;">
+                  <th>swipe</th>
+                </tr>
+                <tr style="height: 51px;">
+                  <th>log book</th>
+                </tr>
+                <tr>
+                  <th>actual taken</th>
+                </tr>
+                <tr>
+                  <th>Different</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-6 table-responsive" style="overflow: auto;">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">
+                    <input type="number" class="form-control form-control-sm">
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">
+                    <input type="number" class="form-control form-control-sm">
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">
+                    <input type="number" class="form-control form-control-sm">
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- for pagination -->
+        <div class="ml-auto mr-3">
+          <ul class="pagination">
+            <li>
+              <label class="mr-1">Item Per Page</label>
+              <select class="btn btn-default btn-simple btn-icon mr-5" style="height: 31px; width: 50px;" #Size
+                (change)="changeSize(Size.value)">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </li>
+            <li (click)="startPage()" [ngClass]="{'d-lg-none': pagination.currentPage === 1}">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm ">
+                <i class="tim-icons icon-double-left"></i>
+              </a>
+            </li>
+            <li [ngClass]="{'d-lg-none': pagination.currentPage === 1}" (click)="prevPage()">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
+                <i class="tim-icons icon-minimal-left"></i>
+              </a>
+            </li>
+            <li *ngFor="let item of arrayPage(); let i = index;">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm"
+                [ngClass]="{'active': i+1 === pagination.currentPage,'d-lg-none': i+1 > pagination.currentPage+2 || i+1 < pagination.currentPage}"
+                (click)="clickMe(i+1)">
+                <b>{{i+1}}</b>
+              </a>
+            </li>
+            <li
+              [ngClass]="{'d-lg-none': pagination.totalPages < 3 || pagination.totalPages === pagination.currentPage }">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">...</a>
+            </li>
+            <li (click)="nextPage()" [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
+                <i class="tim-icons icon-minimal-right"></i>
+              </a>
+            </li>
+            <li (click)="endPage(pagination.totalPages)"
+              [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
+              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
+                <i class="tim-icons icon-double-right"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- end pagination -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p *ngFor="let MealOrderEntry of MealOrderEntrys; let i = index">
+  sum {{i}} = <b *ngFor="let item of MealOrderEntry.mealOrderDetails">{{item.orderQty}}</b>
 </p>

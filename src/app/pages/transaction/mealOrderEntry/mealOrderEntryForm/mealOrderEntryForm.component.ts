@@ -32,7 +32,6 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.loadDepartment();
     this.loadMealType();
     this.loadMealOrderEntry();
-
   }
 
   loadDepartment() {
@@ -97,6 +96,9 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.warning(error);
       });
     }
+
+
+    // console.log(currentDate);
 
   }
 
