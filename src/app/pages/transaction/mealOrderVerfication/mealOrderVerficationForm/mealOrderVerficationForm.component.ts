@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MealOrderEntry } from 'src/app/_models/mealOrderEntry';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
+import { MealOrderVerificationServiceService } from 'src/app/_services/mealOrderVerificationService.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,6 +16,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./mealOrderVerficationForm.component.css']
 })
 export class MealOrderVerficationFormComponent implements OnInit {
+  @Output() cancelAdd = new EventEmitter();
   sortAscDate: boolean;
   sortAscDepartmentName: boolean;
   filter = true;
@@ -29,10 +31,20 @@ export class MealOrderVerficationFormComponent implements OnInit {
   MealOrderEntrysParams: any = {};
   model: any = {};
 
+  sumData: any;
+  ajusment: any;
+  swipData: any;
+  logBoks: any;
+  swipParsing: any;
+  different: any;
+  mealVerification: any = [];
+
   constructor(
     private mealOrderEntryService: MealOrderEntryService,
+    private mealOrderVerificationService: MealOrderVerificationServiceService,
     private alertify: AlertifyService,
     private route: ActivatedRoute,
+    private router: Router,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
   ) { }
@@ -40,70 +52,14 @@ export class MealOrderVerficationFormComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment();
     this.loadMealType();
-    this.tesLoad();
-  }
-  arrayPage() {
-    return Array(this.pagination.totalPages);
-  }
-  sortActive(getName) {
-    if (getName === 'date') {
-      this.sortAscDate = !this.sortAscDate;
-      this.MealOrderEntrysParams.OrderBy = getName;
-      this.MealOrderEntrysParams.isDesc = this.sortAscDate;
-      this.loadMealOrderEntrys();
-    }
-    if (getName === 'departmentName') {
-      this.sortAscDepartmentName = !this.sortAscDepartmentName;
-      this.MealOrderEntrysParams.OrderBy = getName;
-      this.MealOrderEntrysParams.isDesc = this.sortAscDepartmentName;
-      this.loadMealOrderEntrys();
-    }
-  }
-
-  // kita buat fungsi untuk ketika tombol page di click
-  clickMe(pageMe) {
-    this.pagination.currentPage = pageMe;
+    const currentDate = '2020-03-05';
+    this.MealOrderEntrysParams.date = currentDate;
     this.loadMealOrderEntrys();
+    this.model.OrderNo = '';
+    this.model.OrderDate = currentDate;
+    this.model.IsClosed = false;
   }
 
-  // kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
-  nextPage() {
-    if (this.pagination.currentPage !== this.pagination.totalPages) {
-      this.pagination.currentPage = this.pagination.currentPage + 1;
-      this.loadMealOrderEntrys();
-    }
-  }
-
-  // kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
-  prevPage() {
-    if (this.pagination.currentPage !== 1) {
-      this.pagination.currentPage = this.pagination.currentPage - 1;
-      this.loadMealOrderEntrys();
-    }
-  }
-
-  // kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
-  endPage(Page) {
-    if (this.pagination.currentPage !== Page) {
-      this.pagination.currentPage = Page;
-      this.loadMealOrderEntrys();
-    }
-  }
-
-  // kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
-  startPage() {
-    this.pagination.currentPage = 1;
-    this.loadMealOrderEntrys();
-  }
-
-  // kita buat fungsi untuk select cange size per page
-  changeSize(size) {
-    this.pagination.pageSize = size;
-    this.pagination.currentPage = 1;
-    this.loadMealOrderEntrys();
-  }
-
-  // kita buat fungsi untuk Order By
   OrderBy(date) {
     if (date !== null) {
       this.MealOrderEntrysParams.date = date;
@@ -111,16 +67,6 @@ export class MealOrderVerficationFormComponent implements OnInit {
     }
   }
 
-  // lkita buat fungsi cancel Filter
-  cancelFilter(status) {
-    if (status === 'Filter') {
-      this.MealOrderEntrysParams.date = null;
-      this.MealOrderEntrysParams.department = null;
-      this.loadMealOrderEntrys();
-    }
-  }
-
-  // for delete data
   deleteMealOrderEntrys(id: number) {
     confirm.fire({
       title: 'Are you sure?',
@@ -147,31 +93,61 @@ export class MealOrderVerficationFormComponent implements OnInit {
 
   // for laod data
   loadMealOrderEntrys() {
-    this.mealOrderEntryService.getMealOrderEntrys(
-        this.pagination.currentPage,
-        this.pagination.pageSize,
-        this.MealOrderEntrysParams
+    this.mealOrderEntryService.getMealOrderEntrys('', '', this.MealOrderEntrysParams
       ).subscribe(
         (res: PaginatedResult<MealOrderEntry[]>) => {
           this.MealOrderEntrys = res.result;
           this.pagination = res.pagination;
+          this.calculation();
         },
         error => {
           this.sweetAlert.error(error);
         }
-      );
+    );
   }
 
-  tesLoad() {
-    // const currentDate = this.dateVal.getFullYear() + '-' + this.dateVal.getMonth() + '-' + this.dateVal.getDate();
-    const currentDate = '2020-03-05';
-    this.MealOrderEntrysParams.date = currentDate;
-    this.mealOrderEntryService.getMealOrderEntrys(1, 5, this.MealOrderEntrysParams).subscribe((res: PaginatedResult<MealOrderEntry[]>) => {
-      this.MealOrderEntrys = res.result;
-      this.pagination = res.pagination;
-    }, error => {
-        this.sweetAlert.error(error);
+  calculation() {
+    const a = [];
+    const c = [];
+    let b = 0;
+    this.mealTypes.map((item, i) => {
+      this.MealOrderEntrys.map(item2 => {
+        b += item2.mealOrderDetails[i].orderQty;
+      });
+      a.push(b);
+      this.mealVerification.push(
+        { MealTypeId: item.id, SumOrderQty: b, AdjusmentQty: 0, SwipeQty: 0, LogBookQty: 0}
+      );
+      b = 0;
+      c.push(b);
     });
+    this.sumData = JSON.parse(JSON.stringify(a));
+    this.ajusment = JSON.parse(JSON.stringify(a));
+    this.swipData = JSON.parse(JSON.stringify(c));
+    this.logBoks = JSON.parse(JSON.stringify(c));
+    this.swipParsing = JSON.parse(JSON.stringify(c));
+    this.different = JSON.parse(JSON.stringify(a));
+
+  }
+
+  Adjusment(event: any, i) {
+    this.ajusment[i] = this.sumData[i] - event.target.value;
+    this.different[i] = Number(this.ajusment[i]) - Number(this.swipParsing[i]);
+    this.mealVerification[i].AdjusmentQty = event.target.value;
+  }
+
+  swipDatas(event: any, i) {
+    this.swipData[i] = Number(event.target.value);
+    this.swipParsing[i] = Number(this.swipData[i]) + Number(this.logBoks[i]);
+    this.different[i] = Number(this.ajusment[i]) - Number(this.swipParsing[i]);
+    this.mealVerification[i].SwipeQty = event.target.value;
+  }
+
+  logBok(event: any, i) {
+    this.logBoks[i] = Number(event.target.value);
+    this.swipParsing[i] = Number(this.swipData[i]) + Number(this.logBoks[i]);
+    this.different[i] = Number(this.ajusment[i]) - Number(this.swipParsing[i]);
+    this.mealVerification[i].LogBookQty = event.target.value;
   }
 
   loadDepartment() {
@@ -193,6 +169,24 @@ export class MealOrderVerficationFormComponent implements OnInit {
   scrolRight() {
     const right = document.getElementById('scrolRight').scrollTop;
     document.getElementById('scrolLeft').scrollTop = right;
+  }
+
+  cancel() {
+    this.cancelAdd.emit(false);
+  }
+
+  submit() {
+    this.model.MealOrders = this.MealOrderEntrys;
+    this.model.MealOrderVerificationDetails = this.mealVerification;
+    console.log(this.model);
+
+    this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {
+      this.sweetAlert.successAdd('Add Successfully');
+      this.router.navigate(['/mealOrderVerification']);
+    }, error => {
+      this.sweetAlert.warning(error);
+    });
+
   }
 
 }

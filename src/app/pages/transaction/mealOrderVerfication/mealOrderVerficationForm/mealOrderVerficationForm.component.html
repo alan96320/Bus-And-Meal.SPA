@@ -3,24 +3,26 @@
     <div class=" col-12">
       <h2 class=" card-title">Meal Order Entry Veryfication</h2>
       <div class=" card card-custom">
+        <form #FormMealOrderVerification="ngForm" (ngSubmit)="submit()">
         <div class=" card-header">
           <div class=" row">
             <div class=" col-sm-6 text-left">
               <div class="form-group row">
                 <label for="orderNo" class="col-sm-2 col-form-label text-right">Order No :</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" id="orderNo" placeholder="Order No">
+                  <input type="text" class="form-control" id="orderNo" placeholder="Order No" [(ngModel)]="model.OrderNo" name="OrderNo">
                 </div>
                 <label for="orderDate" class="col-sm-2 col-form-label text-right">Order Date :</label>
                 <div class="col-sm-4">
-                  <input type="date" class="form-control" id="orderDate" #orderDate (blur)="OrderBy(orderDate.value)" value="{{dateVal | date:'yyyy-MM-dd'}}">
+                  <input type="date" class="form-control" #orderDate (blur)="OrderBy(orderDate.value)" 
+                    value="{{dateVal | date:'yyyy-MM-dd'}}" [(ngModel)]="model.OrderDate" name="OrderDate">
                 </div>
               </div>
             </div>
             <div class=" col-sm-6 text-right">
               <div class=" form-check">
                 <label class=" form-check-label">
-                  <input class=" form-check-input" type="checkbox" value="">
+                  <input class=" form-check-input" type="checkbox" value="" name="IsClosed" [(ngModel)]="model.IsClosed">
                   <span class=" form-check-sign">
                     <span class=" check">Close</span>
                   </span>
@@ -61,7 +63,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let MealOrderEntry of MealOrderEntrys" class="text-center">
-                  <td *ngFor="let item of MealOrderEntry.mealOrderDetails">{{item.orderQty}}</td>
+                  <td *ngFor="let item of MealOrderEntry.mealOrderDetails" class="mealTypeID{{item.mealTypeId}}" #mealTypeID{{item.mealTypeId}}>{{item.orderQty}}</td>
                 </tr>
               </tbody>
             </table>
@@ -97,90 +99,55 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
-                </tr>
-                <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">
-                    <input type="number" class="form-control form-control-sm">
+                  <th *ngFor="let data of sumData" class="text-center">
+                    {{data}}
                   </th>
                 </tr>
                 <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
-                </tr>
-                <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">
-                    <input type="number" class="form-control form-control-sm">
+                  <th *ngFor="let data of sumData; let i = index" class="text-center">
+                    <input type="number" class="form-control form-control-sm" (keyup)='Adjusment($event,i)' name="ajusment{{i}}">
                   </th>
                 </tr>
                 <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">
-                    <input type="number" class="form-control form-control-sm">
+                  <th *ngFor="let data of ajusment; let i = index" class="text-center">{{data}}</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of sumData; let i = index" class="text-center">
+                    <input type="number" class="form-control form-control-sm" (keyup)='swipDatas($event,i)' name="swip{{i}}" >
                   </th>
                 </tr>
                 <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
+                  <th *ngFor="let data of sumData; let i = index" class="text-center">
+                    <input type="number" class="form-control form-control-sm" (keyup)='logBok($event,i)' name="lockBook{{i}}">
+                  </th>
                 </tr>
                 <tr>
-                  <th *ngFor="let list of mealTypes" class="text-center">12</th>
+                  <th *ngFor="let data of swipParsing" class="text-center">{{data}}</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of different" class="text-center">{{data}}</th>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <!-- for pagination -->
+        <li class="dropdown-divider"></li>
+        
         <div class="ml-auto mr-3">
-          <ul class="pagination">
-            <li>
-              <label class="mr-1">Item Per Page</label>
-              <select class="btn btn-default btn-simple btn-icon mr-5" style="height: 31px; width: 50px;" #Size
-                (change)="changeSize(Size.value)">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-              </select>
-            </li>
-            <li (click)="startPage()" [ngClass]="{'d-lg-none': pagination.currentPage === 1}">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm ">
-                <i class="tim-icons icon-double-left"></i>
-              </a>
-            </li>
-            <li [ngClass]="{'d-lg-none': pagination.currentPage === 1}" (click)="prevPage()">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
-                <i class="tim-icons icon-minimal-left"></i>
-              </a>
-            </li>
-            <li *ngFor="let item of arrayPage(); let i = index;">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm"
-                [ngClass]="{'active': i+1 === pagination.currentPage,'d-lg-none': i+1 > pagination.currentPage+2 || i+1 < pagination.currentPage}"
-                (click)="clickMe(i+1)">
-                <b>{{i+1}}</b>
-              </a>
-            </li>
-            <li
-              [ngClass]="{'d-lg-none': pagination.totalPages < 3 || pagination.totalPages === pagination.currentPage }">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">...</a>
-            </li>
-            <li (click)="nextPage()" [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
-                <i class="tim-icons icon-minimal-right"></i>
-              </a>
-            </li>
-            <li (click)="endPage(pagination.totalPages)"
-              [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
-                <i class="tim-icons icon-double-right"></i>
-              </a>
-            </li>
-          </ul>
+          <div class="row">
+            <div class="col-sm-9 offset-sm-3 text-right">
+              <button class="btn btn-default animation-on-hover btn-sm" type="submit" [disabled]="!FormMealOrderVerification.valid">
+                Save
+              </button>
+              <button class="btn btn-danger animation-on-hover btn-sm" type="button" [routerLink]="['/mealOrderVerification']" (click)="cancel()" >Cancel</button>
+            </div>
+          </div>
         </div>
-        <!-- end pagination -->
+        </form>
+        
+
+
       </div>
     </div>
   </div>
 </div>
-
-
-<p *ngFor="let MealOrderEntry of MealOrderEntrys; let i = index">
-  sum {{i}} = <b *ngFor="let item of MealOrderEntry.mealOrderDetails">{{item.orderQty}}</b>
-</p>
