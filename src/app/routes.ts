@@ -102,8 +102,10 @@ export const appRouting: Routes = [
             { path: 'formMealOrderEntry', component: MealOrderEntryFormComponent },
             // tslint:disable-next-line:max-line-length
             { path: 'formMealOrderEntry/:id', component: MealOrderEntryFormComponent, resolve: { mealOrderEntry: MealOrderEntryDetailResolver } },
+
             { path: 'mealOrderVerification', component: MealOrderVerficationListComponent },
-            { path: 'formMealOrderVerification', component: MealOrderVerficationFormComponent },
+            // tslint:disable-next-line:max-line-length
+            { path: 'formMealOrderVerification', component: MealOrderVerficationFormComponent},
             { path: 'formMealOrderVerification/:id', component: MealOrderVerficationFormComponent },
 
         ]

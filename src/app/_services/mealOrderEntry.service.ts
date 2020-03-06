@@ -41,14 +41,11 @@ export class MealOrderEntryService {
       params = params.append('pageSize', itemsPerPage);
     }
     if (MealOrderEntryParams != null) {
-      if (MealOrderEntryParams.code != null) {
-        params = params.append('code', MealOrderEntryParams.code);
+      if (MealOrderEntryParams.date != null) {
+        params = params.append('OrderEntryDate', MealOrderEntryParams.date);
       }
-      if (MealOrderEntryParams.time != null) {
-        params = params.append('time', MealOrderEntryParams.time);
-      }
-      if (MealOrderEntryParams.direction != null) {
-        params = params.append('DirectionEnum', MealOrderEntryParams.direction);
+      if (MealOrderEntryParams.department != null) {
+        params = params.append('DepartmentId', MealOrderEntryParams.department);
       }
       if (MealOrderEntryParams.OrderBy != null) {
         params = params.append('OrderBy', MealOrderEntryParams.OrderBy);

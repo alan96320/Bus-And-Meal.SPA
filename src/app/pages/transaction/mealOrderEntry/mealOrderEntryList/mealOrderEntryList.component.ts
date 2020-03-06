@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
+import { getTime } from 'ngx-bootstrap/chronos/utils/date-getters';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderEntryList',
@@ -14,17 +16,12 @@ import swal from 'sweetalert2';
   styleUrls: ['./mealOrderEntryList.component.css']
 })
 export class MealOrderEntryListComponent implements OnInit {
-  sortAscHrCoreNo: boolean;
-  sortAscFirstname: boolean;
-  sortAscLastname: boolean;
-  sortAscFullname: boolean;
-  sortAscHIDNo: boolean;
-  sortAscDepartmentId: boolean;
+  sortAscDate: boolean;
+  sortAscDepartmentName: boolean;
   filter = true;
 
   listDepartments: any;
   mealTypes: any;
-
   // deklarasi untuk get data
   MealOrderEntrys: MealOrderEntry[];
   pagination: Pagination;
@@ -37,7 +34,7 @@ export class MealOrderEntryListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loadDepartment();
@@ -45,7 +42,6 @@ export class MealOrderEntryListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.MealOrderEntrys = data.mealOrderEntry.result;
       this.pagination = data.mealOrderEntry.pagination;
-      console.log(this.MealOrderEntrys);
     });
   }
 
@@ -54,10 +50,16 @@ export class MealOrderEntryListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === 'hrCoreNo') {
-      this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
+    if (getName === 'date') {
+      this.sortAscDate = !this.sortAscDate;
       this.MealOrderEntrysParams.OrderBy = getName;
-      this.MealOrderEntrysParams.isDesc = this.sortAscHrCoreNo;
+      this.MealOrderEntrysParams.isDesc = this.sortAscDate;
+      this.loadMealOrderEntrys();
+    }
+    if (getName === 'departmentName') {
+      this.sortAscDepartmentName = !this.sortAscDepartmentName;
+      this.MealOrderEntrysParams.OrderBy = getName;
+      this.MealOrderEntrysParams.isDesc = this.sortAscDepartmentName;
       this.loadMealOrderEntrys();
     }
   }
@@ -106,14 +108,10 @@ export class MealOrderEntryListComponent implements OnInit {
   }
 
   // kita buat fungsi untuk Order By
-  OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
-    if (hrCoreNo !== null || firstname !== null || lastname !== null || fullname !== null || hIDNo !== null || department !== null) {
-      this.MealOrderEntrysParams.hrCoreNo = hrCoreNo;
-      this.MealOrderEntrysParams.firstname = firstname;
-      this.MealOrderEntrysParams.lastname = lastname;
-      this.MealOrderEntrysParams.fullname = fullname;
-      this.MealOrderEntrysParams.hIDNo = hIDNo;
-      this.MealOrderEntrysParams.departmentName = department;
+  OrderBy(date, department) {
+    if (date !== null || department !== null) {
+      this.MealOrderEntrysParams.date = date;
+      this.MealOrderEntrysParams.department = department;
       this.loadMealOrderEntrys();
     }
   }
@@ -121,12 +119,8 @@ export class MealOrderEntryListComponent implements OnInit {
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
     if (status === 'Filter') {
-      this.MealOrderEntrysParams.hrCoreNo = null;
-      this.MealOrderEntrysParams.firstname = null;
-      this.MealOrderEntrysParams.lastname = null;
-      this.MealOrderEntrysParams.fullname = null;
-      this.MealOrderEntrysParams.hIDNo = null;
-      this.MealOrderEntrysParams.departmentName = null;
+      this.MealOrderEntrysParams.date = null;
+      this.MealOrderEntrysParams.department = null;
       this.loadMealOrderEntrys();
     }
   }

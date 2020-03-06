@@ -31,8 +31,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment();
     this.loadMealType();
-
-
+    this.loadMealOrderEntry();
   }
 
   loadDepartment() {
@@ -46,9 +45,15 @@ export class MealOrderEntryFormComponent implements OnInit {
   loadMealType() {
     this.http.get('http://localhost:5000/api/MealType').subscribe(response => {
       this.mealTypes = response;
-      this.mealTypes.map(items => {
+      this.mealTypes.map((items, i) => {
         items.MealTypeId = items.id;
         items.MealOrderId = null;
+        if (this.id) {
+          this.route.data.subscribe(data => {
+            items.OrderQty = data.mealOrderEntry.mealOrderDetails[i].orderQty;
+            items.MealOrderId = data.mealOrderEntry.id;
+          });
+        }
         delete items.id;
         delete items.mealVendor;
         delete items.mealOrderDetails;
@@ -56,29 +61,46 @@ export class MealOrderEntryFormComponent implements OnInit {
         delete items.code;
         delete items.mealOrderVerificationDetails;
       });
-      console.log(this.mealTypes);
-
-
     }, error => {
       this.sweetAlert.error(error);
     });
+  }
+
+  loadMealOrderEntry() {
+    if (this.id) {
+      this.route.data.subscribe(data => {
+        this.model.OrderEntryDate = data.mealOrderEntry.orderEntryDate.substr(0, 10);
+        this.model.isReadyToCollect = data.mealOrderEntry.isReadyToCollect;
+        this.model.DepartmentId = data.mealOrderEntry.departmentId;
+        this.update = true;
+      });
+    }
   }
 
   submit() {
     this.model.MealOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
     this.model.MealOrderDetails = this.mealTypes;
-    console.log(this.model);
+    if (!this.update) {
+      this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {
+        this.sweetAlert.successAdd('Add Successfully');
+        this.router.navigate(['/mealOrderEntry']);
+      }, error => {
+        this.sweetAlert.warning(error);
+      });
+    } else {
+      this.mealOrderEntryService.editMealOrderEntry(this.id, this.model).subscribe(() => {
+        this.sweetAlert.successAdd('Edit Successfully');
+        this.router.navigate(['/mealOrderEntry']);
+      }, error => {
+        this.sweetAlert.warning(error);
+      });
+    }
 
-    this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {
-      this.sweetAlert.successAdd('Add Successfully');
-      this.router.navigate(['/mealOrderEntry']);
-    }, error => {
-      this.sweetAlert.warning(error);
-    });
+
+    // console.log(currentDate);
 
   }
-
 
   cancel() {
     this.cancelAdd.emit(false);
