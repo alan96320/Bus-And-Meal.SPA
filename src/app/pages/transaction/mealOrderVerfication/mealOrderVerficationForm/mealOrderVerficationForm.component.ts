@@ -86,6 +86,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     if (date !== null) {
       this.MealOrderEntrysParams.date = date;
       this.loadMealOrderEntrys();
+      console.log(this.mealVerification);
     }
   }
 
@@ -132,6 +133,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     const c = [];
     const d = [];
     let b = 0;
+    this.mealVerification.splice(0, this.mealVerification.length);
     this.mealTypes.map((item, i) => {
       this.MealOrderEntrys.map(item2 => {
         b += item2.mealOrderDetails[i].orderQty;
@@ -273,20 +275,17 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderList = d;
       }
       this.model.MealOrderVerificationDetails = this.mealVerification;
-      console.log(this.model);
       if (!this.update) {
         this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {
           this.sweetAlert.successAdd('Add Successfully');
           this.router.navigate(['/mealOrderVerification']);
-          this.mealVerification.splice(0, this.mealVerification.length);
         }, error => {
           this.sweetAlert.warning(error);
         });
       } else {
-        this.mealOrderVerificationService.editMealOrderVerificationVerification(this.id, this.model).subscribe(() => {
+          this.mealOrderVerificationService.editMealOrderVerificationVerification(this.id, this.model).subscribe(() => {
           this.sweetAlert.successAdd('Edit Successfully');
           this.router.navigate(['/mealOrderVerification']);
-          this.mealVerification.splice(0, this.mealVerification.length);
         }, error => {
           this.sweetAlert.warning(error);
         });

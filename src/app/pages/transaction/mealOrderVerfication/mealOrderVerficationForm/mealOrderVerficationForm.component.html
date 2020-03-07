@@ -104,7 +104,7 @@
                 </tr>
                 <tr>
                   <th *ngFor="let data of sumData; let i = index" class="text-center">
-                    <input type="number" class="form-control form-control-sm" (keyup)='Adjusment($event,i)' name="ajusment{{i}}" value="{{mealVerification[i].AdjusmentQty}}">
+                    <input type="number" class="form-control form-control-sm" (keyup)='Adjusment($event,i)' (blur)='Adjusment($event,i)' name="ajusment{{i}}" value="{{mealVerification[i].AdjusmentQty}}">
                   </th>
                 </tr>
                 <tr>
@@ -112,12 +112,12 @@
                 </tr>
                 <tr>
                   <th *ngFor="let data of sumData; let i = index" class="text-center">
-                    <input type="number" class="form-control form-control-sm" (keyup)='swipDatas($event,i)' name="swip{{i}}"  value="{{mealVerification[i].SwipeQty}}">
+                    <input type="number" class="form-control form-control-sm" (keyup)='swipDatas($event,i)' (blur)='swipDatas($event,i)' name="swip{{i}}"  value="{{mealVerification[i].SwipeQty}}">
                   </th>
                 </tr>
                 <tr>
                   <th *ngFor="let data of sumData; let i = index" class="text-center">
-                    <input type="number" class="form-control form-control-sm" (keyup)='logBok($event,i)' name="lockBook{{i}}" value="{{mealVerification[i].LogBookQty}}">
+                    <input type="number" class="form-control form-control-sm" (keyup)='logBok($event,i)' (blur)='logBok($event,i)' name="lockBook{{i}}" value="{{mealVerification[i].LogBookQty}}">
                   </th>
                 </tr>
                 <tr>
