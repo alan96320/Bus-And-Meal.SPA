@@ -65,14 +65,14 @@ export class MealOrderVerficationFormComponent implements OnInit {
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
     const day = this.currenDate.getDate();
-    if (month < 9) {
-      if (day < 9) {
+    if (month < 10) {
+      if (day < 10) {
         this.model.OrderDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
       } else {
         this.model.OrderDate = this.currenDate.getFullYear() + '-0' + month + '-' + day;
       }
-    } else if (day < 9) {
-      if (month < 9) {
+    } else if (day < 10) {
+      if (month < 10) {
         this.model.OrderDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
       } else {
         this.model.OrderDate = this.currenDate.getFullYear() + '-' + month + '-0' + day;
@@ -118,8 +118,26 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.mealOrderEntryService.getMealOrderEntrys('', '', this.MealOrderEntrysParams
       ).subscribe(
         (res: PaginatedResult<MealOrderEntry[]>) => {
-          this.MealOrderEntrys = res.result;
-          this.pagination = res.pagination;
+          let a = false;
+          const b = JSON.parse(JSON.stringify(this.model.OrderDate));
+          let c = '';
+          if ((Number(b.slice(8)) + 1) < 10) {
+            c = b.slice(0, 8) + '0' + (Number(b.slice(8)) + 1);
+          }
+          res.result.map(item => {
+            if (item.mealOrderVerificationId !== null) {
+              a = true;
+            }
+          });
+          if (!a) {
+            this.MealOrderEntrys = res.result;
+            this.pagination = res.pagination;
+          } else {
+            this.model.OrderDate = c;
+            this.MealOrderEntrysParams.date = c;
+            this.loadMealOrderEntrys();
+            this.sweetAlert.message('Data on ' + b + ' has been verified, please verify on another date');
+          }
           this.calculation();
         },
         error => {
