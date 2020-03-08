@@ -1,15 +1,250 @@
 import { Component, OnInit } from '@angular/core';
+import { BusOrderEntryService } from 'src/app/_services/busOrderEntry.service';
+import { BusOrderEntry } from 'src/app/_models/busOrderEntry';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { HttpClient } from '@angular/common/http';
+import swal from 'sweetalert2';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-busOrderEntryList',
   templateUrl: './busOrderEntryList.component.html',
   styleUrls: ['./busOrderEntryList.component.css']
 })
 export class BusOrderEntryListComponent implements OnInit {
+  sortAscDate: boolean;
+  sortAscDepartment: boolean;
+  sortAscDormitory: boolean;
+  filter = true;
 
-  constructor() { }
+  listDepartments: any;
+  mealTypes: any;
+  dormitory: any;
+  busTime: any = [];
+  busTime2: any = [];
+  // deklarasi untuk get data
+  busOrderEntrys: BusOrderEntry[];
+  pagination: Pagination;
+  BusOrderEntrysParams: any = {};
+  model: any = {};
+
+  constructor(
+    private busOrderEntryService: BusOrderEntryService,
+    private alertify: AlertifyService,
+    private route: ActivatedRoute,
+    private sweetAlert: SweetAlertService,
+    private http: HttpClient,
+  ) { }
 
   ngOnInit() {
+    this.loadDepartment();
+    this.loadMealType();
+    this.loadDormitory();
+    this.loadBusTime();
+    this.route.data.subscribe(data => {
+      this.busOrderEntrys = data.busOrderEntry.result;
+      this.pagination = data.busOrderEntry.pagination;
+    });
+  }
+
+  arrayPage() {
+    return Array(this.pagination.totalPages);
+  }
+
+  sortActive(getName) {
+    if (getName === 'date') {
+      this.sortAscDate = !this.sortAscDate;
+      this.BusOrderEntrysParams.OrderBy = getName;
+      this.BusOrderEntrysParams.isDesc = this.sortAscDate;
+      this.loadBusOrderEntrys();
+    }
+    if (getName === 'departmentName') {
+      this.sortAscDepartment = !this.sortAscDepartment;
+      this.BusOrderEntrysParams.OrderBy = getName;
+      this.BusOrderEntrysParams.isDesc = this.sortAscDepartment;
+      this.loadBusOrderEntrys();
+    }
+    if (getName === 'dormitory') {
+      this.sortAscDormitory = !this.sortAscDormitory;
+      this.BusOrderEntrysParams.OrderBy = getName;
+      this.BusOrderEntrysParams.isDesc = this.sortAscDormitory;
+      this.loadBusOrderEntrys();
+    }
+  }
+
+  // kita buat fungsi untuk ketika tombol page di click
+  clickMe(pageMe) {
+    this.pagination.currentPage = pageMe;
+    this.loadBusOrderEntrys();
+  }
+
+  // kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
+  nextPage() {
+    if (this.pagination.currentPage !== this.pagination.totalPages) {
+      this.pagination.currentPage = this.pagination.currentPage + 1;
+      this.loadBusOrderEntrys();
+    }
+  }
+
+  // kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
+  prevPage() {
+    if (this.pagination.currentPage !== 1) {
+      this.pagination.currentPage = this.pagination.currentPage - 1;
+      this.loadBusOrderEntrys();
+    }
+  }
+
+  // kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
+  endPage(Page) {
+    if (this.pagination.currentPage !== Page) {
+      this.pagination.currentPage = Page;
+      this.loadBusOrderEntrys();
+    }
+  }
+
+  // kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
+  startPage() {
+    this.pagination.currentPage = 1;
+    this.loadBusOrderEntrys();
+  }
+
+  // kita buat fungsi untuk select cange size per page
+  changeSize(size) {
+    this.pagination.pageSize = size;
+    this.pagination.currentPage = 1;
+    this.loadBusOrderEntrys();
+  }
+
+  // kita buat fungsi untuk Order By
+  OrderBy(date, department, dormitory) {
+    if (date !== null || department !== null || dormitory !== null) {
+      this.BusOrderEntrysParams.date = date;
+      this.BusOrderEntrysParams.department = department;
+      this.BusOrderEntrysParams.dormitory = dormitory;
+      this.loadBusOrderEntrys();
+    }
+  }
+
+  // lkita buat fungsi cancel Filter
+  cancelFilter(status) {
+    if (status === 'Filter') {
+      this.BusOrderEntrysParams.date = null;
+      this.BusOrderEntrysParams.department = null;
+      this.BusOrderEntrysParams.dormitory = null;
+      this.loadBusOrderEntrys();
+    }
+  }
+
+  // for delete data
+  deleteBusOrderEntrys(id: number) {
+    confirm.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.busOrderEntryService.deleteBusOrderEntry(id).subscribe(
+          () => {
+            this.sweetAlert.warningDel();
+            this.loadBusOrderEntrys();
+          },
+          error => {
+            this.sweetAlert.warning(error);
+          }
+        );
+      }
+    });
+  }
+
+  // for laod data
+  loadBusOrderEntrys() {
+    this.busOrderEntryService
+      .getBusOrderEntrys(
+        this.pagination.currentPage,
+        this.pagination.pageSize,
+        this.BusOrderEntrysParams
+      )
+      .subscribe(
+        (res: PaginatedResult<BusOrderEntry[]>) => {
+          this.busOrderEntrys = res.result;
+          this.pagination = res.pagination;
+        },
+        error => {
+          this.sweetAlert.error(error);
+        }
+      );
+  }
+
+  loadDepartment() {
+    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+      this.listDepartments = response;
+    }, error => {
+      this.sweetAlert.error(error);
+    });
+  }
+
+  loadMealType() {
+    this.http.get('http://localhost:5000/api/MealType').subscribe(response => {
+      this.mealTypes = response;
+    }, error => {
+      this.sweetAlert.error(error);
+    });
+  }
+
+  loadDormitory() {
+    this.http.get('http://localhost:5000/api/DormitoryBlock').subscribe(response => {
+      this.dormitory = response;
+    }, error => {
+      this.sweetAlert.error(error);
+    });
+  }
+
+  loadBusTime() {
+    const a = [];
+    const b = [];
+    const c = [];
+    const d = [];
+    this.http.get('http://localhost:5000/api/BusTime').subscribe(response => {
+      a.push(response);
+      a.map(data => {
+        data.map(item => {
+          if (item.directionEnum === 1) {
+            b.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum});
+          } else if (item.directionEnum === 2) {
+            c.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum });
+          } else if (item.directionEnum === 3) {
+            d.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum });
+          }
+        });
+      });
+      this.busTime.push(b);
+      this.busTime.push(c);
+      this.busTime.push(d);
+      this.busTime.map(data => {
+        data.map(item => {
+          this.busTime2.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum });
+        });
+      });
+    }, error => {
+      this.sweetAlert.error(error);
+    });
   }
 
 }
+
+
+// for custom class sweet alert
+const confirm = swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+});

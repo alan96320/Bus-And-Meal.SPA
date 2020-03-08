@@ -48,6 +48,7 @@ import { EmployeeListResolver, EmployeeDetailResolver } from './_resolvers/emplo
 import { UsersListResolver, UsersDetailResolver } from './_resolvers/usersResolver';
 import { MealOrderEntryListResolver, MealOrderEntryDetailResolver } from './_resolvers/mealOrderEntryResolver';
 import { MealOrderVerificationListResolver, MealOrderVerificationDetailResolver } from './_resolvers/mealOrderVerificationResolver';
+import { BusOrderEntryDetailResolver, BusOrderEntryListResolver } from './_resolvers/busOrderEntryResolver';
 
 export const appRouting: Routes = [
     { path: '', component: HomeComponent },
@@ -93,9 +94,10 @@ export const appRouting: Routes = [
             { path: 'formEmployee/:id', component: EmployeeFormComponent, resolve: { employee: EmployeeDetailResolver } },
 
             // path for menu transaction
-            { path: 'busOrderEntry', component: BusOrderEntryListComponent },
+            { path: 'busOrderEntry', component: BusOrderEntryListComponent, resolve: { busOrderEntry: BusOrderEntryListResolver } },
             { path: 'formBusOrderEntry', component: BusOrderEntryFormComponent },
-            { path: 'formBusOrderEntry/:id', component: BusOrderEntryFormComponent },
+            // tslint:disable-next-line:max-line-length
+            { path: 'formBusOrderEntry/:id', component: BusOrderEntryFormComponent, resolve: { busOrderEntry: BusOrderEntryDetailResolver } },
             { path: 'busOrderVerification', component: BusOrderVerificationListComponent },
             { path: 'formBusOrderVerification', component: BusOrderVerificationFormComponent },
             { path: 'formBusOrderVerification/:id', component: BusOrderVerificationFormComponent },
