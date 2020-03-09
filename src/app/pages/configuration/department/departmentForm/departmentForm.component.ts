@@ -16,6 +16,7 @@ export class DepartmentFormComponent implements OnInit {
    update = false;
    department: Department;
    id = +this.route.snapshot.params.id;
+   message = [];
 
    constructor(
       private departmentService: DepartmentService,
@@ -48,12 +49,16 @@ export class DepartmentFormComponent implements OnInit {
    }
 
    addDepartment() {
-      console.log(this.model);
       this.departmentService.addDepartment(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/department']);
-      }, error => {
-            this.sweetAlert.warning(error);
+      }, err => {
+            this.message.push({ code: err.error.Code, name: err.error.Name });
+         // console.log(err);
+         // let error_name = [];
+         //    error_name = err.error.Name;
+            console.log(this.message);
+
       });
    }
 
