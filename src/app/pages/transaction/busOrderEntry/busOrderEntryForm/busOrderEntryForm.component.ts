@@ -41,14 +41,14 @@ export class BusOrderEntryFormComponent implements OnInit {
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
     const day = this.currenDate.getDate();
-    if (month < 9) {
-      if (day < 9) {
+    if (month < 10) {
+      if (day < 10) {
         this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
       } else {
         this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-' + day;
       }
-    } else if (day < 9) {
-      if (month < 9) {
+    } else if (day < 10) {
+      if (month < 10) {
         this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
       } else {
         this.model.OrderEntryDate = this.currenDate.getFullYear() + '-' + month + '-0' + day;
@@ -75,43 +75,6 @@ export class BusOrderEntryFormComponent implements OnInit {
   }
 
   loadBusTime() {
-    // // get by direction
-    // const a = [];
-    // // get by dormitory --> office
-    // this.http.get('http://localhost:5000/api/BusTime/paged?DirectionEnum=1').subscribe(response => {
-    //   this.bustime.push(response);
-    //   this.listBusTime = response;
-    //   this.listBusTime.map(item => {
-    //     // tslint:disable-next-line:max-line-length
-    //     a.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum, BusOrderId: null, BusTimeId: item.id, OrderQty: 0});
-    //   });
-    // }, error => {
-    //   this.sweetAlert.error(error);
-    // });
-    // // get by office --> dpormitory
-    // this.http.get('http://localhost:5000/api/BusTime/paged?DirectionEnum=2').subscribe(response => {
-    //   this.bustime.push(response);
-    //   this.listBusTime = response;
-    //   this.listBusTime.map(item => {
-    //     // tslint:disable-next-line:max-line-length
-    //     a.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum, BusOrderId: null, BusTimeId: item.id, OrderQty: 0 });
-    //   });
-    // }, error => {
-    //   this.sweetAlert.error(error);
-    // });
-    // // get by office --> dpormitory (night)
-    // this.http.get('http://localhost:5000/api/BusTime/paged?DirectionEnum=3').subscribe(response => {
-    //   this.bustime.push(response);
-    //   this.listBusTime = response;
-    //   this.listBusTime.map(item => {
-    //     // tslint:disable-next-line:max-line-length
-    //     a.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum, BusOrderId: null, BusTimeId: item.id, OrderQty: 0 });
-    //   });
-    // }, error => {
-    //   this.sweetAlert.error(error);
-    // });
-    // this.getBusTime = a;
-
     const a = [];
     const b = [];
     const c = [];

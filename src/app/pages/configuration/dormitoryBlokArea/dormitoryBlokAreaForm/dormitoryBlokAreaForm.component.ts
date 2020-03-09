@@ -49,7 +49,6 @@ export class DormitoryBlokAreaFormComponent implements OnInit {
    }
 
    addDormitoryBlock() {
-      console.log(this.model);
       this.DormitoryBlockService.addDormitoryBlock(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/dormitory']);
@@ -63,7 +62,6 @@ export class DormitoryBlokAreaFormComponent implements OnInit {
    }
 
    updateDormitoryBlock() {
-      console.log(this.model);
       this.DormitoryBlockService.editDormitoryBlock(this.id, this.model).subscribe(() => {
          this.sweetAlert.successAdd('Edit Successfully');
          this.router.navigate(['/dormitory']);

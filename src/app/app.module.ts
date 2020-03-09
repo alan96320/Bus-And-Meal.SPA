@@ -65,6 +65,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { MealOrderEntryListResolver, MealOrderEntryDetailResolver } from './_resolvers/mealOrderEntryResolver';
 import { MealOrderVerificationListResolver, MealOrderVerificationDetailResolver } from './_resolvers/mealOrderVerificationResolver';
 import { BusOrderEntryListResolver, BusOrderEntryDetailResolver } from './_resolvers/busOrderEntryResolver';
+import { BusOrderVerificationListResolver, BusOrderVerificationDetailResolver } from './_resolvers/busOrderVerificationResolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -155,7 +156,9 @@ export function tokenGetter() {
     MealOrderVerificationListResolver,
     MealOrderVerificationDetailResolver,
     BusOrderEntryListResolver,
-    BusOrderEntryDetailResolver
+    BusOrderEntryDetailResolver,
+    BusOrderVerificationListResolver,
+    BusOrderVerificationDetailResolver
   ],
   bootstrap: [AppComponent]
 })

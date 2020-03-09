@@ -41,7 +41,6 @@ export class BusOrderEntryListComponent implements OnInit {
 
   ngOnInit() {
     this.loadDepartment();
-    this.loadMealType();
     this.loadDormitory();
     this.loadBusTime();
     this.route.data.subscribe(data => {
@@ -185,14 +184,6 @@ export class BusOrderEntryListComponent implements OnInit {
   loadDepartment() {
     this.http.get('http://localhost:5000/api/department').subscribe(response => {
       this.listDepartments = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
-  }
-
-  loadMealType() {
-    this.http.get('http://localhost:5000/api/MealType').subscribe(response => {
-      this.mealTypes = response;
     }, error => {
       this.sweetAlert.error(error);
     });
