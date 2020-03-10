@@ -3,7 +3,7 @@ export interface BusOrderEntry {
     orderEntryDate: Date;
     departmentId: number;
     dormitoryBlockId: number;
-    busOrderVerificationHeaderId: number;
+    busOrderVerificationId: number;
     isReadyToCollect: boolean;
     busOrderDetails: BusOrderDetails[];
 }

@@ -122,14 +122,32 @@ export class BusOrderVerificationFormComponent implements OnInit {
     this.busOrderEntryService.getBusOrderEntrys('', '', this.BusOrderEntrysParams).subscribe(
         (res: PaginatedResult<BusOrderEntry[]>) => {
         this.busOrderEntrys = res.result;
-        // console.log(res.result);
-
+        let stat = false;
+        if (!this.id) {
+          res.result.map(data => {
+            if (data.busOrderVerificationId !== null) {
+              stat = true;
+            }
+          });
+        }
+        if (stat) {
+          const date = JSON.parse(JSON.stringify(this.model.Orderdate));
+          const da = date.substr(0, 8);
+          const dat = Number(date.substr(8, 10)) + 1;
+          if (dat < 10) {
+            this.model.Orderdate = da + '0' + dat;
+          } else {
+            this.model.Orderdate = da + dat;
+          }
+          this.sweetAlert.message('Data on ' + date + ' has been verified, please verify on another date');
+          this.loadBusOrderEntrys();
+        }
         this.busTime2.map((item, i) => {
           this.busOrderEntrys.map(data => {
             b += data.busOrderDetails[i].orderQty;
           });
           a.push(b);
-          d.push({ BusOrderVerificationId: null, BusTimeId: item.id, SumOrderQty: b, });
+          d.push({BusTimeId: item.id, SumOrderQty: b, });
           b = 0;
         });
         this.sumVerification = a;
