@@ -79,7 +79,13 @@ import {
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
 import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
-import { DepartmentReportResolver } from "./_resolvers/reportResolver";
+import { DepartmentReportResolver, EmployeeReportResolver, MealTypeReportResolver, DormitoryBlockReportResolver, BusTimeReportResolver } from "./_resolvers/reportResolver";
+import { MealTypeReportComponent } from './pages/reports/mealTypeReport/mealTypeReport.component';
+import { DormitoryBlockReportComponent } from './pages/reports/dormitoryBlockReport/dormitoryBlockReport.component';
+import { MealVendorReportComponent } from './pages/reports/mealVendorReport/mealVendorReport.component';
+import { BusTimeReportComponent } from './pages/reports/busTimeReport/busTimeReport.component';
+import { CounterReportComponent } from './pages/reports/CounterReport/CounterReport.component';
+import { UsersReportComponent } from './pages/reports/usersReport/usersReport.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -144,7 +150,13 @@ export function tokenGetter() {
 
     //decaration for menu report
     DepartmentReportComponent,
-    EmployeeReportComponent
+    EmployeeReportComponent,
+    MealTypeReportComponent,
+    DormitoryBlockReportComponent,
+    MealVendorReportComponent,
+    BusTimeReportComponent,
+    CounterReportComponent,
+    UsersReportComponent
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
@@ -167,7 +179,10 @@ export function tokenGetter() {
     EmployeeDetailResolver,
     UsersListResolver,
     UsersDetailResolver,
-    DepartmentReportResolver
+    DepartmentReportResolver,
+    EmployeeReportResolver,
+    MealTypeReportResolver,
+    DormitoryBlockReportResolver
   ],
   bootstrap: [AppComponent]
 })

@@ -63,7 +63,13 @@ import { BusOrderVerificationListComponent } from "./pages/transaction/busOrderE
 import { BusOrderVerificationFormComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component";
 import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
 import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
-import { DepartmentReportResolver } from "./_resolvers/reportResolver";
+import { DepartmentReportResolver, MealTypeReportResolver, DormitoryBlockReportResolver, EmployeeReportResolver, MealVendorReportResolver, BusTimeReportResolver, CounterReportResolver, UsersReportResolver } from "./_resolvers/reportResolver";
+import { MealTypeReportComponent } from './pages/reports/mealTypeReport/mealTypeReport.component';
+import { DormitoryBlockReportComponent } from './pages/reports/dormitoryBlockReport/dormitoryBlockReport.component';
+import { MealVendorReportComponent } from './pages/reports/mealVendorReport/mealVendorReport.component';
+import {BusTimeReportComponent} from './pages/reports/busTimeReport/busTimeReport.component';
+import { CounterReportComponent } from './pages/reports/CounterReport/CounterReport.component';
+import { UsersReportComponent } from './pages/reports/usersReport/usersReport.component';
 
 export const appRouting: Routes = [
   { path: "", component: HomeComponent },
@@ -79,7 +85,42 @@ export const appRouting: Routes = [
         component: DepartmentReportComponent,
         resolve: { department: DepartmentReportResolver }
       },
-      { path: "report/employee", component: EmployeeReportComponent },
+      {
+        path: "report/employee",
+        component: EmployeeReportComponent,
+        resolve: { employee: EmployeeReportResolver }
+      },
+      {
+        path: "report/mealtype",
+        component: MealTypeReportComponent,
+        resolve: { mealtype: MealTypeReportResolver }
+      },
+      {
+        path: "report/dormitoryblock",
+        component: DormitoryBlockReportComponent,
+        resolve: { dormitoryblock: DormitoryBlockReportResolver }
+      },
+      {
+        path: "report/mealvendor",
+        component: MealVendorReportComponent,
+        resolve: { mealvendor: MealVendorReportResolver }
+      },
+      {
+        path: "report/bustime",
+        component: BusTimeReportComponent,
+        resolve: { bustime: BusTimeReportResolver }
+      },
+      {
+        path: "report/counter",
+        component: CounterReportComponent,
+        resolve: { counter: CounterReportResolver }
+      },
+      {
+        path: "report/users",
+        component: UsersReportComponent,
+        resolve: { users: UsersReportResolver }
+      },
+
       // menu for report
       //path for menu configuration
       {

@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/_models/employee';
+import { Users } from 'src/app/_models/users';
+import { UsersService } from 'src/app/_services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { EmployeeService } from 'src/app/_services/employee.service';
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-employeeReport',
-  templateUrl: './employeeReport.component.html',
-  styleUrls: ['./employeeReport.component.css']
+  selector: "app-usersReport",
+  templateUrl: "./usersReport.component.html",
+  styleUrls: ["./usersReport.component.css"]
 })
-export class EmployeeReportComponent implements OnInit {
-  employees: Employee[];
+export class UsersReportComponent implements OnInit {
+  userses: Users[];
 
   constructor(
-    private employeeService: EmployeeService,
+    private usersService: UsersService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.employees = data ["employee"];
+      this.userses = data["users"];
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/Employee.mrt");
+    report.loadFile("../assets/reports/Users.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Employee List";
+      "Users List";
 
-    report.regData("DataSet", "DataSet", this.employees);
+    report.regData("DataSet", "DataSet", this.userses);
 
     options.width = "100%";
     options.height = "850px";
@@ -39,9 +39,6 @@ export class EmployeeReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("employeeReport");
-
-
+    viewer.renderHtml("usersReport");
   }
-
 }

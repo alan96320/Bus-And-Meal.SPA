@@ -13,9 +13,12 @@ export class UsersService {
   baseUrl = environment.apiUrl;
   itemPerPage = 5;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
+
+  //get employee report
+  getUsersReport() {
+    return this.http.get(this.baseUrl + "report/users/");
+  }
 
   getUser(id: any): Observable<Users> {
     return this.http.get<Users>(this.baseUrl + 'User/' + id);

@@ -15,6 +15,11 @@ export class CounterService {
 
   constructor(private http: HttpClient) {}
 
+  //get counter report
+  getCounterReport() {
+    return this.http.get(this.baseUrl + "report/counter/");
+  }
+
   //for add data Counter
   addCounter(model: any) {
     return this.http.post(this.baseUrl + "counter/", model);

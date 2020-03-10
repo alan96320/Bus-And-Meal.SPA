@@ -14,6 +14,11 @@ export class DormitoryBlockService {
   itemPerPage = 5;
 
   constructor(private http: HttpClient) {}
+  //get dormitory block report
+  
+  getDormitoryBlockReport() {
+    return this.http.get(this.baseUrl + "report/dormitoryblock/");
+  }
 
   addDormitoryBlock(model: any) {
     return this.http.post(this.baseUrl + "DormitoryBlock/", model);

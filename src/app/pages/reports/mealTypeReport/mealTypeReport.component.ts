@@ -1,37 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/_models/employee';
+import { MealType } from 'src/app/_models/mealType';
+import { MealTypeService } from 'src/app/_services/mealType.service';
 import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { EmployeeService } from 'src/app/_services/employee.service';
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-employeeReport',
-  templateUrl: './employeeReport.component.html',
-  styleUrls: ['./employeeReport.component.css']
+  selector: 'app-mealTypeReport',
+  templateUrl: './mealTypeReport.component.html',
+  styleUrls: ['./mealTypeReport.component.css']
 })
-export class EmployeeReportComponent implements OnInit {
-  employees: Employee[];
+export class MealTypeReportComponent implements OnInit {
+  mealTypes: MealType[];
 
   constructor(
-    private employeeService: EmployeeService,
+    private mealTypeService: MealTypeService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.employees = data ["employee"];
+      this.mealTypes = data ["mealtype"];
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/Employee.mrt");
+    report.loadFile("../assets/reports/MealType.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Employee List";
-
-    report.regData("DataSet", "DataSet", this.employees);
+      "Meal Type List";
+    console.log(this.mealTypes);
+    
+    report.regData("DataSet", "DataSet", this.mealTypes);
 
     options.width = "100%";
     options.height = "850px";
@@ -39,7 +40,7 @@ export class EmployeeReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("employeeReport");
+    viewer.renderHtml("mealtypeReport");
 
 
   }

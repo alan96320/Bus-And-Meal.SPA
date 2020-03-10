@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/_models/employee';
+import { BusTime } from 'src/app/_models/busTime';
+import { BusTimeService } from 'src/app/_services/busTime.service';
 import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { EmployeeService } from 'src/app/_services/employee.service';
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-employeeReport',
-  templateUrl: './employeeReport.component.html',
-  styleUrls: ['./employeeReport.component.css']
+  selector: 'app-busTimeReport',
+  templateUrl: './busTimeReport.component.html',
+  styleUrls: ['./busTimeReport.component.css']
 })
-export class EmployeeReportComponent implements OnInit {
-  employees: Employee[];
+export class BusTimeReportComponent implements OnInit {
+  bustimes: BusTime[];
 
   constructor(
-    private employeeService: EmployeeService,
+    private busTimeService: BusTimeService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.employees = data ["employee"];
+      this.bustimes = data ["bustime"];
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/Employee.mrt");
+    report.loadFile("../assets/reports/BusTime.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Employee List";
+      "Bus Time List";
 
-    report.regData("DataSet", "DataSet", this.employees);
+    report.regData("DataSet", "DataSet", this.bustimes);
 
     options.width = "100%";
     options.height = "850px";
@@ -39,7 +39,7 @@ export class EmployeeReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("employeeReport");
+    viewer.renderHtml("bustimeReport");
 
 
   }

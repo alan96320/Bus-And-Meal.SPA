@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/_models/employee';
+import { Counter } from 'src/app/_models/counter';
+import { CounterService } from 'src/app/_services/counter.service';
 import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { EmployeeService } from 'src/app/_services/employee.service';
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-employeeReport',
-  templateUrl: './employeeReport.component.html',
-  styleUrls: ['./employeeReport.component.css']
+  selector: 'app-counterReport',
+  templateUrl: './counterReport.component.html',
+  styleUrls: ['./counterReport.component.css']
 })
-export class EmployeeReportComponent implements OnInit {
-  employees: Employee[];
+export class CounterReportComponent implements OnInit {
+  counters: Counter[];
 
   constructor(
-    private employeeService: EmployeeService,
+    private counterService: CounterService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.employees = data ["employee"];
+      this.counters = data ["counter"];
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/Employee.mrt");
+    report.loadFile("../assets/reports/Counter.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Employee List";
+      "Counter List";
 
-    report.regData("DataSet", "DataSet", this.employees);
+    report.regData("DataSet", "DataSet", this.counters);
 
     options.width = "100%";
     options.height = "850px";
@@ -39,7 +39,7 @@ export class EmployeeReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("employeeReport");
+    viewer.renderHtml("counterReport");
 
 
   }

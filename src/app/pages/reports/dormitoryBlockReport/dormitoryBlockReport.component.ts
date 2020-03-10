@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/_models/employee';
+import { DormitoryBlock } from 'src/app/_models/dormitoryBlock';
+import { DormitoryBlockService } from 'src/app/_services/dormitoryBlock.service';
 import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { EmployeeService } from 'src/app/_services/employee.service';
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-employeeReport',
-  templateUrl: './employeeReport.component.html',
-  styleUrls: ['./employeeReport.component.css']
+  selector: 'app-dormitoryBlockReport',
+  templateUrl: './dormitoryBlockReport.component.html',
+  styleUrls: ['./dormitoryBlockReport.component.css']
 })
-export class EmployeeReportComponent implements OnInit {
-  employees: Employee[];
+export class DormitoryBlockReportComponent implements OnInit {
+  dormitoryblocks: DormitoryBlock[];
 
   constructor(
-    private employeeService: EmployeeService,
+    private dormitoryBlockService: DormitoryBlockService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.employees = data ["employee"];
+      this.dormitoryblocks = data ["dormitoryblock"];
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/Employee.mrt");
+    report.loadFile("../assets/reports/DormitoryBlock.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Employee List";
+      "Dormitory Block List";
 
-    report.regData("DataSet", "DataSet", this.employees);
+    report.regData("DataSet", "DataSet", this.dormitoryblocks);
 
     options.width = "100%";
     options.height = "850px";
@@ -39,7 +39,7 @@ export class EmployeeReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("employeeReport");
+    viewer.renderHtml("dormitoryblockReport");
 
 
   }

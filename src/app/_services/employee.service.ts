@@ -14,6 +14,11 @@ export class EmployeeService {
   itemPerPage = 5;
 
   constructor(private http: HttpClient) {}
+  //get employee report
+  getEmployeeReport() {
+    return this.http.get(this.baseUrl + "report/employee/");
+  }
+
 
   //for add data Employee
   addEmployee(model: any) {
