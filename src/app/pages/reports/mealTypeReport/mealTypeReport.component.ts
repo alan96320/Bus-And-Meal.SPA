@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { MealType } from 'src/app/_models/mealType';
-import { MealTypeService } from 'src/app/_services/mealType.service';
-import { ActivatedRoute } from '@angular/router';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { Component, OnInit } from "@angular/core";
+import { MealType } from "src/app/_models/mealType";
+import { MealTypeService } from "src/app/_services/mealType.service";
+import { ActivatedRoute } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-mealTypeReport',
-  templateUrl: './mealTypeReport.component.html',
-  styleUrls: ['./mealTypeReport.component.css']
+  selector: "app-mealTypeReport",
+  templateUrl: "./mealTypeReport.component.html",
+  styleUrls: ["./mealTypeReport.component.css"]
 })
 export class MealTypeReportComponent implements OnInit {
-  mealTypes: MealType[];
+  mealTypes: any = [];
 
   constructor(
     private mealTypeService: MealTypeService,
@@ -22,7 +22,14 @@ export class MealTypeReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.mealTypes = data ["mealtype"];
+      this.mealTypes = data["mealtype"];
+    });
+
+    let mealTypeData = [];
+    mealTypeData = JSON.parse(JSON.stringify(this.mealTypes));
+    mealTypeData.map(data => {
+      data.vendorname = data.mealVendor.name;
+      delete data.mealVendor;
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
@@ -30,9 +37,8 @@ export class MealTypeReportComponent implements OnInit {
     report.loadFile("../assets/reports/MealType.mrt");
     report.dictionary.variables.getByName("title").valueObject =
       "Meal Type List";
-    console.log(this.mealTypes);
-    
-    report.regData("DataSet", "DataSet", this.mealTypes);
+
+    report.regData("MealType", "MealType", mealTypeData);
 
     options.width = "100%";
     options.height = "850px";
@@ -41,8 +47,5 @@ export class MealTypeReportComponent implements OnInit {
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
     viewer.renderHtml("mealtypeReport");
-
-
   }
-
 }

@@ -84,6 +84,7 @@ import {
   EmployeeReportResolver,
   MealTypeReportResolver,
   DormitoryBlockReportResolver,
+  MealVendorReportResolver,
   BusTimeReportResolver
 } from "./_resolvers/reportResolver";
 import { MealTypeReportComponent } from "./pages/reports/mealTypeReport/mealTypeReport.component";
@@ -188,7 +189,8 @@ export function tokenGetter() {
     DepartmentReportResolver,
     EmployeeReportResolver,
     MealTypeReportResolver,
-    DormitoryBlockReportResolver
+    DormitoryBlockReportResolver,
+    MealVendorReportResolver
   ],
   bootstrap: [AppComponent]
 })
