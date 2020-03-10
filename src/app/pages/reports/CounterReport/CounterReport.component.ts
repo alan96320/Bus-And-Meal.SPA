@@ -12,7 +12,7 @@ declare var Stimulsoft: any;
   styleUrls: ["./CounterReport.component.css"]
 })
 export class CounterReportComponent implements OnInit {
-  counters: Counter[];
+  counters: any = [];
 
   constructor(
     private counterService: CounterService,
@@ -30,7 +30,7 @@ export class CounterReportComponent implements OnInit {
     report.loadFile("../assets/reports/Counter.mrt");
     report.dictionary.variables.getByName("title").valueObject = "Counter List";
 
-    report.regData("DataSet", "DataSet", this.counters);
+    report.regData("Counter", "Counter", this.counters);
 
     options.width = "100%";
     options.height = "850px";

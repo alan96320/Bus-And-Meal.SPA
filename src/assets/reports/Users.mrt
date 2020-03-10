@@ -8,10 +8,9 @@
     <BusinessObjects isList="true" count="0" />
     <Databases isList="true" count="0" />
     <DataSources isList="true" count="1">
-      <DataSet Ref="2" type="DataTableSource" isKey="true">
-        <Alias>DataSet</Alias>
-        <Columns isList="true" count="5">
-          <value>id,System.Int32</value>
+      <User Ref="2" type="DataTableSource" isKey="true">
+        <Alias>User</Alias>
+        <Columns isList="true" count="4">
           <value>gddbid,System.String</value>
           <value>firstname,System.String</value>
           <value>lastname,System.String</value>
@@ -19,9 +18,9 @@
         </Columns>
         <Dictionary isRef="1" />
         <Key>71ceecf953404420b900b81d9380bd80</Key>
-        <Name>DataSet</Name>
-        <NameInSource>DataSet</NameInSource>
-      </DataSet>
+        <Name>User</Name>
+        <NameInSource>User</NameInSource>
+      </User>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
@@ -100,6 +99,7 @@
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Microsoft Sans Serif,18,Bold,Point,False,0</Font>
+              <Guid>642f491110824b16ab8dbaee563f6ccb</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text01</Name>
               <Page isRef="6" />
@@ -115,6 +115,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>3157ce9bb50e45d6be1b408dda9e8fdb</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text124</Name>
               <Page isRef="6" />
@@ -131,6 +132,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>9a049ede964840bab20d027904652471</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="6" />
@@ -164,6 +166,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>2af87a95b2744ab094f525798e858523</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="6" />
@@ -217,6 +220,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>99dfb49102ff4ac28110746c08682a8a</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>5,3,0,0</Margins>
               <Name>Text15</Name>
@@ -235,6 +239,7 @@
               <ClientRectangle>0,0,500,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
+              <Guid>4045b7c6dc1b418b930400dff5d96733</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="6" />
@@ -250,6 +255,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>5f81d2a4ce6549d19ae1bc0ea769d844</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>5,3,0,0</Margins>
               <Name>Text8</Name>
@@ -300,6 +306,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>3bd8a9b4a6cb48369e48d74b2cd77cd6</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,5,0,0</Margins>
               <Name>Text115</Name>
@@ -316,7 +323,7 @@
           <Page isRef="6" />
           <Parent isRef="6" />
         </PageFooterBand1>
-        <HeaderBand1 Ref="24" type="HeaderBand" isKey="true">
+        <HeaderUser Ref="24" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,320,747,30</ClientRectangle>
           <Components isList="true" count="5">
@@ -326,6 +333,7 @@
               <ClientRectangle>0,0,50,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>53645aeb48d746f5bb742bbf0ea5bd38</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Id</Name>
@@ -343,6 +351,7 @@
               <ClientRectangle>40,0,130,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>57b75ff356f04802b4013b5c96964f18</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Code</Name>
@@ -360,6 +369,7 @@
               <ClientRectangle>480,0,270,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>cefc3ce7d2e94bb7aa0244f6206b351d</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Name</Name>
@@ -377,6 +387,7 @@
               <ClientRectangle>170,0,140,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>0a2059c906f54e778170cbb403702fe7</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
@@ -394,6 +405,7 @@
               <ClientRectangle>310,0,170,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>9dd61b23f7a64bb3955de647815c3372</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
@@ -407,21 +419,94 @@
             </Text10>
           </Components>
           <Conditions isList="true" count="0" />
-          <Name>HeaderBand1</Name>
+          <Name>HeaderUser</Name>
           <Page isRef="6" />
           <Parent isRef="6" />
-        </HeaderBand1>
-        <DataBand1 Ref="30" type="DataBand" isKey="true">
+        </HeaderUser>
+        <DataUser Ref="30" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,390,747,30</ClientRectangle>
           <Components isList="true" count="5">
-            <Text3 Ref="31" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
+            <DataUser_gddbid Ref="31" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>40,0,130,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>816c6f68e11b4562a430e52e7588c17a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataUser_gddbid</Name>
+              <Page isRef="6" />
+              <Parent isRef="30" />
+              <Text>{User.gddbid}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataUser_gddbid>
+            <DataUser_firstname Ref="32" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>170,0,140,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>b8d0e3f7989a405990ddd3c5a6306769</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataUser_firstname</Name>
+              <Page isRef="6" />
+              <Parent isRef="30" />
+              <Text>{User.firstname}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataUser_firstname>
+            <DataUser_lastname Ref="33" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>310,0,170,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>985e791ce4eb400aa09b685f42e36c77</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataUser_lastname</Name>
+              <Page isRef="6" />
+              <Parent isRef="30" />
+              <Text>{User.lastname}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataUser_lastname>
+            <DataUser_fullname Ref="34" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>480,0,270,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>15da81e9893e4bc4a01ad1df90b6394c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataUser_fullname</Name>
+              <Page isRef="6" />
+              <Parent isRef="30" />
+              <Text>{User.fullname}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataUser_fullname>
+            <Text3 Ref="35" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,40,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <Guid>9a863294defe4044a71799939d7a20dd</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
@@ -432,76 +517,15 @@
               <Type>SystemVariables</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text4 Ref="32" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>40,0,130,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text4</Name>
-              <Page isRef="6" />
-              <Parent isRef="30" />
-              <Text>{DataSet.gddbid}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text4>
-            <Text5 Ref="33" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>170,0,140,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text5</Name>
-              <Page isRef="6" />
-              <Parent isRef="30" />
-              <Text>{DataSet.firstname}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text5>
-            <Text11 Ref="34" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>310,0,170,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
-              <Page isRef="6" />
-              <Parent isRef="30" />
-              <Text>{DataSet.lastname}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text11>
-            <Text13 Ref="35" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>480,0,270,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
-              <Page isRef="6" />
-              <Parent isRef="30" />
-              <Text>{DataSet.fullname}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text13>
           </Components>
           <Conditions isList="true" count="0" />
-          <DataRelationName isNull="true" />
-          <DataSourceName>DataSet</DataSourceName>
+          <DataSourceName>User</DataSourceName>
           <Filters isList="true" count="0" />
-          <Name>DataBand1</Name>
+          <Name>DataUser</Name>
           <Page isRef="6" />
           <Parent isRef="6" />
           <Sort isList="true" count="0" />
-        </DataBand1>
+        </DataUser>
       </Components>
       <Conditions isList="true" count="0" />
       <Guid>6e1caf2a75ec493386f5a9199bdc6833</Guid>
@@ -527,8 +551,8 @@
   <ReportChanged>3/5/2020 2:45:08 PM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>C:\busmeal\BusMeal-SPA\src\assets\reports\Users.mrt</ReportFile>
-  <ReportGuid>a7b5997448a1446d979de0531cec3a33</ReportGuid>
+  <ReportFile>Users.mrt</ReportFile>
+  <ReportGuid>00763ab0d37a4faead282c466d41a8c4</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.1.0</ReportVersion>

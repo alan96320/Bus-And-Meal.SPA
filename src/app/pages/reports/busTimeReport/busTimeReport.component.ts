@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { BusTime } from 'src/app/_models/busTime';
-import { BusTimeService } from 'src/app/_services/busTime.service';
-import { ActivatedRoute } from '@angular/router';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { Component, OnInit } from "@angular/core";
+import { BusTime } from "src/app/_models/busTime";
+import { BusTimeService } from "src/app/_services/busTime.service";
+import { ActivatedRoute } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-busTimeReport',
-  templateUrl: './busTimeReport.component.html',
-  styleUrls: ['./busTimeReport.component.css']
+  selector: "app-busTimeReport",
+  templateUrl: "./busTimeReport.component.html",
+  styleUrls: ["./busTimeReport.component.css"]
 })
 export class BusTimeReportComponent implements OnInit {
-  bustimes: BusTime[];
+  bustimes: any = [];
 
   constructor(
     private busTimeService: BusTimeService,
@@ -22,7 +22,7 @@ export class BusTimeReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.bustimes = data ["bustime"];
+      this.bustimes = data["bustime"];
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
@@ -40,8 +40,5 @@ export class BusTimeReportComponent implements OnInit {
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
     viewer.renderHtml("bustimeReport");
-
-
   }
-
 }

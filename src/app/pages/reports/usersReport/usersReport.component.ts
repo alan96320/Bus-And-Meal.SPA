@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/_models/users';
-import { UsersService } from 'src/app/_services/users.service';
-import { ActivatedRoute } from '@angular/router';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { Component, OnInit } from "@angular/core";
+import { Users } from "src/app/_models/users";
+import { UsersService } from "src/app/_services/users.service";
+import { ActivatedRoute } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 declare var Stimulsoft: any;
 
@@ -12,7 +12,7 @@ declare var Stimulsoft: any;
   styleUrls: ["./usersReport.component.css"]
 })
 export class UsersReportComponent implements OnInit {
-  userses: Users[];
+  users: any = [];
 
   constructor(
     private usersService: UsersService,
@@ -22,16 +22,21 @@ export class UsersReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.userses = data["users"];
+      this.users = data["users"];
+    });
+
+    let userData = JSON.parse(JSON.stringify(this.users));
+    userData.map(data => {
+      delete data.userModuleRights;
+      delete data.userDepartments;
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile("../assets/reports/Users.mrt");
-    report.dictionary.variables.getByName("title").valueObject =
-      "Users List";
+    report.dictionary.variables.getByName("title").valueObject = "Users List";
 
-    report.regData("DataSet", "DataSet", this.userses);
+    report.regData("User", "User", userData);
 
     options.width = "100%";
     options.height = "850px";
