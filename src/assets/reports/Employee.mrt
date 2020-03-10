@@ -8,21 +8,21 @@
     <BusinessObjects isList="true" count="0" />
     <Databases isList="true" count="0" />
     <DataSources isList="true" count="1">
-      <DataSet Ref="2" type="DataTableSource" isKey="true">
-        <Alias>DataSet</Alias>
+      <Employee Ref="2" type="DataTableSource" isKey="true">
+        <Alias>Employee</Alias>
         <Columns isList="true" count="6">
-          <value>id,System.Int32</value>
-          <value>hrcoreno,System.String</value>
-          <value>firstname,System.String</value>
-          <value>lastname,System.String</value>
           <value>fullname,System.String</value>
-          <value>departmentid,System.Int32</value>
+          <value>hidno,System.String</value>
+          <value>hrcoreno,System.String</value>
+          <value>lastname,System.String</value>
+          <value>departmentname,System.String</value>
+          <value>firstname,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
         <Key>71ceecf953404420b900b81d9380bd80</Key>
-        <Name>DataSet</Name>
-        <NameInSource>DataSet</NameInSource>
-      </DataSet>
+        <Name>Employee</Name>
+        <NameInSource>Employee</NameInSource>
+      </Employee>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
@@ -101,6 +101,7 @@
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Microsoft Sans Serif,18,Bold,Point,False,0</Font>
+              <Guid>9b4d43517dfb4a9eb7e97fd72fde3c64</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text01</Name>
               <Page isRef="6" />
@@ -116,6 +117,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>e1287c07106c46d0b1963d3499d86140</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text124</Name>
               <Page isRef="6" />
@@ -132,6 +134,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>d029c074e7594935994296d627498a22</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="6" />
@@ -165,6 +168,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>3dc4ebce62f64da7a9696b8eee85d436</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="6" />
@@ -177,7 +181,7 @@
             <Image1 Ref="13" type="Image" isKey="true">
               <AspectRatio>True</AspectRatio>
               <Brush>Transparent</Brush>
-              <ClientRectangle>460,20,320,120</ClientRectangle>
+              <ClientRectangle>430,20,320,120</ClientRectangle>
               <Conditions isList="true" count="0" />
               <ImageURL>resource://LOGO ALCON</ImageURL>
               <Margins>0,0,0,0</Margins>
@@ -218,6 +222,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>c3dcb7faa7644943aa237846fb51a057</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>5,3,0,0</Margins>
               <Name>Text15</Name>
@@ -236,6 +241,7 @@
               <ClientRectangle>0,0,500,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
+              <Guid>c4db43119bcc4c93a4d0d5f44a6da3db</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="6" />
@@ -251,6 +257,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>74057b9680a140649206e27973d7fcfe</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>5,3,0,0</Margins>
               <Name>Text8</Name>
@@ -301,6 +308,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>a5e5acc5d4da4549927498aaa3f7f12b</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,5,0,0</Margins>
               <Name>Text115</Name>
@@ -317,7 +325,7 @@
           <Page isRef="6" />
           <Parent isRef="6" />
         </PageFooterBand1>
-        <HeaderBand1 Ref="24" type="HeaderBand" isKey="true">
+        <HeaderEmployee Ref="24" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,320,747,30</ClientRectangle>
           <Components isList="true" count="6">
@@ -327,6 +335,7 @@
               <ClientRectangle>0,0,30,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>fc4612bf28f74439867a81454ec17a29</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Id</Name>
@@ -344,6 +353,7 @@
               <ClientRectangle>30,0,100,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>e918bd043d0142798459197cea6741e4</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Code</Name>
@@ -355,29 +365,13 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDepartment_Code>
-            <HeaderDepartment_Name Ref="27" type="Text" isKey="true">
-              <Border>All;[0:0:192];1;Solid;False;4;Black</Border>
-              <Brush>DodgerBlue</Brush>
-              <ClientRectangle>570,0,180,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,12,Bold</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>HeaderDepartment_Name</Name>
-              <Page isRef="6" />
-              <Parent isRef="24" />
-              <Text> Department</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </HeaderDepartment_Name>
-            <Text9 Ref="28" type="Text" isKey="true">
+            <Text9 Ref="27" type="Text" isKey="true">
               <Border>All;[0:0:192];1;Solid;False;4;Black</Border>
               <Brush>DodgerBlue</Brush>
               <ClientRectangle>130,0,120,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>09487b2baa294d38af9c8cc06ec5474a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
@@ -389,12 +383,13 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="29" type="Text" isKey="true">
+            <Text10 Ref="28" type="Text" isKey="true">
               <Border>All;[0:0:192];1;Solid;False;4;Black</Border>
               <Brush>DodgerBlue</Brush>
               <ClientRectangle>250,0,130,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>be3bfb19354e4407842e02ab8cda2021</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
@@ -406,12 +401,13 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text11 Ref="30" type="Text" isKey="true">
+            <Text11 Ref="29" type="Text" isKey="true">
               <Border>All;[0:0:192];1;Solid;False;4;Black</Border>
               <Brush>DodgerBlue</Brush>
               <ClientRectangle>380,0,190,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>c34d1bbb99e04b26a63de571bb8ebd06</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
@@ -423,118 +419,151 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
+            <HeaderDepartment_Name Ref="30" type="Text" isKey="true">
+              <Border>All;[0:0:192];1;Solid;False;4;Black</Border>
+              <Brush>DodgerBlue</Brush>
+              <ClientRectangle>570,0,180,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12,Bold</Font>
+              <Guid>b1aa83db56af4ba0b17ce68be11818c6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderDepartment_Name</Name>
+              <Page isRef="6" />
+              <Parent isRef="24" />
+              <Text> Department</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderDepartment_Name>
           </Components>
           <Conditions isList="true" count="0" />
-          <Name>HeaderBand1</Name>
+          <Name>HeaderEmployee</Name>
           <Page isRef="6" />
           <Parent isRef="6" />
-        </HeaderBand1>
-        <DataBand1 Ref="31" type="DataBand" isKey="true">
+        </HeaderEmployee>
+        <DataEmployee Ref="31" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,390,747,30</ClientRectangle>
           <Components isList="true" count="6">
-            <Text3 Ref="32" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
+            <DataEmployee_firstname Ref="32" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>130,0,120,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>827878bd58d64a6d9c10c4670549823f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataEmployee_firstname</Name>
+              <Page isRef="6" />
+              <Parent isRef="31" />
+              <Text>{Employee.firstname}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataEmployee_firstname>
+            <DataEmployee_fullname Ref="33" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>380,0,190,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>7fe5f7fd7da84d02a615ece3497f7ff1</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataEmployee_fullname</Name>
+              <Page isRef="6" />
+              <Parent isRef="31" />
+              <Text>{Employee.fullname}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataEmployee_fullname>
+            <DataEmployee_lastname Ref="34" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>250,0,130,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>5b95a2a3afd341ba83a974de361e0ecd</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataEmployee_lastname</Name>
+              <Page isRef="6" />
+              <Parent isRef="31" />
+              <Text>{Employee.lastname}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataEmployee_lastname>
+            <DataEmployee_hrcoreno Ref="35" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>30,0,100,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>e88ba7f6bb184b339c62f87f1f4ef28c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataEmployee_hrcoreno</Name>
+              <Page isRef="6" />
+              <Parent isRef="31" />
+              <Text>{Employee.hrcoreno}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataEmployee_hrcoreno>
+            <Text3 Ref="36" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,30,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <Guid>da0508e3121f41b68a9388f322b1fc7b</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="6" />
               <Parent isRef="31" />
-              <Text>{Line}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>SystemVariables</Type>
+              <Text>{Line}
+</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text4 Ref="33" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
+            <Text4 Ref="37" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>30,0,100,30</ClientRectangle>
+              <ClientRectangle>570,0,180,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <Guid>0971e0531d4945c28f6d55a28e41fe07</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="6" />
               <Parent isRef="31" />
-              <Text>{DataSet.hrcoreno}</Text>
-              <TextBrush>Black</TextBrush>
+              <Text>{Employee.departmentname}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text5 Ref="34" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>130,0,120,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text5</Name>
-              <Page isRef="6" />
-              <Parent isRef="31" />
-              <Text>{DataSet.firstname}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text5>
-            <Text13 Ref="35" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>250,0,130,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
-              <Page isRef="6" />
-              <Parent isRef="31" />
-              <Text>{DataSet.lastname}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text13>
-            <Text14 Ref="36" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>380,0,190,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text14</Name>
-              <Page isRef="6" />
-              <Parent isRef="31" />
-              <Text>{DataSet.fullname}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text14>
-            <Text16 Ref="37" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>570,0,180,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text16</Name>
-              <Page isRef="6" />
-              <Parent isRef="31" />
-              <Text>{DataSet.departmentid}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text16>
           </Components>
           <Conditions isList="true" count="0" />
-          <DataRelationName isNull="true" />
-          <DataSourceName>DataSet</DataSourceName>
+          <DataSourceName>Employee</DataSourceName>
           <Filters isList="true" count="0" />
-          <Name>DataBand1</Name>
+          <Name>DataEmployee</Name>
           <Page isRef="6" />
           <Parent isRef="6" />
           <Sort isList="true" count="0" />
-        </DataBand1>
+        </DataEmployee>
       </Components>
       <Conditions isList="true" count="0" />
       <Guid>6e1caf2a75ec493386f5a9199bdc6833</Guid>
@@ -560,8 +589,7 @@
   <ReportChanged>3/5/2020 11:29:59 AM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>C:\busmeal\BusMeal-SPA\src\assets\reports\Department.mrt</ReportFile>
-  <ReportGuid>b055f234d22a4db3a41ce8950e7b1584</ReportGuid>
+  <ReportGuid>a1030ab076b944849f48f22b0370951e</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.1.0</ReportVersion>

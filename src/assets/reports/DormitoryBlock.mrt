@@ -8,8 +8,8 @@
     <BusinessObjects isList="true" count="0" />
     <Databases isList="true" count="0" />
     <DataSources isList="true" count="1">
-      <DataSet Ref="2" type="DataTableSource" isKey="true">
-        <Alias>DataSet</Alias>
+      <DormitoryBlock Ref="2" type="DataTableSource" isKey="true">
+        <Alias>DormitoryBlock</Alias>
         <Columns isList="true" count="3">
           <value>id,System.Int32</value>
           <value>code,System.String</value>
@@ -17,9 +17,9 @@
         </Columns>
         <Dictionary isRef="1" />
         <Key>71ceecf953404420b900b81d9380bd80</Key>
-        <Name>DataSet</Name>
-        <NameInSource>DataSet</NameInSource>
-      </DataSet>
+        <Name>DormitoryBlock</Name>
+        <NameInSource>DormitoryBlock</NameInSource>
+      </DormitoryBlock>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
@@ -101,6 +101,7 @@
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Microsoft Sans Serif,18,Bold,Point,False,0</Font>
+              <Guid>867c4887df104d4cb774fdcd14e28668</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text01</Name>
               <Page isRef="6" />
@@ -116,6 +117,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>86a6a70f3cdd4d3d898e27a5287bb200</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text124</Name>
               <Page isRef="6" />
@@ -132,6 +134,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>0c5ac39fa4784ba99ed608309f1b7f59</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="6" />
@@ -165,6 +168,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>483125c980c043b69e3be9398be8cd77</Guid>
               <Margins>5,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="6" />
@@ -218,6 +222,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>933f5f9e9f0a40ed826aa36884ac1482</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>5,3,0,0</Margins>
               <Name>Text15</Name>
@@ -236,6 +241,7 @@
               <ClientRectangle>0,0,500,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
+              <Guid>4c5c4bac3a1143d0a5ab197940a55754</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="6" />
@@ -251,6 +257,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>311866de05454a0ca502ea73da3d6a95</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>5,3,0,0</Margins>
               <Name>Text8</Name>
@@ -301,6 +308,7 @@
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>45f84819ef944b8ab641285406009526</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,5,0,0</Margins>
               <Name>Text115</Name>
@@ -317,7 +325,7 @@
           <Page isRef="6" />
           <Parent isRef="6" />
         </PageFooterBand1>
-        <HeaderBand1 Ref="24" type="HeaderBand" isKey="true">
+        <HeaderDormitoryBlock Ref="24" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,320,747,30</ClientRectangle>
           <Components isList="true" count="3">
@@ -327,6 +335,7 @@
               <ClientRectangle>0,0,100,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>1972435fe1844559810309b546c6359c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Id</Name>
@@ -344,6 +353,7 @@
               <ClientRectangle>100,0,290,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>29a9e1fea064489ab09f6d1889592ad9</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Code</Name>
@@ -361,6 +371,7 @@
               <ClientRectangle>390,0,360,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12,Bold</Font>
+              <Guid>fa6ecada5ce84721af1e8ff2d89cbad9</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDepartment_Name</Name>
@@ -374,21 +385,58 @@
             </HeaderDepartment_Name>
           </Components>
           <Conditions isList="true" count="0" />
-          <Name>HeaderBand1</Name>
+          <Name>HeaderDormitoryBlock</Name>
           <Page isRef="6" />
           <Parent isRef="6" />
-        </HeaderBand1>
-        <DataBand1 Ref="28" type="DataBand" isKey="true">
+        </HeaderDormitoryBlock>
+        <DataDormitoryBlock Ref="28" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,390,747,30</ClientRectangle>
           <Components isList="true" count="3">
-            <Text3 Ref="29" type="Text" isKey="true">
+            <DataDormitoryBlock_code Ref="29" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>100,0,290,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>c575ee44423441d98a95943807f3c20f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataDormitoryBlock_code</Name>
+              <Page isRef="6" />
+              <Parent isRef="28" />
+              <Text>{DormitoryBlock.code}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataDormitoryBlock_code>
+            <DataDormitoryBlock_name Ref="30" type="Text" isKey="true">
+              <Border>All;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>390,0,360,30</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>fb1e6ebf713e4c229083b7f45f76a3a4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataDormitoryBlock_name</Name>
+              <Page isRef="6" />
+              <Parent isRef="28" />
+              <Text>{DormitoryBlock.name}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataDormitoryBlock_name>
+            <Text3 Ref="31" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,100,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
+              <Guid>805ae0cdd3cc4568b008416f1d4dfced</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
@@ -399,46 +447,15 @@
               <Type>SystemVariables</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text4 Ref="30" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>100,0,290,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text4</Name>
-              <Page isRef="6" />
-              <Parent isRef="28" />
-              <Text>{DataSet.code}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text4>
-            <Text5 Ref="31" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>390,0,360,30</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text5</Name>
-              <Page isRef="6" />
-              <Parent isRef="28" />
-              <Text>{DataSet.name}</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text5>
           </Components>
           <Conditions isList="true" count="0" />
-          <DataRelationName isNull="true" />
-          <DataSourceName>DataSet</DataSourceName>
+          <DataSourceName>DormitoryBlock</DataSourceName>
           <Filters isList="true" count="0" />
-          <Name>DataBand1</Name>
+          <Name>DataDormitoryBlock</Name>
           <Page isRef="6" />
           <Parent isRef="6" />
           <Sort isList="true" count="0" />
-        </DataBand1>
+        </DataDormitoryBlock>
       </Components>
       <Conditions isList="true" count="0" />
       <Guid>6e1caf2a75ec493386f5a9199bdc6833</Guid>
@@ -464,8 +481,8 @@
   <ReportChanged>3/5/2020 2:14:08 PM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>C:\busmeal\BusMeal-SPA\src\assets\reports\DormitoryBlock.mrt</ReportFile>
-  <ReportGuid>6758b482847b4e12940aae9d47665f9e</ReportGuid>
+  <ReportFile>DormitoryBlock.mrt</ReportFile>
+  <ReportGuid>cfdd416923e7404c8e095d4c2cd99beb</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.1.0</ReportVersion>

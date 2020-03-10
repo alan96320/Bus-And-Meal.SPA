@@ -33,7 +33,7 @@ export class DepartmentReportComponent implements OnInit {
     report.dictionary.variables.getByName("title").valueObject =
       "Department List";
 
-    report.regData("DataSet", "DataSet", this.departments);
+    report.regData("Department", "Department", this.departments);
 
     options.width = "100%";
     options.height = "850px";
