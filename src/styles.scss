@@ -45,3 +45,22 @@
 .overflow-custom {
   overflow: auto;
 }
+.simple-text-custom {
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  display: block;
+  white-space: nowrap;
+  color: #1d253b;
+  text-decoration: none;
+  font-weight: 400;
+  line-height: 30px;
+  overflow: hidden;
+  font-size: medium;
+}
+.text-custom {
+  color: rgba(34, 42, 66, 0.7);
+  border-bottom-width: 1px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+}

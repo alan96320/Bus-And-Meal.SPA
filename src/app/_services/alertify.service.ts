@@ -7,27 +7,27 @@ export class AlertifyService {
 
   constructor() { }
 
-  confirm(message: string, okCallBack: () => any){
-    alertify.confirm(message, (e:any) => {
+  confirm(message: string, okCallBack: () => any) {
+    alertify.confirm(message, (e: any) => {
       if (e) {
         okCallBack();
       } else {}
     });
   }
 
-  success(message:string){
+  success(message: string) {
     alertify.success(message);
   }
 
-  error(message:string){
+  error(message: string) {
     alertify.error(message);
   }
 
-  warning(message:string){
+  warning(message: string) {
     alertify.warning(message);
   }
 
-  message(message:string){
+  message(message: string) {
     alertify.message(message);
   }
 

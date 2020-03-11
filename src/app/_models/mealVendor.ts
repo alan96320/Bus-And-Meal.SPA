@@ -1,6 +1,6 @@
 export interface MealVendor {
-    id : number;
-    code : string;
+    id: number;
+    code: string;
     name: string;
     ContactName: string;
     ContactPhone: string;

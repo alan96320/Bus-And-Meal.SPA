@@ -98,6 +98,23 @@ import { UsersReportComponent } from "./pages/reports/usersReport/usersReport.co
 import { CounterReportComponent } from "./pages/reports/CounterReport/CounterReport.component";
 import { MealOrderReportComponent } from "./pages/reports/mealOrderReport/mealOrderReport.component";
 
+import {
+  MealOrderEntryListResolver,
+  MealOrderEntryDetailResolver
+} from "./_resolvers/mealOrderEntryResolver";
+import {
+  MealOrderVerificationListResolver,
+  MealOrderVerificationDetailResolver
+} from "./_resolvers/mealOrderVerificationResolver";
+import {
+  BusOrderEntryListResolver,
+  BusOrderEntryDetailResolver
+} from "./_resolvers/busOrderEntryResolver";
+import {
+  BusOrderVerificationListResolver,
+  BusOrderVerificationDetailResolver
+} from "./_resolvers/busOrderVerificationResolver";
+
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -126,7 +143,7 @@ export function tokenGetter() {
     NavbarComponent,
     HomeComponent,
     DashboardComponent,
-    //declarations for menu configuration
+    // declarations for menu configuration
     DepartmentListComponent,
     DepartmentFormComponent,
     DormitoryBlokAreaListComponent,
@@ -148,8 +165,7 @@ export function tokenGetter() {
     EmployeeFormComponent,
     UserListComponent,
     UserFormComponent,
-
-    //decaration for menu transaction
+    // decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
     BusOrderVerificationListComponent,
@@ -199,7 +215,15 @@ export function tokenGetter() {
     BusTimeReportResolver,
     CounterReportResolver,
     UsersReportResolver,
-    MealOrderReportResolver
+    MealOrderReportResolver,
+    MealOrderEntryListResolver,
+    MealOrderEntryDetailResolver,
+    MealOrderVerificationListResolver,
+    MealOrderVerificationDetailResolver,
+    BusOrderEntryListResolver,
+    BusOrderEntryDetailResolver,
+    BusOrderVerificationListResolver,
+    BusOrderVerificationDetailResolver
   ],
   bootstrap: [AppComponent]
 })

@@ -6,18 +6,20 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: "app-busTimeForm",
   templateUrl: "./busTimeForm.component.html"
 })
 export class BusTimeFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
-  update: boolean = false;
+  update = false;
   BusTime: BusTime;
-  id = +this.route.snapshot.params["id"];
+  id = +this.route.snapshot.params.id;
   listDirection: any;
 
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private BusTimeService: BusTimeService,
     private alertify: AlertifyService,
     private router: Router,
@@ -36,9 +38,9 @@ export class BusTimeFormComponent implements OnInit {
   loadBusTime() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.code = data["BusTime"].code;
-        this.model.time = data["BusTime"].time;
-        this.model.directionEnum = data["BusTime"].directionEnum;
+        this.model.code = data.BusTime.code;
+        this.model.time = data.BusTime.time;
+        this.model.directionEnum = data.BusTime.directionEnum;
         this.model.times = { hour: 13, minute: 30 };
         this.update = true;
       });

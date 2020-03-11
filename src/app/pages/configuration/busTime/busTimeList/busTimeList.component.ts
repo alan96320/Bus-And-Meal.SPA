@@ -8,17 +8,18 @@ import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 import swal from "sweetalert2";
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: "app-busTimeList",
   templateUrl: "./busTimeList.component.html"
 })
 export class BusTimeListComponent implements OnInit {
-  //deklarasi untuk pagination custom
+  // deklarasi untuk pagination custom
   sortAscCode: boolean;
   sortAscTime: boolean;
   sortAscDirection: boolean;
-  filter: boolean = true;
+  filter = true;
 
-  //deklarasi untuk get data
+  // deklarasi untuk get data
   BusTimes: BusTime[];
   pagination: Pagination;
   BusTimeParams: any = {};
@@ -26,6 +27,7 @@ export class BusTimeListComponent implements OnInit {
   listDirection: any;
 
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private BusTimeService: BusTimeService,
     private alertify: AlertifyService,
     private route: ActivatedRoute,
@@ -34,8 +36,8 @@ export class BusTimeListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.BusTimes = data["BusTime"].result;
-      this.pagination = data["BusTime"].pagination;
+      this.BusTimes = data.BusTime.result;
+      this.pagination = data.BusTime.pagination;
     });
 
     this.listDirection = [
@@ -50,19 +52,19 @@ export class BusTimeListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName == "code") {
+    if (getName === "code") {
       this.sortAscCode = !this.sortAscCode;
       this.BusTimeParams.OrderBy = getName;
       this.BusTimeParams.isDesc = this.sortAscCode;
       this.loadBusTime();
     }
-    if (getName == "time") {
+    if (getName === "time") {
       this.sortAscTime = !this.sortAscTime;
       this.BusTimeParams.OrderBy = getName;
       this.BusTimeParams.isDesc = this.sortAscTime;
       this.loadBusTime();
     }
-    if (getName == "directionEnum") {
+    if (getName === "directionEnum") {
       this.sortAscDirection = !this.sortAscDirection;
       this.BusTimeParams.OrderBy = getName;
       this.BusTimeParams.isDesc = this.sortAscDirection;
@@ -76,7 +78,7 @@ export class BusTimeListComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.pagination.currentPage != this.pagination.totalPages) {
+    if (this.pagination.currentPage !== this.pagination.totalPages) {
       this.pagination.currentPage = this.pagination.currentPage + 1;
       this.loadBusTime();
     }

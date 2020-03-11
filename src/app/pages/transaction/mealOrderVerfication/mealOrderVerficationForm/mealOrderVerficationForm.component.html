@@ -1,3 +1,152 @@
-<p>
-  mealOrderVerficationForm works!
-</p>
+<div class="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Meal Order Veryfication</h2>
+      <div class=" card card-custom">
+        <form #FormMealOrderVerification="ngForm" (ngSubmit)="submit()">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-6 text-left">
+              <div class="form-group row">
+                <label for="orderNo" class="col-sm-2 col-form-label text-right">Order No :</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="orderNo" placeholder="Order No" [(ngModel)]="model.OrderNo" name="OrderNo">
+                </div>
+                <label for="orderDate" class="col-sm-2 col-form-label text-right">Order Date :</label>
+                <div class="col-sm-4">
+                  <input type="date" class="form-control" #orderDate (blur)="OrderBy(orderDate.value)" [(ngModel)]="model.OrderDate" name="OrderDate">
+                </div>
+              </div>
+            </div>
+            <div class=" col-sm-6 text-right">
+              <div class=" form-check">
+                <label class=" form-check-label">
+                  <input class=" form-check-input" type="checkbox" value="" name="IsClosed" [(ngModel)]="model.IsClosed">
+                  <span class=" form-check-sign">
+                    <span class=" check">Closed</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <li class="dropdown-divider"></li>
+        <div class=" card-body row" style="margin-top: -20px;">
+          <div class=" table-responsive col-sm-6" id="scrolLeft" style="overflow-y: hidden; max-height: 300px;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Department Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
+                  <td>{{MealOrderEntry.orderEntryDate | date:'fullDate'}}</td>
+                  <td *ngFor="let item of listDepartments"
+                    [ngClass]="{'d-none': item.id !== MealOrderEntry.departmentId}">
+                    {{item.name}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive col-sm-6" id="scrolRight" style="overflow-y: auto; max-height: 300px; " (scroll) = "scrolRight()">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th *ngFor="let MealOrderDetail of mealTypes" class="text-center">
+                    {{MealOrderDetail.name}}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MealOrderEntry of MealOrderEntrys" class="text-center">
+                  <td *ngFor="let item of MealOrderEntry.mealOrderDetails" class="mealTypeID{{item.mealTypeId}}" #mealTypeID{{item.mealTypeId}}>{{item.orderQty}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-2 offset-sm-4 table-responsive text-right" style="overflow: auto;">
+            <table class="table">
+              <tbody style="text-transform: uppercase;">
+                <tr>
+                  <th>total</th>
+                </tr>
+                <tr style="height: 51px;">
+                  <th>adjustment</th>
+                </tr>
+                <tr>
+                  <th>total order</th>
+                </tr>
+                <tr style="height: 51px;">
+                  <th>swipe</th>
+                </tr>
+                <tr style="height: 51px;">
+                  <th>log book</th>
+                </tr>
+                <tr>
+                  <th>actual taken</th>
+                </tr>
+                <tr>
+                  <th>Different</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-6 table-responsive" style="overflow: auto;">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th *ngFor="let data of sumData" class="text-center">
+                    {{data}}
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of sumData; let i = index" class="text-center">
+                    <input type="number" class="form-control form-control-sm" (keyup)='Adjusment($event,i)' (blur)='Adjusment($event,i)' name="ajusment{{i}}" value="{{mealVerification[i].AdjusmentQty}}">
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of ajusment; let i = index" class="text-center">{{data}}</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of sumData; let i = index" class="text-center">
+                    <input type="number" class="form-control form-control-sm" (keyup)='swipDatas($event,i)' (blur)='swipDatas($event,i)' name="swip{{i}}"  value="{{mealVerification[i].SwipeQty}}">
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of sumData; let i = index" class="text-center">
+                    <input type="number" class="form-control form-control-sm" (keyup)='logBok($event,i)' (blur)='logBok($event,i)' name="lockBook{{i}}" value="{{mealVerification[i].LogBookQty}}">
+                  </th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of swipParsing" class="text-center">{{data}}</th>
+                </tr>
+                <tr>
+                  <th *ngFor="let data of different" class="text-center">{{data}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <li class="dropdown-divider"></li>
+        
+        <div class="ml-auto mr-3">
+          <div class="row">
+            <div class="col-sm-9 offset-sm-3 text-right">
+              <button class="btn btn-default animation-on-hover btn-sm" type="submit" [disabled]="!FormMealOrderVerification.valid">
+                Save
+              </button>
+              <button class="btn btn-danger animation-on-hover btn-sm" type="button" [routerLink]="['/mealOrderVerification']" (click)="cancel()" >Cancel</button>
+            </div>
+          </div>
+        </div>
+        </form>
+        
+
+
+      </div>
+    </div>
+  </div>
+</div>

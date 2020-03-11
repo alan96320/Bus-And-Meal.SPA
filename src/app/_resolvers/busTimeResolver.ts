@@ -12,6 +12,7 @@ export class BusTimeListResolver implements Resolve<BusTime[]> {
   pageNumber: number;
   pageSize: number;
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private BusTimeService: BusTimeService,
     private router: Router,
     private alertify: AlertifyService,
@@ -35,6 +36,7 @@ export class BusTimeListResolver implements Resolve<BusTime[]> {
 @Injectable()
 export class BusTimeDetailResolver implements Resolve<BusTime> {
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private BusTimeService: BusTimeService,
     private router: Router,
     private alertify: AlertifyService,
@@ -42,12 +44,12 @@ export class BusTimeDetailResolver implements Resolve<BusTime> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<BusTime> {
-    return this.BusTimeService.getBusTime(route.params["id"]).pipe(
+    return this.BusTimeService.getBusTime(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

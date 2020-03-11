@@ -12,6 +12,7 @@ export class MealVendorListResolver implements Resolve<MealVendor[]> {
   pageNumber: number;
   pageSize: number;
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private MealVendorService: MealVendorService,
     private router: Router,
     private alertify: AlertifyService,
@@ -38,6 +39,7 @@ export class MealVendorListResolver implements Resolve<MealVendor[]> {
 @Injectable()
 export class MealVendorDetailResolver implements Resolve<MealVendor> {
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private MealVendorService: MealVendorService,
     private router: Router,
     private alertify: AlertifyService,
@@ -45,12 +47,12 @@ export class MealVendorDetailResolver implements Resolve<MealVendor> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<MealVendor> {
-    return this.MealVendorService.getMealVendor(route.params["id"]).pipe(
+    return this.MealVendorService.getMealVendor(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

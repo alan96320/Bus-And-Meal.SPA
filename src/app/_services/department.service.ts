@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { Department } from "../_models/department";
 import { PaginatedResult } from "../_models/pagination";
-import { map } from "rxjs/operators";
+import { map, retry, catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -81,5 +81,19 @@ export class DepartmentService {
           return paginatedResult;
         })
       );
+  }
+
+  handleError(error) {
+    let errorMessage = "";
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.headers}`;
+      console.log(error);
+      console.log();
+    }
+    return throwError(errorMessage);
   }
 }

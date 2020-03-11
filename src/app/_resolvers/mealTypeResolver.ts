@@ -12,6 +12,7 @@ export class MealTypeListResolver implements Resolve<MealType[]> {
   pageNumber: number;
   pageSize: number;
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private MealTypeService: MealTypeService,
     private router: Router,
     private alertify: AlertifyService,
@@ -38,6 +39,7 @@ export class MealTypeListResolver implements Resolve<MealType[]> {
 @Injectable()
 export class MealTypeDetailResolver implements Resolve<MealType> {
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private MealTypeService: MealTypeService,
     private router: Router,
     private alertify: AlertifyService,
@@ -45,12 +47,12 @@ export class MealTypeDetailResolver implements Resolve<MealType> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<MealType> {
-    return this.MealTypeService.getMealType(route.params["id"]).pipe(
+    return this.MealTypeService.getMealType(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

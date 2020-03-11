@@ -136,8 +136,6 @@ export const appRouting: Routes = [
         component: MealOrderReportComponent,
         resolve: { mealorder: MealOrderReportResolver }
       },
-
-      // menu for report
       //path for menu configuration
       {
         path: "department",
@@ -197,7 +195,6 @@ export const appRouting: Routes = [
       { path: "roles", component: RolesListComponent },
       { path: "formRoles", component: RolesFormComponent },
       { path: "formRoles/:id", component: RolesFormComponent },
-
       {
         path: "user",
         component: UserListComponent,
@@ -226,7 +223,6 @@ export const appRouting: Routes = [
         component: CounterFormComponent,
         resolve: { counter: CounterDetailResolver }
       },
-
       {
         path: "employee",
         component: EmployeeListComponent,

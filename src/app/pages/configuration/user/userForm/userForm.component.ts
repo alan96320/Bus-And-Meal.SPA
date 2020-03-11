@@ -13,7 +13,7 @@ import { HttpClient } from "@angular/common/http";
 export class UserFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
-  update: boolean = false;
+  update = false;
   user: Users;
   id = +this.route.snapshot.params["id"];
   listDepartments: any;
@@ -88,13 +88,13 @@ export class UserFormComponent implements OnInit {
     });
 
     // update module right
-    var moduleRightSubmit = JSON.parse(JSON.stringify(this.userModule));
+    const moduleRightSubmit = JSON.parse(JSON.stringify(this.userModule));
     moduleRightSubmit.map(data => {
       delete data.moduleRights;
     });
 
     // update model with new data before send to server
-    this.model.userDepartment = this.departmentSubmit;
+    this.model.userDepartments = this.departmentSubmit;
     this.model.userModuleRights = moduleRightSubmit;
 
     // console.log(this.model);

@@ -7,15 +7,16 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+   // tslint:disable-next-line:component-selector
    selector: 'app-employeeForm',
    templateUrl: './employeeForm.component.html',
 })
 export class EmployeeFormComponent implements OnInit {
    @Output() cancelAdd = new EventEmitter();
    model: any = {};
-   update: boolean = false;
+   update = false;
    employee: Employee;
-   id = +this.route.snapshot.params['id'];
+   id = +this.route.snapshot.params.id;
    listDepartments: any;
 
    constructor(
@@ -35,12 +36,12 @@ export class EmployeeFormComponent implements OnInit {
    loademployee() {
       if (this.id) {
          this.route.data.subscribe(data => {
-            this.model.hrCoreNo = data['employee'].hrCoreNo;
-            this.model.firstname = data['employee'].firstname;
-            this.model.lastname = data['employee'].lastname;
-            this.model.fullname = data['employee'].fullname;
-            this.model.hidNo = data['employee'].hidNo;
-            this.model.departmentId = data['employee'].departmentId;
+            this.model.hrCoreNo = data.employee.hrCoreNo;
+            this.model.firstname = data.employee.firstname;
+            this.model.lastname = data.employee.lastname;
+            this.model.fullname = data.employee.fullname;
+            this.model.hidNo = data.employee.hidNo;
+            this.model.departmentId = data.employee.departmentId;
             this.update = true;
          });
       }

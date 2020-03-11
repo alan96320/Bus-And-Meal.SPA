@@ -10,22 +10,25 @@ export class AuthService {
   baseUrl = environment.apiUrl + 'Auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
+  users: any;
   constructor(private http: HttpClient) { }
 
-  login(model:any){
-    return this.http.post(this.baseUrl + 'login',model).pipe(
+  login(model: any) {
+    return this.http.post(this.baseUrl + 'login', model).pipe(
       map((response: any) => {
         const user = response;
         if (user) {
           localStorage.setItem('token', user.token);
+          localStorage.setItem('id_user', user.user.id);
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
+
         }
       })
     );
   }
 
   loggedIn() {
-    const token = localStorage.getItem("token") || undefined;
+    const token = localStorage.getItem('token') || undefined;
     return !this.jwtHelper.isTokenExpired(token);
   }
 

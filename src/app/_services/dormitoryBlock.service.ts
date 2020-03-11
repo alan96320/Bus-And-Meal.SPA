@@ -15,7 +15,7 @@ export class DormitoryBlockService {
 
   constructor(private http: HttpClient) {}
   //get dormitory block report
-  
+
   getDormitoryBlockReport() {
     return this.http.get(this.baseUrl + "report/dormitoryblock/");
   }

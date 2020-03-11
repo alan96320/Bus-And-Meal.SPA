@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Department } from '../_models/department';
-import { DepartmentService } from '../_services/department.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SweetAlertService } from '../_services/sweetAlert.service';
+import { BusOrderVerification } from '../_models/busOrderVerification';
+import { BusOrderVerificationService } from '../_services/busOrderVerification.service';
 
 @Injectable()
-export class DepartmentListResolver implements Resolve<Department[]> {
+export class BusOrderVerificationListResolver implements Resolve<BusOrderVerification[]> {
     pageNumber: number;
     pageSize: number;
     constructor(
-        private departmentService: DepartmentService,
+        private busOrderVerificationService: BusOrderVerificationService,
         private router: Router,
         private alertify: AlertifyService,
         private sweetAlert: SweetAlertService,
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Department[]> {
+    resolve(route: ActivatedRouteSnapshot): Observable<BusOrderVerification[]> {
         this.pageNumber = 1;
-        this.pageSize = this.departmentService.itemPerPage;
-        return this.departmentService.getDepartments(this.pageNumber, this.pageSize).pipe(
+        this.pageSize = this.busOrderVerificationService.itemPerPage;
+        return this.busOrderVerificationService.getBusOrderVerifications(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.sweetAlert.error('Problem Retrieving Data ');
                 this.router.navigate(['/home']);
@@ -33,19 +33,19 @@ export class DepartmentListResolver implements Resolve<Department[]> {
 }
 
 @Injectable()
-export class DepartmentDetailResolver implements Resolve<Department> {
+export class BusOrderVerificationDetailResolver implements Resolve<BusOrderVerification> {
     constructor(
-        private departmentService: DepartmentService,
+        private busOrderVerificationService: BusOrderVerificationService,
         private router: Router,
         private alertify: AlertifyService,
         private sweetAlert: SweetAlertService,
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Department> {
-        return this.departmentService.getDepartment(route.params.id).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<BusOrderVerification> {
+        return this.busOrderVerificationService.getBusOrderVerification(route.params.id).pipe(
             catchError(error => {
                 this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/depart']);
+                this.router.navigate(['/busOrderVerification']);
                 // return of;
                 return of(null);
             })

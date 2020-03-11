@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/_services/auth.service";
 import { AlertifyService } from "src/app/_services/alertify.service";
 import { Router } from "@angular/router";
 import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { AuthService } from "src/app/_services/auth.service";
 
 @Component({
   selector: "app-navbar",
@@ -13,6 +13,9 @@ export class NavbarComponent implements OnInit {
   activeTrasaction = false;
   activeReport = false;
   activeConfiguration = false;
+
+  status: boolean;
+  status1: string;
   public isCollapsed = true;
 
   model: any = {};
@@ -75,6 +78,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("id_user");
     this.sweetAlert.warning("Logout Sukses");
     this.router.navigate(["/home"]);
   }

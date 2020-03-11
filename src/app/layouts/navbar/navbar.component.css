@@ -1,10 +1,19 @@
 .bg-custom{
     background:#f3f4f8;
 }
+
+.navbar-nav li a.disable{
+    pointer-events: none;
+}
+.link-disable:hover{
+    cursor: no-drop;
+    /* background-color: #f3f4f8; */
+    background-color: #e4261e7d;
+}
+
 .custom-color, .search-bar.input-group i, .navbar-nav li a{
     color: #1d253b;
 }
-
 .logo-mini-custom{
     opacity: 1;
     float: left;
@@ -19,15 +28,5 @@
     -webkit-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
 }
-.simple-text-custom{
-    text-transform: uppercase;
-    padding: 0.5rem 0;
-    display: block;
-    white-space: nowrap;
-    color: #1d253b;
-    text-decoration: none;
-    font-weight: 400;
-    line-height: 30px;
-    overflow: hidden;
-    font-size: medium;
-}
+
+

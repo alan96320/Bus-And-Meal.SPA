@@ -44,12 +44,12 @@ export class EmployeeDetailResolver implements Resolve<Employee> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Employee> {
-    return this.employeeService.getEmployee(route.params["id"]).pipe(
+    return this.employeeService.getEmployee(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

@@ -1,4 +1,4 @@
-export interface BusTime{
+export interface BusTime {
     id: number;
     code: string;
     time: string;

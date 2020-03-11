@@ -12,6 +12,7 @@ export class DormitoryBlockListResolver implements Resolve<DormitoryBlock[]> {
   pageNumber: number;
   pageSize: number;
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private DormitoryBlockService: DormitoryBlockService,
     private router: Router,
     private alertify: AlertifyService,
@@ -38,6 +39,7 @@ export class DormitoryBlockListResolver implements Resolve<DormitoryBlock[]> {
 @Injectable()
 export class DormitoryBlockDetailResolver implements Resolve<DormitoryBlock> {
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private DormitoryBlockService: DormitoryBlockService,
     private router: Router,
     private alertify: AlertifyService,
@@ -45,14 +47,12 @@ export class DormitoryBlockDetailResolver implements Resolve<DormitoryBlock> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<DormitoryBlock> {
-    return this.DormitoryBlockService.getDormitoryBlock(
-      route.params["id"]
-    ).pipe(
+    return this.DormitoryBlockService.getDormitoryBlock(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

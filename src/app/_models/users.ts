@@ -1,4 +1,4 @@
-export interface Users{
+export interface Users {
     id: number;
     username: string;
     firstName: string;
@@ -8,10 +8,10 @@ export interface Users{
     adminStatus: boolean;
     lockTransStatus: number;
     userModuleRights: UserModuleRights[];
-    userDepartment: userDepartment[];
+    userDepartments: userDepartment[];
 }
 
-export interface UserModuleRights{
+export interface UserModuleRights {
     id: number;
     ModuleRightsId: number;
     moduleRights?: ModuleRights[];
@@ -19,13 +19,14 @@ export interface UserModuleRights{
     write: boolean;
 }
 
-export interface userDepartment{
+// tslint:disable-next-line:class-name
+export interface userDepartment {
     id: number;
     departmentId: number;
     userId: number;
 }
 
-export interface ModuleRights{  
+export interface ModuleRights {
     id: number;
     code: string;
     description: string;

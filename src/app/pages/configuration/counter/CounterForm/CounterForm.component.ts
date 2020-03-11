@@ -6,15 +6,16 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: "app-CounterForm",
   templateUrl: "./CounterForm.component.html"
 })
 export class CounterFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
-  update: boolean = false;
+  update = false;
   counter: Counter;
-  id = +this.route.snapshot.params["id"];
+  id = +this.route.snapshot.params.id;
 
   constructor(
     private counterService: CounterService,
@@ -31,10 +32,10 @@ export class CounterFormComponent implements OnInit {
   loadCounter() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.code = data["counter"].code;
-        this.model.name = data["counter"].name;
-        this.model.location = data["counter"].location;
-        if (data["counter"].status == 1) {
+        this.model.code = data.counter.code;
+        this.model.name = data.counter.name;
+        this.model.location = data.counter.location;
+        if (data.counter.status === 1) {
           this.model.status = true;
         }
         this.update = true;
@@ -56,15 +57,6 @@ export class CounterFormComponent implements OnInit {
     } else {
       this.model.status = 0;
     }
-    this.counterService.addCounter(this.model).subscribe(
-      () => {
-        this.sweetAlert.successAdd("Added Successfully");
-        this.router.navigate(["/counter"]);
-      },
-      error => {
-        this.sweetAlert.warning(error);
-      }
-    );
   }
 
   cancel() {
@@ -77,14 +69,5 @@ export class CounterFormComponent implements OnInit {
     } else {
       this.model.status = 0;
     }
-    this.counterService.editCounter(this.id, this.model).subscribe(
-      () => {
-        this.sweetAlert.successAdd("Edit Successfully");
-        this.router.navigate(["/counter"]);
-      },
-      error => {
-        this.sweetAlert.warning(error);
-      }
-    );
   }
 }

@@ -1,8 +1,8 @@
-export interface Counter{
+export interface Counter {
     id: number;
     code: string;
-    name: string
+    name: string;
     location: string;
     status: number;
-    
+
 }

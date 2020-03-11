@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { SweetAlertService } from "src/app/_services/sweetAlert.service";
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: "app-configurationForm",
   templateUrl: "./configurationForm.component.html"
 })
@@ -13,7 +14,7 @@ export class ConfigurationFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
   configuration: Configuration;
-  id = +this.route.snapshot.params["id"];
+  id = +this.route.snapshot.params.id;
 
   constructor(
     private configurationService: ConfigurationService,
@@ -30,9 +31,9 @@ export class ConfigurationFormComponent implements OnInit {
   loadConfiguration() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.rowGrid = data["configuration"].rowGrid;
-        this.model.lockedBusOrder = data["configuration"].lockedBusOrder;
-        this.model.lockedMealOrder = data["configuration"].lockedMealOrder;
+        this.model.rowGrid = data.configuration.rowGrid;
+        this.model.lockedBusOrder = data.configuration.lockedBusOrder;
+        this.model.lockedMealOrder = data.configuration.lockedMealOrder;
       });
     }
   }

@@ -19,7 +19,6 @@ export class EmployeeService {
     return this.http.get(this.baseUrl + "report/employee/");
   }
 
-
   //for add data Employee
   addEmployee(model: any) {
     return this.http.post(this.baseUrl + "employee/", model);

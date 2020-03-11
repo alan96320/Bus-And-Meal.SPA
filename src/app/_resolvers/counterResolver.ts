@@ -12,6 +12,7 @@ export class CounterListResolver implements Resolve<Counter[]> {
   pageNumber: number;
   pageSize: number;
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private CounterService: CounterService,
     private router: Router,
     private alertify: AlertifyService,
@@ -35,6 +36,7 @@ export class CounterListResolver implements Resolve<Counter[]> {
 @Injectable()
 export class CounterDetailResolver implements Resolve<Counter> {
   constructor(
+    // tslint:disable-next-line:no-shadowed-variable
     private CounterService: CounterService,
     private router: Router,
     private alertify: AlertifyService,
@@ -42,12 +44,12 @@ export class CounterDetailResolver implements Resolve<Counter> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Counter> {
-    return this.CounterService.getCounter(route.params["id"]).pipe(
+    return this.CounterService.getCounter(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

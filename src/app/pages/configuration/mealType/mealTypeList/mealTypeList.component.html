@@ -1,123 +1,246 @@
 <div class="content">
-   <div class=" row">
-      <div class=" col-12">
-         <h2 class=" card-title">Meal Type</h2>
-         <div class=" card card-custom">
-            <div class=" card-header">
-               <div class=" row">
-                  <div class=" col-sm-6 text-left">
-                     <button (click)="filter = !filter;" class="btn animation-on-hover" type="button"
-                     (click)="cancelFilter(filter ? 'Filter' : 'Close Filter')" [ngClass]="{'btn-danger': filter === false}"
-                     ngbTooltip="{{filter ? 'Filter' : 'Close Filter'}}">{{filter ? 'Filter' : 'Close Filter'}}</button>
-                  </div>
-                  <div class=" col-sm-6 text-right">
-                     <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Add New" [routerLink]="['/formMealType']">Add New</button>
-                     <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Export" [routerLink]="['/report/MealType']">Export</button>
-                  </div>
-               </div>
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">Meal Type</h2>
+      <div class=" card card-custom">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-6 text-left">
+              <button
+                (click)="filter = !filter"
+                class="btn animation-on-hover"
+                type="button"
+                (click)="cancelFilter(filter ? 'Filter' : 'Close Filter')"
+                [ngClass]="{ 'btn-danger': filter === false }"
+                ngbTooltip="{{ filter ? 'Filter' : 'Close Filter' }}"
+              >
+                {{ filter ? "Filter" : "Close Filter" }}
+              </button>
             </div>
-            <li class="dropdown-divider"></li>
-            <div class=" card-body" style="margin-top: -20px;">
-               <div class=" table-responsive table-custom">
-                  <table class="table">
-                     <thead>
-                        <tr>
-                           <th class="sort-custom" (click)="sortActive('code')">Code
-                              <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscCode===true}"></i>
-                           </th>
-                           <th class="sort-custom" (click)="sortActive('name')">Name
-                              <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscName===false}"></i>
-                           </th>
-                           <th class="sort-custom" (click)="sortActive('mealVendor')">Vendor Name
-                              <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': mealVendor===true}"></i>
-                           </th>
-                           <th class="text-right">Actions</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr *ngIf="!filter">
-                           <td class="form-group no-border">
-                              <input type="text" class="form-control" placeholder="Order By Code" #box
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''" />
-                           </td>
-                           <td class="form-group no-border">
-                              <input type="text" class="form-control" placeholder="Order By Name" #box1
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''" />
-                           </td>
-                           <td class="form-group no-border">
-                              <input type="text" class="form-control" placeholder="Order By Vendor Name" #box2
-                              (keyup.enter)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''" />
-                           </td>
-                           <td></td>
-                        </tr>
-                        <tr *ngFor="let MealType of MealTypes">
-                           <td>{{MealType.code}}</td>
-                           <td>{{MealType.name}}</td>
-                           <td>{{MealType.mealVendor.name}}</td>
-                           <td class="td-actions text-right">
-                           <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
-                              placement="left" type="button" [routerLink]="['/formMealType',MealType.id]">
-                              <i class=" tim-icons icon-pencil"></i>
-                           </button>
-                           <button class=" btn btn-link btn-danger btn-icon btn-sm" container="body" ngbTooltip="Remove Data"
-                              placement="left" type="button" (click)="deleteMealType(MealType.id)">
-                              <i class=" tim-icons icon-simple-remove"></i>
-                           </button>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
+            <div class=" col-sm-6 text-right">
+              <button
+                class="btn btn-default animation-on-hover"
+                type="button"
+                ngbTooltip="Add New"
+                [routerLink]="['/formMealType']"
+              >
+                Add New
+              </button>
+              <button
+                class="btn btn-default animation-on-hover"
+                type="button"
+                ngbTooltip="Export"
+                [routerLink]="['/report/MealType']"
+              >
+                Export
+              </button>
             </div>
-         <!-- for pagination -->
-         <div class="ml-auto mr-3">
-            <ul class="pagination">
-               <li>
-               <label class="mr-1">Item Per Page</label>
-               <select class="btn btn-default btn-simple btn-icon mr-5" style="height: 31px; width: 50px;" #Size
-                  (change)="changeSize(Size.value)">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-               </select>
-               </li>
-               <li (click)="startPage()" [ngClass]="{'d-lg-none': pagination.currentPage === 1}">
-               <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm ">
-                  <i class="tim-icons icon-double-left"></i>
-               </a>
-               </li>
-               <li [ngClass]="{'d-lg-none': pagination.currentPage === 1}" (click)="prevPage()">
-               <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
-                  <i class="tim-icons icon-minimal-left"></i>
-               </a>
-               </li>
-               <li *ngFor="let item of arrayPage(); let i = index;">
-               <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm"
-                  [ngClass]="{'active': i+1 === pagination.currentPage,'d-lg-none': i+1 > pagination.currentPage+2 || i+1 < pagination.currentPage}"
-                  (click)="clickMe(i+1)">
-                  <b>{{i+1}}</b>
-               </a>
-               </li>
-               <li
-               [ngClass]="{'d-lg-none': pagination.totalPages < 3 || pagination.totalPages === pagination.currentPage }">
-               <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">...</a>
-               </li>
-               <li (click)="nextPage()" [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-               <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
-                  <i class="tim-icons icon-minimal-right"></i>
-               </a>
-               </li>
-               <li (click)="endPage(pagination.totalPages)"
-               [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-               <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
-                  <i class="tim-icons icon-double-right"></i>
-               </a>
-               </li>
-            </ul>
-         </div>
-         <!-- end pagination -->
-         </div>
+          </div>
+        </div>
+        <li class="dropdown-divider"></li>
+        <div class=" card-body" style="margin-top: -20px;">
+          <div class=" table-responsive table-custom">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="sort-custom" (click)="sortActive('code')">
+                    Code
+                    <i
+                      class="tim-icons icon-minimal-up ml-2"
+                      [ngClass]="{ 'sort-active': sortAscCode === true }"
+                    ></i>
+                  </th>
+                  <th class="sort-custom" (click)="sortActive('name')">
+                    Name
+                    <i
+                      class="tim-icons icon-minimal-up ml-2"
+                      [ngClass]="{ 'sort-active': sortAscName === false }"
+                    ></i>
+                  </th>
+                  <th class="sort-custom" (click)="sortActive('mealVendor')">
+                    Vendor Name
+                    <i
+                      class="tim-icons icon-minimal-up ml-2"
+                      [ngClass]="{ 'sort-active': mealVendor === true }"
+                    ></i>
+                  </th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="!filter">
+                  <td class="form-group no-border">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Order By Code"
+                      #box
+                      (keyup.enter)="
+                        OrderBy(box.value, box1.value, box2.value);
+                        box.value = '';
+                        box1.value = '';
+                        box2.value = ''
+                      "
+                    />
+                  </td>
+                  <td class="form-group no-border">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Order By Name"
+                      #box1
+                      (keyup.enter)="
+                        OrderBy(box.value, box1.value, box2.value);
+                        box.value = '';
+                        box1.value = '';
+                        box2.value = ''
+                      "
+                    />
+                  </td>
+                  <td class="form-group no-border">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Order By Vendor Name"
+                      #box2
+                      (keyup.enter)="
+                        OrderBy(box.value, box1.value, box2.value);
+                        box.value = '';
+                        box1.value = '';
+                        box2.value = ''
+                      "
+                    />
+                  </td>
+                  <td></td>
+                </tr>
+                <tr *ngFor="let MealType of MealTypes">
+                  <td>{{ MealType.code }}</td>
+                  <td>{{ MealType.name }}</td>
+                  <td>{{ MealType.mealVendor.name }}</td>
+                  <td class="td-actions text-right">
+                    <button
+                      class=" btn btn-link btn-success btn-icon btn-sm"
+                      container="body"
+                      ngbTooltip="Edit Data"
+                      placement="left"
+                      type="button"
+                      [routerLink]="['/formMealType', MealType.id]"
+                    >
+                      <i class=" tim-icons icon-pencil"></i>
+                    </button>
+                    <button
+                      class=" btn btn-link btn-danger btn-icon btn-sm"
+                      container="body"
+                      ngbTooltip="Remove Data"
+                      placement="left"
+                      type="button"
+                      (click)="deleteMealType(MealType.id)"
+                    >
+                      <i class=" tim-icons icon-simple-remove"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- for pagination -->
+        <div class="ml-auto mr-3">
+          <ul class="pagination">
+            <li>
+              <label class="mr-1">Item Per Page</label>
+              <select
+                class="btn btn-default btn-simple btn-icon mr-5"
+                style="height: 31px; width: 50px;"
+                #Size
+                (change)="changeSize(Size.value)"
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </li>
+            <li
+              (click)="startPage()"
+              [ngClass]="{ 'd-lg-none': pagination.currentPage === 1 }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm "
+              >
+                <i class="tim-icons icon-double-left"></i>
+              </a>
+            </li>
+            <li
+              [ngClass]="{ 'd-lg-none': pagination.currentPage === 1 }"
+              (click)="prevPage()"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
+                <i class="tim-icons icon-minimal-left"></i>
+              </a>
+            </li>
+            <li *ngFor="let item of arrayPage(); let i = index">
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+                [ngClass]="{
+                  active: i + 1 === pagination.currentPage,
+                  'd-lg-none':
+                    i + 1 > pagination.currentPage + 2 ||
+                    i + 1 < pagination.currentPage
+                }"
+                (click)="clickMe(i + 1)"
+              >
+                <b>{{ i + 1 }}</b>
+              </a>
+            </li>
+            <li
+              [ngClass]="{
+                'd-lg-none':
+                  pagination.totalPages < 3 ||
+                  pagination.totalPages === pagination.currentPage
+              }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+                >...</a
+              >
+            </li>
+            <li
+              (click)="nextPage()"
+              [ngClass]="{
+                'd-lg-none': pagination.totalPages === pagination.currentPage
+              }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
+                <i class="tim-icons icon-minimal-right"></i>
+              </a>
+            </li>
+            <li
+              (click)="endPage(pagination.totalPages)"
+              [ngClass]="{
+                'd-lg-none': pagination.totalPages === pagination.currentPage
+              }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
+                <i class="tim-icons icon-double-right"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- end pagination -->
       </div>
-   </div>
+    </div>
+  </div>
 </div>

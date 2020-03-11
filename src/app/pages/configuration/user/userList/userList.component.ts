@@ -19,11 +19,11 @@ export class UserListComponent implements OnInit {
   sortAscFullname: boolean;
   sortAscHIDNo: boolean;
   sortAscDepartmentId: boolean;
-  filter: boolean = true;
+  filter = true;
 
   listDepartments: any;
 
-  //deklarasi untuk get data
+  // deklarasi untuk get data
   users: Users[];
   pagination: Pagination;
   UsersParams: any = {};
@@ -39,8 +39,8 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.users = data["user"].result;
-      this.pagination = data["user"].pagination;
+      this.users = data.user.result;
+      this.pagination = data.user.pagination;
     });
   }
 
@@ -49,7 +49,7 @@ export class UserListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName == "hrCoreNo") {
+    if (getName === "hrCoreNo") {
       this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscHrCoreNo;
@@ -63,31 +63,31 @@ export class UserListComponent implements OnInit {
     this.loadUsers();
   }
 
-  //kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
+  // kita buat fungsi untuk page selanjutnya, jika tombol next di tekan maka akan pindah ke page selanjutnya
   nextPage() {
-    if (this.pagination.currentPage != this.pagination.totalPages) {
+    if (this.pagination.currentPage !== this.pagination.totalPages) {
       this.pagination.currentPage = this.pagination.currentPage + 1;
       this.loadUsers();
     }
   }
 
-  //kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
+  // kita buat fungsi untuk page sebelumnya, jika tombol prev di tekan maka akan pindah ke page sebelumnya
   prevPage() {
-    if (this.pagination.currentPage != 1) {
+    if (this.pagination.currentPage !== 1) {
       this.pagination.currentPage = this.pagination.currentPage - 1;
       this.loadUsers();
     }
   }
 
-  //kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
+  // kita buat fungsi untuk end page / page terakhir, jika tombol endPage di tekan maka akan pindah ke page paling terakhir
   endPage(Page) {
-    if (this.pagination.currentPage != Page) {
+    if (this.pagination.currentPage !== Page) {
       this.pagination.currentPage = Page;
       this.loadUsers();
     }
   }
 
-  //kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
+  // kita buat fungsi untuk start page / page pertama, jika tombol startPage di tekan maka akan pindah ke page paling pertama
   startPage() {
     this.pagination.currentPage = 1;
     this.loadUsers();
@@ -100,7 +100,7 @@ export class UserListComponent implements OnInit {
     this.loadUsers();
   }
 
-  //kita buat fungsi untuk Order By
+  // kita buat fungsi untuk Order By
   OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
     if (
       hrCoreNo !== null ||
@@ -120,9 +120,9 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  //lkita buat fungsi cancel Filter
+  // lkita buat fungsi cancel Filter
   cancelFilter(status) {
-    if (status == "Filter") {
+    if (status === "Filter") {
       this.UsersParams.hrCoreNo = null;
       this.UsersParams.firstname = null;
       this.UsersParams.lastname = null;
@@ -133,7 +133,7 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  //for delete data
+  // for delete data
   deleteUsers(id: number) {
     confirm
       .fire({

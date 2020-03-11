@@ -19,7 +19,6 @@ export class BusTimeService {
   getBusTimeReport() {
     return this.http.get(this.baseUrl + "report/busTime/");
   }
-
   addBusTime(model: any) {
     return this.http.post(this.baseUrl + "BusTime/", model);
   }

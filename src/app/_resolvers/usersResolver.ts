@@ -42,12 +42,12 @@ export class UsersDetailResolver implements Resolve<Users> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Users> {
-    return this.userService.getUser(route.params["id"]).pipe(
+    return this.userService.getUser(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }

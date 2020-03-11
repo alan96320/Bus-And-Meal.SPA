@@ -17,12 +17,12 @@ export class ConfigurationDetailResolver implements Resolve<Configuration> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Configuration> {
-    return this.configurationService.getConfiguration(route.params["id"]).pipe(
+    return this.configurationService.getConfiguration(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/depart"]);
-        return of;
-        // return of(null);
+        // return of;
+        return of(null);
       })
     );
   }
