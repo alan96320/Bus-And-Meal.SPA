@@ -71,7 +71,8 @@ import {
   MealVendorReportResolver,
   BusTimeReportResolver,
   CounterReportResolver,
-  UsersReportResolver
+  UsersReportResolver,
+  MealOrderReportResolver
 } from "./_resolvers/reportResolver";
 import { MealTypeReportComponent } from "./pages/reports/mealTypeReport/mealTypeReport.component";
 import { DormitoryBlockReportComponent } from "./pages/reports/dormitoryBlockReport/dormitoryBlockReport.component";
@@ -79,6 +80,7 @@ import { MealVendorReportComponent } from "./pages/reports/mealVendorReport/meal
 import { BusTimeReportComponent } from "./pages/reports/busTimeReport/busTimeReport.component";
 import { UsersReportComponent } from "./pages/reports/usersReport/usersReport.component";
 import { CounterReportComponent } from "./pages/reports/CounterReport/CounterReport.component";
+import { MealOrderReportComponent } from "./pages/reports/mealOrderReport/mealOrderReport.component";
 
 export const appRouting: Routes = [
   { path: "", component: HomeComponent },
@@ -128,6 +130,11 @@ export const appRouting: Routes = [
         path: "report/users",
         component: UsersReportComponent,
         resolve: { users: UsersReportResolver }
+      },
+      {
+        path: "report/mealorder",
+        component: MealOrderReportComponent,
+        resolve: { mealorder: MealOrderReportResolver }
       },
 
       // menu for report

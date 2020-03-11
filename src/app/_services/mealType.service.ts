@@ -14,6 +14,7 @@ export class MealTypeService {
   itemPerPage = 5;
 
   constructor(private http: HttpClient) {}
+
   //get meal type report
   getmealTypeReport() {
     return this.http.get(this.baseUrl + "report/mealtype/");

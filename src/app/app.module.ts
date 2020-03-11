@@ -87,7 +87,8 @@ import {
   MealVendorReportResolver,
   BusTimeReportResolver,
   CounterReportResolver,
-  UsersReportResolver
+  UsersReportResolver,
+  MealOrderReportResolver
 } from "./_resolvers/reportResolver";
 import { MealTypeReportComponent } from "./pages/reports/mealTypeReport/mealTypeReport.component";
 import { DormitoryBlockReportComponent } from "./pages/reports/dormitoryBlockReport/dormitoryBlockReport.component";
@@ -95,6 +96,7 @@ import { MealVendorReportComponent } from "./pages/reports/mealVendorReport/meal
 import { BusTimeReportComponent } from "./pages/reports/busTimeReport/busTimeReport.component";
 import { UsersReportComponent } from "./pages/reports/usersReport/usersReport.component";
 import { CounterReportComponent } from "./pages/reports/CounterReport/CounterReport.component";
+import { MealOrderReportComponent } from "./pages/reports/mealOrderReport/mealOrderReport.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -165,7 +167,8 @@ export function tokenGetter() {
     MealVendorReportComponent,
     BusTimeReportComponent,
     CounterReportComponent,
-    UsersReportComponent
+    UsersReportComponent,
+    MealOrderReportComponent
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
@@ -195,7 +198,8 @@ export function tokenGetter() {
     MealVendorReportResolver,
     BusTimeReportResolver,
     CounterReportResolver,
-    UsersReportResolver
+    UsersReportResolver,
+    MealOrderReportResolver
   ],
   bootstrap: [AppComponent]
 })

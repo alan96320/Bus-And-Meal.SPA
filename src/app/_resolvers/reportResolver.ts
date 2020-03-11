@@ -5,21 +5,23 @@ import { DepartmentService } from "../_services/department.service";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { SweetAlertService } from "../_services/sweetAlert.service";
-import { MealType } from '../_models/mealType';
-import { MealTypeService } from '../_services/mealType.service';
-import { DormitoryBlock } from '../_models/dormitoryBlock';
-import { AlertifyService } from '../_services/alertify.service';
-import { DormitoryBlockService } from '../_services/dormitoryBlock.service';
-import { Employee } from '../_models/employee';
-import { EmployeeService } from '../_services/employee.service';
-import { MealVendor } from '../_models/mealVendor';
-import { MealVendorService } from '../_services/mealVendor.service';
-import { BusTime } from '../_models/busTime';
-import { BusTimeService } from '../_services/busTime.service';
-import { Counter } from '../_models/counter';
-import { CounterService } from '../_services/counter.service';
-import { Users } from '../_models/users';
-import { UsersService } from '../_services/users.service';
+import { MealType } from "../_models/mealType";
+import { MealTypeService } from "../_services/mealType.service";
+import { DormitoryBlock } from "../_models/dormitoryBlock";
+import { AlertifyService } from "../_services/alertify.service";
+import { DormitoryBlockService } from "../_services/dormitoryBlock.service";
+import { Employee } from "../_models/employee";
+import { EmployeeService } from "../_services/employee.service";
+import { MealVendor } from "../_models/mealVendor";
+import { MealVendorService } from "../_services/mealVendor.service";
+import { BusTime } from "../_models/busTime";
+import { BusTimeService } from "../_services/busTime.service";
+import { Counter } from "../_models/counter";
+import { CounterService } from "../_services/counter.service";
+import { Users } from "../_models/users";
+import { UsersService } from "../_services/users.service";
+import { MealOrder } from "../_models/mealOrder";
+import { MealOrderService } from "../_services/mealOrder.service";
 
 @Injectable()
 export class DepartmentReportResolver implements Resolve<Department[]> {
@@ -164,6 +166,25 @@ export class UsersReportResolver implements Resolve<Users[]> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Users[]> {
     return this.usersService.getUsersReport().pipe(
+      catchError(error => {
+        this.sweetAlert.error("Problem Retrieving Data ");
+        this.router.navigate(["/home"]);
+        return of(null);
+      })
+    );
+  }
+}
+
+@Injectable()
+export class MealOrderReportResolver implements Resolve<MealOrder[]> {
+  constructor(
+    private mealOrderService: MealOrderService,
+    private router: Router,
+    private sweetAlert: SweetAlertService
+  ) {}
+
+  resolve(route: ActivatedRouteSnapshot): Observable<MealOrder[]> {
+    return this.mealOrderService.getMealOrderReport().pipe(
       catchError(error => {
         this.sweetAlert.error("Problem Retrieving Data ");
         this.router.navigate(["/home"]);
