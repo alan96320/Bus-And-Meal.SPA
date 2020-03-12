@@ -1,16 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { UsersService } from "src/app/_services/users.service";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { ActivatedRoute } from "@angular/router";
-import { Users } from "src/app/_models/users";
-import { Pagination, PaginatedResult } from "src/app/_models/pagination";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
-import swal from "sweetalert2";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/_services/users.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
+import { Users } from 'src/app/_models/users';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: "app-userList",
-  templateUrl: "./userList.component.html"
+  // tslint:disable-next-line:component-selector
+  selector: 'app-userList',
+  templateUrl: './userList.component.html'
 })
 export class UserListComponent implements OnInit {
   sortAscHrCoreNo: boolean;
@@ -49,7 +50,7 @@ export class UserListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === "hrCoreNo") {
+    if (getName === 'hrCoreNo') {
       this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscHrCoreNo;
@@ -122,7 +123,7 @@ export class UserListComponent implements OnInit {
 
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
-    if (status === "Filter") {
+    if (status === 'Filter') {
       this.UsersParams.hrCoreNo = null;
       this.UsersParams.firstname = null;
       this.UsersParams.lastname = null;
@@ -135,14 +136,15 @@ export class UserListComponent implements OnInit {
 
   // for delete data
   deleteUsers(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm
       .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "question",
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
         reverseButtons: true
       })
       .then(result => {
@@ -180,7 +182,7 @@ export class UserListComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get("http://localhost:5000/api/department").subscribe(
+    this.http.get('http://localhost:5000/api/department').subscribe(
       response => {
         this.listDepartments = response;
       },
@@ -194,8 +196,8 @@ export class UserListComponent implements OnInit {
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger"
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
   },
   buttonsStyling: false
 });

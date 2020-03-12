@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { Router } from "@angular/router";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
-import { AuthService } from "src/app/_services/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Router } from '@angular/router';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.css"]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   activeTrasaction = false;
@@ -57,15 +57,15 @@ export class NavbarComponent implements OnInit {
     this.authService.login(this.model).subscribe(
       next => {
         this.sweetAlert.success(
-          "Welcome to Aplication Bus And Meal, " + this.model.username
+          'Welcome to Aplication Bus And Meal, ' + this.model.username
         );
       },
       error => {
-        this.sweetAlert.error("Incorrect username or password");
+        this.sweetAlert.error('Incorrect username or password');
         // this.alertify.warning('Login Failed');
       },
       () => {
-        this.router.navigate(["/home"]);
+        this.router.navigate(['/home']);
       }
     );
   }
@@ -77,9 +77,9 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("id_user");
-    this.sweetAlert.warning("Logout Sukses");
-    this.router.navigate(["/home"]);
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_user');
+    this.sweetAlert.warning('Logout Sukses');
+    this.router.navigate(['/home']);
   }
 }

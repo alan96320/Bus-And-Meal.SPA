@@ -128,6 +128,7 @@ export class BusTimeListComponent implements OnInit {
   }
 
   deleteBusTime(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm
       .fire({
         title: 'Are you sure?',

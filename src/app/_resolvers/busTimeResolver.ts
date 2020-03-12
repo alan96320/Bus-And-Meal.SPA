@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Resolve, Router, ActivatedRouteSnapshot } from "@angular/router";
-import { BusTime } from "../_models/busTime";
-import { BusTimeService } from "../_services/busTime.service";
-import { AlertifyService } from "../_services/alertify.service";
-import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { SweetAlertService } from "../_services/sweetAlert.service";
+import { Injectable } from '@angular/core';
+import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { BusTime } from '../_models/busTime';
+import { BusTimeService } from '../_services/busTime.service';
+import { AlertifyService } from '../_services/alertify.service';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class BusTimeListResolver implements Resolve<BusTime[]> {
@@ -24,8 +24,8 @@ export class BusTimeListResolver implements Resolve<BusTime[]> {
     this.pageSize = this.BusTimeService.itemPerPage;
     return this.BusTimeService.getBusTimes(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/home"]);
+        this.sweetAlert.error('Problem Retrieving Data ');
+        this.router.navigate(['/home']);
         // return of;
         return of(null);
       })
@@ -46,8 +46,8 @@ export class BusTimeDetailResolver implements Resolve<BusTime> {
   resolve(route: ActivatedRouteSnapshot): Observable<BusTime> {
     return this.BusTimeService.getBusTime(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/depart"]);
+        this.sweetAlert.error('Problem Retrieving Data ');
+        this.router.navigate(['/depart']);
         // return of;
         return of(null);
       })

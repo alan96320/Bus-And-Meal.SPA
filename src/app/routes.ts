@@ -3,7 +3,6 @@ import { AuthGuard } from './_guards/auth.guard';
 
 import { DepartmentDetailResolver } from './_resolvers/departmentResolver';
 import { DepartmentListResolver } from './_resolvers/departmentResolver';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DepartmentListComponent } from './pages/configuration/department/departmentList/departmentList.component';
 import { DepartmentFormComponent } from './pages/configuration/department/departmentForm/departmentForm.component';
@@ -69,7 +68,6 @@ export const appRouting: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent },
   // path for menu configuration
       { path: 'department', component: DepartmentListComponent, resolve: { department: DepartmentListResolver } },
       { path: 'formDepartment', component: DepartmentFormComponent },

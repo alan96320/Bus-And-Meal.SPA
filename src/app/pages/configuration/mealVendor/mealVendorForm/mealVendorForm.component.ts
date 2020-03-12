@@ -1,20 +1,21 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
-import { MealVendor } from "src/app/_models/mealVendor";
-import { MealVendorService } from "src/app/_services/mealVendor.service";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import { MealVendor } from 'src/app/_models/mealVendor';
+import { MealVendorService } from 'src/app/_services/mealVendor.service';
 
 @Component({
-  selector: "app-mealVendorForm",
-  templateUrl: "./mealVendorForm.component.html"
+  // tslint:disable-next-line:component-selector
+  selector: 'app-mealVendorForm',
+  templateUrl: './mealVendorForm.component.html'
 })
 export class MealVendorFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
-  update: boolean = false;
+  update = false;
   mealVendors: MealVendor;
-  id = +this.route.snapshot.params["id"];
+  id = +this.route.snapshot.params.id;
 
   constructor(
     private mealVendorService: MealVendorService,
@@ -31,11 +32,11 @@ export class MealVendorFormComponent implements OnInit {
   loadMealVendors() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.code = data["mealVendor"].code;
-        this.model.name = data["mealVendor"].name;
-        this.model.contactName = data["mealVendor"].contactName;
-        this.model.contactPhone = data["mealVendor"].contactPhone;
-        this.model.contactEmail = data["mealVendor"].contactEmail;
+        this.model.code = data.mealVendor.code;
+        this.model.name = data.mealVendor.name;
+        this.model.contactName = data.mealVendor.contactName;
+        this.model.contactPhone = data.mealVendor.contactPhone;
+        this.model.contactEmail = data.mealVendor.contactEmail;
         this.update = true;
       });
     }
@@ -53,8 +54,8 @@ export class MealVendorFormComponent implements OnInit {
     console.log(this.model);
     this.mealVendorService.addMealVendor(this.model).subscribe(
       () => {
-        this.sweetAlert.successAdd("Added Successfully");
-        this.router.navigate(["/mealVendor"]);
+        this.sweetAlert.successAdd('Added Successfully');
+        this.router.navigate(['/mealVendor']);
       },
       error => {
         this.sweetAlert.warning(error);
@@ -70,8 +71,8 @@ export class MealVendorFormComponent implements OnInit {
     console.log(this.model);
     this.mealVendorService.editMealVendor(this.id, this.model).subscribe(
       () => {
-        this.sweetAlert.successAdd("Edit Successfully");
-        this.router.navigate(["/mealVendor"]);
+        this.sweetAlert.successAdd('Edit Successfully');
+        this.router.navigate(['/mealVendor']);
       },
       error => {
         this.sweetAlert.warning(error);

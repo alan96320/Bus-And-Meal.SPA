@@ -138,7 +138,6 @@ export class CounterListComponent implements OnInit {
       this.loadCounter();
     }
   }
-  
 
   // for delete data
   deleteCounter(id: number) {

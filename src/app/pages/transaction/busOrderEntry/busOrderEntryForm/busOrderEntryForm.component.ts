@@ -92,8 +92,11 @@ export class BusOrderEntryFormComponent implements OnInit {
           }
         });
       });
+      // tslint:disable-next-line:no-shadowed-variable
       b.sort((a, b) => a.time.localeCompare(b.time));
+      // tslint:disable-next-line:no-shadowed-variable
       c.sort((a, b) => a.time.localeCompare(b.time));
+      // tslint:disable-next-line:no-shadowed-variable
       d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);

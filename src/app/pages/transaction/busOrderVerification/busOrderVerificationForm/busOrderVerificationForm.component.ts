@@ -86,6 +86,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
   }
 
   deleteBusOrderEntrys(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
@@ -197,8 +198,11 @@ export class BusOrderVerificationFormComponent implements OnInit {
           }
         });
       });
+      // tslint:disable-next-line:no-shadowed-variable
       b.sort((a, b) => a.time.localeCompare(b.time));
+      // tslint:disable-next-line:no-shadowed-variable
       c.sort((a, b) => a.time.localeCompare(b.time));
+      // tslint:disable-next-line:no-shadowed-variable
       d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);
@@ -214,7 +218,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
   }
 
   submit() {
-    let a = 0;
+    const a = 0;
     let c = false;
     const b = [];
     this.BusOrderEntrysParams.date = this.model.Orderdate;

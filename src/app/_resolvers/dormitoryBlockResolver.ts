@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Resolve, Router, ActivatedRouteSnapshot } from "@angular/router";
-import { DormitoryBlock } from "../_models/dormitoryBlock";
-import { DormitoryBlockService } from "../_services/dormitoryBlock.service";
-import { AlertifyService } from "../_services/alertify.service";
-import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { SweetAlertService } from "../_services/sweetAlert.service";
+import { Injectable } from '@angular/core';
+import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { DormitoryBlock } from '../_models/dormitoryBlock';
+import { DormitoryBlockService } from '../_services/dormitoryBlock.service';
+import { AlertifyService } from '../_services/alertify.service';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class DormitoryBlockListResolver implements Resolve<DormitoryBlock[]> {
@@ -27,8 +27,8 @@ export class DormitoryBlockListResolver implements Resolve<DormitoryBlock[]> {
       this.pageSize
     ).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/home"]);
+        this.sweetAlert.error('Problem Retrieving Data ');
+        this.router.navigate(['/home']);
         // return of;
         return of(null);
       })
@@ -49,8 +49,8 @@ export class DormitoryBlockDetailResolver implements Resolve<DormitoryBlock> {
   resolve(route: ActivatedRouteSnapshot): Observable<DormitoryBlock> {
     return this.DormitoryBlockService.getDormitoryBlock(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/depart"]);
+        this.sweetAlert.error('Problem Retrieving Data ');
+        this.router.navigate(['/depart']);
         // return of;
         return of(null);
       })

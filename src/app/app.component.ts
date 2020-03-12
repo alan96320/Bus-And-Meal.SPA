@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'Bus And Meal';
   jwtHelper = new JwtHelperService();
 
-  constructor( private authService: AuthService ) {}
+  constructor(private authService: AuthService) {}
   ngOnInit() {
     const token = localStorage.getItem('token');
     if (token) {
