@@ -34,7 +34,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
   model: any = {};
 
   currenDate = new Date();
-  sumVerification: any;
+  sumVerification: any = [];
   update = false;
   id = +this.route.snapshot.params.id;
 
@@ -115,12 +115,9 @@ export class BusOrderVerificationFormComponent implements OnInit {
 
   loadBusOrderEntrys() {
     this.BusOrderEntrysParams.date = this.model.Orderdate;
-    const a = [];
-    let b = 0;
     const c = [];
-    const d = [];
     this.busOrderEntryService.getBusOrderEntrys('', '', this.BusOrderEntrysParams).subscribe(
-        (res: PaginatedResult<BusOrderEntry[]>) => {
+      (res: PaginatedResult<BusOrderEntry[]>) => {
         this.busOrderEntrys = res.result;
         let stat = false;
         if (!this.id) {
@@ -142,20 +139,24 @@ export class BusOrderVerificationFormComponent implements OnInit {
           this.sweetAlert.message('Data on ' + date + ' has been verified, please verify on another date');
           this.loadBusOrderEntrys();
         }
+        this.sumVerification.length = 0;
         this.busTime2.map((item, i) => {
-          this.busOrderEntrys.map(data => {
-            b += data.busOrderDetails[i].orderQty;
-          });
-          a.push(b);
-          d.push({BusTimeId: item.id, SumOrderQty: b, });
-          b = 0;
+          this.sumVerification.push({ BusTimeId: item.id, SumOrderQty: 0 });
         });
-        this.sumVerification = a;
+        this.busOrderEntrys.map(data => {
+          data.busOrderDetails.map(datax => {
+            this.sumVerification.map(y => {
+              if (datax.busTimeId === y.BusTimeId) {
+                y.SumOrderQty += datax.orderQty;
+              }
+            });
+          });
+        });
         res.result.map(data => {
           c.push(data.id);
         });
         this.model.OrderList = c;
-        this.model.BusOrderVerificationDetails = d;
+        this.model.BusOrderVerificationDetails = this.sumVerification;
       }, error => {
         this.sweetAlert.error(error);
       }
@@ -196,6 +197,9 @@ export class BusOrderVerificationFormComponent implements OnInit {
           }
         });
       });
+      b.sort((a, b) => a.time.localeCompare(b.time));
+      c.sort((a, b) => a.time.localeCompare(b.time));
+      d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);
       this.busTime.push(d);
@@ -209,42 +213,28 @@ export class BusOrderVerificationFormComponent implements OnInit {
     });
   }
 
-  cekData() {
-    let a = 0;
-    const b = [];
-    let c = false;
-    this.BusOrderEntrysParams.date = this.model.Orderdate;
-    this.busOrderEntryService.getBusOrderEntrys('', '', this.BusOrderEntrysParams).subscribe((res: PaginatedResult<BusOrderEntry[]>) => {
-      this.busTime2.map((item, i) => {
-        res.result.map(data => {
-          a += data.busOrderDetails[i].orderQty;
-        });
-        if (this.model.BusOrderVerificationDetails[i].SumOrderQty !== a) {
-          this.model.BusOrderVerificationDetails[i].SumOrderQty = a;
-          c = true;
-          console.log('beda');
-        } else {
-          console.log('sama');
-        }
-      });
-    });
-  }
-
   submit() {
     let a = 0;
     let c = false;
+    const b = [];
     this.BusOrderEntrysParams.date = this.model.Orderdate;
     this.busOrderEntryService.getBusOrderEntrys('', '', this.BusOrderEntrysParams).subscribe((res: PaginatedResult<BusOrderEntry[]>) => {
-      this.busTime2.map((item, i) => {
-        res.result.map(data => {
-          a += data.busOrderDetails[i].orderQty;
+      this.busTime2.map((data, i) => {
+        b.push({ BusTimeId: data.id, SumOrderQty: 0 });
+      });
+      res.result.map(data => {
+        data.busOrderDetails.map(datax => {
+          b.map(x => {
+            if (x.BusTimeId === datax.busTimeId) {
+              x.SumOrderQty += datax.orderQty;
+            }
+          });
         });
-        if (this.model.BusOrderVerificationDetails[i].SumOrderQty !== a) {
-          this.model.BusOrderVerificationDetails[i].SumOrderQty = a;
-          a = 0;
+      });
+      b.map((data, i) => {
+        if (data.SumOrderQty !== this.sumVerification[i].SumOrderQty ) {
+          this.sumVerification[i].SumOrderQty = data.SumOrderQty;
           c = true;
-        } else {
-          a = 0;
         }
       });
       if (c) {

@@ -67,7 +67,7 @@
                   </td>
                   <td>
                     <span class="badge badge-default">
-                      {{data.busOrderVerificationHeaderId === null ? 'Open' : 'Close'}}
+                      {{data.busOrderVerificationId === null ? 'Open' : 'Close'}}
                     </span>
                   </td>
                   <td class="td-actions text-center">
@@ -102,9 +102,11 @@
                 <tr *ngIf="!filter" style="height: 63px;">
                   <td colspan="7"></td>
                 </tr>
-                <tr *ngFor="let item of busOrderEntrys">
-                  <td *ngFor="let data of item.busOrderDetails" class="text-center" style="height: 52px;">
-                    {{data.orderQty}}
+                <tr *ngFor="let item of busOrderEntrys">  
+                  <td *ngFor="let data of busTime2" class="text-center" style="height: 52px;">
+                    <b *ngFor="let datax of item.busOrderDetails" [ngClass]="{'d-none': data.id !== datax.busTimeId }" >
+                      {{datax.orderQty}}
+                    </b>
                   </td>
                 </tr>
               </tbody>

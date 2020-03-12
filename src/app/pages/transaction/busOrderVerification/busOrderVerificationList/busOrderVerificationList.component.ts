@@ -197,6 +197,9 @@ export class BusOrderVerificationListComponent implements OnInit {
           }
         });
       });
+      b.sort((a, b) => a.time.localeCompare(b.time));
+      c.sort((a, b) => a.time.localeCompare(b.time));
+      d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);
       this.busTime.push(d);

@@ -40,6 +40,8 @@ export class MealOrderEntryListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.MealOrderEntrys = data.mealOrderEntry.result;
       this.pagination = data.mealOrderEntry.pagination;
+      console.log(data);
+
     });
   }
 
@@ -125,6 +127,7 @@ export class MealOrderEntryListComponent implements OnInit {
 
   // for delete data
   deleteMealOrderEntrys(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',

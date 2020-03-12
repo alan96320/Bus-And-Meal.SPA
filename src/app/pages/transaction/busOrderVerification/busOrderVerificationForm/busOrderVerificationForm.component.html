@@ -53,7 +53,7 @@
                   </td>
                   <td>
                     <span class="badge badge-default">
-                      {{data.busOrderVerificationHeaderId === null ? 'Open' : 'Close'}}
+                      {{data.busOrderVerificationId === null ? 'Open' : 'Close'}}
                     </span>
                   </td>
                 </tr>
@@ -76,8 +76,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of busOrderEntrys">
-                  <td *ngFor="let data of item.busOrderDetails" class="text-center" style="height: 40px;">
-                    {{data.orderQty}}
+                  <td *ngFor="let data of busTime2" class="text-center" style="height: 40px;">
+                    <b *ngFor="let datax of item.busOrderDetails" [ngClass]="{'d-none': data.id !== datax.busTimeId}">
+                      {{datax.orderQty}}
+                    </b>
                   </td>
                 </tr>
               </tbody>
@@ -100,7 +102,7 @@
               <thead>
                 <tr>
                   <td *ngFor="let item of sumVerification" class="text-center">
-                    <b>{{item}}</b>
+                    <b>{{item.SumOrderQty}}</b>
                   </td>
                 </tr>
               </thead>
