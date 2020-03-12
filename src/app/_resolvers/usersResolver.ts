@@ -23,7 +23,7 @@ export class UsersListResolver implements Resolve<Users[]> {
     this.pageSize = this.userService.itemPerPage;
     return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         // return of;
         return of(null);
@@ -44,7 +44,7 @@ export class UsersDetailResolver implements Resolve<Users> {
   resolve(route: ActivatedRouteSnapshot): Observable<Users> {
     return this.userService.getUser(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

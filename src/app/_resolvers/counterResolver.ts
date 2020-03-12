@@ -24,7 +24,7 @@ export class CounterListResolver implements Resolve<Counter[]> {
     this.pageSize = this.CounterService.itemPerPage;
     return this.CounterService.getCounters(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         // return of;
         return of(null);
@@ -46,7 +46,7 @@ export class CounterDetailResolver implements Resolve<Counter> {
   resolve(route: ActivatedRouteSnapshot): Observable<Counter> {
     return this.CounterService.getCounter(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

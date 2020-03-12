@@ -24,7 +24,7 @@ export class BusTimeListResolver implements Resolve<BusTime[]> {
     this.pageSize = this.BusTimeService.itemPerPage;
     return this.BusTimeService.getBusTimes(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         // return of;
         return of(null);
@@ -46,7 +46,7 @@ export class BusTimeDetailResolver implements Resolve<BusTime> {
   resolve(route: ActivatedRouteSnapshot): Observable<BusTime> {
     return this.BusTimeService.getBusTime(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

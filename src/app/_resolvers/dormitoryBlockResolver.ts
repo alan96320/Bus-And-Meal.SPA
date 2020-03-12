@@ -27,7 +27,7 @@ export class DormitoryBlockListResolver implements Resolve<DormitoryBlock[]> {
       this.pageSize
     ).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         // return of;
         return of(null);
@@ -49,7 +49,7 @@ export class DormitoryBlockDetailResolver implements Resolve<DormitoryBlock> {
   resolve(route: ActivatedRouteSnapshot): Observable<DormitoryBlock> {
     return this.DormitoryBlockService.getDormitoryBlock(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

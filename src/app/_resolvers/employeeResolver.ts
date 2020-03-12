@@ -25,7 +25,7 @@ export class EmployeeListResolver implements Resolve<Employee[]> {
       .getEmployees(this.pageNumber, this.pageSize)
       .pipe(
         catchError(error => {
-          this.sweetAlert.error('Problem Retrieving Data ');
+          this.sweetAlert.error(error);
           this.router.navigate(['/home']);
           // return of;
           return of(null);
@@ -46,7 +46,7 @@ export class EmployeeDetailResolver implements Resolve<Employee> {
   resolve(route: ActivatedRouteSnapshot): Observable<Employee> {
     return this.employeeService.getEmployee(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

@@ -27,7 +27,7 @@ export class MealVendorListResolver implements Resolve<MealVendor[]> {
       this.pageSize
     ).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         // return of;
         return of(null);
@@ -49,7 +49,7 @@ export class MealVendorDetailResolver implements Resolve<MealVendor> {
   resolve(route: ActivatedRouteSnapshot): Observable<MealVendor> {
     return this.MealVendorService.getMealVendor(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

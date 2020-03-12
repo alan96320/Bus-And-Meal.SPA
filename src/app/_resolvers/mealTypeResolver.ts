@@ -27,10 +27,10 @@ export class MealTypeListResolver implements Resolve<MealType[]> {
       this.pageSize
     ).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
-        this.router.navigate(['/home']);
+       this.sweetAlert.error(error);
+       this.router.navigate(['/home']);
         // return of;
-        return of(null);
+       return of(null);
       })
     );
   }
@@ -49,7 +49,7 @@ export class MealTypeDetailResolver implements Resolve<MealType> {
   resolve(route: ActivatedRouteSnapshot): Observable<MealType> {
     return this.MealTypeService.getMealType(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/depart']);
         // return of;
         return of(null);

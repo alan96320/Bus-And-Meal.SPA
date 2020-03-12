@@ -23,10 +23,11 @@ export class SweetAlertService {
   }
 
   error(message: string) {
+    const a = message.replace(/;/g, ' <br> ');
     // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
       icon: 'error',
-      text: message
+      html : a
     });
   }
 
@@ -54,22 +55,11 @@ export class SweetAlertService {
     });
   }
 
-  errors(message: any) {
-    console.log('n=>' + message.status);
-
-    const a = Object.values(message);
-    // tslint:disable-next-line: no-use-before-declare
-    Toast.fire({
-      icon: 'warning',
-      title: a[0],
-    });
-  }
-
 }
 
 const Toast = swal.mixin({
   toast: true,
-  position: 'bottom-end',
+  position: 'center-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,

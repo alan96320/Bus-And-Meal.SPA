@@ -34,7 +34,7 @@ export class DepartmentReportResolver implements Resolve<Department[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<Department[]> {
     return this.departmentService.getDepartmentReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -53,7 +53,7 @@ export class MealTypeReportResolver implements Resolve<MealType[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<MealType[]> {
     return this.mealTypeService.getmealTypeReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -72,7 +72,7 @@ export class DormitoryBlockReportResolver implements Resolve<DormitoryBlock[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<DormitoryBlock[]> {
     return this.dormitoryBlockService.getDormitoryBlockReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -91,7 +91,7 @@ export class EmployeeReportResolver implements Resolve<Employee[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<Employee[]> {
     return this.employeeService.getEmployeeReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -110,7 +110,7 @@ export class MealVendorReportResolver implements Resolve<MealVendor[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<MealVendor[]> {
     return this.mealvendorService.getMealVendorReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -129,7 +129,7 @@ export class BusTimeReportResolver implements Resolve<BusTime[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<BusTime[]> {
     return this.bustimeService.getBusTimeReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -148,7 +148,7 @@ export class CounterReportResolver implements Resolve<Counter[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<Counter[]> {
     return this.counterService.getCounterReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -167,7 +167,7 @@ export class UsersReportResolver implements Resolve<Users[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<Users[]> {
     return this.usersService.getUsersReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })
@@ -186,7 +186,7 @@ export class MealOrderReportResolver implements Resolve<MealOrder[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<MealOrder[]> {
     return this.mealOrderService.getMealOrderReport().pipe(
       catchError(error => {
-        this.sweetAlert.error('Problem Retrieving Data ');
+        this.sweetAlert.error(error);
         this.router.navigate(['/home']);
         return of(null);
       })

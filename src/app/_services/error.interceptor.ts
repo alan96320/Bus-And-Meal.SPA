@@ -11,12 +11,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     ): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError(error => {
-                let sendFeedBack = {};
-                if (error.status === 401 || error.status === 403 || error.status === 404 || error.status === 0) {
-                    // console.log(`Error Status: ${error.status}\nMessage: ${error.message}`);
-                    sendFeedBack = { status: error.status, statusText: error.statusText};
-                    // console.log(sendFeedBack);
-                    return throwError(sendFeedBack);
+                if (error.status === 401 || error.status === 403 || error.status === 404) {
+                    return throwError(error.statusText);
                 }
                 if (error instanceof HttpErrorResponse ) {
                     const aplicationError = error.headers.get('Aplication-Error');
@@ -25,10 +21,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                     }
                     const serverError = error.error;
                     let modalStateErrors = '';
-                    if (serverError.errors && typeof serverError.errors === 'object' ) {
-                        for (const key in serverError.errors) {
-                            if (serverError.errors[key]) {
-                                modalStateErrors = serverError.errors[key] + '\n';
+                    if (serverError && typeof serverError === 'object' ) {
+                        for (const key in serverError) {
+                            if (serverError[key]) {
+                                modalStateErrors = modalStateErrors + serverError[key] + ';';
                             }
                         }
                     }
