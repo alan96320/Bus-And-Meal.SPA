@@ -119,6 +119,7 @@ import {
   BusOrderVerificationListResolver,
   BusOrderVerificationDetailResolver
 } from './_resolvers/busOrderVerificationResolver';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -227,7 +228,8 @@ export function tokenGetter() {
     BusOrderEntryListResolver,
     BusOrderEntryDetailResolver,
     BusOrderVerificationListResolver,
-    BusOrderVerificationDetailResolver
+    BusOrderVerificationDetailResolver,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

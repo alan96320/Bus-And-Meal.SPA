@@ -53,6 +53,18 @@ export class SweetAlertService {
       title: message
     });
   }
+
+  errors(message: any) {
+    console.log('n=>' + message.status);
+
+    const a = Object.values(message);
+    // tslint:disable-next-line: no-use-before-declare
+    Toast.fire({
+      icon: 'warning',
+      title: a[0],
+    });
+  }
+
 }
 
 const Toast = swal.mixin({
