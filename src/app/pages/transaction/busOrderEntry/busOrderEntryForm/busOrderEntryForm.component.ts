@@ -92,6 +92,9 @@ export class BusOrderEntryFormComponent implements OnInit {
           }
         });
       });
+      b.sort((a, b) => a.time.localeCompare(b.time));
+      c.sort((a, b) => a.time.localeCompare(b.time));
+      d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);
       this.busTime.push(d);
@@ -106,7 +109,14 @@ export class BusOrderEntryFormComponent implements OnInit {
           this.busTime.map(data => {
             data.map((item, i) => {
               // tslint:disable-next-line:max-line-length
-              this.busTime2.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum, BusOrderId: null, BusTimeId: item.id, OrderQty: datax.busOrderEntry.busOrderDetails[i].orderQty });
+              this.busTime2.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum, BusOrderId: null, BusTimeId: item.id, OrderQty: 0 });
+            });
+          });
+          datax.busOrderEntry.busOrderDetails.map(item => {
+            this.busTime2.map(data => {
+              if (data.BusTimeId === item.busTimeId) {
+                data.OrderQty = item.orderQty;
+              }
             });
           });
         });

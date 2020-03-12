@@ -92,8 +92,10 @@
                   <td [attr.colspan]="busTime2.length" style="height: 63px;"></td>
                 </tr>
                 <tr *ngFor="let item of busOrderVerifications" style="height: 55px;">
-                  <td *ngFor="let data of item.busOrderVerificationDetails " class="text-center" style="height: 40px;">
-                    {{data.sumOrderQty}}
+                  <td *ngFor="let data of busTime2" style="height: 40px;" class="text-center">
+                    <b *ngFor="let datax of item.busOrderVerificationDetails" [ngClass]="{'d-none': data.id !== datax.busTimeId}" >
+                      {{datax.sumOrderQty}}
+                    </b>
                   </td>
                 </tr>
               </tbody>

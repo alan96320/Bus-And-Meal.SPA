@@ -46,6 +46,7 @@ export class BusOrderEntryListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.busOrderEntrys = data.busOrderEntry.result;
       this.pagination = data.busOrderEntry.pagination;
+      console.log(this.busOrderEntrys);
     });
   }
 
@@ -215,6 +216,9 @@ export class BusOrderEntryListComponent implements OnInit {
           }
         });
       });
+      b.sort((a, b) => a.time.localeCompare(b.time));
+      c.sort((a, b) => a.time.localeCompare(b.time));
+      d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);
       this.busTime.push(d);
