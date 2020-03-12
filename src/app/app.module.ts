@@ -34,8 +34,8 @@ import { UserListComponent } from "./pages/configuration/user/userList/userList.
 import { UserFormComponent } from "./pages/configuration/user/userForm/userForm.component";
 import { BusOrderEntryListComponent } from "./pages/transaction/busOrderEntry/busOrderEntryList/busOrderEntryList.component";
 import { BusOrderEntryFormComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderEntryForm.component";
-import { BusOrderVerificationListComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component";
-import { BusOrderVerificationFormComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component";
+import { BusOrderVerificationListComponent } from "./pages/transaction/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component";
+import { BusOrderVerificationFormComponent } from "./pages/transaction/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component";
 import { MealOrderEntryListComponent } from "./pages/transaction/mealOrderEntry/mealOrderEntryList/mealOrderEntryList.component";
 import { MealOrderEntryFormComponent } from "./pages/transaction/mealOrderEntry/mealOrderEntryForm/mealOrderEntryForm.component";
 import { MealOrderVerficationListComponent } from "./pages/transaction/mealOrderVerfication/mealOrderVerficationList/mealOrderVerficationList.component";

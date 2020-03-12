@@ -183,6 +183,7 @@ export class MealOrderReportComponent implements OnInit {
       "Meal Order Summary";
     report.dictionary.databases.clear();
     report.regData("Meal Order", "Meal Order", this.mealOrderReport);
+    console.log(this.mealOrderReport);
 
     options.width = "100%";
     options.height = "850px";

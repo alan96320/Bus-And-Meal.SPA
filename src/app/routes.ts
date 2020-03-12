@@ -59,8 +59,8 @@ import {
   UsersListResolver,
   UsersDetailResolver
 } from "./_resolvers/usersResolver";
-import { BusOrderVerificationListComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component";
-import { BusOrderVerificationFormComponent } from "./pages/transaction/busOrderEntry/busOrderEntryForm/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component";
+import { BusOrderVerificationListComponent } from "./pages/transaction/busOrderVerification/busOrderVerificationList/busOrderVerificationList.component";
+import { BusOrderVerificationFormComponent } from "./pages/transaction/busOrderVerification/busOrderVerificationForm/busOrderVerificationForm.component";
 import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
 import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
 import {
