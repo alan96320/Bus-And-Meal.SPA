@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { BusTimeService } from "src/app/_services/busTime.service";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { ActivatedRoute } from "@angular/router";
-import { BusTime } from "src/app/_models/busTime";
-import { Pagination, PaginatedResult } from "src/app/_models/pagination";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
-import swal from "sweetalert2";
+import { Component, OnInit } from '@angular/core';
+import { BusTimeService } from 'src/app/_services/busTime.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
+import { BusTime } from 'src/app/_models/busTime';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import swal from 'sweetalert2';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: "app-busTimeList",
-  templateUrl: "./busTimeList.component.html"
+  selector: 'app-busTimeList',
+  templateUrl: './busTimeList.component.html'
 })
 export class BusTimeListComponent implements OnInit {
   // deklarasi untuk pagination custom
@@ -41,9 +41,9 @@ export class BusTimeListComponent implements OnInit {
     });
 
     this.listDirection = [
-      { id: 1, name: "Domitory -> Office" },
-      { id: 2, name: "Office -> Domitory" },
-      { id: 3, name: "Office -> Domitory(Night)" }
+      { id: 1, name: 'Domitory -> Office' },
+      { id: 2, name: 'Office -> Domitory' },
+      { id: 3, name: 'Office -> Domitory(Night)' }
     ];
   }
 
@@ -52,19 +52,19 @@ export class BusTimeListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === "code") {
+    if (getName === 'code') {
       this.sortAscCode = !this.sortAscCode;
       this.BusTimeParams.OrderBy = getName;
       this.BusTimeParams.isDesc = this.sortAscCode;
       this.loadBusTime();
     }
-    if (getName === "time") {
+    if (getName === 'time') {
       this.sortAscTime = !this.sortAscTime;
       this.BusTimeParams.OrderBy = getName;
       this.BusTimeParams.isDesc = this.sortAscTime;
       this.loadBusTime();
     }
-    if (getName === "directionEnum") {
+    if (getName === 'directionEnum') {
       this.sortAscDirection = !this.sortAscDirection;
       this.BusTimeParams.OrderBy = getName;
       this.BusTimeParams.isDesc = this.sortAscDirection;
@@ -85,14 +85,14 @@ export class BusTimeListComponent implements OnInit {
   }
 
   prevPage() {
-    if (this.pagination.currentPage != 1) {
+    if (this.pagination.currentPage !== 1) {
       this.pagination.currentPage = this.pagination.currentPage - 1;
       this.loadBusTime();
     }
   }
 
   endPage(Page) {
-    if (this.pagination.currentPage != Page) {
+    if (this.pagination.currentPage !== Page) {
       this.pagination.currentPage = Page;
       this.loadBusTime();
     }
@@ -119,7 +119,7 @@ export class BusTimeListComponent implements OnInit {
   }
 
   cancelFilter(status) {
-    if (status == "Filter") {
+    if (status === 'Filter') {
       this.BusTimeParams.code = null;
       this.BusTimeParams.time = null;
       this.BusTimeParams.direction = null;
@@ -130,12 +130,12 @@ export class BusTimeListComponent implements OnInit {
   deleteBusTime(id: number) {
     confirm
       .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "question",
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
         reverseButtons: true
       })
       .then(result => {
@@ -173,8 +173,8 @@ export class BusTimeListComponent implements OnInit {
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger"
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
   },
   buttonsStyling: false
 });

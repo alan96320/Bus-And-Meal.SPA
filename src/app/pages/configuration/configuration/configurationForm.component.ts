@@ -1,14 +1,14 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { Configuration } from "src/app/_models/configuration";
-import { ConfigurationService } from "src/app/_services/configuration.service";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Configuration } from 'src/app/_models/configuration';
+import { ConfigurationService } from 'src/app/_services/configuration.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: "app-configurationForm",
-  templateUrl: "./configurationForm.component.html"
+  selector: 'app-configurationForm',
+  templateUrl: './configurationForm.component.html'
 })
 export class ConfigurationFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
@@ -45,8 +45,8 @@ export class ConfigurationFormComponent implements OnInit {
     console.log(this.model);
     this.configurationService.editConfiguration(this.id, this.model).subscribe(
       () => {
-        this.sweetAlert.successAdd("Edit Successfully");
-        this.router.navigate(["/dashboard"]);
+        this.sweetAlert.successAdd('Edit Successfully');
+        this.router.navigate(['/dashboard']);
       },
       error => {
         this.sweetAlert.warning(error);

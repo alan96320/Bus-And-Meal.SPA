@@ -1,14 +1,14 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { Counter } from "src/app/_models/counter";
-import { CounterService } from "src/app/_services/counter.service";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Counter } from 'src/app/_models/counter';
+import { CounterService } from 'src/app/_services/counter.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: "app-CounterForm",
-  templateUrl: "./CounterForm.component.html"
+  selector: 'app-CounterForm',
+  templateUrl: './CounterForm.component.html'
 })
 export class CounterFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
