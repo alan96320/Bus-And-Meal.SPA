@@ -1,20 +1,24 @@
 <nav class=" navbar navbar-expand-lg bg-custom fixed-top box-shadow-custom">
-   <div class=" container-fluid">
-      <div class=" navbar-wrapper">
-         <div class="logo">
-            <a href="#" class="simple-text-custom logo-mini-custom">
-               <div class="logo-img">
-                  <img src="./assets/img/angular2-logo-white.png" />
-               </div>
-            </a>
-            <a [routerLink]="['/home']" class="simple-text-custom logo-normal-custom">
-               Bus & Meal
-            </a>
-            <!-- <div *ngFor="let item of authService.decodedToken?.role">{{item === 'Bus Order Entry.R' ? "berhasil" : "gagal"}}</div> -->
-
-         </div>
+  <div class=" container-fluid">
+    <div class=" navbar-wrapper">
+      <div class="logo">
+        <a href="#" class="simple-text-custom logo-mini-custom">
+          <div class="logo-img">
+            <img src="./assets/img/angular2-logo-white.png" />
+          </div>
+        </a>
+        <a
+          [routerLink]="['/home']"
+          class="simple-text-custom logo-normal-custom"
+        >
+          Bus & Meal
+        </a>
+        <!-- <div *ngFor="let item of authService.decodedToken?.role">
+          {{ item === "Bus Order Entry.R" ? "berhasil" : "gagal" }}
+        </div> -->
       </div>
     </div>
+    <!-- </div> -->
     <button
       aria-label="Toggle navigation"
       class=" navbar-toggler"
@@ -41,50 +45,28 @@
                <a class="nav-link btn btn-success btn-simple animation-on-hover" (click)="destroyActiveLink()" [routerLink]="['/dashboard']" routerLinkActive="active" >Dashboard</a>
             </li> -->
 
-
-            <li class="nav-item" ngbDropdown> <!-- for transaction -->
-               <a class="btn btn-default animation-on-hover" [ngClass]="{'active': activeTrasaction }" data-toggle="dropdown"
-                   href="javascript:void(0)" ngbDropdownToggle style="color: #ffffff;">
-                  Trasaction
-               </a>
-               <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link" >
-                     <a class="nav-item "  [routerLink]="['/mealOrderEntry']" (click)="activeLinkTrasaction()"  ngbDropdownItem>
-                        Meal Order Entry
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/mealOrderVerification']" (click)="activeLinkTrasaction()" ngbDropdownItem>
-                        Meal Order Verification
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class="nav-item" [routerLink]="['/busOrderEntry']" (click)="activeLinkTrasaction()" ngbDropdownItem>Bus Order Entry</a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/busOrderVerification']" (click)="activeLinkTrasaction()" ngbDropdownItem>
-                        Bus Order Verification
-                     </a>
-                  </li>
-               </ul>
-            </li>
-            <li class=" nav-item" ngbDropdown> <!-- for report -->
-               <a class="btn btn-default animation-on-hover" data-toggle="dropdown" [ngClass]="{'active': activeReport }" 
-                  href="javascript:void(0)" ngbDropdownToggle style="color: #ffffff;">
-                  Report
-               </a>
-               <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link">
-                     <a class=" nav-item" href="javascript:void(0)" (click)="activeLinkReport()" ngbDropdownItem>
-                        ?
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" href="javascript:void(0)" (click)="activeLinkReport()" ngbDropdownItem>
-                        ?
-                     </a>
-                  </li>
-               </ul>
+        <li class="nav-item" ngbDropdown>
+          <!-- for transaction -->
+          <a
+            class="btn btn-default animation-on-hover"
+            [ngClass]="{ active: activeTrasaction }"
+            data-toggle="dropdown"
+            href="javascript:void(0)"
+            ngbDropdownToggle
+            style="color: #ffffff;"
+          >
+            Trasaction
+          </a>
+          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class=" nav-link">
+              <a
+                class="nav-item "
+                [routerLink]="['/mealOrderEntry']"
+                (click)="activeLinkTrasaction()"
+                ngbDropdownItem
+              >
+                Meal Order Entry
+              </a>
             </li>
             <li class=" nav-link">
               <a
@@ -97,14 +79,13 @@
               </a>
             </li>
             <li class=" nav-link">
-              <button
+              <a
                 class="nav-item"
                 [routerLink]="['/busOrderEntry']"
                 (click)="activeLinkTrasaction()"
                 ngbDropdownItem
+                >Bus Order Entry</a
               >
-                Bus Order Entry
-              </button>
             </li>
             <li class=" nav-link">
               <a
@@ -118,6 +99,8 @@
             </li>
           </ul>
         </li>
+        <!-- </ul>
+        </li> -->
         <li class=" nav-item" ngbDropdown>
           <!-- for report -->
           <a
@@ -350,20 +333,11 @@
         </li>
       </ul>
 
-         <ul *ngIf="loggedIn()" class=" navbar-nav ml-auto"> <!-- for logout and diplay name user -->
-            <h5 class="mt-3 mr-3" style="font-size: 14px;">Welcome, {{authService.decodedToken?.unique_name}}</h5>
-            <li class=" nav-item">
-               <a class="nav-link btn btn-success btn-simple animation-on-hover" ngbTooltip="Logout" href="javascript:void(0)" (click)="logout()">
-                  <i class="tim-icons icon-button-power"> </i>
-                  Logout
-               </a>
-            </li>
-         </ul>
-      </div>
-
       <ul *ngIf="loggedIn()" class=" navbar-nav ml-auto">
         <!-- for logout and diplay name user -->
-        <h5 class="mt-3 mr-3" style="font-size: 14px;">Welcome, ID9089</h5>
+        <h5 class="mt-3 mr-3" style="font-size: 14px;">
+          Welcome, {{ authService.decodedToken?.unique_name }}
+        </h5>
         <li class=" nav-item">
           <a
             class="nav-link btn btn-success btn-simple animation-on-hover"
@@ -376,6 +350,7 @@
           </a>
         </li>
       </ul>
+      <!-- </div> -->
     </div>
   </div>
 </nav>

@@ -14,7 +14,7 @@ declare var Stimulsoft: any;
 })
 export class MealOrderReportComponent implements OnInit {
   mealOrderResource: any = [];
-  mealOrderResult: any = [];
+  mealOrderResult: any = {};
   mealOrderReport: any = [];
   department: any = [];
   mealtype: any = [];
@@ -158,7 +158,11 @@ export class MealOrderReportComponent implements OnInit {
       });
     });
 
-    this.mealOrderReport.push([this.mealOrder, this.mealtype]);
+    this.mealOrderReport.orderdetail = JSON.parse(
+      JSON.stringify(this.mealOrder)
+    );
+    this.mealOrderReport.mealtype = JSON.parse(JSON.stringify(this.mealtype));
+    // push([this.mealOrder, this.mealtype]);
 
     // this.mealOrderResource.mealOrderResult.map(mo => {
     //   mo.mealOrderDetails.map(mod => {
