@@ -31,8 +31,8 @@
         <Columns isList="true" count="4">
           <value>date,System.String</value>
           <value>department,System.String</value>
-          <value>mealtypeid,System.Decimal</value>
-          <value>total,System.Decimal</value>
+          <value>mealtypeid,System.Int32</value>
+          <value>total,System.Nullable`1[System.Int32]</value>
         </Columns>
         <Dictionary isRef="1" />
         <Key>04df6b292b324040babc63230d9d539e</Key>
@@ -123,7 +123,7 @@
         <PageHeaderBand1 Ref="10" type="PageHeaderBand" isKey="true">
           <Border>None;[43:43:43];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,20,747,190</ClientRectangle>
+          <ClientRectangle>0,20,747,150</ClientRectangle>
           <Components isList="true" count="6">
             <Text01 Ref="11" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black</Border>
@@ -230,7 +230,7 @@
         </PageHeaderBand1>
         <PageHeaderBand2 Ref="17" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,250,747,30</ClientRectangle>
+          <ClientRectangle>0,210,747,30</ClientRectangle>
           <Components isList="true" count="4">
             <Text2 Ref="18" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black</Border>
@@ -359,7 +359,7 @@
         </PageFooterBand1>
         <CrossTab1 Ref="27" type="Stimulsoft.Report.CrossTab.StiCrossTab" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,300,750,220</ClientRectangle>
+          <ClientRectangle>0,250,750,220</ClientRectangle>
           <Components isList="true" count="11">
             <CrossTab1_ColTotal1 Ref="28" type="CrossColumnTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
@@ -379,26 +379,26 @@
             </CrossTab1_ColTotal1>
             <CrossTab1_RowTotal1 Ref="29" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[85:209:255]</Brush>
-              <ClientRectangle>0,64,120,20</ClientRectangle>
+              <Brush>[46:117:181]</Brush>
+              <ClientRectangle>0,94,140,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>18c2160150464aaaba9afa2f83aad473</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,0</Margins>
               <Name>CrossTab1_RowTotal1</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Total</Text>
-              <TextBrush>Black</TextBrush>
+              <TextBrush>[255:255:255]</TextBrush>
             </CrossTab1_RowTotal1>
             <CrossTab1_Row1_Title Ref="30" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>0,22,40,20</ClientRectangle>
+              <Brush>[0:112:192]</Brush>
+              <ClientRectangle>0,32,50,30</ClientRectangle>
               <Font>Arial,10</Font>
               <Guid>d5a8458b50b04966856c39724ca37229</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,0</Margins>
               <Name>CrossTab1_Row1_Title</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
@@ -409,8 +409,8 @@
             </CrossTab1_Row1_Title>
             <CrossTab1_LeftTitle Ref="31" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>0,0,120,20</ClientRectangle>
+              <Brush>[0:112:192]</Brush>
+              <ClientRectangle>0,0,140,30</ClientRectangle>
               <Font>Arial,12</Font>
               <Guid>1a07fb78febf419b8aeda38b7759c17b</Guid>
               <Margins>0,0,0,0</Margins>
@@ -425,7 +425,7 @@
             <CrossTab1_RowTotal2 Ref="32" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[85:209:255]</Brush>
-              <ClientRectangle>40,64,0,0</ClientRectangle>
+              <ClientRectangle>50,94,0,0</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Enabled>False</Enabled>
               <Font>Arial,8</Font>
@@ -440,11 +440,11 @@
             </CrossTab1_RowTotal2>
             <CrossTab1_Row2_Title Ref="33" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>40,22,80,20</ClientRectangle>
+              <Brush>[0:112:192]</Brush>
+              <ClientRectangle>50,32,90,30</ClientRectangle>
               <Font>Arial,10</Font>
               <Guid>3b99bb23cf554ec4bc1203ba02d19419</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,0,0</Margins>
               <Name>CrossTab1_Row2_Title</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
@@ -455,11 +455,11 @@
             </CrossTab1_Row2_Title>
             <CrossTab1_RightTitle Ref="34" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>122,0,90,20</ClientRectangle>
+              <Brush>[0:112:192]</Brush>
+              <ClientRectangle>142,0,100,30</ClientRectangle>
               <Font>Arial,12</Font>
               <Guid>bb6028f30cf24882bac69be4662ce8ae</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,0</Margins>
               <Name>CrossTab1_RightTitle</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
@@ -471,13 +471,13 @@
             <CrossTab1_Row1 Ref="35" type="CrossRow" isKey="true">
               <Alias>date</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>0,44,40,20</ClientRectangle>
+              <Brush>[0:176:240]</Brush>
+              <ClientRectangle>0,64,50,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.date}</DisplayValue>
               <Font>Arial,10</Font>
               <Guid>e883701a10a14211ab38ca16fb1bb996</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,0</Margins>
               <Name>CrossTab1_Row1</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
@@ -490,13 +490,13 @@
             <CrossTab1_Row2 Ref="36" type="CrossRow" isKey="true">
               <Alias>department</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>40,44,80,20</ClientRectangle>
+              <Brush>[0:176:240]</Brush>
+              <ClientRectangle>50,64,90,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.department}</DisplayValue>
               <Font>Arial,10</Font>
               <Guid>f4eec5a0a55d4c469c6734962ac18dbe</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,0</Margins>
               <Name>CrossTab1_Row2</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
@@ -509,13 +509,13 @@
             <CrossTab1_Column1 Ref="37" type="CrossColumn" isKey="true">
               <Alias>name</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[35:159:217]</Brush>
-              <ClientRectangle>122,22,90,20</ClientRectangle>
+              <Brush>[0:112:192]</Brush>
+              <ClientRectangle>142,32,100,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.mealtypename.name}</DisplayValue>
               <Font>Arial,10</Font>
               <Guid>0f125fa4cc1c4da8be6624108bfff42b</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,0</Margins>
               <Name>CrossTab1_Column1</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
@@ -528,11 +528,12 @@
             <CrossTab1_Sum1 Ref="38" type="CrossSummary" isKey="true">
               <Alias>total</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[135:255:255]</Brush>
-              <ClientRectangle>122,44,90,20</ClientRectangle>
+              <Brush>[222:235:246]</Brush>
+              <ClientRectangle>142,64,100,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>5deba40075a3404eb7af5c028387ba0b</Guid>
+              <HideZeros>False</HideZeros>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>CrossTab1_Sum1</Name>
@@ -579,7 +580,8 @@
   <ReportChanged>3/5/2020 11:29:59 AM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportGuid>598256c7119441d888a812b31dd9ea70</ReportGuid>
+  <ReportFile>MealOrder.mrt</ReportFile>
+  <ReportGuid>59a9853048494e42a5d57ea9104816ab</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.1.0</ReportVersion>
