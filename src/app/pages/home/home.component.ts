@@ -5,9 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
-  public clicked2: boolean = false;
+  public clicked = true;
+  public clicked1 = false;
+  public clicked2 = false;
   constructor() { }
 
   ngOnInit() {

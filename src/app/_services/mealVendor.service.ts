@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { MealVendor } from "../_models/mealVendor";
-import { PaginatedResult } from "../_models/pagination";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { MealVendor } from '../_models/mealVendor';
+import { PaginatedResult } from '../_models/pagination';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class MealVendorService {
   baseUrl = environment.apiUrl;
@@ -15,30 +15,30 @@ export class MealVendorService {
 
   constructor(private http: HttpClient) {}
 
-  //get meal vendor report
+  // get meal vendor report
   getMealVendorReport() {
-    return this.http.get(this.baseUrl + "report/mealVendor/");
+    return this.http.get(this.baseUrl + 'report/mealVendor/');
   }
 
-  //for add data MealVendor
+  // for add data MealVendor
   addMealVendor(model: any) {
-    return this.http.post(this.baseUrl + "mealVendor/", model);
+    return this.http.post(this.baseUrl + 'mealVendor/', model);
   }
 
-  //for delete data MealVendor
+  // for delete data MealVendor
   deleteMealVendor(id: any) {
-    return this.http.delete(this.baseUrl + "mealVendor/" + id);
+    return this.http.delete(this.baseUrl + 'mealVendor/' + id);
   }
-  //get by ID after update
+  // get by ID after update
   getMealVendor(id: any): Observable<MealVendor> {
-    return this.http.get<MealVendor>(this.baseUrl + "mealVendor/" + id);
+    return this.http.get<MealVendor>(this.baseUrl + 'mealVendor/' + id);
   }
-  //for edit MealVendor
+  // for edit MealVendor
   editMealVendor(id: any, model: any) {
-    return this.http.put(this.baseUrl + "mealVendor/" + id, model);
+    return this.http.put(this.baseUrl + 'mealVendor/' + id, model);
   }
 
-  //get all
+  // get all
   getMealVendors(
     page?,
     itemsPerPage?,
@@ -50,42 +50,42 @@ export class MealVendorService {
 
     let params = new HttpParams();
     if (page != null && itemsPerPage != null) {
-      params = params.append("pageNumber", page);
-      params = params.append("pageSize", itemsPerPage);
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
     }
     if (MealVendorParams != null) {
       if (MealVendorParams.code != null) {
-        params = params.append("code", MealVendorParams.code);
+        params = params.append('code', MealVendorParams.code);
       }
       if (MealVendorParams.name != null) {
-        params = params.append("name", MealVendorParams.name);
+        params = params.append('name', MealVendorParams.name);
       }
       if (MealVendorParams.ContactName != null) {
-        params = params.append("ContactName", MealVendorParams.ContactName);
+        params = params.append('ContactName', MealVendorParams.ContactName);
       }
       if (MealVendorParams.ContactPhone != null) {
-        params = params.append("ContactPhone", MealVendorParams.ContactPhone);
+        params = params.append('ContactPhone', MealVendorParams.ContactPhone);
       }
       if (MealVendorParams.ContactEmail != null) {
-        params = params.append("ContactEmail", MealVendorParams.ContactEmail);
+        params = params.append('ContactEmail', MealVendorParams.ContactEmail);
       }
       if (MealVendorParams.OrderBy != null) {
-        params = params.append("OrderBy", MealVendorParams.OrderBy);
-        params = params.append("isDescending", MealVendorParams.isDesc);
+        params = params.append('OrderBy', MealVendorParams.OrderBy);
+        params = params.append('isDescending', MealVendorParams.isDesc);
       }
     }
 
     return this.http
-      .get<MealVendor[]>(this.baseUrl + "MealVendor/paged", {
-        observe: "response",
+      .get<MealVendor[]>(this.baseUrl + 'MealVendor/paged', {
+        observe: 'response',
         params
       })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
-          if (response.headers.get("Pagination") != null) {
+          if (response.headers.get('Pagination') != null) {
             paginatedResult.pagination = JSON.parse(
-              response.headers.get("Pagination")
+              response.headers.get('Pagination')
             );
           }
           return paginatedResult;

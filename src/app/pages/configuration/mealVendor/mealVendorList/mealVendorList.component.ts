@@ -1,26 +1,27 @@
-import { Component, OnInit } from "@angular/core";
-import { MealVendorService } from "src/app/_services/mealVendor.service";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { ActivatedRoute } from "@angular/router";
-import { MealVendor } from "src/app/_models/mealVendor";
-import { Pagination, PaginatedResult } from "src/app/_models/pagination";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
-import swal from "sweetalert2";
+import { Component, OnInit } from '@angular/core';
+import { MealVendorService } from 'src/app/_services/mealVendor.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
+import { MealVendor } from 'src/app/_models/mealVendor';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
+import swal from 'sweetalert2';
 
 @Component({
-  selector: "app-mealVendorList",
-  templateUrl: "./mealVendorList.component.html"
+  // tslint:disable-next-line:component-selector
+  selector: 'app-mealVendorList',
+  templateUrl: './mealVendorList.component.html'
 })
 export class MealVendorListComponent implements OnInit {
-  //deklarasi untuk pagination custom
+  // deklarasi untuk pagination custom
   sortAscCode: boolean;
   sortAscName: boolean;
   ContactName: boolean;
   ContactPhone: boolean;
   ContactEmail: boolean;
-  filter: boolean = true;
+  filter = true;
 
-  //deklarasi untuk get data
+  // deklarasi untuk get data
   mealVendors: MealVendor[];
   pagination: Pagination;
   mealVendorParams: any = {};
@@ -35,8 +36,8 @@ export class MealVendorListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.mealVendors = data["mealVendor"].result;
-      this.pagination = data["mealVendor"].pagination;
+      this.mealVendors = data.mealVendor.result;
+      this.pagination = data.mealVendor.pagination;
     });
   }
 
@@ -45,31 +46,31 @@ export class MealVendorListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName == "code") {
+    if (getName === 'code') {
       this.sortAscCode = !this.sortAscCode;
       this.mealVendorParams.OrderBy = getName;
       this.mealVendorParams.isDesc = this.sortAscCode;
       this.loadMealVendors();
     }
-    if (getName == "name") {
+    if (getName === 'name') {
       this.sortAscName = !this.sortAscName;
       this.mealVendorParams.OrderBy = getName;
       this.mealVendorParams.isDesc = this.sortAscName;
       this.loadMealVendors();
     }
-    if (getName == "ContactName") {
+    if (getName === 'ContactName') {
       this.ContactName = !this.ContactName;
       this.mealVendorParams.OrderBy = getName;
       this.mealVendorParams.isDesc = this.ContactName;
       this.loadMealVendors();
     }
-    if (getName == "ContactPhone") {
+    if (getName === 'ContactPhone') {
       this.ContactPhone = !this.ContactPhone;
       this.mealVendorParams.OrderBy = getName;
       this.mealVendorParams.isDesc = this.ContactPhone;
       this.loadMealVendors();
     }
-    if (getName == "ContactEmail") {
+    if (getName === 'ContactEmail') {
       this.ContactEmail = !this.ContactEmail;
       this.mealVendorParams.OrderBy = getName;
       this.mealVendorParams.isDesc = this.ContactEmail;
@@ -83,21 +84,21 @@ export class MealVendorListComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.pagination.currentPage != this.pagination.totalPages) {
+    if (this.pagination.currentPage !== this.pagination.totalPages) {
       this.pagination.currentPage = this.pagination.currentPage + 1;
       this.loadMealVendors();
     }
   }
 
   prevPage() {
-    if (this.pagination.currentPage != 1) {
+    if (this.pagination.currentPage !== 1) {
       this.pagination.currentPage = this.pagination.currentPage - 1;
       this.loadMealVendors();
     }
   }
 
   endPage(Page) {
-    if (this.pagination.currentPage != Page) {
+    if (this.pagination.currentPage !== Page) {
       this.pagination.currentPage = Page;
       this.loadMealVendors();
     }
@@ -132,7 +133,7 @@ export class MealVendorListComponent implements OnInit {
   }
 
   cancelFilter(status) {
-    if (status == "Filter") {
+    if (status === 'Filter') {
       this.mealVendorParams.code = null;
       this.mealVendorParams.name = null;
       this.mealVendorParams.ContactName = null;
@@ -143,14 +144,15 @@ export class MealVendorListComponent implements OnInit {
   }
 
   deleteMealVendor(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm
       .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "question",
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
         reverseButtons: true
       })
       .then(result => {
@@ -190,8 +192,8 @@ export class MealVendorListComponent implements OnInit {
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger"
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
   },
   buttonsStyling: false
 });

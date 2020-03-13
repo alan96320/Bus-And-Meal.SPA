@@ -23,7 +23,7 @@ export class BusOrderVerificationListResolver implements Resolve<BusOrderVerific
         this.pageSize = this.busOrderVerificationService.itemPerPage;
         return this.busOrderVerificationService.getBusOrderVerifications(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
+                this.sweetAlert.error(error);
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -44,7 +44,7 @@ export class BusOrderVerificationDetailResolver implements Resolve<BusOrderVerif
     resolve(route: ActivatedRouteSnapshot): Observable<BusOrderVerification> {
         return this.busOrderVerificationService.getBusOrderVerification(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
+                this.sweetAlert.error(error);
                 this.router.navigate(['/busOrderVerification']);
                 // return of;
                 return of(null);

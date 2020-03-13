@@ -126,6 +126,7 @@ export class MealOrderVerficationListComponent implements OnInit {
 
   // for delete data
   deleteMealOrderVerification(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',

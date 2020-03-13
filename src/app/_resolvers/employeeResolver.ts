@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Resolve, Router, ActivatedRouteSnapshot } from "@angular/router";
-import { Employee } from "../_models/employee";
-import { EmployeeService } from "../_services/employee.service";
-import { AlertifyService } from "../_services/alertify.service";
-import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { SweetAlertService } from "../_services/sweetAlert.service";
+import { Injectable } from '@angular/core';
+import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Employee } from '../_models/employee';
+import { EmployeeService } from '../_services/employee.service';
+import { AlertifyService } from '../_services/alertify.service';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class EmployeeListResolver implements Resolve<Employee[]> {
@@ -25,8 +25,8 @@ export class EmployeeListResolver implements Resolve<Employee[]> {
       .getEmployees(this.pageNumber, this.pageSize)
       .pipe(
         catchError(error => {
-          this.sweetAlert.error("Problem Retrieving Data ");
-          this.router.navigate(["/home"]);
+          this.sweetAlert.error(error);
+          this.router.navigate(['/home']);
           // return of;
           return of(null);
         })
@@ -46,8 +46,8 @@ export class EmployeeDetailResolver implements Resolve<Employee> {
   resolve(route: ActivatedRouteSnapshot): Observable<Employee> {
     return this.employeeService.getEmployee(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/depart"]);
+        this.sweetAlert.error(error);
+        this.router.navigate(['/depart']);
         // return of;
         return of(null);
       })

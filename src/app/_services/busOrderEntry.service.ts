@@ -49,6 +49,7 @@ export class BusOrderEntryService {
       }
       if (BusOrderEntryParams.dormitory != null) {
         params = params.append('dormitoryBlockId', BusOrderEntryParams.dormitory);
+      // tslint:disable-next-line: no-trailing-whitespace
       } 
       if (BusOrderEntryParams.OrderBy != null) {
         params = params.append('OrderBy', BusOrderEntryParams.OrderBy);

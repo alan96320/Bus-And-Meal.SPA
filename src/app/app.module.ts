@@ -10,7 +10,6 @@ import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { appRouting } from './routes';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from './_services/auth.service';
@@ -120,6 +119,7 @@ import {
   BusOrderVerificationListResolver,
   BusOrderVerificationDetailResolver
 } from './_resolvers/busOrderVerificationResolver';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -148,7 +148,6 @@ export function tokenGetter() {
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    DashboardComponent,
     // declarations for menu configuration
     DepartmentListComponent,
     DepartmentFormComponent,
@@ -229,7 +228,8 @@ export function tokenGetter() {
     BusOrderEntryListResolver,
     BusOrderEntryDetailResolver,
     BusOrderVerificationListResolver,
-    BusOrderVerificationDetailResolver
+    BusOrderVerificationDetailResolver,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

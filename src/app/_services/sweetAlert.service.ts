@@ -1,62 +1,70 @@
-import { Injectable } from "@angular/core";
-import swal from "sweetalert2";
+import { Injectable } from '@angular/core';
+import swal from 'sweetalert2';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class SweetAlertService {
   constructor() {}
 
   success(message: string) {
+    // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: "success",
+      icon: 'success',
       title: message
     });
   }
   successAdd(message: string) {
+    // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: "success",
+      icon: 'success',
       title: message
     });
   }
 
   error(message: string) {
+    const a = message.replace(/;/g, ' <br> ');
+    // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: "error",
-      text: message
+      icon: 'error',
+      html : a
     });
   }
 
   warning(message: string) {
+    // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: "warning",
+      icon: 'warning',
       title: message
     });
   }
 
   warningDel() {
+    // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: "warning",
-      title: "Your file has been deleted."
+      icon: 'warning',
+      title: 'Your file has been deleted.'
     });
   }
 
   message(message: string) {
+    // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: "info",
+      icon: 'info',
       title: message
     });
   }
+
 }
 
 const Toast = swal.mixin({
   toast: true,
-  position: "bottom-end",
+  position: 'center-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   onOpen: toast => {
-    toast.addEventListener("mouseenter", swal.stopTimer);
-    toast.addEventListener("mouseleave", swal.resumeTimer);
+    toast.addEventListener('mouseenter', swal.stopTimer);
+    toast.addEventListener('mouseleave', swal.resumeTimer);
   }
 });

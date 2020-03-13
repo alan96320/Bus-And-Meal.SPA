@@ -140,6 +140,7 @@ export class BusOrderEntryListComponent implements OnInit {
 
   // for delete data
   deleteBusOrderEntrys(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
@@ -216,8 +217,11 @@ export class BusOrderEntryListComponent implements OnInit {
           }
         });
       });
+      // tslint:disable-next-line:no-shadowed-variable
       b.sort((a, b) => a.time.localeCompare(b.time));
+      // tslint:disable-next-line:no-shadowed-variable
       c.sort((a, b) => a.time.localeCompare(b.time));
+      // tslint:disable-next-line:no-shadowed-variable
       d.sort((a, b) => a.time.localeCompare(b.time));
       this.busTime.push(b);
       this.busTime.push(c);

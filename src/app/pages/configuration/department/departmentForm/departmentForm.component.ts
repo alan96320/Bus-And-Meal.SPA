@@ -53,11 +53,7 @@ export class DepartmentFormComponent implements OnInit {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/department']);
       }, err => {
-            this.message.push({ code: err.error.Code, name: err.error.Name });
-         // console.log(err);
-         // let error_name = [];
-         //    error_name = err.error.Name;
-            console.log(this.message);
+            this.sweetAlert.error(err);
 
       });
    }

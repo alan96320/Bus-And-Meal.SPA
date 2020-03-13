@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Resolve, Router, ActivatedRouteSnapshot } from "@angular/router";
-import { MealVendor } from "../_models/mealVendor";
-import { MealVendorService } from "../_services/mealVendor.service";
-import { AlertifyService } from "../_services/alertify.service";
-import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { SweetAlertService } from "../_services/sweetAlert.service";
+import { Injectable } from '@angular/core';
+import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { MealVendor } from '../_models/mealVendor';
+import { MealVendorService } from '../_services/mealVendor.service';
+import { AlertifyService } from '../_services/alertify.service';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class MealVendorListResolver implements Resolve<MealVendor[]> {
@@ -27,8 +27,8 @@ export class MealVendorListResolver implements Resolve<MealVendor[]> {
       this.pageSize
     ).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/home"]);
+        this.sweetAlert.error(error);
+        this.router.navigate(['/home']);
         // return of;
         return of(null);
       })
@@ -49,8 +49,8 @@ export class MealVendorDetailResolver implements Resolve<MealVendor> {
   resolve(route: ActivatedRouteSnapshot): Observable<MealVendor> {
     return this.MealVendorService.getMealVendor(route.params.id).pipe(
       catchError(error => {
-        this.sweetAlert.error("Problem Retrieving Data ");
-        this.router.navigate(["/depart"]);
+        this.sweetAlert.error(error);
+        this.router.navigate(['/depart']);
         // return of;
         return of(null);
       })
