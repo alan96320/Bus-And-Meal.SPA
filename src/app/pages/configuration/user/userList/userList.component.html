@@ -40,6 +40,7 @@
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDepartmentId===false}"></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -68,7 +69,7 @@
                     <input type="text" class="form-control" placeholder="Order By Department" #box5
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let user of users">
                   <td>{{user.gddbId}}</td>
@@ -105,6 +106,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

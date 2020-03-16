@@ -29,7 +29,7 @@
               <button
                 class="btn btn-default animation-on-hover"
                 type="button"
-                ngbTooltip="Export"
+                ngbTooltip="Print"
                 [routerLink]="['/report/department']"
               >
                 Print
@@ -58,6 +58,7 @@
                     ></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -88,7 +89,7 @@
                       "
                     />
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let department of departments">
                   <td>{{ department.code }}</td>
@@ -115,6 +116,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

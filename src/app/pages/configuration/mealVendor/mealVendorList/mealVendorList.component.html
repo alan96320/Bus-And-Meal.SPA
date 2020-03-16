@@ -39,6 +39,7 @@
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': ContactEmail===true}"></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -63,14 +64,14 @@
                     <input type="text" class="form-control" placeholder="Order By ContactEmail" #box4
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value=''" />
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let mealVendor of mealVendors">
                   <td>{{mealVendor.code}}</td>
                   <td>{{mealVendor.name}}</td>
-                  <td>{{mealVendor.ContactName}}</td>
-                  <td>{{mealVendor.ContactPhone}}</td>
-                  <td>{{mealVendor.ContactEmail}}</td>
+                  <td>{{mealVendor.contactName}}</td>
+                  <td>{{mealVendor.contactPhone}}</td>
+                  <td>{{mealVendor.contactEmail}}</td>
                   <td class="td-actions text-right">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
                       placement="left" type="button" [routerLink]="['/formMealVendor',mealVendor.id]">
@@ -81,6 +82,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

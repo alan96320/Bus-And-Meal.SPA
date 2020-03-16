@@ -85,6 +85,11 @@ export class MealTypeFormComponent implements OnInit {
     this.http.get('http://localhost:5000/api/MealVendor').subscribe(
       response => {
         this.MealVendors = response;
+        this.MealVendors.map(data => {
+          if (data.name === 'Default') {
+            this.model.mealVendorId = data.id;
+          }
+        });
       },
       error => {
         this.sweetAlert.error(error);

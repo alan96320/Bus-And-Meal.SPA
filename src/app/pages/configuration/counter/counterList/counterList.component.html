@@ -36,6 +36,7 @@
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscStatus===false}"></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -59,7 +60,7 @@
                       <option value="0">Not Active</option>
                     </select>
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let counter of Counters">
                   <td>{{counter.code}}</td>
@@ -76,6 +77,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

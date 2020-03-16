@@ -29,10 +29,10 @@
               <button
                 class="btn btn-default animation-on-hover"
                 type="button"
-                ngbTooltip="Export"
+                ngbTooltip="Print"
                 [routerLink]="['/report/MealType']"
               >
-                Export
+                Print
               </button>
             </div>
           </div>
@@ -65,6 +65,7 @@
                     ></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -111,7 +112,7 @@
                       "
                     />
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let MealType of MealTypes">
                   <td>{{ MealType.code }}</td>
@@ -139,6 +140,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

@@ -48,15 +48,8 @@
                   <td>{{data.orderDate | date:'fullDate'}}</td>
                   <td>{{data.orderNo}}</td>
                   <td class="form-row">
-                    <div class=" form-check col-2">
-                      <label class=" form-check-label">
-                        <input class=" form-check-input" type="checkbox" [checked]="data.isClosed" name="IsClosed">
-                        <span class=" form-check-sign">
-                          <span class=" check"></span>
-                        </span>
-                      </label>
-                    </div>
-                    <label class="col mt-1">Closed</label>
+                    <label class="col mt-1" *ngIf="data.isClosed" >Closed</label>
+                    <label class="col mt-1" *ngIf="!data.isClosed">Open</label>
                   </td>
                   <td class="td-actions text-center">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
