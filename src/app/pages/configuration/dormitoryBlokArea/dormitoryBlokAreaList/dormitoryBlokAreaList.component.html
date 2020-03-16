@@ -36,11 +36,11 @@
               <tbody>
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Code" #box
+                    <input type="text" class="form-control" placeholder="Filter By Code" #box
                       (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Name" #box1
+                    <input type="text" class="form-control" placeholder="Filter By Name" #box1
                       (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
                   </td>
                   <td colspan="2"></td>

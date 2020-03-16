@@ -42,15 +42,15 @@
               <tbody>
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Code" #box
+                    <input type="text" class="form-control" placeholder="Filter By Code" #box
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Name" #box1
+                    <input type="text" class="form-control" placeholder="Filter By Name" #box1
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Location" #box2
+                    <input type="text" class="form-control" placeholder="Filter By Location" #box2
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
                   </td>
                   <td class="form-group no-border">

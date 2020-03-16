@@ -74,7 +74,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Order By Code"
+                      placeholder="Filter By Code"
                       #box
                       (keyup.enter)="
                         OrderBy(box.value, box1.value, box2.value);
@@ -88,7 +88,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Order By Name"
+                      placeholder="Filter By Name"
                       #box1
                       (keyup.enter)="
                         OrderBy(box.value, box1.value, box2.value);
@@ -102,7 +102,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Order By Vendor Name"
+                      placeholder="Filter By Vendor Name"
                       #box2
                       (keyup.enter)="
                         OrderBy(box.value, box1.value, box2.value);
