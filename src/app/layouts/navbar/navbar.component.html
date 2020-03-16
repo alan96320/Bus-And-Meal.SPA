@@ -23,13 +23,6 @@
 
     <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
       <ul *ngIf="loggedIn()" class="navbar-nav mr-auto mt-2 mt-lg-0" style="margin-left: 6.5%;">
-        <!-- for Menu -->
-        <!-- 
-            <li class="nav-item">
-               <a class="nav-link btn btn-success btn-simple animation-on-hover" (click)="destroyActiveLink()" [routerLink]="['/dashboard']" routerLinkActive="active" >Dashboard</a>
-            </li> -->
-
-
         <li class="nav-item" ngbDropdown>
           <!-- for transaction -->
           <a class="btn btn-default animation-on-hover" [ngClass]="{'active': activeTrasaction }" data-toggle="dropdown"
@@ -160,11 +153,6 @@
             <li class=" nav-link">
               <a class=" nav-item" [routerLink]="['/user']" (click)="activeLinkConfiguration()" ngbDropdownItem>
                 Users
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a class=" nav-item" [routerLink]="['/roles']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                Roles
               </a>
             </li>
             <li class=" nav-link">
