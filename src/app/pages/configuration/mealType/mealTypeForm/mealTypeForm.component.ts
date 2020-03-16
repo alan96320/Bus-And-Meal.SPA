@@ -52,7 +52,7 @@ export class MealTypeFormComponent implements OnInit {
   }
 
   addMealType() {
-    console.log(this.model);
+    this.model.isUpdate = false;
     this.mealTypeService.addMealType(this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Added Successfully');
@@ -69,7 +69,7 @@ export class MealTypeFormComponent implements OnInit {
   }
 
   updateMealType() {
-    console.log(this.model);
+    this.model.isUpdate = true;
     this.mealTypeService.editMealType(this.id, this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Edit Successfully');

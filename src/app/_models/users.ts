@@ -6,6 +6,7 @@ export interface Users {
     fullName: string;
     gddbId: string;
     adminStatus: boolean;
+    isActive: boolean;
     lockTransStatus: number;
     userModuleRights: UserModuleRights[];
     userDepartments: userDepartment[];

@@ -77,6 +77,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.model.username = '';
+    this.model.password = '';
     localStorage.removeItem('token');
     localStorage.removeItem('id_user');
     this.sweetAlert.warning('Logout Sukses');

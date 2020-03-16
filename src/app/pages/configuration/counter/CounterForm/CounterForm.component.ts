@@ -32,11 +32,11 @@ export class CounterFormComponent implements OnInit {
   loadCounter() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.code = data.counter.code;
-        this.model.name = data.counter.name;
-        this.model.location = data.counter.location;
+        this.model.Code = data.counter.code;
+        this.model.Name = data.counter.name;
+        this.model.Location = data.counter.location;
         if (data.counter.status === 1) {
-          this.model.status = true;
+          this.model.Status = true;
         }
         this.update = true;
       });
@@ -52,11 +52,18 @@ export class CounterFormComponent implements OnInit {
   }
 
   addCounter() {
-    if (this.model.status) {
-      this.model.status = 1;
+    this.model.isUpdate = false;
+    if (this.model.Status) {
+      this.model.Status = 1;
     } else {
-      this.model.status = 0;
+      this.model.Status = 0;
     }
+    this.counterService.addCounter(this.model).subscribe(() => {
+      this.sweetAlert.successAdd('Add Successfully');
+      this.router.navigate(['/counter']);
+    }, error => {
+      this.sweetAlert.warning(error);
+    });
   }
 
   cancel() {
@@ -64,10 +71,17 @@ export class CounterFormComponent implements OnInit {
   }
 
   updateCounter() {
-    if (this.model.status) {
-      this.model.status = 1;
+    this.model.isUpdate = true;
+    if (this.model.Status) {
+      this.model.Status = 1;
     } else {
-      this.model.status = 0;
+      this.model.Status = 0;
     }
+    this.counterService.editCounter(this.id, this.model).subscribe(() => {
+      this.sweetAlert.successAdd('Edit Successfully');
+      this.router.navigate(['/counter']);
+    }, error => {
+      this.sweetAlert.warning(error);
+    });
   }
 }

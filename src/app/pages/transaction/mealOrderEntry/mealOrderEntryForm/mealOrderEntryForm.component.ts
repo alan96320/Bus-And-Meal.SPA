@@ -104,6 +104,7 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.model.UserId = localStorage.getItem('id_user');
     this.model.MealOrderDetails = this.mealTypes;
     if (!this.update) {
+      this.model.isUpdate = false;
       this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {
         this.sweetAlert.successAdd('Add Successfully');
         this.router.navigate(['/mealOrderEntry']);
@@ -111,6 +112,7 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.warning(error);
       });
     } else {
+      this.model.isUpdate = true;
       this.mealOrderEntryService.editMealOrderEntry(this.id, this.model).subscribe(() => {
         this.sweetAlert.successAdd('Edit Successfully');
         this.router.navigate(['/mealOrderEntry']);

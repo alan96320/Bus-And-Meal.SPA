@@ -55,7 +55,7 @@ export class EmployeeFormComponent implements OnInit {
    }
 
    addEmployee() {
-      console.log(this.model);
+      this.model.isUpdate = false;
       this.employeeService.addEmployee(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/employee']);
@@ -69,7 +69,7 @@ export class EmployeeFormComponent implements OnInit {
    }
 
    updateEmployee() {
-      console.log(this.model);
+      this.model.isUpdate = true;
       this.employeeService.editEmployee(this.id, this.model).subscribe(() => {
          this.sweetAlert.successAdd('Edit Successfully');
          this.router.navigate(['/employee']);

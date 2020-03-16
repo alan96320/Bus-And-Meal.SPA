@@ -56,7 +56,7 @@ export class BusTimeFormComponent implements OnInit {
   }
 
   addBusTime() {
-    console.log(this.model);
+    this.model.isUpdate = false;
     this.BusTimeService.addBusTime(this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Added Successfully');
@@ -73,7 +73,7 @@ export class BusTimeFormComponent implements OnInit {
   }
 
   updateBusTime() {
-    console.log(this.model);
+    this.model.isUpdate = true;
     this.BusTimeService.editBusTime(this.id, this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Edit Successfully');

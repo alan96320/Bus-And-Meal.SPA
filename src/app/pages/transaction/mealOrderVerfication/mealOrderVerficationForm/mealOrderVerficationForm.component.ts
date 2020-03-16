@@ -124,9 +124,11 @@ export class MealOrderVerficationFormComponent implements OnInit {
           let c = '';
           if ((Number(b.slice(8)) + 1) < 10) {
             c = b.slice(0, 8) + '0' + (Number(b.slice(8)) + 1);
+          } else {
+            c = b.slice(0, 8) + (Number(b.slice(8)) + 1);
           }
           res.result.map(item => {
-            if (item.mealOrderVerificationId !== null) {
+            if (item.mealOrderVerificationId !== null && !this.id) {
               a = true;
             }
           });
@@ -295,6 +297,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
       }
       this.model.MealOrderVerificationDetails = this.mealVerification;
       if (!this.update) {
+        this.model.isUpdate = false;
         this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {
           this.sweetAlert.successAdd('Add Successfully');
           this.router.navigate(['/mealOrderVerification']);
@@ -302,6 +305,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
           this.sweetAlert.warning(error);
         });
       } else {
+          this.model.isUpdate = true;
           this.mealOrderVerificationService.editMealOrderVerificationVerification(this.id, this.model).subscribe(() => {
           this.sweetAlert.successAdd('Edit Successfully');
           this.router.navigate(['/mealOrderVerification']);
