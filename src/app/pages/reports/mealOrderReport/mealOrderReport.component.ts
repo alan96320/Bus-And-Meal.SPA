@@ -59,7 +59,8 @@ export class MealOrderReportComponent implements OnInit {
             d => d.id == mo.departmentId
           ).name,
           mealtypeid: mod.mealTypeId,
-          total: mod.orderQty
+          total: mod.orderQty,
+          collected: mo.mealOrderVerificationId > 0 ? "Yes" : "No"
         });
       });
     });

@@ -53,8 +53,6 @@ export class BusOrderReportComponent implements OnInit {
       bo.date = this.convertDate(bo.orderEntryDate);
     });
 
-    console.log(this.busOrderResource);
-
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile("../assets/reports/BusOrder.mrt");

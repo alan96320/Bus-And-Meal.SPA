@@ -31,8 +31,6 @@ export class BusTimeReportComponent implements OnInit {
     report.dictionary.variables.getByName("title").valueObject =
       "Bus Time List";
 
-    console.log(this.bustimes);
-
     report.regData("BusTime", "BusTime", this.bustimes);
 
     options.width = "100%";
