@@ -18,8 +18,9 @@ export class UserListComponent implements OnInit {
   sortAscFirstname: boolean;
   sortAscLastname: boolean;
   sortAscFullname: boolean;
-  sortAscHIDNo: boolean;
-  sortAscDepartmentId: boolean;
+  sortAscAdmin: boolean;
+  sortAscLock: boolean;
+  sortAscIsActive: boolean;
   filter = true;
 
   listDepartments: any;
@@ -42,6 +43,7 @@ export class UserListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.users = data.user.result;
       this.pagination = data.user.pagination;
+      console.log(data);
     });
   }
 
@@ -50,10 +52,46 @@ export class UserListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === 'hrCoreNo') {
+    if (getName === 'gddbId') {
       this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscHrCoreNo;
+      this.loadUsers();
+    }
+    if (getName === 'firstName') {
+      this.sortAscFirstname = !this.sortAscFirstname;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscFirstname;
+      this.loadUsers();
+    }
+    if (getName === 'lastName') {
+      this.sortAscLastname = !this.sortAscLastname;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscLastname;
+      this.loadUsers();
+    }
+    if (getName === 'fullName') {
+      this.sortAscFullname = !this.sortAscFullname;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscFullname;
+      this.loadUsers();
+    }
+    if (getName === 'adminStatus') {
+      this.sortAscAdmin = !this.sortAscAdmin;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscAdmin;
+      this.loadUsers();
+    }
+    if (getName === 'lockTransStatus') {
+      this.sortAscLock = !this.sortAscLock;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscLock;
+      this.loadUsers();
+    }
+    if (getName === 'isActive') {
+      this.sortAscIsActive = !this.sortAscIsActive;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscIsActive;
       this.loadUsers();
     }
   }
@@ -115,8 +153,6 @@ export class UserListComponent implements OnInit {
       this.UsersParams.firstname = firstname;
       this.UsersParams.lastname = lastname;
       this.UsersParams.fullname = fullname;
-      this.UsersParams.hIDNo = hIDNo;
-      this.UsersParams.departmentName = department;
       this.loadUsers();
     }
   }
@@ -128,8 +164,6 @@ export class UserListComponent implements OnInit {
       this.UsersParams.firstname = null;
       this.UsersParams.lastname = null;
       this.UsersParams.fullname = null;
-      this.UsersParams.hIDNo = null;
-      this.UsersParams.departmentName = null;
       this.loadUsers();
     }
   }
@@ -160,6 +194,11 @@ export class UserListComponent implements OnInit {
           );
         }
       });
+  }
+
+  showAll() {
+    this.UsersParams.isActive = false;
+    this.loadUsers();
   }
 
   // for laod data
