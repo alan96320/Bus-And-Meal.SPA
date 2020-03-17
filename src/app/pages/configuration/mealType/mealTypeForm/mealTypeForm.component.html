@@ -23,16 +23,6 @@
                 <div class="invalid-feedback">Is required</div>
               </div>
             </div>
-            <div class="form-group row no-border">
-              <label class="col-sm-2 offset-sm-1 col-form-label">Vendor</label>
-              <div class="col-sm-8">
-                <select name="mealVendorId" class="form-control" required [(ngModel)]="model.mealVendorId" #mealVendorId="ngModel">
-                  <option *ngFor="let vendor of MealVendors" [value]="vendor.id" >
-                    {{vendor.name}}
-                  </option>
-                </select>
-              </div>
-            </div>
             <div class="row">
               <div class="col-sm-9 offset-sm-3">
                 <button class="btn btn-default animation-on-hover btn-sm" type="submit"

@@ -30,7 +30,7 @@
                 class="btn btn-default animation-on-hover"
                 type="button"
                 ngbTooltip="Print"
-                [routerLink]="['/report/MealType']"
+                [routerLink]="['/report/mealtype']"
               >
                 Print
               </button>
@@ -57,13 +57,6 @@
                       [ngClass]="{ 'sort-active': sortAscName === false }"
                     ></i>
                   </th>
-                  <th class="sort-custom" (click)="sortActive('mealVendor')">
-                    Vendor Name
-                    <i
-                      class="tim-icons icon-minimal-up ml-2"
-                      [ngClass]="{ 'sort-active': mealVendor === true }"
-                    ></i>
-                  </th>
                   <th class="text-right">Actions</th>
                   <th></th>
                 </tr>
@@ -77,10 +70,9 @@
                       placeholder="Filter By Code"
                       #box
                       (keyup.enter)="
-                        OrderBy(box.value, box1.value, box2.value);
+                        OrderBy(box.value, box1.value);
                         box.value = '';
                         box1.value = '';
-                        box2.value = ''
                       "
                     />
                   </td>
@@ -91,21 +83,7 @@
                       placeholder="Filter By Name"
                       #box1
                       (keyup.enter)="
-                        OrderBy(box.value, box1.value, box2.value);
-                        box.value = '';
-                        box1.value = '';
-                        box2.value = ''
-                      "
-                    />
-                  </td>
-                  <td class="form-group no-border">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Filter By Vendor Name"
-                      #box2
-                      (keyup.enter)="
-                        OrderBy(box.value, box1.value, box2.value);
+                        OrderBy(box.value, box1.value);
                         box.value = '';
                         box1.value = '';
                         box2.value = ''
@@ -117,7 +95,6 @@
                 <tr *ngFor="let MealType of MealTypes">
                   <td>{{ MealType.code }}</td>
                   <td>{{ MealType.name }}</td>
-                  <td>{{ MealType.mealVendor.name }}</td>
                   <td class="td-actions text-right">
                     <button
                       class=" btn btn-link btn-success btn-icon btn-sm"

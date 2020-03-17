@@ -17,7 +17,6 @@ export class MealTypeFormComponent implements OnInit {
   update = false;
   mealTypes: MealType;
   id = +this.route.snapshot.params.id;
-  MealVendors: any;
   constructor(
     private mealTypeService: MealTypeService,
     private alertify: AlertifyService,
@@ -29,7 +28,6 @@ export class MealTypeFormComponent implements OnInit {
 
   ngOnInit() {
     this.loadMealTypes();
-    this.loadMealVendors();
   }
 
   loadMealTypes() {
@@ -37,7 +35,6 @@ export class MealTypeFormComponent implements OnInit {
       this.route.data.subscribe(data => {
         this.model.code = data.MealType.code;
         this.model.name = data.MealType.name;
-        this.model.mealVendorId = data.MealType.mealVendor.id;
         this.update = true;
       });
     }
@@ -77,22 +74,6 @@ export class MealTypeFormComponent implements OnInit {
       },
       error => {
         this.sweetAlert.warning(error);
-      }
-    );
-  }
-
-  loadMealVendors() {
-    this.http.get('http://localhost:5000/api/MealVendor').subscribe(
-      response => {
-        this.MealVendors = response;
-        this.MealVendors.map(data => {
-          if (data.name === 'Default') {
-            this.model.mealVendorId = data.id;
-          }
-        });
-      },
-      error => {
-        this.sweetAlert.error(error);
       }
     );
   }
