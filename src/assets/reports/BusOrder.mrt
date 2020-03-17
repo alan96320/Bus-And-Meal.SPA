@@ -236,7 +236,7 @@
         <PageHeaderBand1 Ref="18" type="PageHeaderBand" isKey="true">
           <Border>None;[43:43:43];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,20,747,150</ClientRectangle>
+          <ClientRectangle>0,20,1089,150</ClientRectangle>
           <Components isList="true" count="6">
             <Text01 Ref="19" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black</Border>
@@ -326,7 +326,7 @@
             <Image1 Ref="24" type="Image" isKey="true">
               <AspectRatio>True</AspectRatio>
               <Brush>Transparent</Brush>
-              <ClientRectangle>430,20,320,120</ClientRectangle>
+              <ClientRectangle>780,20,320,120</ClientRectangle>
               <Conditions isList="true" count="0" />
               <ImageURL>resource://LOGO ALCON</ImageURL>
               <Margins>0,0,0,0</Margins>
@@ -343,12 +343,12 @@
         </PageHeaderBand1>
         <PageHeaderBand2 Ref="25" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,210,747,30</ClientRectangle>
+          <ClientRectangle>0,210,1089,30</ClientRectangle>
           <Components isList="true" count="4">
             <Text2 Ref="26" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,750,30</ClientRectangle>
+              <ClientRectangle>0,0,1090,30</ClientRectangle>
               <ComponentStyle>Black Company Name</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,18,Bold,Point,False,0</Font>
@@ -363,7 +363,7 @@
             <Text15 Ref="27" type="Text" isKey="true">
               <Border>None;[43:43:43];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>500,0,157,30</ClientRectangle>
+              <ClientRectangle>860,0,157,30</ClientRectangle>
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
@@ -383,7 +383,7 @@
             </Text15>
             <Text7 Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,500,30</ClientRectangle>
+              <ClientRectangle>0,0,860,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
               <Guid>c4db43119bcc4c93a4d0d5f44a6da3db</Guid>
@@ -398,7 +398,7 @@
             <Text8 Ref="30" type="Text" isKey="true">
               <Border>None;[43:43:43];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>660,0,67,30</ClientRectangle>
+              <ClientRectangle>1020,0,67,30</ClientRectangle>
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
@@ -424,13 +424,13 @@
         </PageHeaderBand2>
         <PageFooterBand1 Ref="32" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,1049,747,40</ClientRectangle>
+          <ClientRectangle>0,707,1089,40</ClientRectangle>
           <Components isList="true" count="2">
             <Text304 Ref="33" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>180,20,337,20</ClientRectangle>
+              <ClientRectangle>510,20,337,20</ClientRectangle>
               <ComponentStyle>Black Bill To Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
@@ -449,7 +449,7 @@
             <Text115 Ref="34" type="Text" isKey="true">
               <Border>Left;White;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>510,21,237,20</ClientRectangle>
+              <ClientRectangle>850,21,237,20</ClientRectangle>
               <ComponentStyle>Black Company Info</ComponentStyle>
               <Conditions isList="true" count="0" />
               <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
@@ -472,7 +472,7 @@
         </PageFooterBand1>
         <CrossTab1 Ref="35" type="Stimulsoft.Report.CrossTab.StiCrossTab" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,250,750,250</ClientRectangle>
+          <ClientRectangle>10,250,1070,250</ClientRectangle>
           <Components isList="true" count="16">
             <CrossTab1_RowTotal2 Ref="36" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
@@ -745,6 +745,7 @@
           </Components>
           <Conditions isList="true" count="0" />
           <CrossTabStyleIndex>15</CrossTabStyleIndex>
+          <DataRelationName />
           <DataSourceName>busorder_busOrderDetails</DataSourceName>
           <EmptyValue />
           <Filters isList="true" count="0" />
@@ -758,6 +759,9 @@
       <Guid>6e1caf2a75ec493386f5a9199bdc6833</Guid>
       <Margins>40,40,40,40</Margins>
       <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>827</PageHeight>
+      <PageWidth>1169</PageWidth>
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
     </Page1>
@@ -778,7 +782,8 @@
   <ReportChanged>3/5/2020 11:29:59 AM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportGuid>4e0bf25fe0fd44f28736c1db69dc02a8</ReportGuid>
+  <ReportFile>BusOrder.mrt</ReportFile>
+  <ReportGuid>e14007b0befb41e397eb0c7ec12abf0e</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.1.0</ReportVersion>

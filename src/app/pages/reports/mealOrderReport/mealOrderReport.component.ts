@@ -68,7 +68,7 @@ export class MealOrderReportComponent implements OnInit {
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile("../assets/reports/MealOrder.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Meal Order Summary";
+      "Meal Order Verification";
 
     this.mealOrderReport.orderdetail = this.orderDetail;
     this.mealOrderReport.mealtype = this.mealtype;

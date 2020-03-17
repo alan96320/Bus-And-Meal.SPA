@@ -59,7 +59,7 @@ export class BusOrderReportComponent implements OnInit {
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile("../assets/reports/BusOrder.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Bus Order Summary";
+      "Bus Order Verification";
 
     report.dictionary.databases.clear();
     report.regData("BusOrder", "BusOrder", this.busOrderReport);
