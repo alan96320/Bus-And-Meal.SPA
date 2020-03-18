@@ -23,7 +23,6 @@
             </div>
             <div class="form-group row no-border">  
               <label class="col-sm-2 offset-sm-1 col-form-label">Department</label>
-              {{model.DepartmentId}}
               <div class="col-sm-4 24hr-example">
                 <select name="DepartmentId" class="form-control" [(ngModel)]="model.DepartmentId" required #DepartmentId="ngModel">
                   <option *ngFor="let department of listDepartments" [value]="department.id" >
