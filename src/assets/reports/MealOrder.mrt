@@ -381,7 +381,7 @@
             <CrossTab1_RowTotal1 Ref="29" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[46:117:181]</Brush>
-              <ClientRectangle>0,84,210,30</ClientRectangle>
+              <ClientRectangle>0,94,210,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>18c2160150464aaaba9afa2f83aad473</Guid>
@@ -396,7 +396,7 @@
             <CrossTab1_Row1_Title Ref="30" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>0,22,50,30</ClientRectangle>
+              <ClientRectangle>0,32,50,30</ClientRectangle>
               <Font>Arial,10</Font>
               <Guid>d5a8458b50b04966856c39724ca37229</Guid>
               <Margins>5,5,5,0</Margins>
@@ -411,22 +411,22 @@
             <CrossTab1_LeftTitle Ref="31" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>0,0,210,20</ClientRectangle>
+              <ClientRectangle>0,0,210,30</ClientRectangle>
               <Font>Arial,12</Font>
               <Guid>1a07fb78febf419b8aeda38b7759c17b</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,5,5</Margins>
               <Name>CrossTab1_LeftTitle</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
-              <Text>Detail Order</Text>
+              <Text>Order Detail</Text>
               <TextBrush>[255:255:255]</TextBrush>
               <TypeOfComponent>LeftTitle</TypeOfComponent>
             </CrossTab1_LeftTitle>
             <CrossTab1_RowTotal2 Ref="32" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[85:209:255]</Brush>
-              <ClientRectangle>50,84,0,0</ClientRectangle>
+              <ClientRectangle>50,94,0,0</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Enabled>False</Enabled>
               <Font>Arial,8</Font>
@@ -442,7 +442,7 @@
             <CrossTab1_Row2_Title Ref="33" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>50,22,90,30</ClientRectangle>
+              <ClientRectangle>50,32,90,30</ClientRectangle>
               <Font>Arial,10</Font>
               <Guid>3b99bb23cf554ec4bc1203ba02d19419</Guid>
               <Margins>5,5,0,0</Margins>
@@ -457,7 +457,7 @@
             <CrossTab1_RowTotal3 Ref="34" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[85:209:255]</Brush>
-              <ClientRectangle>140,84,0,0</ClientRectangle>
+              <ClientRectangle>140,94,0,0</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Enabled>False</Enabled>
               <Font>Arial,8</Font>
@@ -473,7 +473,7 @@
             <CrossTab1_Row3_Title Ref="35" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>140,22,70,30</ClientRectangle>
+              <ClientRectangle>140,32,70,30</ClientRectangle>
               <Font>Arial,10</Font>
               <Guid>771087050c384e7798a1f3a98988f004</Guid>
               <Margins>0,0,0,0</Margins>
@@ -488,15 +488,15 @@
             <CrossTab1_RightTitle Ref="36" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>212,0,90,20</ClientRectangle>
+              <ClientRectangle>212,0,110,30</ClientRectangle>
               <Font>Arial,12</Font>
               <Guid>9fb02120ad6d4c699743760b53874052</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Margins>5,5,0,0</Margins>
               <Name>CrossTab1_RightTitle</Name>
               <Page isRef="9" />
               <Parent isRef="27" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
-              <Text>Meal Type</Text>
+              <Text>Meal Types</Text>
               <TextBrush>[255:255:255]</TextBrush>
               <TypeOfComponent>RightTitle</TypeOfComponent>
             </CrossTab1_RightTitle>
@@ -504,7 +504,7 @@
               <Alias>date</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:176:240]</Brush>
-              <ClientRectangle>0,54,50,30</ClientRectangle>
+              <ClientRectangle>0,64,50,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.date}</DisplayValue>
               <Font>Arial,10</Font>
@@ -523,7 +523,7 @@
               <Alias>department</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:176:240]</Brush>
-              <ClientRectangle>50,54,90,30</ClientRectangle>
+              <ClientRectangle>50,64,90,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.department}</DisplayValue>
               <Font>Arial,10</Font>
@@ -542,7 +542,7 @@
               <Alias>collected</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:176:240]</Brush>
-              <ClientRectangle>140,54,70,30</ClientRectangle>
+              <ClientRectangle>140,64,70,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.collected}</DisplayValue>
               <Font>Arial,10</Font>
@@ -561,7 +561,7 @@
               <Alias>name</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>212,22,90,30</ClientRectangle>
+              <ClientRectangle>212,32,110,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{orderdetail.mealtypename.name}</DisplayValue>
               <Font>Arial,10</Font>
@@ -580,7 +580,7 @@
               <Alias>total</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[222:235:246]</Brush>
-              <ClientRectangle>212,54,90,30</ClientRectangle>
+              <ClientRectangle>212,64,110,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>5deba40075a3404eb7af5c028387ba0b</Guid>

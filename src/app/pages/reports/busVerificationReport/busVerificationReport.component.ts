@@ -4,13 +4,12 @@ import { ActivatedRoute } from "@angular/router";
 declare var Stimulsoft: any;
 
 @Component({
-  selector: "app-busOrderReport",
-  templateUrl: "./busOrderReport.component.html",
-  styleUrls: ["./busOrderReport.component.css"]
+  selector: "app-busVerificationReport",
+  templateUrl: "./busVerificationReport.component.html",
+  styleUrls: ["./busVerificationReport.component.css"]
 })
-export class BusOrderReportComponent implements OnInit {
-  busOrderResource: any = [];
-  busOrderReport: any = {};
+export class BusVerificationReportComponent implements OnInit {
+  busVerificationResource: any = [];
   monthName = [
     "Jan",
     "Feb",
@@ -25,7 +24,6 @@ export class BusOrderReportComponent implements OnInit {
     "Nov",
     "Dec"
   ];
-
   constructor(private route: ActivatedRoute) {}
 
   convertDate(newDate) {
@@ -42,26 +40,25 @@ export class BusOrderReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.busOrderResource = data["busorder"];
+      this.busVerificationResource = data["busverification"];
     });
 
-    this.busOrderReport.busorder = this.busOrderResource.busOrderResult;
-    this.busOrderReport.bustime = this.busOrderResource.bustimeResult;
-    this.busOrderReport.department = this.busOrderResource.departmentResult;
-    this.busOrderReport.direction = this.busOrderResource.direction;
-    this.busOrderReport.dormitoryblock = this.busOrderResource.dormitoryblockResult;
-    this.busOrderReport.busorder.map(bo => {
-      bo.date = this.convertDate(bo.orderEntryDate);
+    this.busVerificationResource.busVerificationResult.map(bv => {
+      bv.date = this.convertDate(bv.orderdate);
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/BusOrder.mrt");
+    report.loadFile("../assets/reports/BusVerification.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Bus Order List";
+      "Bus Verification List";
 
     report.dictionary.databases.clear();
-    report.regData("BusOrder", "BusOrder", this.busOrderReport);
+    report.regData(
+      "BusVerification",
+      "BusVerification",
+      this.busVerificationResource
+    );
 
     options.width = "100%";
     options.height = "850px";
@@ -69,6 +66,6 @@ export class BusOrderReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("busOrderReport");
+    viewer.renderHtml("busVerificationReport");
   }
 }

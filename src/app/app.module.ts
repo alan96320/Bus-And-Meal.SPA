@@ -93,7 +93,9 @@ import {
   CounterReportResolver,
   UsersReportResolver,
   MealOrderReportResolver,
-  BusOrderReportResolver
+  BusOrderReportResolver,
+  MealVerificationReportResolver,
+  BusVerificationReportResolver
 } from "./_resolvers/reportResolver";
 import { MealTypeReportComponent } from "./pages/reports/mealTypeReport/mealTypeReport.component";
 import { DormitoryBlockReportComponent } from "./pages/reports/dormitoryBlockReport/dormitoryBlockReport.component";
@@ -122,6 +124,8 @@ import {
 import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { CounterFormComponent } from "./pages/configuration/counter/CounterForm/CounterForm.component";
 import { BusOrderReportComponent } from "./pages/reports/busOrderReport/busOrderReport.component";
+import { MealVerificationReportComponent } from "./pages/reports/mealVerificationReport/mealVerificationReport.component";
+import { BusVerificationReportComponent } from "./pages/reports/busVerificationReport/busVerificationReport.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -192,7 +196,9 @@ export function tokenGetter() {
     CounterReportComponent,
     UsersReportComponent,
     MealOrderReportComponent,
-    BusOrderReportComponent
+    BusOrderReportComponent,
+    MealVerificationReportComponent,
+    BusVerificationReportComponent
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
@@ -225,6 +231,8 @@ export function tokenGetter() {
     UsersReportResolver,
     MealOrderReportResolver,
     BusOrderReportResolver,
+    MealVerificationReportResolver,
+    BusVerificationReportResolver,
     MealOrderEntryListResolver,
     MealOrderEntryDetailResolver,
     MealOrderVerificationListResolver,

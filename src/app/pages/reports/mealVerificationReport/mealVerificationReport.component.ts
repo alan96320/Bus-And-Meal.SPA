@@ -4,13 +4,12 @@ import { ActivatedRoute } from "@angular/router";
 declare var Stimulsoft: any;
 
 @Component({
-  selector: "app-busOrderReport",
-  templateUrl: "./busOrderReport.component.html",
-  styleUrls: ["./busOrderReport.component.css"]
+  selector: "app-mealVerificationReport",
+  templateUrl: "./mealVerificationReport.component.html",
+  styleUrls: ["./mealVerificationReport.component.css"]
 })
-export class BusOrderReportComponent implements OnInit {
-  busOrderResource: any = [];
-  busOrderReport: any = {};
+export class MealVerificationReportComponent implements OnInit {
+  mealVerificationResource: any = [];
   monthName = [
     "Jan",
     "Feb",
@@ -42,26 +41,25 @@ export class BusOrderReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.busOrderResource = data["busorder"];
+      this.mealVerificationResource = data["mealverification"];
     });
 
-    this.busOrderReport.busorder = this.busOrderResource.busOrderResult;
-    this.busOrderReport.bustime = this.busOrderResource.bustimeResult;
-    this.busOrderReport.department = this.busOrderResource.departmentResult;
-    this.busOrderReport.direction = this.busOrderResource.direction;
-    this.busOrderReport.dormitoryblock = this.busOrderResource.dormitoryblockResult;
-    this.busOrderReport.busorder.map(bo => {
-      bo.date = this.convertDate(bo.orderEntryDate);
+    this.mealVerificationResource.mealOrderResult.map(mo => {
+      mo.date = this.convertDate(mo.orderDate);
     });
 
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/BusOrder.mrt");
+    report.loadFile("../assets/reports/MealVerification.mrt");
     report.dictionary.variables.getByName("title").valueObject =
-      "Bus Order List";
+      "Meal Verification List";
 
     report.dictionary.databases.clear();
-    report.regData("BusOrder", "BusOrder", this.busOrderReport);
+    report.regData(
+      "MealVerification",
+      "MealVerification",
+      this.mealVerificationResource
+    );
 
     options.width = "100%";
     options.height = "850px";
@@ -69,6 +67,6 @@ export class BusOrderReportComponent implements OnInit {
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
     viewer.report = report;
-    viewer.renderHtml("busOrderReport");
+    viewer.renderHtml("mealVerificationReport");
   }
 }

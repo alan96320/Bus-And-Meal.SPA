@@ -8,7 +8,6 @@ import { SweetAlertService } from "../_services/sweetAlert.service";
 import { MealType } from "../_models/mealType";
 import { MealTypeService } from "../_services/mealType.service";
 import { DormitoryBlock } from "../_models/dormitoryBlock";
-import { AlertifyService } from "../_services/alertify.service";
 import { DormitoryBlockService } from "../_services/dormitoryBlock.service";
 import { Employee } from "../_models/employee";
 import { EmployeeService } from "../_services/employee.service";
@@ -21,9 +20,13 @@ import { CounterService } from "../_services/counter.service";
 import { Users } from "../_models/users";
 import { UsersService } from "../_services/users.service";
 import { MealOrder } from "../_models/mealOrder";
-import { MealOrderService } from "../_services/mealOrder.service";
 import { BusOrder } from "../_models/busOrder";
-import { BusOrderService } from "../_services/busOrder.service";
+import { MealOrderEntryService } from "../_services/mealOrderEntry.service";
+import { MealOrderVerificationService } from "../_services/mealOrderVerification.service";
+import { BusOrderEntryService } from "../_services/busOrderEntry.service";
+import { BusOrderVerificationService } from "../_services/busOrderVerification.service";
+import { MealVerification } from "../_models/mealVerification";
+import { BusVerification } from "../_models/busVerification";
 
 @Injectable()
 export class DepartmentReportResolver implements Resolve<Department[]> {
@@ -180,13 +183,33 @@ export class UsersReportResolver implements Resolve<Users[]> {
 @Injectable()
 export class MealOrderReportResolver implements Resolve<MealOrder[]> {
   constructor(
-    private mealOrderService: MealOrderService,
+    private mealOrderEntryService: MealOrderEntryService,
     private router: Router,
     private sweetAlert: SweetAlertService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<MealOrder[]> {
-    return this.mealOrderService.getMealOrderReport().pipe(
+    return this.mealOrderEntryService.getMealOrderReport().pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(["/home"]);
+        return of(null);
+      })
+    );
+  }
+}
+
+@Injectable()
+export class MealVerificationReportResolver
+  implements Resolve<MealVerification[]> {
+  constructor(
+    private mealOrderVerificationService: MealOrderVerificationService,
+    private router: Router,
+    private sweetAlert: SweetAlertService
+  ) {}
+
+  resolve(route: ActivatedRouteSnapshot): Observable<MealVerification[]> {
+    return this.mealOrderVerificationService.getMealVerificationReport().pipe(
       catchError(error => {
         this.sweetAlert.error(error);
         this.router.navigate(["/home"]);
@@ -199,13 +222,33 @@ export class MealOrderReportResolver implements Resolve<MealOrder[]> {
 @Injectable()
 export class BusOrderReportResolver implements Resolve<BusOrder[]> {
   constructor(
-    private busOrderService: BusOrderService,
+    private busOrderEntryService: BusOrderEntryService,
     private router: Router,
     private sweetAlert: SweetAlertService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<BusOrder[]> {
-    return this.busOrderService.getBusOrderReport().pipe(
+    return this.busOrderEntryService.getBusOrderReport().pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(["/home"]);
+        return of(null);
+      })
+    );
+  }
+}
+
+@Injectable()
+export class BusVerificationReportResolver
+  implements Resolve<BusVerification[]> {
+  constructor(
+    private busOrderVerificationService: BusOrderVerificationService,
+    private router: Router,
+    private sweetAlert: SweetAlertService
+  ) {}
+
+  resolve(route: ActivatedRouteSnapshot): Observable<BusVerification[]> {
+    return this.busOrderVerificationService.getBusVerificationReport().pipe(
       catchError(error => {
         this.sweetAlert.error(error);
         this.router.navigate(["/home"]);

@@ -211,12 +211,34 @@
             <li class=" nav-link">
               <a
                 class=" nav-item"
+                [routerLink]="['/report/mealverification']"
+                href="javascript:void(0)"
+                (click)="activeLinkReport()"
+                ngbDropdownItem
+              >
+                Meal Verification
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
                 [routerLink]="['/report/busorder']"
                 href="javascript:void(0)"
                 (click)="activeLinkReport()"
                 ngbDropdownItem
               >
                 Bus Order
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/report/busverification']"
+                href="javascript:void(0)"
+                (click)="activeLinkReport()"
+                ngbDropdownItem
+              >
+                Bus Verification
               </a>
             </li>
           </ul>

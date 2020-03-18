@@ -93,7 +93,9 @@ import {
   CounterReportResolver,
   UsersReportResolver,
   MealOrderReportResolver,
-  BusOrderReportResolver
+  BusOrderReportResolver,
+  MealVerificationReportResolver,
+  BusVerificationReportResolver
 } from "./_resolvers/reportResolver";
 import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
 import { MealTypeReportComponent } from "./pages/reports/mealTypeReport/mealTypeReport.component";
@@ -105,6 +107,8 @@ import { UsersReportComponent } from "./pages/reports/usersReport/usersReport.co
 import { MealOrderReportComponent } from "./pages/reports/mealOrderReport/mealOrderReport.component";
 import { BusOrderReportComponent } from "./pages/reports/busOrderReport/busOrderReport.component";
 import { CounterFormComponent } from "./pages/configuration/counter/CounterForm/CounterForm.component";
+import { BusVerificationReportComponent } from "./pages/reports/busVerificationReport/busVerificationReport.component";
+import { MealVerificationReportComponent } from "./pages/reports/mealVerificationReport/mealVerificationReport.component";
 
 export const appRouting: Routes = [
   { path: "", component: HomeComponent },
@@ -340,9 +344,19 @@ export const appRouting: Routes = [
         resolve: { mealorder: MealOrderReportResolver }
       },
       {
+        path: "report/mealverification",
+        component: MealVerificationReportComponent,
+        resolve: { mealverification: MealVerificationReportResolver }
+      },
+      {
         path: "report/busorder",
         component: BusOrderReportComponent,
         resolve: { busorder: BusOrderReportResolver }
+      },
+      {
+        path: "report/busverification",
+        component: BusVerificationReportComponent,
+        resolve: { busverification: BusVerificationReportResolver }
       }
     ]
   },
