@@ -3,13 +3,18 @@
     <div class=" navbar-wrapper">
       <div class="logo">
         <a href="#" class="simple-text-custom logo-mini-custom">
-          <div class="logo-img">
-            <img src="./assets/img/angular2-logo-white.png" />
+          <div class="logo-img" style="width: 100px; height: 40px;">
+            <img
+              src="./assets/img/alcon-logo-png-300x200.png"
+              height="40px"
+              style="width: 100px;"
+            />
           </div>
         </a>
         <a
           [routerLink]="['/home']"
-          class="simple-text-custom logo-normal-custom"
+          class="simple-text-custom logo-normal-custom ml-4"
+          style="padding-left: 80px; font-size: 20px;"
         >
           Bus & Meal
         </a>
@@ -36,12 +41,6 @@
         class="navbar-nav mr-auto mt-2 mt-lg-0"
         style="margin-left: 6.5%;"
       >
-        <!-- for Menu -->
-        <!-- 
-            <li class="nav-item">
-               <a class="nav-link btn btn-success btn-simple animation-on-hover" (click)="destroyActiveLink()" [routerLink]="['/dashboard']" routerLinkActive="active" >Dashboard</a>
-            </li> -->
-
         <li class="nav-item" ngbDropdown>
           <!-- for transaction -->
           <a
@@ -52,7 +51,7 @@
             ngbDropdownToggle
             style="color: #ffffff;"
           >
-            Trasaction
+            Transaction
           </a>
           <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
             <li class=" nav-link">
@@ -112,94 +111,6 @@
             <li class=" nav-link">
               <a
                 class=" nav-item"
-                [routerLink]="['/report/department']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Department
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/employee']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Employee
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/mealtype']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Meal Type
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/dormitoryblock']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Dormitory Block
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/mealvendor']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Meal Vendor
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/bustime']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Bus Time
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/counter']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Counter
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/report/users']"
-                href="javascript:void(0)"
-                (click)="activeLinkReport()"
-                ngbDropdownItem
-              >
-                Users
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
                 [routerLink]="['/report/mealorder']"
                 href="javascript:void(0)"
                 (click)="activeLinkReport()"
@@ -254,7 +165,7 @@
             ngbDropdownToggle
             style="color: #ffffff;"
           >
-            Configuration
+            Master
           </a>
           <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
             <li class=" nav-link">
@@ -294,7 +205,7 @@
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
               >
-                Dormitory & Blok Area
+                Dormitory & Block Area
               </a>
             </li>
             <li class=" nav-link">
@@ -315,16 +226,6 @@
                 ngbDropdownItem
               >
                 Users
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a
-                class=" nav-item"
-                [routerLink]="['/roles']"
-                (click)="activeLinkConfiguration()"
-                ngbDropdownItem
-              >
-                Roles
               </a>
             </li>
             <li class=" nav-link">

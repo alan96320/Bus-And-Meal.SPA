@@ -52,6 +52,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
     this.loadDepartment();
     this.loadDormitory();
     this.loadBusTime();
+    this.BusOrderEntrysParams.isReadyToCollect = true;
     if (this.id) {
       this.route.data.subscribe(data => {
         this.model.OrderNo = data.busOrderVerification.orderNo;
@@ -218,6 +219,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
   }
 
   submit() {
+    this.BusOrderEntrysParams.isReadyToCollect = true;
     const a = 0;
     let c = false;
     const b = [];

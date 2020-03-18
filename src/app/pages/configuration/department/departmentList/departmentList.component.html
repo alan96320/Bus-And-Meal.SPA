@@ -29,7 +29,7 @@
               <button
                 class="btn btn-default animation-on-hover"
                 type="button"
-                ngbTooltip="Export"
+                ngbTooltip="Print"
                 [routerLink]="['/report/department']"
               >
                 Print
@@ -39,7 +39,7 @@
         </div>
         <li class="dropdown-divider"></li>
         <div class=" card-body" style="margin-top: -20px;">
-          <div class=" table-responsive table-custom">
+          <div class=" table-responsive table-custom" style="overflow: auto;">
             <table class="table">
               <thead>
                 <tr>
@@ -58,6 +58,7 @@
                     ></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -66,7 +67,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Order By Code"
+                      placeholder="Filter By Code"
                       #box
                       (keyup.enter)="
                         OrderBy(box.value, box1.value);
@@ -79,7 +80,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Order By Name"
+                      placeholder="Filter By Name"
                       #box1
                       (keyup.enter)="
                         OrderBy(box.value, box1.value);
@@ -88,7 +89,7 @@
                       "
                     />
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let department of departments">
                   <td>{{ department.code }}</td>
@@ -115,6 +116,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

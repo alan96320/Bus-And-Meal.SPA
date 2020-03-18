@@ -51,7 +51,7 @@ export class MealVendorFormComponent implements OnInit {
   }
 
   addMealVendor() {
-    console.log(this.model);
+    this.model.isUpdate = false;
     this.mealVendorService.addMealVendor(this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Added Successfully');
@@ -68,7 +68,7 @@ export class MealVendorFormComponent implements OnInit {
   }
 
   updateMealVendor() {
-    console.log(this.model);
+    this.model.isUpdate = true;
     this.mealVendorService.editMealVendor(this.id, this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Edit Successfully');

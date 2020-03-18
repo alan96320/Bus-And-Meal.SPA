@@ -64,6 +64,12 @@ export class BusOrderEntryService {
         );
         // tslint:disable-next-line: no-trailing-whitespace
       }
+      if (BusOrderEntryParams.isReadyToCollect) {
+        params = params.append(
+          "isReadyToCollect",
+          BusOrderEntryParams.isReadyToCollect
+        );
+      }
       if (BusOrderEntryParams.OrderBy != null) {
         params = params.append("OrderBy", BusOrderEntryParams.OrderBy);
         params = params.append("isDescending", BusOrderEntryParams.isDesc);

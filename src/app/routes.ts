@@ -14,8 +14,6 @@ import { MealTypeListComponent } from "./pages/configuration/mealType/mealTypeLi
 import { MealTypeFormComponent } from "./pages/configuration/mealType/mealTypeForm/mealTypeForm.component";
 import { MealVendorListComponent } from "./pages/configuration/mealVendor/mealVendorList/mealVendorList.component";
 import { MealVendorFormComponent } from "./pages/configuration/mealVendor/mealVendorForm/mealVendorForm.component";
-import { RolesListComponent } from "./pages/configuration/roles/rolesList/rolesList.component";
-import { RolesFormComponent } from "./pages/configuration/roles/rolesForm/rolesForm.component";
 import { UserListComponent } from "./pages/configuration/user/userList/userList.component";
 import { UserFormComponent } from "./pages/configuration/user/userForm/userForm.component";
 import { BusOrderEntryListComponent } from "./pages/transaction/busOrderEntry/busOrderEntryList/busOrderEntryList.component";
@@ -177,9 +175,6 @@ export const appRouting: Routes = [
         component: BusTimeFormComponent,
         resolve: { BusTime: BusTimeDetailResolver }
       },
-      { path: "roles", component: RolesListComponent },
-      { path: "formRoles", component: RolesFormComponent },
-      { path: "formRoles/:id", component: RolesFormComponent },
 
       {
         path: "user",

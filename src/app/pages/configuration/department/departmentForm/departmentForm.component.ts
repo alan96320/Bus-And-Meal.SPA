@@ -49,6 +49,7 @@ export class DepartmentFormComponent implements OnInit {
    }
 
    addDepartment() {
+      this.model.isUpdate = false;
       this.departmentService.addDepartment(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/department']);
@@ -63,7 +64,7 @@ export class DepartmentFormComponent implements OnInit {
    }
 
    updateDepartment() {
-      console.log(this.model);
+      this.model.isUpdate = true;
       this.departmentService.editDepartment(this.id, this.model).subscribe(() => {
          this.sweetAlert.successAdd('Edit Successfully');
          this.router.navigate(['/department']);

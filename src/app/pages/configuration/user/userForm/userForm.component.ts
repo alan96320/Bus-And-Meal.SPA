@@ -36,6 +36,7 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.loadUsers();
     this.loadDepartment();
+
   }
 
   loadUsers() {
@@ -49,10 +50,15 @@ export class UserFormComponent implements OnInit {
         this.model.adminStatus = data.user.adminStatus;
         this.model.lockTransStatus = data.user.lockTransStatus;
         this.userModule = data.user.userModuleRights;
+        if (data.user.isActive) {
+          this.model.isActive = true;
+        } else {
+          this.model.isActive = false;
+        }
         this.userModule.sort((a, b) =>
           a.moduleRights.description > b.moduleRights.description ? 1 : -1
         ); // for sorting asc by description
-        this.model.userDepartment = data.user.userDepartment;
+        this.model.userDepartment = data.user.userDepartments;
         this.update = true;
         this.model.userDepartment.map(item => {
           this.checkedStatus.push(item.departmentId);
@@ -94,11 +100,12 @@ export class UserFormComponent implements OnInit {
       delete data.moduleRights;
     });
 
+    if (this.model.lockTransStatus === true) {
+      this.model.lockTransStatus = 1;
+    }
     // update model with new data before send to server
     this.model.userDepartments = this.departmentSubmit;
     this.model.userModuleRights = moduleRightSubmit;
-
-    // console.log(this.model);
 
     this.usersService.editUser(this.id, this.model).subscribe(
       () => {

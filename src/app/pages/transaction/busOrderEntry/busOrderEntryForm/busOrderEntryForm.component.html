@@ -26,14 +26,11 @@
             <div class="form-group row no-border">
               <label class="col-sm-1 offset-sm-1 col-form-label">Department</label>
               <div class="col-sm-3 24hr-example">
-                <select name="DepartmentId" class="form-control" required [(ngModel)]="model.DepartmentId"
-                  #DepartmentId="ngModel" required
-                  [ngClass]="{'is-invalid': DepartmentId.invalid && (DepartmentId.dirty || DepartmentId.touched) }">
+                <select name="DepartmentId" class="form-control" required [(ngModel)]="model.DepartmentId" required>
                   <option *ngFor="let department of listDepartments" value="{{department.id}}">
                     {{department.name}}
                   </option>
                 </select>
-                <div class="invalid-feedback">Is required</div>
               </div>
             </div>
             <div class="form-group row no-border">

@@ -46,18 +46,11 @@
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let data of busOrderVerifications">
-                  <td>{{data.orderdate | date:'fullDate'}}</td>
+                  <td>{{data.orderdate | date}}</td>
                   <td>{{data.orderNo}}</td>
-                  <td class="form-row">
-                    <div class=" form-check col-2">
-                      <label class=" form-check-label">
-                        <input class=" form-check-input" type="checkbox" [checked]="data.isClosed" name="IsClosed" disabled>
-                        <span class=" form-check-sign">
-                          <span class=" check"></span>
-                        </span>
-                      </label>
-                    </div>
-                    <label class="col mt-1">Closed</label>
+                  <td>
+                    <label *ngIf="data.isClosed"><span class="badge badge-default">Closed</span></label>
+                    <label *ngIf="!data.isClosed"><span class="badge badge-default">Open</span></label>
                   </td>
                   <td class="td-actions text-center">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"

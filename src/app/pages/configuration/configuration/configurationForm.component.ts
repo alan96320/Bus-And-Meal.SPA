@@ -31,7 +31,6 @@ export class ConfigurationFormComponent implements OnInit {
   loadConfiguration() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.rowGrid = data.configuration.rowGrid;
         this.model.lockedBusOrder = data.configuration.lockedBusOrder;
         this.model.lockedMealOrder = data.configuration.lockedMealOrder;
       });
@@ -42,7 +41,8 @@ export class ConfigurationFormComponent implements OnInit {
   }
 
   saveConfiguration() {
-    console.log(this.model);
+    this.model.lockedBusOrder.replace('.', ':');
+    this.model.lockedMealOrder.replace('.', ':');
     this.configurationService.editConfiguration(this.id, this.model).subscribe(
       () => {
         this.sweetAlert.successAdd('Edit Successfully');

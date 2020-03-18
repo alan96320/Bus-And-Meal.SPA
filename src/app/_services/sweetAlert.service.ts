@@ -34,7 +34,7 @@ export class SweetAlertService {
   warning(message: string) {
     // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: 'warning',
+      icon: 'error',
       title: message
     });
   }

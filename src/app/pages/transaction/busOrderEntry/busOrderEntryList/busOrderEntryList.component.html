@@ -34,6 +34,7 @@
                   </th>
                   <th class="sort-custom">Status
                   </th>
+                  <th class="text-center">ready for collect</th>
                   <th class="sort-custom text-center">Action
                 </tr>
               </thead>
@@ -55,10 +56,10 @@
                       <option *ngFor="let item of dormitory" value="{{item.id}}">{{item.name}}</option>
                     </select>
                   </td>
-                  <td colspan="2"></td>
+                  <td colspan="3"></td>
                 </tr>
                 <tr *ngFor="let data of busOrderEntrys">
-                  <td>{{data.orderEntryDate | date:'fullDate'}}</td>
+                  <td>{{data.orderEntryDate | date}}</td>
                   <td *ngFor="let item of listDepartments" [ngClass]="{'d-none': item.id !== data.departmentId}">
                     {{item.name}}
                   </td>
@@ -68,6 +69,11 @@
                   <td>
                     <span class="badge badge-default">
                       {{data.busOrderVerificationId === null ? 'Open' : 'Close'}}
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge badge-default">
+                      {{data.isReadyToCollect ? 'YES' : 'NO'}}
                     </span>
                   </td>
                   <td class="td-actions text-center">
