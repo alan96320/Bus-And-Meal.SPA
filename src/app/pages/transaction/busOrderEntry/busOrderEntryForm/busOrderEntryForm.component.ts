@@ -17,6 +17,7 @@ export class BusOrderEntryFormComponent implements OnInit {
   update = false;
   id = +this.route.snapshot.params.id;
   listDepartments: any;
+  deptUser: any;
   mealTypes: any;
   dormitory: any;
   busTime: any = [];
@@ -59,11 +60,33 @@ export class BusOrderEntryFormComponent implements OnInit {
   }
 
   loadDepartment() {
+    // this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    //   this.listDepartments = response;
+    // }, error => {
+    //   this.sweetAlert.error(error);
+    // });
+    const id = localStorage.getItem('id_user');
+    const isAdmin = localStorage.getItem('isAdmin');
     this.http.get('http://localhost:5000/api/department').subscribe(response => {
       this.listDepartments = response;
     }, error => {
       this.sweetAlert.error(error);
     });
+    if (isAdmin === 'false') {
+      this.http.get('http://localhost:5000/api/user/' + id).subscribe(response => {
+        this.deptUser = response;
+        this.deptUser.userDepartments.map((data, i) => {
+          this.listDepartments.map(datax => {
+            if (data.departmentId === datax.id) {
+              data.name = datax.name;
+            }
+          });
+        });
+        this.listDepartments = this.deptUser.userDepartments;
+      }, error => {
+        this.sweetAlert.error(error);
+      });
+    }
   }
 
   loadDormiTory() {

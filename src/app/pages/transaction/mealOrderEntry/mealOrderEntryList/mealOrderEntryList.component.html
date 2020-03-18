@@ -29,7 +29,8 @@
                   </th>
                   <th class="sort-custom">Status
                   </th>
-                  <th class="sort-custom text-center">Action
+                  <th class="text-center">ready for collect</th>
+                  <th class="sort-custom text-center">Action </th>
                 </tr>
               </thead>
               <tbody>
@@ -44,7 +45,7 @@
                         <option *ngFor="let item of listDepartments" value="{{item.id}}">{{item.name}}</option>
                       </select>
                   </td>
-                  <td colspan="2"></td>
+                  <td colspan="3"></td>
                 </tr>
                 <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
                   <td>{{MealOrderEntry.orderEntryDate | date:'fullDate'}}</td>
@@ -54,6 +55,11 @@
                   <td>
                     <span class="badge badge-default">
                       {{MealOrderEntry.mealOrderVerificationId === null ? 'Open' : 'Close'}}
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge badge-default">
+                      {{MealOrderEntry.isReadyToCollect ? 'YES' : 'NO'}}
                     </span>
                   </td>
                   <td class="td-actions text-center">

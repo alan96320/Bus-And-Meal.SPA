@@ -40,8 +40,6 @@ export class MealOrderEntryListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.MealOrderEntrys = data.mealOrderEntry.result;
       this.pagination = data.mealOrderEntry.pagination;
-      console.log(data);
-
     });
   }
 

@@ -24,6 +24,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
   listDepartments: any;
   mealTypes: any;
   currenDate = new Date();
+  listVendor: any;
 
   // deklarasi untuk get data
   MealOrderEntrys: MealOrderEntry[];
@@ -53,7 +54,9 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.loadDepartment();
     this.loadMealType();
     this.converCurrenDate();
+    this.loadVendor();
     this.MealOrderEntrysParams.date = this.model.OrderDate;
+    this.MealOrderEntrysParams.isReadyToCollect = true;
     this.loadMealOrderEntrys();
     if (!this.id) {
       this.model.OrderNo = '';
@@ -85,6 +88,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
   OrderBy(date) {
     if (date !== null) {
       this.MealOrderEntrysParams.date = date;
+      this.MealOrderEntrysParams.isReadyToCollect = true;
       this.loadMealOrderEntrys();
       console.log(this.mealVerification);
     }
@@ -214,10 +218,20 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.different[i] = Number(this.ajusment[i]) - Number(this.swipParsing[i]);
     this.mealVerification[i].LogBookQty = event.target.value;
   }
+  vendor(event: any, i) {
+    this.mealVerification[i].VendorId = event.target.value;
+  }
 
   loadDepartment() {
     this.http.get('http://localhost:5000/api/department').subscribe(response => {
       this.listDepartments = response;
+    }, error => {
+      this.sweetAlert.error(error);
+    });
+  }
+  loadVendor() {
+    this.http.get('http://localhost:5000/api/MealVendor').subscribe(response => {
+      this.listVendor = response;
     }, error => {
       this.sweetAlert.error(error);
     });
@@ -240,39 +254,42 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.cancelAdd.emit(false);
   }
 
-  cekSumAgain() {
-    this.MealOrderEntrysParams.date = this.model.OrderDate;
-    // tslint:disable-next-line:max-line-length
-    this.mealOrderEntryService.getMealOrderEntrys('', '', this.MealOrderEntrysParams).subscribe((res: PaginatedResult<MealOrderEntry[]>) => {
-        let b = 0;
-        const a = JSON.parse(JSON.stringify(this.mealVerification));
-        let c = false;
-        const d = [];
-        this.mealTypes.map((item, i) => {
-          res.result.map((item2) => {
-            b += item2.mealOrderDetails[i].orderQty;
-          });
-          if (this.mealVerification[i].SumOrderQty !== b) {
-            this.mealVerification[i].SumOrderQty = b;
-            c = true;
-          }
-          b = 0;
-        });
-        res.result.map(item => {
-          d.push(item.id);
-        });
-        if (c) {
-          this.sweetAlert.message('There was a change of data on the meal order...');
-          this.model.OrderList = d;
-        }
-      },
-      error => {
-        this.sweetAlert.error(error);
-      }
-    );
-  }
+  // cekSumAgain() {
+  //   this.MealOrderEntrysParams.date = this.model.OrderDate;
+  //   this.MealOrderEntrysParams.isReadyToCollect = true;
+  //   // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line:max-line-length
+  //   this.mealOrderEntryService.getMealOrderEntrys('', '', this.MealOrderEntrysParams).subscribe((res: PaginatedResult<MealOrderEntry[]>) => {
+  //       let b = 0;
+  //       const a = JSON.parse(JSON.stringify(this.mealVerification));
+  //       let c = false;
+  //       const d = [];
+  //       this.mealTypes.map((item, i) => {
+  //         res.result.map((item2) => {
+  //           b += item2.mealOrderDetails[i].orderQty;
+  //         });
+  //         if (this.mealVerification[i].SumOrderQty !== b) {
+  //           this.mealVerification[i].SumOrderQty = b;
+  //           c = true;
+  //         }
+  //         b = 0;
+  //       });
+  //       res.result.map(item => {
+  //         d.push(item.id);
+  //       });
+  //       if (c) {
+  //         this.sweetAlert.message('There was a change of data on the meal order...');
+  //         this.model.OrderList = d;
+  //       }
+  //     },
+  //     error => {
+  //       this.sweetAlert.error(error);
+  //     }
+  //   );
+  // }
 
   submit() {
+    this.MealOrderEntrysParams.isReadyToCollect = true;
     // tslint:disable-next-line:max-line-length
     this.mealOrderEntryService.getMealOrderEntrys('', '', this.MealOrderEntrysParams).subscribe((res: PaginatedResult<MealOrderEntry[]>) => {
       let b = 0;
@@ -296,19 +313,25 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderList = d;
       }
       this.model.MealOrderVerificationDetails = this.mealVerification;
+      console.log(this.model);
+
       if (!this.update) {
         this.model.isUpdate = false;
         this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {
-          this.sweetAlert.successAdd('Add Successfully');
-          this.router.navigate(['/mealOrderVerification']);
+          setTimeout(() => {
+            this.sweetAlert.successAdd('Add Successfully');
+            this.router.navigate(['/mealOrderVerification']);
+          }, 1000);
         }, error => {
           this.sweetAlert.warning(error);
         });
       } else {
           this.model.isUpdate = true;
           this.mealOrderVerificationService.editMealOrderVerificationVerification(this.id, this.model).subscribe(() => {
-          this.sweetAlert.successAdd('Edit Successfully');
-          this.router.navigate(['/mealOrderVerification']);
+            setTimeout(() => {
+              this.sweetAlert.successAdd('Edit Successfully');
+              this.router.navigate(['/mealOrderVerification']);
+            }, 1000);
         }, error => {
           this.sweetAlert.warning(error);
         });

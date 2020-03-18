@@ -17,6 +17,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   update = false;
   id = +this.route.snapshot.params.id;
   listDepartments: any;
+  deptUser: any;
   mealTypes: any;
   currenDate = new Date();
 
@@ -32,8 +33,8 @@ export class MealOrderEntryFormComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment();
     this.loadMealType();
-    this.loadMealOrderEntry();
     this.converCurrenDate();
+    this.loadMealOrderEntry();
 
   }
   converCurrenDate() {
@@ -57,11 +58,30 @@ export class MealOrderEntryFormComponent implements OnInit {
   }
 
   loadDepartment() {
+    const id = localStorage.getItem('id_user');
+    const isAdmin = localStorage.getItem('isAdmin');
     this.http.get('http://localhost:5000/api/department').subscribe(response => {
       this.listDepartments = response;
     }, error => {
       this.sweetAlert.error(error);
     });
+    if (isAdmin === 'false') {
+      this.http.get('http://localhost:5000/api/user/' + id).subscribe(response => {
+        this.deptUser = response;
+        this.deptUser.userDepartments.map((data, i) => {
+          this.listDepartments.map(datax => {
+            if (data.departmentId === datax.id) {
+              data.name = datax.name;
+              data.id = datax.id;
+            }
+          });
+        });
+        this.listDepartments = this.deptUser.userDepartments;
+        this.listDepartments.unshift({ id: '', name: '' });
+      }, error => {
+        this.sweetAlert.error(error);
+      });
+    }
   }
 
   loadMealType() {
@@ -102,7 +122,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   submit() {
     this.model.MealOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
-    this.model.MealOrderDetails = this.mealTypes;
+    this.model.MealOrderDetails = this.mealTypes;    
     if (!this.update) {
       this.model.isUpdate = false;
       this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {

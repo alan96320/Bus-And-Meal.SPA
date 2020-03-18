@@ -47,6 +47,9 @@ export class MealOrderEntryService {
       if (MealOrderEntryParams.department != null) {
         params = params.append('DepartmentId', MealOrderEntryParams.department);
       }
+      if (MealOrderEntryParams.isReadyToCollect) {
+        params = params.append('isReadyToCollect', MealOrderEntryParams.isReadyToCollect);
+      }
       if (MealOrderEntryParams.OrderBy != null) {
         params = params.append('OrderBy', MealOrderEntryParams.OrderBy);
         params = params.append('isDescending', MealOrderEntryParams.isDesc);

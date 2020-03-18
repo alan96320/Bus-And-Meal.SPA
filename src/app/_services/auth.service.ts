@@ -20,8 +20,8 @@ export class AuthService {
         if (user) {
           localStorage.setItem('token', user.token);
           localStorage.setItem('id_user', user.user.id);
+          localStorage.setItem('isAdmin', user.user.adminStatus);
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
-
         }
       })
     );
