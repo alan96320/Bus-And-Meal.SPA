@@ -254,40 +254,6 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.cancelAdd.emit(false);
   }
 
-  // cekSumAgain() {
-  //   this.MealOrderEntrysParams.date = this.model.OrderDate;
-  //   this.MealOrderEntrysParams.isReadyToCollect = true;
-  //   // tslint:disable-next-line:max-line-length
-  // tslint:disable-next-line:max-line-length
-  //   this.mealOrderEntryService.getMealOrderEntrys('', '', this.MealOrderEntrysParams).subscribe((res: PaginatedResult<MealOrderEntry[]>) => {
-  //       let b = 0;
-  //       const a = JSON.parse(JSON.stringify(this.mealVerification));
-  //       let c = false;
-  //       const d = [];
-  //       this.mealTypes.map((item, i) => {
-  //         res.result.map((item2) => {
-  //           b += item2.mealOrderDetails[i].orderQty;
-  //         });
-  //         if (this.mealVerification[i].SumOrderQty !== b) {
-  //           this.mealVerification[i].SumOrderQty = b;
-  //           c = true;
-  //         }
-  //         b = 0;
-  //       });
-  //       res.result.map(item => {
-  //         d.push(item.id);
-  //       });
-  //       if (c) {
-  //         this.sweetAlert.message('There was a change of data on the meal order...');
-  //         this.model.OrderList = d;
-  //       }
-  //     },
-  //     error => {
-  //       this.sweetAlert.error(error);
-  //     }
-  //   );
-  // }
-
   submit() {
     this.MealOrderEntrysParams.isReadyToCollect = true;
     // tslint:disable-next-line:max-line-length

@@ -60,11 +60,6 @@ export class BusOrderEntryFormComponent implements OnInit {
   }
 
   loadDepartment() {
-    // this.http.get('http://localhost:5000/api/department').subscribe(response => {
-    //   this.listDepartments = response;
-    // }, error => {
-    //   this.sweetAlert.error(error);
-    // });
     const id = localStorage.getItem('id_user');
     const isAdmin = localStorage.getItem('isAdmin');
     this.http.get('http://localhost:5000/api/department').subscribe(response => {
@@ -79,10 +74,12 @@ export class BusOrderEntryFormComponent implements OnInit {
           this.listDepartments.map(datax => {
             if (data.departmentId === datax.id) {
               data.name = datax.name;
+              data.id = datax.id;
             }
           });
         });
         this.listDepartments = this.deptUser.userDepartments;
+        this.listDepartments.unshift({ id: '', name: '' });
       }, error => {
         this.sweetAlert.error(error);
       });
@@ -170,6 +167,7 @@ export class BusOrderEntryFormComponent implements OnInit {
     this.model.UserId = localStorage.getItem('id_user');
     this.model.BusOrderDetails = this.busTime2;
     if (!this.update) {
+      this.model.isUpdate = false;
       this.busOrderEntryService.addBusOrderEntry(this.model).subscribe(() => {
         this.sweetAlert.successAdd('Add Successfully');
         this.router.navigate(['/busOrderEntry']);
@@ -177,6 +175,7 @@ export class BusOrderEntryFormComponent implements OnInit {
         this.sweetAlert.warning(error);
       });
     } else {
+      this.model.isUpdate = true;
       this.busOrderEntryService.editBusOrderEntry(this.id, this.model).subscribe(() => {
         this.sweetAlert.successAdd('Edit Successfully');
         this.router.navigate(['/busOrderEntry']);

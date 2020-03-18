@@ -46,11 +46,11 @@
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let data of busOrderVerifications">
-                  <td>{{data.orderdate | date:'fullDate'}}</td>
+                  <td>{{data.orderdate | date}}</td>
                   <td>{{data.orderNo}}</td>
                   <td>
-                    <label *ngIf="data.isClosed">Closed</label>
-                    <label *ngIf="!data.isClosed">Open</label>
+                    <label *ngIf="data.isClosed"><span class="badge badge-default">Closed</span></label>
+                    <label *ngIf="!data.isClosed"><span class="badge badge-default">Open</span></label>
                   </td>
                   <td class="td-actions text-center">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
