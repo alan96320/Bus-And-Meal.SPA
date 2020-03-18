@@ -45,7 +45,7 @@
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let data of MealOrderVerifications">
-                  <td>{{data.orderDate | date:'fullDate'}}</td>
+                  <td>{{data.orderDate | date}}</td>
                   <td>{{data.orderNo}}</td>
                   <td class="form-row">
                     <label class="col mt-1" *ngIf="data.isClosed" >Closed</label>

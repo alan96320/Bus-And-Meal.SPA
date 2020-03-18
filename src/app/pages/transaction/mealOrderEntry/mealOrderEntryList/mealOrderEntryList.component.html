@@ -48,7 +48,7 @@
                   <td colspan="3"></td>
                 </tr>
                 <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
-                  <td>{{MealOrderEntry.orderEntryDate | date:'fullDate'}}</td>
+                  <td>{{MealOrderEntry.orderEntryDate | date}}</td>
                   <td *ngFor="let item of listDepartments" [ngClass]="{'d-none': item.id !== MealOrderEntry.departmentId}">
                     {{item.name}}
                   </td>
