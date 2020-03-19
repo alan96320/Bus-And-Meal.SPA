@@ -82,7 +82,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('id_user');
     localStorage.removeItem('isAdmin');
-    this.sweetAlert.warning('Logout Sukses');
+    this.sweetAlert.warning('Logout Succcess');
     this.router.navigate(['/home']);
   }
 }
