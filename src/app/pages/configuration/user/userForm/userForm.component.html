@@ -23,7 +23,7 @@
               <label class="col-sm-2 offset-sm-1 col-form-label">First Name</label>
               <div class="col-sm-4">
                 <input type="text" class="form-control" placeholder="Please input for First Name here...."
-                  name="firstname" required [(ngModel)]="model.firstname" #firstname="ngModel" [ngClass]="{'is-invalid': firstname.invalid && (firstname.dirty || firstname.touched) }">
+                  name="firstname" required [(ngModel)]="model.firstname" #firstname="ngModel" [ngClass]="{'is-invalid': firstname.invalid && (firstname.dirty || firstname.touched) }" (keydown)="fullName(firstname.value, lastname.value)" (keyup)="fullName(firstname.value, lastname.value)">
                 <div class="invalid-feedback">Is required</div>
               </div>
               <div class=" form-check col-sm-4 offset-sm-1">
@@ -40,7 +40,7 @@
               <div class="col-sm-4">
                 <input type="text" class="form-control" placeholder="Please input for Last Name here...."
                   name="lastname" required [(ngModel)]="model.lastname" #lastname="ngModel"
-                  [ngClass]="{'is-invalid': lastname.invalid && (lastname.dirty || lastname.touched) }">
+                  [ngClass]="{'is-invalid': lastname.invalid && (lastname.dirty || lastname.touched) }" (keydown)="fullName(firstname.value, lastname.value)" (keyup)="fullName(firstname.value, lastname.value)">
                 <div class="invalid-feedback">Is required</div>
               </div>
               <div class=" form-check col-sm-4 offset-sm-1">
@@ -55,7 +55,7 @@
             <div class="form-group row no-border">
               <label class="col-sm-2 offset-sm-1 col-form-label">Full name</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="fullname" [(ngModel)]="model.fullname" value="{{firstname.value+' '+lastname.value}}" readonly>
+                <input type="text" class="form-control" name="fullname" [(ngModel)]="model.fullname"  readonly>
               </div>
             </div>
             <div class="row ml-2 mr-2">

@@ -75,6 +75,10 @@ export class UserFormComponent implements OnInit {
     this.cancelAdd.emit(false);
   }
 
+  fullName(firstName, lastName) {
+    this.model.fullname = firstName + ' ' + lastName;
+  }
+
   departmentCheck(event) {
     if (event.target.checked === true) {
       this.checkedList.push(event.target.value);
