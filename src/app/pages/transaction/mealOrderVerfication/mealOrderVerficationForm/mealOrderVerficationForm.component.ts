@@ -132,11 +132,12 @@ export class MealOrderVerficationFormComponent implements OnInit {
             c = b.slice(0, 8) + (Number(b.slice(8)) + 1);
           }
           res.result.map(item => {
-            if (item.mealOrderVerificationId !== null && !this.id) {
+            // if (item.mealOrderVerificationId !== null || item.mealOrderVerificationId === 0 && !this.id) {
+            if (!(item.mealOrderVerificationId === null || item.mealOrderVerificationId === 0) && !this.id) {
               a = true;
             }
           });
-          if (!a) {
+          if (a === false) {
             this.MealOrderEntrys = res.result;
             this.pagination = res.pagination;
           } else {
