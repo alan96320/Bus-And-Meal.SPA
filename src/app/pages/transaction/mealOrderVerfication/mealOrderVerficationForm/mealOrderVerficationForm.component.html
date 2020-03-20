@@ -1,7 +1,7 @@
 <div class="content">
   <div class=" row">
     <div class=" col-12">
-      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Meal Order Veryfication</h2>
+      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Meal Order Verification</h2>
       <div class=" card card-custom">
         <form #FormMealOrderVerification="ngForm" (ngSubmit)="submit()">
         <div class=" card-header">
@@ -129,10 +129,10 @@
                 <tr>
                   <th *ngFor="let data of different" class="text-center">{{data}}</th>
                 </tr>
-                <th *ngFor="let data of sumData; let i = index" class="text-center">
+                <th *ngFor="let data of selectedVendor; let i = index" class="text-center">
                   <select name="VendorId{{i}}" class="form-control form-control-sm" (change)='vendor($event,i)' required>
                     <option value="">Select Vendor</option>
-                    <option *ngFor="let vendor of listVendor" value="{{vendor.id}}">
+                    <option *ngFor="let vendor of listVendor" value="{{vendor.id}}" [selected]="vendor.id === data.vendorId" >
                       {{vendor.name}}
                     </option>
                   </select>

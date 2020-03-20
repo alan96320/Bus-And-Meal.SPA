@@ -15,4 +15,5 @@ export interface MealOrderVerificationDetails {
     adjusmentQty: number;
     swipeQty: number;
     logBookQty: number;
+    vendorId: number;
 }

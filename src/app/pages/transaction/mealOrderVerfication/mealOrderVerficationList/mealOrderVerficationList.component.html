@@ -79,7 +79,7 @@
                   <td colspan="4"></td>
                 </tr>
                 <tr *ngFor="let data of MealOrderVerifications" class="text-center" style="height: 55px;">
-                  <td *ngFor="let item of data.mealVerificationDetails; let i = index">{{item.sumOrderQty}}</td>
+                  <td *ngFor="let item of data.mealVerificationDetails; let i = index">{{item.sumOrderQty + item.adjusmentQty}}</td>
                 </tr>
               </tbody>
             </table>

@@ -38,6 +38,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
   logBoks: any;
   swipParsing: any;
   different: any;
+  selectedVendor: any;
   mealVerification: any = [];
 
   constructor(
@@ -90,7 +91,6 @@ export class MealOrderVerficationFormComponent implements OnInit {
       this.MealOrderEntrysParams.date = date;
       this.MealOrderEntrysParams.isReadyToCollect = true;
       this.loadMealOrderEntrys();
-      console.log(this.mealVerification);
     }
   }
 
@@ -181,6 +181,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.swipParsing = JSON.parse(JSON.stringify(c));
     this.different = JSON.parse(JSON.stringify(a));
     this.model.OrderList = d;
+    this.selectedVendor = this.sumData;
     if (this.id) {
       this.route.data.subscribe(data => {
         this.model.OrderDate = data.mealOrderVerification.orderDate.substr(0, 10);
@@ -188,11 +189,12 @@ export class MealOrderVerficationFormComponent implements OnInit {
           item.AdjusmentQty = data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
           item.SwipeQty = data.mealOrderVerification.mealVerificationDetails[i].swipeQty;
           item.LogBookQty = data.mealOrderVerification.mealVerificationDetails[i].logBookQty;
-          this.ajusment[i] = this.ajusment[i] - data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
+          this.ajusment[i] = this.ajusment[i] + data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
           // tslint:disable-next-line:max-line-length
           this.swipParsing[i] = data.mealOrderVerification.mealVerificationDetails[i].swipeQty + data.mealOrderVerification.mealVerificationDetails[i].logBookQty;
           this.different[i] = this.ajusment[i] - this.swipParsing[i];
         });
+        this.selectedVendor = data.mealOrderVerification.mealVerificationDetails;
         this.model.OrderNo = data.mealOrderVerification.orderNo;
         this.model.IsClosed = data.mealOrderVerification.isClosed;
       });
@@ -280,8 +282,6 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderList = d;
       }
       this.model.MealOrderVerificationDetails = this.mealVerification;
-      console.log(this.model);
-
       if (!this.update) {
         this.model.isUpdate = false;
         this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {
