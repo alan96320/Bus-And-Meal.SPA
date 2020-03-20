@@ -32,9 +32,6 @@
                   <th class="sort-custom" (click)="sortActive('location')">Location
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscLocation===false}"></i>
                   </th>
-                  <th class="sort-custom" (click)="sortActive('status')">Status
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscStatus===false}"></i>
-                  </th>
                   <th class="text-right">Actions</th>
                   <th></th>
                 </tr>
@@ -43,22 +40,15 @@
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
                     <input type="text" class="form-control" placeholder="Filter By Code" #box
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value.value);box.value='';box1.value='';box2.value=''" />
                   </td>
                   <td class="form-group no-border">
                     <input type="text" class="form-control" placeholder="Filter By Name" #box1
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value.value);box.value='';box1.value='';box2.value=''" />
                   </td>
                   <td class="form-group no-border">
                     <input type="text" class="form-control" placeholder="Filter By Location" #box2
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
-                  </td>
-                  <td class="form-group no-border">
-                    <select class="form-control" #box3 (change)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''">
-                      <option value="">Select One..</option>
-                      <option value="1">Active</option>
-                      <option value="0">Not Active</option>
-                    </select>
+                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value.value);box.value='';box1.value='';box2.value=''" />
                   </td>
                   <td colspan="2"></td>
                 </tr>
@@ -66,7 +56,6 @@
                   <td>{{counter.code}}</td>
                   <td>{{counter.name}}</td>
                   <td>{{counter.location}}</td>
-                  <td>{{counter.status === 1 ? "Active" : "Not Active"}}</td>
                   <td class="td-actions text-right">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
                       placement="left" type="button" [routerLink]="['/formCounter',counter.id]">
