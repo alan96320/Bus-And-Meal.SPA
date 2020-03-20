@@ -122,7 +122,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   submit() {
     this.model.MealOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
-    this.model.MealOrderDetails = this.mealTypes;    
+    this.model.MealOrderDetails = this.mealTypes;
     if (!this.update) {
       this.model.isUpdate = false;
       this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {
