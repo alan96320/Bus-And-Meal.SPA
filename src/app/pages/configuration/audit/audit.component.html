@@ -59,7 +59,7 @@
                     <p style="width: 300px;">{{ data.newValues !== null ? data.newValues.substr(0,94) : data.newValues }}</p>
                   </td>
                   <td class="text-center">
-                    <a href=""><span class="badge badge-default badge-sm">Details</span></a>
+                    <a [routerLink]="['/audit', data.id]" ><span class="badge badge-default badge-sm">Details</span></a>
                   </td>
                   <td></td>
                 </tr>

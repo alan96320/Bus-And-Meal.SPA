@@ -14,6 +14,9 @@ export class AuditService {
   itemPerPage = 5;
 
   constructor(private http: HttpClient) { }
+  getAudit(id: any): Observable<Audit> {
+    return this.http.get<Audit>(this.baseUrl + 'Audit/' + id);
+  }
 
   getAudits(page?, itemsPerPage?, auditParams?): Observable<PaginatedResult<Audit[]>> {
     const paginatedResult: PaginatedResult<Audit[]> = new PaginatedResult<Audit[]>();

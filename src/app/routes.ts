@@ -108,7 +108,8 @@ import { CounterFormComponent } from './pages/configuration/counter/CounterForm/
 import { BusVerificationReportComponent } from './pages/reports/busVerificationReport/busVerificationReport.component';
 import { MealVerificationReportComponent } from './pages/reports/mealVerificationReport/mealVerificationReport.component';
 import { AuditComponent } from './pages/configuration/audit/audit.component';
-import { AuditResolver } from './_resolvers/auditResolver';
+import { AuditResolver, AuditDetailResolver } from './_resolvers/auditResolver';
+import { AuditDetailsComponent } from './pages/configuration/audit/auditDetails/auditDetails.component';
 
 export const appRouting: Routes = [
   { path: '', component: HomeComponent },
@@ -297,6 +298,11 @@ export const appRouting: Routes = [
         path: 'audit',
         component: AuditComponent,
         resolve: {audit: AuditResolver}
+      },
+      {
+        path: 'audit/:id',
+        component: AuditDetailsComponent,
+        resolve: { audit: AuditDetailResolver }
       },
 
       // for menu reports

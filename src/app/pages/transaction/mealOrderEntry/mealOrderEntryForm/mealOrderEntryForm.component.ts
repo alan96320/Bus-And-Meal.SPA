@@ -5,6 +5,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
 
+// declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderEntryForm',
@@ -30,7 +31,12 @@ export class MealOrderEntryFormComponent implements OnInit {
     private mealOrderEntryService: MealOrderEntryService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // $(
+    //   function() {
+    //     $('#date').datepicker();
+    //   }
+    // );
     this.loadDepartment();
     this.loadMealType();
     this.converCurrenDate();

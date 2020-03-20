@@ -31,3 +31,25 @@ export class AuditResolver implements Resolve<Audit[]> {
         );
     }
 }
+
+
+@Injectable()
+export class AuditDetailResolver implements Resolve<Audit> {
+    constructor(
+        private auditService: AuditService,
+        private router: Router,
+        private alertify: AlertifyService,
+        private sweetAlert: SweetAlertService,
+    ) { }
+
+    resolve(route: ActivatedRouteSnapshot): Observable<Audit> {
+        return this.auditService.getAudit(route.params.id).pipe(
+            catchError(error => {
+                this.sweetAlert.error(error);
+                this.router.navigate(['/depart']);
+                // return of;
+                return of(null);
+            })
+        );
+    }
+}

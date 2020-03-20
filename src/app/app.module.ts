@@ -125,7 +125,8 @@ import { BusOrderReportComponent } from './pages/reports/busOrderReport/busOrder
 import { MealVerificationReportComponent } from './pages/reports/mealVerificationReport/mealVerificationReport.component';
 import { BusVerificationReportComponent } from './pages/reports/busVerificationReport/busVerificationReport.component';
 import { AuditComponent } from './pages/configuration/audit/audit.component';
-import { AuditResolver } from './_resolvers/auditResolver';
+import { AuditResolver, AuditDetailResolver } from './_resolvers/auditResolver';
+import { AuditDetailsComponent } from './pages/configuration/audit/auditDetails/auditDetails.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -175,6 +176,7 @@ export function tokenGetter() {
     UserListComponent,
     UserFormComponent,
     AuditComponent,
+    AuditDetailsComponent,
     // decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
@@ -242,6 +244,7 @@ export function tokenGetter() {
     BusOrderVerificationDetailResolver,
     ErrorInterceptorProvider,
     AuditResolver,
+    AuditDetailResolver,
   ],
   bootstrap: [AppComponent]
 })
