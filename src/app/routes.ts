@@ -190,7 +190,7 @@ export const appRouting: Routes = [
 
       // tslint:disable-next-line:max-line-length
       {
-        path: 'formConfiguration/:id',
+        path: 'formConfiguration',
         component: ConfigurationFormComponent,
         resolve: { configuration: ConfigurationDetailResolver }
       },

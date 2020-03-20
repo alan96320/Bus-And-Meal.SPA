@@ -16,6 +16,9 @@ export class ConfigurationService {
   getConfiguration(id: any): Observable<Configuration> {
     return this.http.get<Configuration>(this.baseUrl + 'configuration/' + id);
   }
+  getConfigurations() {
+    return this.http.get(this.baseUrl + 'configuration/');
+  }
   // for edit Configuration
   editConfiguration(id: any, model: any) {
     return this.http.put(this.baseUrl + 'configuration/' + id, model);

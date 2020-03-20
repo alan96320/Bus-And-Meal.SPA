@@ -17,7 +17,7 @@ export class ConfigurationDetailResolver implements Resolve<Configuration> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Configuration> {
-    return this.configurationService.getConfiguration(route.params.id).pipe(
+    return this.configurationService.getConfigurations().pipe(
       catchError(error => {
         this.sweetAlert.error(error);
         this.router.navigate(['/depart']);

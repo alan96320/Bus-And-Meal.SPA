@@ -14,7 +14,7 @@ export class ConfigurationFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
   configuration: Configuration;
-  id = +this.route.snapshot.params.id;
+  id: any ;
 
   constructor(
     private configurationService: ConfigurationService,
@@ -29,12 +29,13 @@ export class ConfigurationFormComponent implements OnInit {
   }
 
   loadConfiguration() {
-    if (this.id) {
-      this.route.data.subscribe(data => {
-        this.model.lockedBusOrder = data.configuration.lockedBusOrder;
-        this.model.lockedMealOrder = data.configuration.lockedMealOrder;
-      });
-    }
+    this.route.data.subscribe(data => {
+      this.id = data.configuration[0].id;
+      this.model.lockedBusOrder = data.configuration[0].lockedBusOrder;
+      this.model.lockedMealOrder = data.configuration[0].lockedMealOrder;
+      console.log(data);
+      
+    });
   }
   cancel() {
     this.cancelAdd.emit(false);
@@ -54,3 +55,5 @@ export class ConfigurationFormComponent implements OnInit {
     );
   }
 }
+
+
