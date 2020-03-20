@@ -201,7 +201,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
   }
 
   Adjusment(event: any, i) {
-    this.ajusment[i] = this.sumData[i] - event.target.value;
+    this.ajusment[i] = Number(this.sumData[i]) + Number(event.target.value) ;
     this.different[i] = Number(this.ajusment[i]) - Number(this.swipParsing[i]);
     this.mealVerification[i].AdjusmentQty = event.target.value;
   }
