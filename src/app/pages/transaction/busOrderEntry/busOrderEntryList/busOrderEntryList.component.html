@@ -68,7 +68,7 @@
                   </td>
                   <td>
                     <span class="badge badge-default">
-                      {{data.busOrderVerificationId === null ? 'Open' : 'Close'}}
+                      {{data.busOrderVerificationId === null || data.busOrderVerificationId === 0 ? 'Open' : 'Close'}}
                     </span>
                   </td>
                   <td class="text-center">

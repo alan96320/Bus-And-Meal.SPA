@@ -54,7 +54,7 @@
                   </td>
                   <td>
                     <span class="badge badge-default">
-                      {{MealOrderEntry.mealOrderVerificationId === null ? 'Open' : 'Close'}}
+                      {{MealOrderEntry.mealOrderVerificationId === null || MealOrderEntry.mealOrderVerificationId === 0 ? 'Open' : 'Close'}}
                     </span>
                   </td>
                   <td class="text-center">
