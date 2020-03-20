@@ -1,7 +1,7 @@
 <div style="margin-top: 65px; margin-bottom: -30px ;">
     <div class="card">
         <div class="card-body">
-            <form class="form-inline">
+            <form class="">
                 <div class="form-group hidden">
                     <div class="input-group">
                         <input name="datepicker" class="form-control d-none" ngbDatepicker #datepicker="ngbDatepicker"
@@ -16,34 +16,40 @@
                         </ng-template>
                     </div>
                 </div>
-                <div class="form-group no-border row ml-1">
-                    <label class="col-sm-4 col-form-label mt-2">Start Date :</label>
-                    <div class="col-sm-8" (click)="datepicker.toggle()">
-                        <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                            [value]="formatter.format(fromDate)"
-                            (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                <div class="row">
+                    <div class="form-group no-border col row ml-1">
+                        <label class="col-sm-4 col-form-label">Start Date :</label>
+                        <div class="col-sm-8" (click)="datepicker.toggle()">
+                            <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                                [value]="formatter.format(fromDate)"
+                                (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                        </div>
+                    </div>
+                    <div class="form-group no-border col row ml-3">
+                        <label class="col-sm-4 col-form-label">End Date :</label>
+                        <div class="col-sm-8" (click)="datepicker.toggle()">
+                            <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                                [value]="formatter.format(toDate)"
+                                (input)="toDate = validateInput(toDate, dpToDate.value)">
+                        </div>
+                    </div>
+                    <div class="form-group no-border col row ml-4">
+                        <label class="col-sm-5 col-form-label text-right">Department :</label>
+                        <div class="col-sm-7">
+                            <select name="department" #department class="form-control">
+                                <option value="">All</option>
+                                <option *ngFor="let data of departments" [value]="data.id">
+                                    {{data.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-default animation-on-hover btn-sm" style="margin-left: 100px"
+                            ngbtooltip="Print" type="button" (click)="Print(department.value)"> Print </button>
+
                     </div>
                 </div>
-                <div class="form-group no-border row ml-3">
-                    <label class="col-sm-4 col-form-label mt-2">End Date :</label>
-                    <div class="col-sm-8" (click)="datepicker.toggle()">
-                        <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
-                            [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)">
-                    </div>
-                </div>
-                <div class="form-group no-border row ml-4">
-                    <label class="col-sm-5 col-form-label mt-2 text-right">Department :</label>
-                    <div class="col-sm-7">
-                        <select name="department" #department class="form-control">
-                            <option value="">Select Department</option>
-                            <option *ngFor="let data of departments" [value]="data.id">
-                                {{data.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <button class="btn btn-default animation-on-hover btn-sm" style="margin-left: 100px" ngbtooltip="Print"
-                    type="button" (click)="Print(department.value)"> Print </button>
             </form>
         </div>
     </div>
