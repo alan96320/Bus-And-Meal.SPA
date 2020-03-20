@@ -21,29 +21,6 @@ export class MealOrderEntryService {
     return this.http.get(this.baseUrl + 'report/mealorder/');
   }
 
-  getMealOrderReports(mealOrderReortParams?): Observable<PaginatedResult<MealOrder[]>> {
-    const paginatedResult: PaginatedResult<MealOrder[]> = new PaginatedResult<MealOrder[]>();
-    let params = new HttpParams();
-    if (mealOrderReortParams != null) {
-      if (mealOrderReortParams.startDate != null) {
-        params = params.append('StartDate', mealOrderReortParams.startDate);
-      }
-      if (mealOrderReortParams.endDate != null) {
-        params = params.append('EndDate', mealOrderReortParams.endDate);
-      }
-    }
-    return this.http.get<MealOrder[]>(this.baseUrl + 'report/mealorder', {observe: 'response', params }).pipe(map(response => {
-          paginatedResult.result = response.body;
-          if (response.headers.get('Pagination') != null) {
-            paginatedResult.pagination = JSON.parse(
-              response.headers.get('Pagination')
-            );
-          }
-          return paginatedResult;
-        })
-      );
-  }
-
   addMealOrderEntry(model: any) {
     return this.http.post(this.baseUrl + 'MealOrder/', model);
   }

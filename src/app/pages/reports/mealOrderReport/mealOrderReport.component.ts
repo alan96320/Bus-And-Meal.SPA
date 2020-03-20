@@ -6,6 +6,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { MealOrder } from 'src/app/_models/mealOrder';
+import { ReportService } from 'src/app/_services/report.service';
 declare var Stimulsoft: any;
 
 @Component({
@@ -49,7 +50,7 @@ export class MealOrderReportComponent implements OnInit {
     public formatter: NgbDateParserFormatter,
     private http: HttpClient,
     private sweetAlert: SweetAlertService,
-    private mealOrderEntryService: MealOrderEntryService,
+    private reportService: ReportService
   ) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -88,11 +89,9 @@ export class MealOrderReportComponent implements OnInit {
     const startDate = this.fromDate.year + '-' + this.fromDate.month + '-' + this.fromDate.day;
     const endDate = this.toDate.year + '-' + this.toDate.month + '-' + this.toDate.day;
     const department = depart;
-    console.log('start Date = ' + startDate);
-    console.log('end Date = ' + endDate);
-    console.log('department id = ' + department);
     this.mealOrderReortParams.startDate = startDate;
     this.mealOrderReortParams.endDate = endDate;
+    this.mealOrderReortParams.department = department;
     this.loadReport();
 
 
@@ -109,7 +108,7 @@ export class MealOrderReportComponent implements OnInit {
   loadReport() {
     this.orderDetail = [];
     this.mealtype = [];
-    this.mealOrderEntryService.getMealOrderReports(this.mealOrderReortParams).subscribe((res: PaginatedResult<MealOrder[]>) => {
+    this.reportService.getMealOrderReports(this.mealOrderReortParams).subscribe((res: PaginatedResult<MealOrder[]>) => {
       this.mealOrderResource = res.result;
       this.mealOrderResource.mealTypeResult.map(mt => {
           this.mealtype.push({ id: mt.id, name: mt.name });
@@ -155,6 +154,7 @@ export class MealOrderReportComponent implements OnInit {
 
 
   convertDate(newDate) {
+    // tslint:disable-next-line: no-shadowed-variable
     const dgt = d => {
       return d < 10 ? '0' + d : d;
     };
@@ -169,10 +169,5 @@ export class MealOrderReportComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment();
     this.loadReport();
-
-
-
-
-
   }
 }

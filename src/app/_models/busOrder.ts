@@ -1,6 +1,6 @@
-import { BusOrderEntry } from "../_models/busOrderEntry";
-import { DormitoryBlock } from "../_models/dormitoryBlock";
-import { BusTime } from "../_models/busTime";
+import { BusOrderEntry } from '../_models/busOrderEntry';
+import { DormitoryBlock } from '../_models/dormitoryBlock';
+import { BusTime } from '../_models/busTime';
 
 export interface BusOrder {
   busorder: BusOrderEntry[];

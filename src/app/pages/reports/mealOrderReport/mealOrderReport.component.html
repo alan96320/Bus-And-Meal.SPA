@@ -34,6 +34,7 @@
                     <label class="col-sm-5 col-form-label mt-2 text-right">Department :</label>
                     <div class="col-sm-7">
                         <select name="department" #department class="form-control">
+                            <option value="">Select Department</option>
                             <option *ngFor="let data of departments" [value]="data.id">
                                 {{data.name}}
                             </option>
