@@ -46,7 +46,7 @@ export class AuditDetailResolver implements Resolve<Audit> {
         return this.auditService.getAudit(route.params.id).pipe(
             catchError(error => {
                 this.sweetAlert.error(error);
-                this.router.navigate(['/depart']);
+                this.router.navigate(['/audit']);
                 // return of;
                 return of(null);
             })

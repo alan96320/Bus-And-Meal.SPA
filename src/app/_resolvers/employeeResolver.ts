@@ -47,7 +47,7 @@ export class EmployeeDetailResolver implements Resolve<Employee> {
     return this.employeeService.getEmployee(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/employee']);
         // return of;
         return of(null);
       })

@@ -45,7 +45,7 @@ export class BusOrderEntryDetailResolver implements Resolve<BusOrderEntry> {
         return this.busOrderEntryService.getBusOrderEntry(route.params.id).pipe(
             catchError(error => {
                 this.sweetAlert.error(error);
-                this.router.navigate(['/depart']);
+                this.router.navigate(['/busOrderEntry']);
                 // return of;
                 return of(null);
             })

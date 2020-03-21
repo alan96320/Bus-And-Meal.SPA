@@ -20,7 +20,7 @@ export class ConfigurationDetailResolver implements Resolve<Configuration> {
     return this.configurationService.getConfigurations().pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/home']);
         // return of;
         return of(null);
       })

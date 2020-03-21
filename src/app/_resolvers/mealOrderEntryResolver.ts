@@ -45,7 +45,7 @@ export class MealOrderEntryDetailResolver implements Resolve<MealOrderEntry> {
         return this.mealOrderEntryService.getMealOrderEntry(route.params.id).pipe(
             catchError(error => {
                 this.sweetAlert.error(error);
-                this.router.navigate(['/depart']);
+                this.router.navigate(['/mealOrderEntry']);
                 // return of;
                 return of(null);
             })

@@ -45,7 +45,7 @@ export class UsersDetailResolver implements Resolve<Users> {
     return this.userService.getUser(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/user']);
         // return of;
         return of(null);
       })

@@ -50,7 +50,7 @@ export class MealVendorDetailResolver implements Resolve<MealVendor> {
     return this.MealVendorService.getMealVendor(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/mealVendor']);
         // return of;
         return of(null);
       })

@@ -50,7 +50,7 @@ export class DormitoryBlockDetailResolver implements Resolve<DormitoryBlock> {
     return this.DormitoryBlockService.getDormitoryBlock(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/dormitory']);
         // return of;
         return of(null);
       })

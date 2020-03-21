@@ -50,7 +50,7 @@ export class MealTypeDetailResolver implements Resolve<MealType> {
     return this.MealTypeService.getMealType(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/mealType']);
         // return of;
         return of(null);
       })

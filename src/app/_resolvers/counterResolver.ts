@@ -47,7 +47,7 @@ export class CounterDetailResolver implements Resolve<Counter> {
     return this.CounterService.getCounter(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/counter']);
         // return of;
         return of(null);
       })

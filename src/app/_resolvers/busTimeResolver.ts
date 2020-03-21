@@ -47,7 +47,7 @@ export class BusTimeDetailResolver implements Resolve<BusTime> {
     return this.BusTimeService.getBusTime(route.params.id).pipe(
       catchError(error => {
         this.sweetAlert.error(error);
-        this.router.navigate(['/depart']);
+        this.router.navigate(['/busTime']);
         // return of;
         return of(null);
       })
