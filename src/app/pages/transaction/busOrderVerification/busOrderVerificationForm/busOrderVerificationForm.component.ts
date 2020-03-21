@@ -8,6 +8,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { BusOrderVerificationService } from 'src/app/_services/busOrderVerification.service';
+declare var $: any;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -49,6 +50,11 @@ export class BusOrderVerificationFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const newDate = $('[data-toggle="datepicker"]');
+    newDate.datepicker({
+      format: 'yyyy-mm-dd',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadDormitory();
     this.loadBusTime();
@@ -64,6 +70,10 @@ export class BusOrderVerificationFormComponent implements OnInit {
       this.converCurrenDate();
     }
     this.loadBusOrderEntrys();
+    newDate.change(() => {
+      this.model.Orderdate = newDate.datepicker('getDate', true);
+      this.loadBusOrderEntrys();
+    });
   }
 
   converCurrenDate() {
@@ -109,10 +119,6 @@ export class BusOrderVerificationFormComponent implements OnInit {
         );
       }
     });
-  }
-
-  OrderBy() {
-    this.loadBusOrderEntrys();
   }
 
   loadBusOrderEntrys() {

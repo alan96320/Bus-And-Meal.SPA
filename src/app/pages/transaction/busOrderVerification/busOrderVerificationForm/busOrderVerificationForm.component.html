@@ -14,7 +14,7 @@
                 </div>
                 <label for="orderDate" class="col-sm-2 col-form-label text-right">Order Date :</label>
                 <div class="col-sm-4">
-                  <input type="date" class="form-control" (blur)="OrderBy()" [(ngModel)]="model.Orderdate" name="OrderDate" required>
+                  <input type="text" class="form-control" data-toggle="datepicker" [(ngModel)]="model.Orderdate" name="OrderDate" required>
                 </div>
               </div>
             </div>
