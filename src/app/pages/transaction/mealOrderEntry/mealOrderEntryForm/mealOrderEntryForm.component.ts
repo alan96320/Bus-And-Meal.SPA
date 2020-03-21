@@ -5,7 +5,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
 
-// declare var $: any;
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderEntryForm',
@@ -28,20 +28,22 @@ export class MealOrderEntryFormComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
-    private mealOrderEntryService: MealOrderEntryService
+    private mealOrderEntryService: MealOrderEntryService,
   ) { }
 
-  ngOnInit(): void {
-    // $(
-    //   function() {
-    //     $('#date').datepicker();
-    //   }
-    // );
+  ngOnInit() {
+    const newDate = $('[data-toggle="datepicker"]');
+    newDate.datepicker({
+      format: 'yyyy-mm-dd',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadMealType();
     this.converCurrenDate();
     this.loadMealOrderEntry();
-
+    newDate.change(() => {
+      this.model.OrderEntryDate = newDate.datepicker('getDate', true);
+    });
   }
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
@@ -148,7 +150,7 @@ export class MealOrderEntryFormComponent implements OnInit {
     }
 
 
-    // console.log(currentDate);
+    // console.log(this.model);
 
   }
 

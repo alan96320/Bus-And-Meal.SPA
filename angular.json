@@ -28,12 +28,15 @@
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
               "src/assets/scss/black-dashboard.scss",
-              "src/assets/css/nucleo-icons.css"
+              "src/assets/css/nucleo-icons.css",
+              "node_modules/@chenfengyuan/datepicker/dist/datepicker.css"
             ],
             "scripts": [
               "node_modules/stimulsoft-reports-js/Scripts/stimulsoft.reports.js",
               "node_modules/stimulsoft-reports-js/Scripts/stimulsoft.reports.maps.js",
-              "node_modules/stimulsoft-reports-js/Scripts/stimulsoft.viewer.js"
+              "node_modules/stimulsoft-reports-js/Scripts/stimulsoft.viewer.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@chenfengyuan/datepicker/dist/datepicker.js"
             ],
             "es5BrowserSupport": true
           },

@@ -8,6 +8,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { MealOrderVerificationService } from 'src/app/_services/mealOrderVerification.service';
+declare var $: any;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -52,11 +53,22 @@ export class MealOrderVerficationFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const newDate = $('[data-toggle="datepicker"]');
+    newDate.datepicker({
+      format: 'yyyy-mm-dd',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadMealType();
     this.converCurrenDate();
     this.loadVendor();
-    this.MealOrderEntrysParams.date = this.model.OrderDate;
+    if (this.id) {
+      this.route.data.subscribe(data => {
+        this.MealOrderEntrysParams.date = data.mealOrderVerification.orderDate.substr(0, 10);
+      });
+    } else {
+      this.MealOrderEntrysParams.date = this.model.OrderDate;
+    }
     this.MealOrderEntrysParams.isReadyToCollect = true;
     this.loadMealOrderEntrys();
     if (!this.id) {
@@ -64,6 +76,14 @@ export class MealOrderVerficationFormComponent implements OnInit {
       this.model.OrderDate = this.model.OrderDate;
       this.model.IsClosed = false;
     }
+    newDate.change(() => {
+      if (!this.id) {
+        this.model.OrderDate = newDate.datepicker('getDate', true);
+      }
+      this.MealOrderEntrysParams.date = newDate.datepicker('getDate', true);
+      this.MealOrderEntrysParams.isReadyToCollect = true;
+      this.loadMealOrderEntrys();
+    });
   }
 
   converCurrenDate() {
@@ -83,14 +103,6 @@ export class MealOrderVerficationFormComponent implements OnInit {
       }
     } else {
       this.model.OrderDate = this.currenDate.getFullYear() + '-' + month + '-' + day;
-    }
-  }
-
-  OrderBy(date) {
-    if (date !== null) {
-      this.MealOrderEntrysParams.date = date;
-      this.MealOrderEntrysParams.isReadyToCollect = true;
-      this.loadMealOrderEntrys();
     }
   }
 

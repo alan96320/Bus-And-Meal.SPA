@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { BusOrderEntryService } from 'src/app/_services/busOrderEntry.service';
-
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-busOrderEntryForm',
@@ -34,10 +34,19 @@ export class BusOrderEntryFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const newDate = $('[data-toggle="datepicker"]');
+    newDate.datepicker({
+      format: 'yyyy-mm-dd',
+      autoHide: true
+    });
+
     this.loadDepartment();
     this.converCurrenDate();
     this.loadDormiTory();
     this.loadBusTime();
+    newDate.change(() => {
+      this.model.OrderEntryDate = newDate.datepicker('getDate', true);
+    });
   }
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
