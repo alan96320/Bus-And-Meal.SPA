@@ -49,20 +49,20 @@ export class MealOrderEntryFormComponent implements OnInit {
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
     const day = this.currenDate.getDate();
-    if (month < 9) {
-      if (day < 9) {
-        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
+    if (month < 10) {
+      if (day < 10) {
+        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-' + day;
+        this.model.OrderEntryDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
-    } else if (day < 9) {
-      if (month < 9) {
-        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-0' + month + '-0' + day;
+    } else if (day < 10) {
+      if (month < 10) {
+        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = this.currenDate.getFullYear() + '-' + month + '-0' + day;
+        this.model.OrderEntryDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
       }
     } else {
-      this.model.OrderEntryDate = this.currenDate.getFullYear() + '-' + month + '-' + day;
+      this.model.OrderEntryDate = day + '-' + month + '-' + this.currenDate.getFullYear();
     }
   }
 
