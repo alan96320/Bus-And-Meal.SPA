@@ -37,7 +37,7 @@ export class BusOrderEntryFormComponent implements OnInit {
   ngOnInit() {
     const newDate = $('[data-toggle="datepicker"]');
     newDate.datepicker({
-      format: 'yyyy-mm-dd',
+      format: 'dd-mm-yyyy',
       autoHide: true
     });
 
