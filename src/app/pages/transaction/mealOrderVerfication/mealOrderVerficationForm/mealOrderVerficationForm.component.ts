@@ -295,6 +295,11 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderList = d;
       }
       this.model.MealOrderVerificationDetails = this.mealVerification;
+      const date = this.model.OrderDate;
+      const dd = date.substr(0, 2);
+      const m = date.substr(3, 2);
+      const y = date.substr(6, 4);
+      this.model.OrderDate = y + '-' + m + '-' + dd;
       if (!this.update) {
         this.model.isUpdate = false;
         this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {

@@ -132,6 +132,11 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.model.MealOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
     this.model.MealOrderDetails = this.mealTypes;
+    const date = this.model.OrderEntryDate;
+    const d = date.substr(0, 2);
+    const m = date.substr(3, 2);
+    const y = date.substr(6, 4);
+    this.model.OrderEntryDate = y + '-' + m + '-' + d;
     if (!this.update) {
       this.model.isUpdate = false;
       this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {

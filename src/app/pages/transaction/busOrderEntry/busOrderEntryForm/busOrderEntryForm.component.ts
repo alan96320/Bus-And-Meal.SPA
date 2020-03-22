@@ -176,6 +176,11 @@ export class BusOrderEntryFormComponent implements OnInit {
     this.model.BusOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
     this.model.BusOrderDetails = this.busTime2;
+    const date = this.model.OrderEntryDate;
+    const d = date.substr(0, 2);
+    const m = date.substr(3, 2);
+    const y = date.substr(6, 4);
+    this.model.OrderEntryDate = y + '-' + m + '-' + d;
     if (!this.update) {
       this.model.isUpdate = false;
       this.busOrderEntryService.addBusOrderEntry(this.model).subscribe(() => {

@@ -253,6 +253,11 @@ export class BusOrderVerificationFormComponent implements OnInit {
       if (c) {
         this.sweetAlert.message('There was a change of data on the meal order...');
       }
+      const date = this.model.Orderdate;
+      const d = date.substr(0, 2);
+      const m = date.substr(3, 2);
+      const y = date.substr(6, 4);
+      this.model.Orderdate = y + '-' + m + '-' + d;
       if (!this.update) {
         this.busOrderVerificationService.addBusOrderVerification(this.model).subscribe(() => {
           this.sweetAlert.successAdd('Add Successfully');
