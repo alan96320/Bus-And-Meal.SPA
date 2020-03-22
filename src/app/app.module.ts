@@ -127,11 +127,11 @@ import { BusVerificationReportComponent } from './pages/reports/busVerificationR
 import { AuditComponent } from './pages/configuration/audit/audit.component';
 import { AuditResolver, AuditDetailResolver } from './_resolvers/auditResolver';
 import { AuditDetailsComponent } from './pages/configuration/audit/auditDetails/auditDetails.component';
+import { environment } from 'src/environments/environment';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -144,8 +144,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        whitelistedDomains: ['localhost:5000'],
-        blacklistedRoutes: ['localhost:5000/api/auth']
+        whitelistedDomains: [environment.apiUrl],
+        blacklistedRoutes: [environment.apiUrl + 'auth']
       }
     }),
     PaginationModule.forRoot(),

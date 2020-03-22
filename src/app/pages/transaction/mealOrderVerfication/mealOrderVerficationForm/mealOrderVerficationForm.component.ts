@@ -8,6 +8,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { MealOrderVerificationService } from 'src/app/_services/mealOrderVerification.service';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -238,14 +239,14 @@ export class MealOrderVerficationFormComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.listDepartments = response;
     }, error => {
       this.sweetAlert.error(error);
     });
   }
   loadVendor() {
-    this.http.get('http://localhost:5000/api/MealVendor').subscribe(response => {
+    this.http.get(environment.apiUrl + 'MealVendor').subscribe(response => {
       this.listVendor = response;
     }, error => {
       this.sweetAlert.error(error);
@@ -253,7 +254,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
   }
 
   loadMealType() {
-    this.http.get('http://localhost:5000/api/MealType').subscribe(response => {
+    this.http.get(environment.apiUrl + 'MealType').subscribe(response => {
       this.mealTypes = response;
     }, error => {
       this.sweetAlert.error(error);

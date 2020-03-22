@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 @Component({
@@ -68,13 +69,13 @@ export class MealOrderEntryFormComponent implements OnInit {
   loadDepartment() {
     const id = localStorage.getItem('id_user');
     const isAdmin = localStorage.getItem('isAdmin');
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.listDepartments = response;
     }, error => {
       this.sweetAlert.error(error);
     });
     if (isAdmin === 'false') {
-      this.http.get('http://localhost:5000/api/user/' + id).subscribe(response => {
+      this.http.get(environment.apiUrl + 'user/' + id).subscribe(response => {
         this.deptUser = response;
         this.deptUser.userDepartments.map((data, i) => {
           this.listDepartments.map(datax => {
@@ -93,7 +94,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   }
 
   loadMealType() {
-    this.http.get('http://localhost:5000/api/MealType').subscribe(response => {
+    this.http.get(environment.apiUrl + 'MealType').subscribe(response => {
       this.mealTypes = response;
       this.mealTypes.map((items, i) => {
         items.MealTypeId = items.id;

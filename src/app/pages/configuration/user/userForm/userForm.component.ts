@@ -5,6 +5,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -123,7 +124,7 @@ export class UserFormComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(
+    this.http.get(environment.apiUrl + 'department').subscribe(
       response => {
         this.listDepartments = response;
       },

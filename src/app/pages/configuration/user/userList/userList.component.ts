@@ -7,6 +7,7 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -221,7 +222,7 @@ export class UserListComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(
+    this.http.get(environment.apiUrl + 'department').subscribe(
       response => {
         this.listDepartments = response;
       },

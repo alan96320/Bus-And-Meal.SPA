@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -184,7 +185,7 @@ export class BusOrderEntryListComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.listDepartments = response;
     }, error => {
       this.sweetAlert.error(error);
@@ -192,7 +193,7 @@ export class BusOrderEntryListComponent implements OnInit {
   }
 
   loadDormitory() {
-    this.http.get('http://localhost:5000/api/DormitoryBlock').subscribe(response => {
+    this.http.get(environment.apiUrl + 'DormitoryBlock').subscribe(response => {
       this.dormitory = response;
     }, error => {
       this.sweetAlert.error(error);
@@ -204,7 +205,7 @@ export class BusOrderEntryListComponent implements OnInit {
     const b = [];
     const c = [];
     const d = [];
-    this.http.get('http://localhost:5000/api/BusTime').subscribe(response => {
+    this.http.get(environment.apiUrl + 'BusTime').subscribe(response => {
       a.push(response);
       a.map(data => {
         data.map(item => {

@@ -6,6 +6,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { ReportService } from 'src/app/_services/report.service';
 import { PaginatedResult } from 'src/app/_models/pagination';
 import { BusOrder } from 'src/app/_models/busOrder';
+import { environment } from 'src/environments/environment';
 
 declare var Stimulsoft: any;
 
@@ -96,7 +97,7 @@ export class BusOrderReportComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.departments = response;
     }, error => {
       this.sweetAlert.error(error);

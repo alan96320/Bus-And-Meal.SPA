@@ -7,6 +7,7 @@ import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service'
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { MealOrder } from 'src/app/_models/mealOrder';
 import { ReportService } from 'src/app/_services/report.service';
+import { environment } from 'src/environments/environment';
 declare var Stimulsoft: any;
 
 @Component({
@@ -98,7 +99,7 @@ export class MealOrderReportComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.departments = response;
     }, error => {
       this.sweetAlert.error(error);
