@@ -27,8 +27,6 @@
                   <th class="sort-custom" (click)="sortActive('departmentName')">Department Name
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDepartmentName===false}"></i>
                   </th>
-                  <th class="sort-custom">Status
-                  </th>
                   <th class="text-center">ready for collect</th>
                   <th class="sort-custom text-center">Action </th>
                 </tr>
@@ -51,11 +49,6 @@
                   <td>{{MealOrderEntry.orderEntryDate | date}}</td>
                   <td *ngFor="let item of listDepartments" [ngClass]="{'d-none': item.id !== MealOrderEntry.departmentId}">
                     {{item.name}}
-                  </td>
-                  <td>
-                    <span class="badge badge-default">
-                      {{MealOrderEntry.mealOrderVerificationId === null || MealOrderEntry.mealOrderVerificationId === 0 ? 'Open' : 'Close'}}
-                    </span>
                   </td>
                   <td class="text-center">
                     <span class="badge badge-default">

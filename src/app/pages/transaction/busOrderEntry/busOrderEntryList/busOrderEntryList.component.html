@@ -32,8 +32,6 @@
                   <th class="sort-custom" (click)="sortActive('dormitory')">Dormitory
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDormitory===false}"></i>
                   </th>
-                  <th class="sort-custom">Status
-                  </th>
                   <th class="text-center">ready for collect</th>
                   <th class="sort-custom text-center">Action
                 </tr>
@@ -65,11 +63,6 @@
                   </td>
                   <td *ngFor="let item of dormitory" [ngClass]="{'d-none': item.id !== data.dormitoryBlockId}">
                     {{item.name}}
-                  </td>
-                  <td>
-                    <span class="badge badge-default">
-                      {{data.busOrderVerificationId === null || data.busOrderVerificationId === 0 ? 'Open' : 'Close'}}
-                    </span>
                   </td>
                   <td class="text-center">
                     <span class="badge badge-default">
