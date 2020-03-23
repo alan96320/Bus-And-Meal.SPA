@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { MealOrderVerificationService } from 'src/app/_services/mealOrderVerification.service';
 import { environment } from 'src/environments/environment';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
 declare var $: any;
 
 @Component({
@@ -51,6 +52,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     private router: Router,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
+    private convertDate: ConvertDateService
   ) { }
 
   ngOnInit() {
@@ -68,7 +70,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.MealOrderEntrysParams.date = data.mealOrderVerification.orderDate.substr(0, 10);
       });
     } else {
-      this.MealOrderEntrysParams.date = this.model.OrderDate;
+      this.MealOrderEntrysParams.date = this.convertDate.convertAB(this.model.OrderDate);
     }
     this.MealOrderEntrysParams.isReadyToCollect = true;
     this.loadMealOrderEntrys();
@@ -81,7 +83,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
       if (!this.id) {
         this.model.OrderDate = newDate.datepicker('getDate', true);
       }
-      this.MealOrderEntrysParams.date = newDate.datepicker('getDate', true);
+      this.MealOrderEntrysParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
       this.MealOrderEntrysParams.isReadyToCollect = true;
       this.loadMealOrderEntrys();
     });
@@ -92,18 +94,18 @@ export class MealOrderVerficationFormComponent implements OnInit {
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
+        this.model.OrderDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
       }
     } else {
-      this.model.OrderEntryDate = day + '-' + month + '-' + this.currenDate.getFullYear();
+      this.model.OrderDate = day + '-' + month + '-' + this.currenDate.getFullYear();
     }
   }
 
@@ -137,7 +139,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
       ).subscribe(
         (res: PaginatedResult<MealOrderEntry[]>) => {
           let a = false;
-          const b = JSON.parse(JSON.stringify(this.model.OrderDate));
+          const b = JSON.parse(JSON.stringify(this.convertDate.convertAB(this.model.OrderDate)));
           let c = '';
           if ((Number(b.slice(8)) + 1) < 10) {
             c = b.slice(0, 8) + '0' + (Number(b.slice(8)) + 1);
@@ -154,10 +156,12 @@ export class MealOrderVerficationFormComponent implements OnInit {
             this.MealOrderEntrys = res.result;
             this.pagination = res.pagination;
           } else {
-            this.model.OrderDate = c;
-            this.MealOrderEntrysParams.date = c;
-            this.loadMealOrderEntrys();
             this.sweetAlert.message('Data on ' + b + ' has been verified, please verify on another date');
+            setTimeout(() => {
+              this.model.OrderDate = this.convertDate.convertBA(c);
+              this.MealOrderEntrysParams.date = c;
+              this.loadMealOrderEntrys();
+            }, 1000);
           }
           this.calculation();
         },
@@ -197,7 +201,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.selectedVendor = this.sumData;
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.OrderDate = data.mealOrderVerification.orderDate.substr(0, 10);
+        this.model.OrderDate = this.convertDate.convertBA(data.mealOrderVerification.orderDate.substr(0, 10));
         this.mealVerification.map((item, i) => {
           item.AdjusmentQty = data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
           item.SwipeQty = data.mealOrderVerification.mealVerificationDetails[i].swipeQty;
@@ -295,11 +299,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderList = d;
       }
       this.model.MealOrderVerificationDetails = this.mealVerification;
-      const date = this.model.OrderDate;
-      const dd = date.substr(0, 2);
-      const m = date.substr(3, 2);
-      const y = date.substr(6, 4);
-      this.model.OrderDate = y + '-' + m + '-' + dd;
+      this.model.OrderDate = this.convertDate.convertAB(this.model.OrderDate);
       if (!this.update) {
         this.model.isUpdate = false;
         this.mealOrderVerificationService.addMealOrderVerification(this.model).subscribe(() => {
@@ -311,12 +311,12 @@ export class MealOrderVerficationFormComponent implements OnInit {
           this.sweetAlert.warning(error);
         });
       } else {
-          this.model.isUpdate = true;
-          this.mealOrderVerificationService.editMealOrderVerificationVerification(this.id, this.model).subscribe(() => {
-            setTimeout(() => {
-              this.sweetAlert.successAdd('Edit Successfully');
-              this.router.navigate(['/mealOrderVerification']);
-            }, 1000);
+        this.model.isUpdate = true;
+        this.mealOrderVerificationService.editMealOrderVerificationVerification(this.id, this.model).subscribe(() => {
+          setTimeout(() => {
+            this.sweetAlert.successAdd('Edit Successfully');
+            this.router.navigate(['/mealOrderVerification']);
+          }, 1000);
         }, error => {
           this.sweetAlert.warning(error);
         });

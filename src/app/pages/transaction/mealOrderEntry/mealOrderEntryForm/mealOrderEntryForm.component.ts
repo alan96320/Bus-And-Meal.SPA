@@ -5,6 +5,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
 import { environment } from 'src/environments/environment';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
 
 declare var $: any;
 @Component({
@@ -30,6 +31,7 @@ export class MealOrderEntryFormComponent implements OnInit {
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
     private mealOrderEntryService: MealOrderEntryService,
+    private convertDate: ConvertDateService,
   ) { }
 
   ngOnInit() {
@@ -120,7 +122,7 @@ export class MealOrderEntryFormComponent implements OnInit {
   loadMealOrderEntry() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        this.model.OrderEntryDate = data.mealOrderEntry.orderEntryDate.substr(0, 10);
+        this.model.OrderEntryDate = this.convertDate.convertBA(data.mealOrderEntry.orderEntryDate.substr(0, 10));
         this.model.isReadyToCollect = data.mealOrderEntry.isReadyToCollect;
         this.model.DepartmentId = data.mealOrderEntry.departmentId;
         this.update = true;
@@ -132,11 +134,7 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.model.MealOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
     this.model.MealOrderDetails = this.mealTypes;
-    const date = this.model.OrderEntryDate;
-    const d = date.substr(0, 2);
-    const m = date.substr(3, 2);
-    const y = date.substr(6, 4);
-    this.model.OrderEntryDate = y + '-' + m + '-' + d;
+    this.model.OrderEntryDate = this.convertDate.convertAB(this.model.OrderEntryDate);
     if (!this.update) {
       this.model.isUpdate = false;
       this.mealOrderEntryService.addMealOrderEntry(this.model).subscribe(() => {
@@ -154,9 +152,6 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.warning(error);
       });
     }
-
-
-    // console.log(this.model);
 
   }
 

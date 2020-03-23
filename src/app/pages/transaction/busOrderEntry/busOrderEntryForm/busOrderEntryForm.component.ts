@@ -5,6 +5,7 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { BusOrderEntryService } from 'src/app/_services/busOrderEntry.service';
 import { environment } from 'src/environments/environment';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
 declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
@@ -31,7 +32,8 @@ export class BusOrderEntryFormComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
-    private busOrderEntryService: BusOrderEntryService
+    private busOrderEntryService: BusOrderEntryService,
+    private convertDate: ConvertDateService
   ) { }
 
   ngOnInit() {
@@ -133,7 +135,7 @@ export class BusOrderEntryFormComponent implements OnInit {
       this.busTime.push(d);
       if (this.id) {
         this.route.data.subscribe(datax => {
-          this.model.OrderEntryDate = datax.busOrderEntry.orderEntryDate.substr(0, 10);
+          this.model.OrderEntryDate = this.convertDate.convertBA(datax.busOrderEntry.orderEntryDate.substr(0, 10));
           this.model.isReadyToCollect = datax.busOrderEntry.isReadyToCollect;
           this.model.DepartmentId = datax.busOrderEntry.departmentId;
           this.model.DormitoryBlockId = datax.busOrderEntry.dormitoryBlockId;
@@ -176,11 +178,7 @@ export class BusOrderEntryFormComponent implements OnInit {
     this.model.BusOrderVerificationId = null;
     this.model.UserId = localStorage.getItem('id_user');
     this.model.BusOrderDetails = this.busTime2;
-    const date = this.model.OrderEntryDate;
-    const d = date.substr(0, 2);
-    const m = date.substr(3, 2);
-    const y = date.substr(6, 4);
-    this.model.OrderEntryDate = y + '-' + m + '-' + d;
+    this.model.OrderEntryDate = this.convertDate.convertAB(this.model.OrderEntryDate);
     if (!this.update) {
       this.model.isUpdate = false;
       this.busOrderEntryService.addBusOrderEntry(this.model).subscribe(() => {
