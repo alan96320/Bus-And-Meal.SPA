@@ -63,7 +63,7 @@
                 <table class="table"> 
                   <thead class="" style="border-top: medium;">
                     <tr>
-                      <th>Description</th>
+                      <th>Users access</th>
                       <th style="width: 50px;" >Read</th>
                       <th style="width: 50px;" >Write</th>
                     </tr>
@@ -109,11 +109,8 @@
                       <td class="text-center">
                         <div class=" form-check">
                           <label class=" form-check-label">
-                            <!-- <input class=" form-check-input" type="checkbox" name="{{'check'+i}}" (change)="departmentCheck($event)" 
-                            value="{{department.id}}" [ngClass]="{'d-lg-none': department.id === item}"
-                            > -->
                             <input class=" form-check-input" type="checkbox" name="{{'check'+i}}" (change)="departmentCheck($event)"
-                              value="{{department.id}}" [checked]="checkedStatus.includes(department.id)" >
+                              value="{{department.id}}" [checked]="checkedStatus.indexOf(department.id) > -1" >
                             <span class=" form-check-sign">
                               <span class=" check"></span>
                             </span>
