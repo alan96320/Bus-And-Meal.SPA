@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { BusOrderVerificationService } from 'src/app/_services/busOrderVerification.service';
 import { environment } from 'src/environments/environment';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
 declare var $: any;
 
 @Component({
@@ -48,6 +49,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
     private router: Router,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
+    private convertDate: ConvertDateService
   ) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
     if (this.id) {
       this.route.data.subscribe(data => {
         this.model.OrderNo = data.busOrderVerification.orderNo;
-        this.model.Orderdate = data.busOrderVerification.orderdate.substr(0, 10);
+        this.model.Orderdate = this.convertDate.convertBA(data.busOrderVerification.orderdate.substr(0, 10));
         this.model.IsClosed = data.busOrderVerification.isClosed;
       });
       this.update = true;
@@ -82,18 +84,18 @@ export class BusOrderVerificationFormComponent implements OnInit {
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.Orderdate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
+        this.model.Orderdate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.Orderdate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.Orderdate = day + '-' + month + '-0' + this.currenDate.getFullYear();
       }
     } else {
-      this.model.OrderEntryDate = day + '-' + month + '-' + this.currenDate.getFullYear();
+      this.model.Orderdate = day + '-' + month + '-' + this.currenDate.getFullYear();
     }
   }
 
@@ -123,7 +125,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
   }
 
   loadBusOrderEntrys() {
-    this.BusOrderEntrysParams.date = this.model.Orderdate;
+    this.BusOrderEntrysParams.date = this.convertDate.convertAB(this.model.Orderdate);
     const c = [];
     this.busOrderEntryService.getBusOrderEntrys('', '', this.BusOrderEntrysParams).subscribe(
       (res: PaginatedResult<BusOrderEntry[]>) => {
@@ -138,15 +140,17 @@ export class BusOrderVerificationFormComponent implements OnInit {
         }
         if (stat) {
           const date = JSON.parse(JSON.stringify(this.model.Orderdate));
-          const da = date.substr(0, 8);
-          const dat = Number(date.substr(8, 10)) + 1;
+          const da = date.substr(2, 10);
+          const dat = Number(date.substr(0, 2)) + 1;
           if (dat < 10) {
-            this.model.Orderdate = da + '0' + dat;
+            this.model.Orderdate = dat + '0' + da;
           } else {
-            this.model.Orderdate = da + dat;
+            this.model.Orderdate = dat + da;
           }
           this.sweetAlert.message('Data on ' + date + ' has been verified, please verify on another date');
-          this.loadBusOrderEntrys();
+          setTimeout(() => {
+            this.loadBusOrderEntrys();
+          }, 1000);
         }
         this.sumVerification.length = 0;
         this.busTime2.map((item, i) => {
@@ -253,11 +257,11 @@ export class BusOrderVerificationFormComponent implements OnInit {
       if (c) {
         this.sweetAlert.message('There was a change of data on the meal order...');
       }
-      const date = this.model.Orderdate;
-      const d = date.substr(0, 2);
-      const m = date.substr(3, 2);
-      const y = date.substr(6, 4);
-      this.model.Orderdate = y + '-' + m + '-' + d;
+      // const date = this.model.Orderdate;
+      // const d = date.substr(0, 2);
+      // const m = date.substr(3, 2);
+      // const y = date.substr(6, 4);
+      this.model.Orderdate = this.convertDate.convertAB(this.model.Orderdate);
       if (!this.update) {
         this.busOrderVerificationService.addBusOrderVerification(this.model).subscribe(() => {
           this.sweetAlert.successAdd('Add Successfully');
