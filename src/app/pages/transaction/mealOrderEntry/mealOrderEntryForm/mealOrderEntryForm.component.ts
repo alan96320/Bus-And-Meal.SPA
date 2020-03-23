@@ -47,6 +47,9 @@ export class MealOrderEntryFormComponent implements OnInit {
     newDate.change(() => {
       this.model.OrderEntryDate = newDate.datepicker('getDate', true);
     });
+    $('[name="DepartmentId"]').change(function() {
+      $(this).blur();
+    });
   }
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+declare var $: any;
 
 @Component({
    // tslint:disable-next-line:component-selector
@@ -32,6 +33,9 @@ export class EmployeeFormComponent implements OnInit {
    ngOnInit() {
       this.loademployee();
       this.loadDepartment();
+      $('#departmentId').change(function () {
+         $(this).blur();
+      });
    }
 
    loademployee() {

@@ -27,6 +27,7 @@
               <label class="col-sm-1 offset-sm-1 col-form-label">Department</label>
               <div class="col-sm-3 24hr-example">
                 <select name="DepartmentId" class="form-control" required [(ngModel)]="model.DepartmentId" required>
+                  <option value="">Select Department</option>
                   <option *ngFor="let department of listDepartments" value="{{department.id}}">
                     {{department.name}}
                   </option>
@@ -38,6 +39,7 @@
               <div class="col-sm-3 24hr-example">
                 <select name="DormitoryBlockId" class="form-control" required [(ngModel)]="model.DormitoryBlockId" #DormitoryBlockId="ngModel"
                   required [ngClass]="{'is-invalid': DormitoryBlockId.invalid && (DormitoryBlockId.dirty || DormitoryBlockId.touched) }">
+                  <option value="">Select Dormitory</option>
                   <option *ngFor="let data of dormitory" value="{{data.id}}">
                     {{data.name}}
                   </option>

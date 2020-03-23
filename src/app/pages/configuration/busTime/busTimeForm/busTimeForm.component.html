@@ -25,7 +25,7 @@
             <div class="form-group row no-border">
               <label class="col-sm-2 offset-sm-1 col-form-label">Type Direction</label>
               <div class="col-sm-8">
-                <select name="directionEnum" class="form-control" required [(ngModel)]="model.directionEnum" #directionEnum="ngModel">
+                <select name="directionEnum" id="directionEnum" class="form-control" required [(ngModel)]="model.directionEnum" #directionEnum="ngModel">
                   <option *ngFor="let direction of listDirection" [value]="direction.id">
                     {{direction.name}}
                   </option>
