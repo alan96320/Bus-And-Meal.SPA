@@ -44,7 +44,6 @@ export class UserListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.users = data.user.result;
       this.pagination = data.user.pagination;
-      console.log(data);
     });
   }
 

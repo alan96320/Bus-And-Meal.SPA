@@ -73,7 +73,6 @@ export class BusOrderVerificationService {
         );
       }
     }
-    // console.log(BusOrderVerificationParams.date);
 
     return this.http
       .get<BusOrderVerification[]>(

@@ -17,10 +17,6 @@ export class AuditDetailsComponent implements OnInit {
   ngOnInit() {
     if (this.id) {
       this.route.data.subscribe(data => {
-        // this.model.code = data.department.code;
-        // this.model.name = data.department.name;
-        // this.update = true;
-        console.log(data);
         this.model.tableName = data.audit.tableName;
         this.model.dateTime = data.audit.dateTime;
         this.model.keyValues = data.audit.keyValues;

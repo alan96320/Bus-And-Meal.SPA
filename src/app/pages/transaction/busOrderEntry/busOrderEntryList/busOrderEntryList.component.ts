@@ -54,7 +54,6 @@ export class BusOrderEntryListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.busOrderEntrys = data.busOrderEntry.result;
       this.pagination = data.busOrderEntry.pagination;
-      console.log(this.busOrderEntrys);
     });
     newDate.change(() => {
       this.BusOrderEntrysParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));

@@ -73,7 +73,6 @@ export class MealOrderVerificationService {
         );
       }
     }
-    // console.log(MealOrderVerificationParams.date);
 
     return this.http
       .get<MealOrderVerification[]>(

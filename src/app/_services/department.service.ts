@@ -91,8 +91,6 @@ export class DepartmentService {
     } else {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.headers}`;
-      console.log(error);
-      console.log();
     }
     return throwError(errorMessage);
   }
