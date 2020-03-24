@@ -8,7 +8,8 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderVerficationList',
@@ -34,14 +35,27 @@ export class MealOrderVerficationListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
+    private convertDate: ConvertDateService
   ) { }
 
   ngOnInit() {
+    const newDate = $('#box');
+    newDate.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadMealType();
     this.route.data.subscribe(data => {
       this.MealOrderVerifications = data.mealOrderVerification.result;
       this.pagination = data.mealOrderVerification.pagination;
+    });
+    newDate.change(() => {
+      this.MealOrderVerificationsParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
+      if ($('#box1').val() !== '') {
+        this.MealOrderVerificationsParams.OrderNo = $('#box1').val();
+      }
+      this.loadMealOrderVerification();
     });
   }
 
@@ -108,10 +122,10 @@ export class MealOrderVerficationListComponent implements OnInit {
   }
 
   // kita buat fungsi untuk Order By
-  OrderBy(date, department) {
-    if (date !== null || department !== null) {
-      this.MealOrderVerificationsParams.date = date;
-      this.MealOrderVerificationsParams.department = department;
+  OrderBy(date, OrderNo) {
+    if (date !== null || OrderNo !== null) {
+      this.MealOrderVerificationsParams.date = this.convertDate.convertAB(date);
+      this.MealOrderVerificationsParams.OrderNo = OrderNo;
       this.loadMealOrderVerification();
     }
   }
@@ -119,9 +133,14 @@ export class MealOrderVerficationListComponent implements OnInit {
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
     if (status === 'Filter') {
+      $('.filter').addClass('d-none');
       this.MealOrderVerificationsParams.date = null;
-      this.MealOrderVerificationsParams.department = null;
+      this.MealOrderVerificationsParams.OrderNo = null;
       this.loadMealOrderVerification();
+      $('#box').val('');
+      $('#box1').val('');
+    } else {
+      $('.filter').removeClass('d-none');
     }
   }
 
