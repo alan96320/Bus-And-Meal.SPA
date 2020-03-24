@@ -8,7 +8,8 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-busOrderEntryList',
@@ -38,9 +39,15 @@ export class BusOrderEntryListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
+    private convertDate: ConvertDateService,
   ) { }
 
   ngOnInit() {
+    const newDate = $('#box');
+    newDate.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadDormitory();
     this.loadBusTime();
@@ -48,6 +55,18 @@ export class BusOrderEntryListComponent implements OnInit {
       this.busOrderEntrys = data.busOrderEntry.result;
       this.pagination = data.busOrderEntry.pagination;
       console.log(this.busOrderEntrys);
+    });
+    newDate.change(() => {
+      this.BusOrderEntrysParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
+      this.BusOrderEntrysParams.department = $('#box1').val();
+      this.BusOrderEntrysParams.dormitory = $('#box2').val();
+      this.loadBusOrderEntrys();
+    });
+    $('#box1').change(function() {
+      $(this).blur();
+    });
+    $('#box2').change(function() {
+      $(this).blur();
     });
   }
 
@@ -122,9 +141,15 @@ export class BusOrderEntryListComponent implements OnInit {
   // kita buat fungsi untuk Order By
   OrderBy(date, department, dormitory) {
     if (date !== null || department !== null || dormitory !== null) {
-      this.BusOrderEntrysParams.date = date;
-      this.BusOrderEntrysParams.department = department;
-      this.BusOrderEntrysParams.dormitory = dormitory;
+      if (date !== null) {
+        this.BusOrderEntrysParams.date = this.convertDate.convertAB(date);
+      }
+      if (department !== null) {
+        this.BusOrderEntrysParams.department = department;
+      }
+      if (dormitory !== null) {
+        this.BusOrderEntrysParams.dormitory = dormitory;
+      }
       this.loadBusOrderEntrys();
     }
   }
@@ -132,10 +157,16 @@ export class BusOrderEntryListComponent implements OnInit {
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
     if (status === 'Filter') {
+      $('.filter').addClass('d-none');
       this.BusOrderEntrysParams.date = null;
       this.BusOrderEntrysParams.department = null;
       this.BusOrderEntrysParams.dormitory = null;
+      $('#box').val('');
+      $('#box1').val('');
+      $('#box2').val('');
       this.loadBusOrderEntrys();
+    } else {
+      $('.filter').removeClass('d-none');
     }
   }
 
