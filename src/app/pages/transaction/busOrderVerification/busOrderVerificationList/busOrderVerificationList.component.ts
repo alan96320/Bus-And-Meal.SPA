@@ -127,7 +127,7 @@ export class BusOrderVerificationListComponent implements OnInit {
   // kita buat fungsi untuk Order By
   OrderBy(date, OrderNo) {
     if (date !== null || OrderNo !== null) {
-      this.BusOrderVerificationsParams.date = date;
+      this.BusOrderVerificationsParams.date = this.convertDate.convertAB(date);
       this.BusOrderVerificationsParams.OrderNo = OrderNo;
       this.loadBusOrderVerification();
     }

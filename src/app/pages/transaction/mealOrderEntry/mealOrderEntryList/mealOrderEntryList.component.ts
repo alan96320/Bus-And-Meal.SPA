@@ -8,6 +8,8 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderEntryList',
@@ -33,14 +35,30 @@ export class MealOrderEntryListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
+    private convertDate: ConvertDateService,
   ) {}
 
   ngOnInit() {
+    const newDate = $('#box');
+    newDate.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadMealType();
     this.route.data.subscribe(data => {
       this.MealOrderEntrys = data.mealOrderEntry.result;
       this.pagination = data.mealOrderEntry.pagination;
+    });
+    newDate.change(() => {
+      this.MealOrderEntrysParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
+      if ($('#box1').val() !== '') {
+        this.MealOrderEntrysParams.department = $('#box1').val();
+      }
+      this.loadMealOrderEntrys();
+    });
+    $('#box1').change(function() {
+      $(this).blur();
     });
   }
 
@@ -109,7 +127,7 @@ export class MealOrderEntryListComponent implements OnInit {
   // kita buat fungsi untuk Order By
   OrderBy(date, department) {
     if (date !== null || department !== null) {
-      this.MealOrderEntrysParams.date = date;
+      this.MealOrderEntrysParams.date = this.convertDate.convertAB(date);
       this.MealOrderEntrysParams.department = department;
       this.loadMealOrderEntrys();
     }
@@ -118,9 +136,14 @@ export class MealOrderEntryListComponent implements OnInit {
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
     if (status === 'Filter') {
+      $('.filter').addClass('d-none');
       this.MealOrderEntrysParams.date = null;
       this.MealOrderEntrysParams.department = null;
+      $('#box').val('');
+      $('#box1').val('');
       this.loadMealOrderEntrys();
+    } else {
+      $('.filter').removeClass('d-none');
     }
   }
 

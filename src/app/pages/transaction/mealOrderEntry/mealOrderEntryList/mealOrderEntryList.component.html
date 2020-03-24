@@ -32,13 +32,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="!filter">
+                <tr class="d-none filter">
                   <td class="form-group no-border">
-                    <input type="date" class="form-control" #box
-                      (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input type="text" class="form-control" #box id="box" />
                   </td>
                   <td class="form-group no-border">
-                      <select class="form-control" #box1 (change)="OrderBy(box.value,box1.value);box.value='';">
+                      <select class="form-control" #box1 id="box1" (change)="OrderBy(box.value,box1.value);">
                         <option value="">Select One</option>
                         <option *ngFor="let item of listDepartments" value="{{item.id}}">{{item.name}}</option>
                       </select>
@@ -46,7 +45,7 @@
                   <td colspan="3"></td>
                 </tr>
                 <tr *ngFor="let MealOrderEntry of MealOrderEntrys">
-                  <td>{{MealOrderEntry.orderEntryDate | date}}</td>
+                  <td>{{MealOrderEntry.orderEntryDate | date:'d MMM y'}}</td>
                   <td *ngFor="let item of listDepartments" [ngClass]="{'d-none': item.id !== MealOrderEntry.departmentId}">
                     {{item.name}}
                   </td>
