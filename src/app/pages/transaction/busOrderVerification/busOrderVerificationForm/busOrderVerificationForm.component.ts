@@ -257,12 +257,9 @@ export class BusOrderVerificationFormComponent implements OnInit {
       if (c) {
         this.sweetAlert.message('There was a change of data on the meal order...');
       }
-      // const date = this.model.Orderdate;
-      // const d = date.substr(0, 2);
-      // const m = date.substr(3, 2);
-      // const y = date.substr(6, 4);
       this.model.Orderdate = this.convertDate.convertAB(this.model.Orderdate);
       if (!this.update) {
+        this.model.isUpdate = false;
         this.busOrderVerificationService.addBusOrderVerification(this.model).subscribe(() => {
           this.sweetAlert.successAdd('Add Successfully');
           this.router.navigate(['/busOrderVerification']);
@@ -270,6 +267,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
           this.sweetAlert.warning(error);
         });
       } else {
+        this.model.isUpdate = true;
         this.busOrderVerificationService.editBusOrderVerification(this.id, this.model).subscribe(() => {
           this.sweetAlert.successAdd('Edit Successfully');
           this.router.navigate(['/busOrderVerification']);
