@@ -148,5 +148,5 @@ export class MealOrderReportComponent implements OnInit {
     ].join(' ');
   }
 
-  
+
 }

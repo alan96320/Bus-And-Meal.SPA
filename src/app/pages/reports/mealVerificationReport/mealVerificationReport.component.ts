@@ -50,7 +50,7 @@ export class MealVerificationReportComponent implements OnInit {
     private reportService: ReportService,
     private converDate: ConvertDateService
   ) { }
-  
+
   ngOnInit() {
     const start = $('#start');
     const end = $('#end');
@@ -64,7 +64,7 @@ export class MealVerificationReportComponent implements OnInit {
     });
     this.loadDepartment();
     this.loadReport();
-    $('#department').change(function () {
+    $('#department').change(function() {
       $(this).blur();
     });
   }
