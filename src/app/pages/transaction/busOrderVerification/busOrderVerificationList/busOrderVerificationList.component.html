@@ -34,19 +34,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="!filter">
+                <tr class="d-none filter">
                   <td class="form-group no-border">
-                    <input type="date" class="form-control" #box
-                      (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input type="text" class="form-control" #box id="box" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="number" class="form-control" #box1
-                      (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input type="number" class="form-control" #box1 id="box1" (keyup.enter)="OrderBy(box.value,box1.value);"/>
                   </td>
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let data of busOrderVerifications">
-                  <td>{{data.orderdate | date}}</td>
+                  <td>{{data.orderdate | date:'d MMM y'}}</td>
                   <td>{{data.orderNo}}</td>
                   <td>
                     <label *ngIf="data.isClosed"><span class="badge badge-default">Closed</span></label>
