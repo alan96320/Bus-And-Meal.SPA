@@ -28,6 +28,7 @@ export class DepartmentReportComponent implements OnInit {
       this.departments = data.department;
     });
 
+    Stimulsoft.Base.StiLicense.loadFromFile('../assets/reports/license.key');
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile('../assets/reports/Department.mrt');
@@ -39,6 +40,7 @@ export class DepartmentReportComponent implements OnInit {
     options.width = '100%';
     options.height = '850px';
     options.appearance.scrollbarsMode = true;
+    options.appearance.fullScreenMode = true;
 
     const viewer = new Stimulsoft.Viewer.StiViewer(options, 'StiViewer', false);
     viewer.report = report;

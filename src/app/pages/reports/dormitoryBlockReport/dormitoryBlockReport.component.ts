@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { DormitoryBlock } from "src/app/_models/dormitoryBlock";
-import { DormitoryBlockService } from "src/app/_services/dormitoryBlock.service";
-import { ActivatedRoute } from "@angular/router";
-import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { Component, OnInit } from '@angular/core';
+import { DormitoryBlock } from 'src/app/_models/dormitoryBlock';
+import { DormitoryBlockService } from 'src/app/_services/dormitoryBlock.service';
+import { ActivatedRoute } from '@angular/router';
+import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 
 declare var Stimulsoft: any;
 
 @Component({
-  selector: "app-dormitoryBlockReport",
-  templateUrl: "./dormitoryBlockReport.component.html",
-  styleUrls: ["./dormitoryBlockReport.component.css"]
+  // tslint:disable-next-line:component-selector
+  selector: 'app-dormitoryBlockReport',
+  templateUrl: './dormitoryBlockReport.component.html',
+  styleUrls: ['./dormitoryBlockReport.component.css']
 })
 export class DormitoryBlockReportComponent implements OnInit {
   dormitoryblocks: DormitoryBlock[];
@@ -22,23 +23,25 @@ export class DormitoryBlockReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.dormitoryblocks = data["dormitoryblock"];
+      this.dormitoryblocks = data.dormitoryblock;
     });
 
+    Stimulsoft.Base.StiLicense.loadFromFile('../assets/reports/license.key');
     const report = Stimulsoft.Report.StiReport.createNewReport();
     const options = new Stimulsoft.Viewer.StiViewerOptions();
-    report.loadFile("../assets/reports/DormitoryBlock.mrt");
-    report.dictionary.variables.getByName("title").valueObject =
-      "Dormitory Block List";
+    report.loadFile('../assets/reports/DormitoryBlock.mrt');
+    report.dictionary.variables.getByName('title').valueObject =
+      'Dormitory Block List';
 
-    report.regData("DormitoryBlock", "DormitoryBlock", this.dormitoryblocks);
+    report.regData('DormitoryBlock', 'DormitoryBlock', this.dormitoryblocks);
 
-    options.width = "100%";
-    options.height = "850px";
+    options.width = '100%';
+    options.height = '850px';
     options.appearance.scrollbarsMode = true;
+    options.appearance.fullScreenMode = true;
 
-    const viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
+    const viewer = new Stimulsoft.Viewer.StiViewer(options, 'StiViewer', false);
     viewer.report = report;
-    viewer.renderHtml("dormitoryblockReport");
+    viewer.renderHtml('dormitoryblockReport');
   }
 }

@@ -109,6 +109,7 @@ export class MealOrderReportComponent implements OnInit {
           });
         });
 
+      Stimulsoft.Base.StiLicense.loadFromFile('../assets/reports/license.key');
       const report = Stimulsoft.Report.StiReport.createNewReport();
       const options = new Stimulsoft.Viewer.StiViewerOptions();
       report.loadFile('../assets/reports/MealOrder.mrt');
@@ -123,6 +124,7 @@ export class MealOrderReportComponent implements OnInit {
       options.width = '100%';
       options.height = '850px';
       options.appearance.scrollbarsMode = true;
+      options.appearance.fullScreenMode = true;
 
       const viewer = new Stimulsoft.Viewer.StiViewer(options, 'StiViewer', false);
       viewer.report = report;

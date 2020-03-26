@@ -92,6 +92,7 @@ export class MealVerificationReportComponent implements OnInit {
         mo.date = this.convertDate(mo.orderDate);
       });
 
+      Stimulsoft.Base.StiLicense.loadFromFile('../assets/reports/license.key');
       const report = Stimulsoft.Report.StiReport.createNewReport();
       const options = new Stimulsoft.Viewer.StiViewerOptions();
       report.loadFile('../assets/reports/MealVerification.mrt');
@@ -108,6 +109,7 @@ export class MealVerificationReportComponent implements OnInit {
       options.width = '100%';
       options.height = '850px';
       options.appearance.scrollbarsMode = true;
+      options.appearance.fullScreenMode = true;
 
       const viewer = new Stimulsoft.Viewer.StiViewer(options, 'StiViewer', false);
       viewer.report = report;
