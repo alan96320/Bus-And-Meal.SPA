@@ -40,7 +40,7 @@ export class EmployeeReportComponent implements OnInit {
     report.loadFile('../assets/reports/Employee.mrt');
     report.dictionary.variables.getByName('title').valueObject =
       'Employee List';
-
+    report.reportName = 'BusMeal-Employee Report';
     report.regData('Employee', 'Employee', employeeData);
 
     options.width = '100%';

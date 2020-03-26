@@ -32,7 +32,7 @@ export class DormitoryBlockReportComponent implements OnInit {
     report.loadFile('../assets/reports/DormitoryBlock.mrt');
     report.dictionary.variables.getByName('title').valueObject =
       'Dormitory Block List';
-
+    report.reportName = 'BusMeal-Dormitory and Block Report';
     report.regData('DormitoryBlock', 'DormitoryBlock', this.dormitoryblocks);
 
     options.width = '100%';

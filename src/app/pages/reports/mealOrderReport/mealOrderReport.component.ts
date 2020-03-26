@@ -115,7 +115,7 @@ export class MealOrderReportComponent implements OnInit {
       report.loadFile('../assets/reports/MealOrder.mrt');
       report.dictionary.variables.getByName('title').valueObject =
         'Meal Order List';
-
+      report.reportName = 'BusMeal-Meal Order Report';
       this.mealOrderReport.orderdetail = this.orderDetail;
       this.mealOrderReport.mealtype = this.mealtype;
       report.dictionary.databases.clear();

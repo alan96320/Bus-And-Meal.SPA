@@ -32,7 +32,7 @@ export class BusTimeReportComponent implements OnInit {
     report.loadFile('../assets/reports/BusTime.mrt');
     report.dictionary.variables.getByName('title').valueObject =
       'Bus Time List';
-
+    report.reportName = 'BusMeal-Bus Time Report';
     report.regData('BusTime', 'BusTime', this.bustimes);
 
     options.width = '100%';

@@ -31,7 +31,7 @@ export class CounterReportComponent implements OnInit {
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile('../assets/reports/Counter.mrt');
     report.dictionary.variables.getByName('title').valueObject = 'Counter List';
-
+    report.reportName = 'BusMeal-Counter Report';
     report.regData('Counter', 'Counter', this.counters);
 
     options.width = '100%';

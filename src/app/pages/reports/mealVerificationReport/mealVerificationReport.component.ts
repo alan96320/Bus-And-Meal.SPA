@@ -98,7 +98,7 @@ export class MealVerificationReportComponent implements OnInit {
       report.loadFile('../assets/reports/MealVerification.mrt');
       report.dictionary.variables.getByName('title').valueObject =
         'Meal Verification List';
-
+      report.reportName = 'BusMeal-Meal Verification Report';
       report.dictionary.databases.clear();
       report.regData(
         'MealVerification',

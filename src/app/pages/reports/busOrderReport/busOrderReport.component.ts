@@ -104,7 +104,7 @@ export class BusOrderReportComponent implements OnInit {
       report.loadFile('../assets/reports/BusOrder.mrt');
       report.dictionary.variables.getByName('title').valueObject =
         'Bus Order List';
-
+      report.reportName = 'BusMeal-Bus Order Report';
       report.dictionary.databases.clear();
       report.regData('BusOrder', 'BusOrder', this.busOrderReport);
 

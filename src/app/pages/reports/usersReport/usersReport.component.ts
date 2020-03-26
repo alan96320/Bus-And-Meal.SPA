@@ -37,7 +37,7 @@ export class UsersReportComponent implements OnInit {
     const options = new Stimulsoft.Viewer.StiViewerOptions();
     report.loadFile('../assets/reports/Users.mrt');
     report.dictionary.variables.getByName('title').valueObject = 'Users List';
-
+    report.reportName = 'BusMeal-Users Report';
     report.regData('User', 'User', userData);
 
     options.width = '100%';

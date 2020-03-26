@@ -34,7 +34,7 @@ export class DepartmentReportComponent implements OnInit {
     report.loadFile('../assets/reports/Department.mrt');
     report.dictionary.variables.getByName('title').valueObject =
       'Department List';
-
+    report.reportName = 'BusMeal-Department Report';
     report.regData('Department', 'Department', this.departments);
 
     options.width = '100%';

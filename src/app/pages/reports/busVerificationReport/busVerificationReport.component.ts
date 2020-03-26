@@ -98,7 +98,7 @@ export class BusVerificationReportComponent implements OnInit {
       report.loadFile('../assets/reports/BusVerification.mrt');
       report.dictionary.variables.getByName('title').valueObject =
         'Bus Verification List';
-
+      report.reportName = 'BusMeal-Bus Verification Report';
       report.dictionary.databases.clear();
       report.regData(
         'BusVerification',

@@ -32,7 +32,7 @@ export class MealVendorReportComponent implements OnInit {
     report.loadFile('../assets/reports/MealVendor.mrt');
     report.dictionary.variables.getByName('title').valueObject =
       'Meal Vendor List';
-
+    report.reportName = 'BusMeal-Meal Vendor Report';
     report.regData('MealVendor', 'MealVendor', this.mealVendors);
 
     options.width = '100%';
