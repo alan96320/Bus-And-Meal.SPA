@@ -77,10 +77,9 @@ export class BusVerificationReportComponent implements OnInit {
     });
   }
 
-  Print(depart) {
+  Print() {
     this.busVerificationReportParams.startDate = this.converDate.convertAB($('#start').val());
     this.busVerificationReportParams.endDate = this.converDate.convertAB($('#end').val());
-    this.busVerificationReportParams.department = depart;
     this.loadReport();
   }
 

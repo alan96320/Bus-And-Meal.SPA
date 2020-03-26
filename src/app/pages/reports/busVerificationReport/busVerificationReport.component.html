@@ -15,20 +15,9 @@
                             <input id="end" class="form-control" placeholder="dd-mm-yyyy">
                         </div>
                     </div>
-                    <div class="form-group no-border col row ml-4">
-                        <label class="col-sm-5 col-form-label text-right">Department :</label>
-                        <div class="col-sm-7">
-                            <select name="department" #department id="department" class="form-control">
-                                <option value="">All</option>
-                                <option *ngFor="let data of departments" [value]="data.id">
-                                    {{data.name}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="col">
                         <button class="btn btn-default animation-on-hover btn-sm" style="margin-left: 100px"
-                            ngbtooltip="Print" type="button" (click)="Print(department.value)"> Print </button>
+                            ngbtooltip="Print" type="button" (click)="Print()"> Print </button>
 
                     </div>
                 </div>
