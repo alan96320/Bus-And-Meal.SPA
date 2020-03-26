@@ -63,7 +63,7 @@ export class MealVerificationReportComponent implements OnInit {
       autoHide: true
     });
     this.loadDepartment();
-    this.loadReport();
+    // this.loadReport();
     $('#department').change(function() {
       $(this).blur();
     });
