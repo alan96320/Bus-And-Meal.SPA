@@ -77,10 +77,9 @@ export class MealVerificationReportComponent implements OnInit {
     });
   }
 
-  Print(depart) {
+  Print() {
     this.mealVerificationReportParams.startDate = this.converDate.convertAB($('#start').val());
     this.mealVerificationReportParams.endDate = this.converDate.convertAB($('#end').val());
-    this.mealVerificationReportParams.department = depart;
     this.loadReport();
   }
 
