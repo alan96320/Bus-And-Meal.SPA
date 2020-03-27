@@ -20,6 +20,8 @@ export class MealOrderEntryFormComponent implements OnInit {
   update = false;
   id = +this.route.snapshot.params.id;
   listDepartments: any;
+  validDepartment: any;
+  userDepartment:any;
   deptUser: any;
   mealTypes: any;
   currenDate = new Date();
@@ -40,6 +42,7 @@ export class MealOrderEntryFormComponent implements OnInit {
       format: 'dd-mm-yyyy',
       autoHide: true
     });
+
     this.loadDepartment();
     this.loadMealType();
     this.converCurrenDate();
@@ -74,24 +77,25 @@ export class MealOrderEntryFormComponent implements OnInit {
   loadDepartment() {
     const id = localStorage.getItem('id_user');
     const isAdmin = localStorage.getItem('isAdmin');
+
     this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.listDepartments = response;
+      this.validDepartment = response;
     }, error => {
       this.sweetAlert.error(error);
     });
+    
     if (isAdmin === 'false') {
-      this.http.get(environment.apiUrl + 'user/' + id).subscribe(response => {
-        this.deptUser = response;
-        this.deptUser.userDepartments.map((data, i) => {
+      this.http.get(environment.apiUrl + 'userDepartment/paged?userid=' + id).subscribe(response => {
+        this.userDepartment = response;
+        this.validDepartment = [];
+        this.userDepartment.map((data, i) => {
           this.listDepartments.map(datax => {
             if (data.departmentId === datax.id) {
-              data.name = datax.name;
-              data.id = datax.id;
+              this.validDepartment.push(datax)
             }
           });
         });
-        this.listDepartments = this.deptUser.userDepartments;
-        this.listDepartments.unshift({ id: '', name: '' });
       }, error => {
         this.sweetAlert.error(error);
       });

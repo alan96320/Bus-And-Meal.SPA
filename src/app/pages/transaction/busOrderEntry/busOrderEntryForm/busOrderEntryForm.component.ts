@@ -86,9 +86,9 @@ export class BusOrderEntryFormComponent implements OnInit {
       this.sweetAlert.error(error);
     });
     if (isAdmin === 'false') {
-      this.http.get(environment.apiUrl + 'user/' + id).subscribe(response => {
+      this.http.get(environment.apiUrl + 'userDepartment/paged?userid=' + id).subscribe(response => {
         this.deptUser = response;
-        this.deptUser.userDepartments.map((data, i) => {
+        this.deptUser.map((data, i) => {
           this.listDepartments.map(datax => {
             if (data.departmentId === datax.id) {
               data.name = datax.name;
@@ -96,8 +96,7 @@ export class BusOrderEntryFormComponent implements OnInit {
             }
           });
         });
-        this.listDepartments = this.deptUser.userDepartments;
-        this.listDepartments.unshift({ id: '', name: '' });
+        this.listDepartments = this.deptUser;
       }, error => {
         this.sweetAlert.error(error);
       });
