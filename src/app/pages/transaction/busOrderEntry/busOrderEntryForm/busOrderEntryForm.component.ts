@@ -190,6 +190,7 @@ export class BusOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Add Successfully');
         this.router.navigate(['/busOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     } else {
@@ -198,6 +199,7 @@ export class BusOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Edit Successfully');
         this.router.navigate(['/busOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     }

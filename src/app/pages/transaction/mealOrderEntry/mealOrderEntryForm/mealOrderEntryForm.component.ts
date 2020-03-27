@@ -148,6 +148,7 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Add Successfully');
         this.router.navigate(['/mealOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     } else {
@@ -156,6 +157,7 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Edit Successfully');
         this.router.navigate(['/mealOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     }

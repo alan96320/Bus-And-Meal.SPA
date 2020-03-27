@@ -308,6 +308,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
             this.router.navigate(['/mealOrderVerification']);
           }, 1000);
         }, error => {
+          this.model.OrderDate = this.convertDate.convertBA(this.model.OrderDate);
           this.sweetAlert.warning(error);
         });
       } else {
@@ -318,6 +319,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
             this.router.navigate(['/mealOrderVerification']);
           }, 1000);
         }, error => {
+          this.model.OrderDate = this.convertDate.convertBA(this.model.OrderDate);
           this.sweetAlert.warning(error);
         });
       }
