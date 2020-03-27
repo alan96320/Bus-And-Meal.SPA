@@ -17,7 +17,7 @@
     <DataSources isList="true" count="6">
       <busorder Ref="3" type="DataTableSource" isKey="true">
         <Alias>busorder</Alias>
-        <Columns isList="true" count="9">
+        <Columns isList="true" count="10">
           <value>busOrderDetails,System.String</value>
           <value>busOrderVerificationId,System.Decimal</value>
           <value>departmentId,System.Decimal</value>
@@ -27,6 +27,7 @@
           <value>orderEntryDate,System.DateTime</value>
           <value>userId,System.Decimal</value>
           <value>date,System.String</value>
+          <value>collected,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
         <Key>ce56f60c00384ccfba581c925c97e89d</Key>
@@ -502,7 +503,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Date</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TypeOfComponent>Row:CrossTab1_Row1</TypeOfComponent>
             </CrossTab1_Row1_Title>
             <CrossTab1_RowTotal3 Ref="38" type="CrossRowTotal" isKey="true">
@@ -533,7 +534,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Department</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TypeOfComponent>Row:CrossTab1_Row2</TypeOfComponent>
             </CrossTab1_Row2_Title>
             <CrossTab1_ColTotal1 Ref="40" type="CrossColumnTotal" isKey="true">
@@ -555,7 +556,7 @@
             <CrossTab1_LeftTitle Ref="41" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>0,0,380,30</ClientRectangle>
+              <ClientRectangle>0,0,280,30</ClientRectangle>
               <Font>Arial,12</Font>
               <Guid>047778bdd4f347b7b65a6312d9268d98</Guid>
               <Margins>5,0,5,5</Margins>
@@ -564,7 +565,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Order Detail</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TypeOfComponent>LeftTitle</TypeOfComponent>
             </CrossTab1_LeftTitle>
             <CrossTab1_ColTotal2 Ref="42" type="CrossColumnTotal" isKey="true">
@@ -585,8 +586,8 @@
             </CrossTab1_ColTotal2>
             <CrossTab1_RowTotal1 Ref="43" type="CrossRowTotal" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[46:117:181]</Brush>
-              <ClientRectangle>0,114,380,20</ClientRectangle>
+              <Brush>[0:112:192]</Brush>
+              <ClientRectangle>0,114,280,20</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>95bfab8f93ed488186ff07b70b7b3b7c</Guid>
@@ -596,7 +597,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Total</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
             </CrossTab1_RowTotal1>
             <CrossTab1_Row3_Title Ref="44" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
@@ -610,7 +611,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Dormitory Block</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TypeOfComponent>Row:CrossTab1_Row3</TypeOfComponent>
             </CrossTab1_Row3_Title>
             <CrossTab1_RowTotal4 Ref="45" type="CrossRowTotal" isKey="true">
@@ -620,7 +621,7 @@
               <Conditions isList="true" count="0" />
               <Enabled>False</Enabled>
               <Font>Arial,8</Font>
-              <Guid>c829a98e2bf441c2bf3ff0032c4fb27c</Guid>
+              <Guid>e7ac1b46780240b2bacd1f6d546ff8f8</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>CrossTab1_RowTotal4</Name>
               <Page isRef="17" />
@@ -632,31 +633,33 @@
             <CrossTab1_Row4_Title Ref="46" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>230,32,150,60</ClientRectangle>
+              <ClientRectangle>230,32,50,60</ClientRectangle>
               <Font>Arial,10</Font>
-              <Guid>809a2247a2c5484a90d7401b34027c78</Guid>
+              <Guid>25e52e2e9c704d0ab9c24ac160711136</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>CrossTab1_Row4_Title</Name>
               <Page isRef="17" />
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Collected</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
+              <Type>Expression</Type>
               <TypeOfComponent>Row:CrossTab1_Row4</TypeOfComponent>
             </CrossTab1_Row4_Title>
             <CrossTab1_RightTitle Ref="47" type="CrossTitle" isKey="true">
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>382,0,160,30</ClientRectangle>
+              <ClientRectangle>282,0,60,30</ClientRectangle>
               <Font>Arial,12</Font>
-              <Guid>f50069d170aa4649872d6e532ebfe364</Guid>
-              <Margins>5,5,5,5</Margins>
+              <Guid>8809406327814b70968ac1f486bedf26</Guid>
+              <Margins>0,0,0,0</Margins>
               <Name>CrossTab1_RightTitle</Name>
               <Page isRef="17" />
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>Direction and Time</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
+              <Type>Expression</Type>
               <TypeOfComponent>RightTitle</TypeOfComponent>
             </CrossTab1_RightTitle>
             <CrossTab1_Row1 Ref="48" type="CrossRow" isKey="true">
@@ -674,7 +677,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>date</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TotalGuid>95bfab8f93ed488186ff07b70b7b3b7c</TotalGuid>
               <Value>{busorder_busOrderDetails.busorder.date}</Value>
             </CrossTab1_Row1>
@@ -693,7 +696,7 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>name</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TotalGuid>323119179a2f488b83fb7ebc3dd57467</TotalGuid>
               <Value>{busorder_busOrderDetails.busorder.department.name}</Value>
             </CrossTab1_Row2>
@@ -712,34 +715,34 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>name</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TotalGuid>5d777a7fac9d4bcdb75af4d1ef5948bc</TotalGuid>
               <Value>{busorder_busOrderDetails.busorder.dormitoryblock.name}</Value>
             </CrossTab1_Row3>
             <CrossTab1_Row4 Ref="51" type="CrossRow" isKey="true">
-              <Alias>busOrderVerificationId</Alias>
+              <Alias>collected</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:176:240]</Brush>
-              <ClientRectangle>230,94,150,20</ClientRectangle>
+              <ClientRectangle>230,94,50,20</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <DisplayValue>{busorder_busOrderDetails.busorder.busOrderVerificationId &gt; 0 ? "Yes" : "No"}</DisplayValue>
+              <DisplayValue>{busorder_busOrderDetails.busorder.collected}</DisplayValue>
               <Font>Arial,10</Font>
-              <Guid>86b9321dd72346178b31bfb7dba573a7</Guid>
+              <Guid>df1c0492de4f41f5a2f19c860dd820d2</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>CrossTab1_Row4</Name>
               <Page isRef="17" />
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
-              <Text>busOrderVerificationId</Text>
-              <TextBrush>[255:255:255]</TextBrush>
-              <TotalGuid>c829a98e2bf441c2bf3ff0032c4fb27c</TotalGuid>
-              <Value>{busorder_busOrderDetails.busorder.busOrderVerificationId &gt; 0 ? "Yes" : "No"}</Value>
+              <Text>collected</Text>
+              <TextBrush>White</TextBrush>
+              <TotalGuid>e7ac1b46780240b2bacd1f6d546ff8f8</TotalGuid>
+              <Value>{busorder_busOrderDetails.busorder.collected}</Value>
             </CrossTab1_Row4>
             <CrossTab1_Column1 Ref="52" type="CrossColumn" isKey="true">
               <Alias>name</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>382,32,160,30</ClientRectangle>
+              <ClientRectangle>282,32,60,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{busorder_busOrderDetails.bustime.direction.name}</DisplayValue>
               <Font>Arial,10</Font>
@@ -751,7 +754,7 @@
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <SortDirection>None</SortDirection>
               <Text>name</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TotalGuid>8d3c3dbc1b1242e1a23835ce4ae425f3</TotalGuid>
               <Value>{busorder_busOrderDetails.bustime.direction.name}</Value>
             </CrossTab1_Column1>
@@ -759,7 +762,7 @@
               <Alias>time</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
               <Brush>[0:112:192]</Brush>
-              <ClientRectangle>382,62,160,30</ClientRectangle>
+              <ClientRectangle>282,62,60,30</ClientRectangle>
               <Conditions isList="true" count="0" />
               <DisplayValue>{busorder_busOrderDetails.bustime.time}</DisplayValue>
               <Font>Arial,10</Font>
@@ -770,15 +773,15 @@
               <Parent isRef="35" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
               <Text>time</Text>
-              <TextBrush>[255:255:255]</TextBrush>
+              <TextBrush>White</TextBrush>
               <TotalGuid>5f81f46aac9a482793659e6b2fbb351b</TotalGuid>
               <Value>{busorder_busOrderDetails.bustime.time}</Value>
             </CrossTab1_Column2>
             <CrossTab1_Sum1 Ref="54" type="CrossSummary" isKey="true">
               <Alias>orderQty</Alias>
               <Border>All;[0:59:117];1;Solid;False;4;Black</Border>
-              <Brush>[189:215:238]</Brush>
-              <ClientRectangle>382,94,160,20</ClientRectangle>
+              <Brush>[219:229:241]</Brush>
+              <ClientRectangle>282,94,60,20</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Guid>b1560a90dd9d46e5b2451110b2592ec3</Guid>
@@ -829,11 +832,11 @@
   </ReferencedAssemblies>
   <ReportAlias>Sales Invoice</ReportAlias>
   <ReportAuthor>Stimulsoft</ReportAuthor>
-  <ReportChanged>3/5/2020 11:29:59 AM</ReportChanged>
+  <ReportChanged>3/27/2020 9:11:42 AM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>BusOrder.mrt</ReportFile>
-  <ReportGuid>bf14b7a64339488fa4b5f098d29cf655</ReportGuid>
+  <ReportFile>C:\busmeal\BusMeal-SPA\src\assets\reports\BusOrder.mrt</ReportFile>
+  <ReportGuid>10b7f8d11f564822bb4cfea79180e43c</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.1.0</ReportVersion>
