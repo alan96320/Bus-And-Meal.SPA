@@ -96,6 +96,7 @@ export class BusOrderReportComponent implements OnInit {
       this.busOrderReport.dormitoryblock = this.busOrderResource.dormitoryblockResult;
       this.busOrderReport.busorder.map(bo => {
         bo.date = this.convertDate(bo.orderEntryDate);
+        bo.collected = bo.busOrderVerificationId > 0 ? 'Yes' : 'No'
       });
 
       Stimulsoft.Base.StiLicense.loadFromFile('../assets/reports/license.key');
@@ -107,6 +108,7 @@ export class BusOrderReportComponent implements OnInit {
       report.reportName = 'BusMeal-Bus Order Report';
       report.dictionary.databases.clear();
       report.regData('BusOrder', 'BusOrder', this.busOrderReport);
+             
 
       options.width = '100%';
       options.height = '850px';
