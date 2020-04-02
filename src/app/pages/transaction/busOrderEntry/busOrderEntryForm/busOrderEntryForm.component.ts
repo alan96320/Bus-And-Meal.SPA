@@ -62,15 +62,15 @@ export class BusOrderEntryFormComponent implements OnInit {
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
         this.model.OrderEntryDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-' + month + '-' + this.currenDate.getFullYear();
       }
     } else {
       this.model.OrderEntryDate = day + '-' + month + '-' + this.currenDate.getFullYear();

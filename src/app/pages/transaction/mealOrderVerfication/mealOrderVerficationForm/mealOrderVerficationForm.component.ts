@@ -94,15 +94,15 @@ export class MealOrderVerficationFormComponent implements OnInit {
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.OrderDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
         this.model.OrderDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.OrderDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderDate = '0' + day + '-' + month + '-' + this.currenDate.getFullYear();
       }
     } else {
       this.model.OrderDate = day + '-' + month + '-' + this.currenDate.getFullYear();
