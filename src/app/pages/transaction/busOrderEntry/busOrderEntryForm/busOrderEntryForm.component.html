@@ -1,22 +1,39 @@
 <div class="content">
   <div class=" row">
     <div class=" col-12">
-      <h2 class=" card-title">{{!update ? 'Add' : 'Update'}} Bus Order Entry Data</h2>
+      <h2 class=" card-title">
+        {{ !update ? "Add" : "Update" }} Bus Order Entry Data
+      </h2>
       <div class=" card">
         <div class=" card-body">
           <form #FormMealOrder="ngForm" (ngSubmit)="submit()">
             <div class="form-group row no-border">
               <label class="col-sm-1 offset-sm-1 col-form-label">Date</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" name="OrderEntryDate" required data-toggle="datepicker"
-                  [(ngModel)]="model.OrderEntryDate" #OrderEntryDate="ngModel"
-                  [ngClass]="{'is-invalid': OrderEntryDate.invalid && (OrderEntryDate.dirty || OrderEntryDate.touched) }">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="OrderEntryDate"
+                  required
+                  data-toggle="datepicker"
+                  [(ngModel)]="model.OrderEntryDate"
+                  #OrderEntryDate="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      OrderEntryDate.invalid &&
+                      (OrderEntryDate.dirty || OrderEntryDate.touched)
+                  }"
+                />
                 <div class="invalid-feedback">Is required</div>
               </div>
               <div class=" form-check col-sm-6 text-right">
                 <label class=" form-check-label">
-                  <input class=" form-check-input" type="checkbox" name="isReadyToCollect"
-                    [(ngModel)]="model.isReadyToCollect">
+                  <input
+                    class=" form-check-input"
+                    type="checkbox"
+                    name="isReadyToCollect"
+                    [(ngModel)]="model.isReadyToCollect"
+                  />
                   <span class=" form-check-sign">
                     <span class=" check">Ready for Collect</span>
                   </span>
@@ -24,24 +41,48 @@
               </div>
             </div>
             <div class="form-group row no-border">
-              <label class="col-sm-1 offset-sm-1 col-form-label">Department</label>
+              <label class="col-sm-1 offset-sm-1 col-form-label"
+                >Department</label
+              >
               <div class="col-sm-3 24hr-example">
-                <select name="DepartmentId" class="form-control" required [(ngModel)]="model.DepartmentId" required>
+                <select
+                  name="DepartmentId"
+                  class="form-control"
+                  required
+                  [(ngModel)]="model.DepartmentId"
+                  required
+                >
                   <option value="">Select Department</option>
-                  <option *ngFor="let department of listDepartments" value="{{department.id}}">
-                    {{department.name}}
+                  <option
+                    *ngFor="let department of listDepartments"
+                    value="{{ department.id }}"
+                  >
+                    {{ department.name }}
                   </option>
                 </select>
               </div>
             </div>
             <div class="form-group row no-border">
-              <label class="col-sm-1 offset-sm-1 col-form-label">Dormitory</label>
+              <label class="col-sm-1 offset-sm-1 col-form-label"
+                >Dormitory</label
+              >
               <div class="col-sm-3 24hr-example">
-                <select name="DormitoryBlockId" class="form-control" required [(ngModel)]="model.DormitoryBlockId" #DormitoryBlockId="ngModel"
-                  required [ngClass]="{'is-invalid': DormitoryBlockId.invalid && (DormitoryBlockId.dirty || DormitoryBlockId.touched) }">
+                <select
+                  name="DormitoryBlockId"
+                  class="form-control"
+                  required
+                  [(ngModel)]="model.DormitoryBlockId"
+                  #DormitoryBlockId="ngModel"
+                  required
+                  [ngClass]="{
+                    'is-invalid':
+                      DormitoryBlockId.invalid &&
+                      (DormitoryBlockId.dirty || DormitoryBlockId.touched)
+                  }"
+                >
                   <option value="">Select Dormitory</option>
-                  <option *ngFor="let data of dormitory" value="{{data.id}}">
-                    {{data.name}}
+                  <option *ngFor="let data of dormitory" value="{{ data.id }}">
+                    {{ data.name }}
                   </option>
                 </select>
                 <div class="invalid-feedback">Is required</div>
@@ -50,23 +91,45 @@
 
             <div class="dropdown-divider mt-3"></div>
 
-            <div class="table-responsive">
+            <div class="table-responsive" style="overflow-y: auto;">
               <table class="table">
                 <thead>
                   <tr>
-                    <th *ngFor="let item of busTime" [attr.colspan]="item.length" class="text-center" >
-                      {{item[0].directionEnum === 1 ? "Dormitory to Office" : item[0].directionEnum === 2 ? "Office to Dormitory" : item[0].directionEnum === 3 ? "Night" : ""}}
+                    <th
+                      *ngFor="let item of busTime"
+                      [attr.colspan]="item.length"
+                      class="text-center"
+                    >
+                      {{
+                        item[0].directionEnum === 1
+                          ? "Dormitory to Office"
+                          : item[0].directionEnum === 2
+                          ? "Office to Dormitory"
+                          : item[0].directionEnum === 3
+                          ? "Night"
+                          : ""
+                      }}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th *ngFor="let item of busTime2" class="text-center">{{item.time}}</th>
+                    <th *ngFor="let item of busTime2" class="text-center">
+                      {{ item.time }}
+                    </th>
                   </tr>
                   <tr>
-                    <td *ngFor="let item of busTime2; let i = index">
+                    <td
+                      *ngFor="let item of busTime2; let i = index"
+                      style="min-width:100px"
+                    >
                       <div class="form-group no-border">
-                        <input type="number" class="form-control form-control-sm" name="{{'OrderQty'+i}}" [(ngModel)]="item.OrderQty">
+                        <input
+                          type="number"
+                          class="form-control form-control-sm"
+                          name="{{ 'OrderQty' + i }}"
+                          [(ngModel)]="item.OrderQty"
+                        />
                       </div>
                     </td>
                   </tr>
@@ -76,12 +139,21 @@
 
             <div class="row mt-3">
               <div class="col-sm-9 offset-sm-3 text-right">
-                <button class="btn btn-default animation-on-hover btn-sm" type="submit"
-                  [disabled]="!FormMealOrder.valid">
+                <button
+                  class="btn btn-default animation-on-hover btn-sm"
+                  type="submit"
+                  [disabled]="!FormMealOrder.valid"
+                >
                   Save
                 </button>
-                <button class="btn btn-danger animation-on-hover btn-sm" (click)="cancel()" type="button"
-                  [routerLink]="['/busOrderEntry']">Cancel</button>
+                <button
+                  class="btn btn-danger animation-on-hover btn-sm"
+                  (click)="cancel()"
+                  type="button"
+                  [routerLink]="['/busOrderEntry']"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           </form>
