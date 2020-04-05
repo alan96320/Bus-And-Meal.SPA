@@ -1,35 +1,68 @@
 <div class="content">
-  <div class=" row">
-    <div class=" col-12">
-      <h2 class=" card-title">Bus Time</h2>
-      <div class=" card card-custom">
-        <div class=" card-header">
-          <div class=" row">
-            <div class=" col-sm-6 text-left">
-              <button (click)="filter = !filter;" class="btn animation-on-hover" type="button"
-                (click)="cancelFilter(filter ? 'Filter' : 'Close Filter')" [ngClass]="{'btn-danger': filter === false}"
-                ngbTooltip="{{filter ? 'Filter' : 'Close Filter'}}">{{filter ? 'Filter' : 'Close Filter'}}</button>
+  <div class="row">
+    <div class="col-12">
+      <h2 class="card-title">Bus Time</h2>
+      <div class="card card-custom">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <button
+                (click)="filter = !filter"
+                class="btn animation-on-hover"
+                type="button"
+                (click)="cancelFilter(filter ? 'Filter' : 'Close Filter')"
+                [ngClass]="{ 'btn-danger': filter === false }"
+                ngbTooltip="{{ filter ? 'Filter' : 'Close Filter' }}"
+              >
+                {{ filter ? "Filter" : "Close Filter" }}
+              </button>
             </div>
-            <div class=" col-sm-6 text-right">
-              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Add New" [routerLink]="['/formBusTime']">Add New</button>
-              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Print" [routerLink]="['/reportbustime']">Print</button>
+            <div class="col-sm-6 text-right">
+              <button
+                class="btn btn-default animation-on-hover"
+                type="button"
+                ngbTooltip="Add New"
+                [routerLink]="['/formBusTime']"
+              >
+                Add New
+              </button>
+              <button
+                class="btn btn-default animation-on-hover"
+                type="button"
+                ngbTooltip="Print"
+                [routerLink]="['/reportbustime']"
+              >
+                Print
+              </button>
             </div>
           </div>
         </div>
         <li class="dropdown-divider"></li>
-        <div class=" card-body" style="margin-top: -20px;">
-          <div class=" table-responsive table-custom" style="overflow: auto;">
+        <div class="card-body" style="margin-top: -20px;">
+          <div class="table-responsive table-custom" style="overflow: auto;">
             <table class="table">
               <thead>
                 <tr>
-                  <th class="sort-custom" (click)="sortActive('code')">Code
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscCode===true}"></i>
+                  <th class="sort-custom" (click)="sortActive('code')">
+                    Code
+                    <i
+                      class="tim-icons icon-minimal-up ml-2"
+                      [ngClass]="{ 'sort-active': sortAscCode === true }"
+                    ></i>
                   </th>
-                  <th class="sort-custom" (click)="sortActive('time')">Depart Time
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscTime===false}"></i>
+                  <th class="sort-custom" (click)="sortActive('time')">
+                    Depart Time
+                    <i
+                      class="tim-icons icon-minimal-up ml-2"
+                      [ngClass]="{ 'sort-active': sortAscTime === false }"
+                    ></i>
                   </th>
-                  <th class="sort-custom" (click)="sortActive('directionEnum')">Type Direction
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDirection===false}"></i>
+                  <th class="sort-custom" (click)="sortActive('directionEnum')">
+                    Type Direction
+                    <i
+                      class="tim-icons icon-minimal-up ml-2"
+                      [ngClass]="{ 'sort-active': sortAscDirection === false }"
+                    ></i>
                   </th>
                   <th class="text-right">Actions</th>
                   <th></th>
@@ -38,32 +71,85 @@
               <tbody>
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Filter By Code" #box
-                      (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Filter By Code"
+                      #box
+                      (keyup.enter)="
+                        OrderBy(box.value, box1.value);
+                        box.value = '';
+                        box1.value = ''
+                      "
+                    />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Filter By Time" #box1
-                      (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Filter By Time"
+                      #box1
+                      (keyup.enter)="
+                        OrderBy(box.value, box1.value);
+                        box.value = '';
+                        box1.value = ''
+                      "
+                    />
                   </td>
                   <td class="form-group no-border">
-                    <select class="form-control" #box2 id="box2" (change)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''">
+                    <select
+                      class="form-control"
+                      #box2
+                      id="box2"
+                      (change)="
+                        OrderBy(box.value, box1.value, box2.value);
+                        box.value = '';
+                        box1.value = '';
+                        box2.value = ''
+                      "
+                    >
                       <option value="">Select One..</option>
-                      <option *ngFor="let item of listDirection" value="{{item.id}}">{{item.name}}</option>
+                      <option
+                        *ngFor="let item of listDirection"
+                        value="{{ item.id }}"
+                        >{{ item.name }}</option
+                      >
                     </select>
                   </td>
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let BusTime of BusTimes">
-                  <td>{{BusTime.code}}</td>
-                  <td>{{BusTime.time}}</td>
-                  <td>{{BusTime.directionEnum == 1 ? "Domitory -> Office" : BusTime.directionEnum == 2 ? "Office -> Domitory" : "Office -> Domitory (Night)"}}</td>
+                  <td>{{ BusTime.code }}</td>
+                  <td>{{ BusTime.time }}</td>
+                  <td>
+                    {{
+                      BusTime.directionEnum == 1
+                        ? "Dormitory -> Office"
+                        : BusTime.directionEnum == 2
+                        ? "Office -> Dormitory"
+                        : "Night Shift"
+                    }}
+                  </td>
                   <td class="td-actions text-right">
-                    <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data" placement="left" type="button" [routerLink]="['/formBusTime',BusTime.id]" >
-                      <i class=" tim-icons icon-pencil"></i>
+                    <button
+                      class="btn btn-link btn-success btn-icon btn-sm"
+                      container="body"
+                      ngbTooltip="Edit Data"
+                      placement="left"
+                      type="button"
+                      [routerLink]="['/formBusTime', BusTime.id]"
+                    >
+                      <i class="tim-icons icon-pencil"></i>
                     </button>
-                    <button class=" btn btn-link btn-danger btn-icon btn-sm" container="body" ngbTooltip="Remove Data"
-                      placement="left" type="button" (click)="deleteBusTime(BusTime.id)">
-                      <i class=" tim-icons icon-simple-remove"></i>
+                    <button
+                      class="btn btn-link btn-danger btn-icon btn-sm"
+                      container="body"
+                      ngbTooltip="Remove Data"
+                      placement="left"
+                      type="button"
+                      (click)="deleteBusTime(BusTime.id)"
+                    >
+                      <i class="tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
                   <td></td>
@@ -77,43 +163,91 @@
           <ul class="pagination">
             <li>
               <label class="mr-1">Item Per Page</label>
-              <select class="btn btn-default btn-simple btn-icon mr-5" style="height: 31px; width: 50px;" #Size
-                (change)="changeSize(Size.value)">
+              <select
+                class="btn btn-default btn-simple btn-icon mr-5"
+                style="height: 31px; width: 50px;"
+                #Size
+                (change)="changeSize(Size.value)"
+              >
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
               </select>
             </li>
-            <li (click)="startPage()" [ngClass]="{'d-lg-none': pagination.currentPage === 1}">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm ">
+            <li
+              (click)="startPage()"
+              [ngClass]="{ 'd-lg-none': pagination.currentPage === 1 }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
                 <i class="tim-icons icon-double-left"></i>
               </a>
             </li>
-            <li [ngClass]="{'d-lg-none': pagination.currentPage === 1}" (click)="prevPage()">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
+            <li
+              [ngClass]="{ 'd-lg-none': pagination.currentPage === 1 }"
+              (click)="prevPage()"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
                 <i class="tim-icons icon-minimal-left"></i>
               </a>
             </li>
-            <li *ngFor="let item of arrayPage(); let i = index;">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm"
-                [ngClass]="{'active': i+1 === pagination.currentPage,'d-lg-none': i+1 > pagination.currentPage+2 || i+1 < pagination.currentPage}"
-                (click)="clickMe(i+1)">
-                <b>{{i+1}}</b>
+            <li *ngFor="let item of arrayPage(); let i = index">
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+                [ngClass]="{
+                  active: i + 1 === pagination.currentPage,
+                  'd-lg-none':
+                    i + 1 > pagination.currentPage + 2 ||
+                    i + 1 < pagination.currentPage
+                }"
+                (click)="clickMe(i + 1)"
+              >
+                <b>{{ i + 1 }}</b>
               </a>
             </li>
             <li
-              [ngClass]="{'d-lg-none': pagination.totalPages < 3 || pagination.totalPages === pagination.currentPage }">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">...</a>
+              [ngClass]="{
+                'd-lg-none':
+                  pagination.totalPages < 3 ||
+                  pagination.totalPages === pagination.currentPage
+              }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+                >...</a
+              >
             </li>
-            <li (click)="nextPage()" [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
+            <li
+              (click)="nextPage()"
+              [ngClass]="{
+                'd-lg-none': pagination.totalPages === pagination.currentPage
+              }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
                 <i class="tim-icons icon-minimal-right"></i>
               </a>
             </li>
-            <li (click)="endPage(pagination.totalPages)"
-              [ngClass]="{'d-lg-none': pagination.totalPages === pagination.currentPage}">
-              <a href="javascript:void(0)" class="btn btn-default btn-simple btn-icon btn-sm">
+            <li
+              (click)="endPage(pagination.totalPages)"
+              [ngClass]="{
+                'd-lg-none': pagination.totalPages === pagination.currentPage
+              }"
+            >
+              <a
+                href="javascript:void(0)"
+                class="btn btn-default btn-simple btn-icon btn-sm"
+              >
                 <i class="tim-icons icon-double-right"></i>
               </a>
             </li>
