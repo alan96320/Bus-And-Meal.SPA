@@ -256,6 +256,15 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderNo = data.mealOrderVerification.orderNo;
         this.model.IsClosed = data.mealOrderVerification.isClosed;
       });
+
+      this.selectedVendor.map((sVData) => {
+        this.mealVerification.map((mVData) => {
+          if (mVData.MealTypeId == sVData.mealTypeId) {
+            mVData.VendorId = sVData.vendorId;
+          }
+        });
+      });
+
       this.update = true;
     }
   }
@@ -279,6 +288,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.different[i] = Number(this.ajusment[i]) - Number(this.swipParsing[i]);
     this.mealVerification[i].LogBookQty = event.target.value;
   }
+
   vendor(event: any, i) {
     this.mealVerification[i].VendorId = +event.target.value;
   }
