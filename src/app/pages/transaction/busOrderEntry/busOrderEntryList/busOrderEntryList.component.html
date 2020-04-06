@@ -165,6 +165,7 @@
                     *ngFor="let item of busTime"
                     [attr.colspan]="item.length"
                     class="text-center"
+                    [ngClass]="{ 'grey-bg': item[0].directionEnum % 2 == 0 }"
                   >
                     {{
                       item[0].directionEnum === 1
