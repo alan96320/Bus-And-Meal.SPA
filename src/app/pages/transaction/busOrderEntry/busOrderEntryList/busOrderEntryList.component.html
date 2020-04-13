@@ -165,14 +165,14 @@
                     *ngFor="let item of busTime"
                     [attr.colspan]="item.length"
                     class="text-center"
-                    [ngClass]="{ 'grey-bg': item[0].directionEnum % 2 == 0 }"
+                    [ngClass]="{ 'grey-bg': item[0]?.directionEnum % 2 == 0 }"
                   >
                     {{
-                      item[0].directionEnum === 1
+                      item[0]?.directionEnum === 1
                         ? "Dormitory to Office"
-                        : item[0].directionEnum === 2
+                        : item[0]?.directionEnum === 2
                         ? "Office to Dormitory"
-                        : item[0].directionEnum === 3
+                        : item[0]?.directionEnum === 3
                         ? "Night Shift"
                         : ""
                     }}

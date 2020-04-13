@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { BusOrderEntryService } from 'src/app/_services/busOrderEntry.service';
-import { BusOrderEntry } from 'src/app/_models/busOrderEntry';
-import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { HttpClient } from '@angular/common/http';
-import swal from 'sweetalert2';
-import { environment } from 'src/environments/environment';
-import { ConvertDateService } from 'src/app/_services/convertDate.service';
+import { Component, OnInit } from "@angular/core";
+import { BusOrderEntryService } from "src/app/_services/busOrderEntry.service";
+import { BusOrderEntry } from "src/app/_models/busOrderEntry";
+import { Pagination, PaginatedResult } from "src/app/_models/pagination";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { ActivatedRoute } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { HttpClient } from "@angular/common/http";
+import swal from "sweetalert2";
+import { environment } from "src/environments/environment";
+import { ConvertDateService } from "src/app/_services/convertDate.service";
 declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'app-busOrderEntryList',
-  templateUrl: './busOrderEntryList.component.html',
-  styleUrls: ['./busOrderEntryList.component.css']
+  selector: "app-busOrderEntryList",
+  templateUrl: "./busOrderEntryList.component.html",
+  styleUrls: ["./busOrderEntryList.component.css"],
 })
 export class BusOrderEntryListComponent implements OnInit {
   sortAscDate: boolean;
@@ -39,32 +39,34 @@ export class BusOrderEntryListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
-    private convertDate: ConvertDateService,
-  ) { }
+    private convertDate: ConvertDateService
+  ) {}
 
   ngOnInit() {
-    const newDate = $('#box');
+    const newDate = $("#box");
     newDate.datepicker({
-      format: 'dd-mm-yyyy',
-      autoHide: true
+      format: "dd-mm-yyyy",
+      autoHide: true,
     });
     this.loadDepartment();
     this.loadDormitory();
     this.loadBusTime();
-    this.route.data.subscribe(data => {
+    this.route.data.subscribe((data) => {
       this.busOrderEntrys = data.busOrderEntry.result;
       this.pagination = data.busOrderEntry.pagination;
     });
     newDate.change(() => {
-      this.BusOrderEntrysParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
-      this.BusOrderEntrysParams.department = $('#box1').val();
-      this.BusOrderEntrysParams.dormitory = $('#box2').val();
+      this.BusOrderEntrysParams.date = this.convertDate.convertAB(
+        newDate.datepicker("getDate", true)
+      );
+      this.BusOrderEntrysParams.department = $("#box1").val();
+      this.BusOrderEntrysParams.dormitory = $("#box2").val();
       this.loadBusOrderEntrys();
     });
-    $('#box1').change(function() {
+    $("#box1").change(function () {
       $(this).blur();
     });
-    $('#box2').change(function() {
+    $("#box2").change(function () {
       $(this).blur();
     });
   }
@@ -74,19 +76,19 @@ export class BusOrderEntryListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === 'date') {
+    if (getName === "date") {
       this.sortAscDate = !this.sortAscDate;
       this.BusOrderEntrysParams.OrderBy = getName;
       this.BusOrderEntrysParams.isDesc = this.sortAscDate;
       this.loadBusOrderEntrys();
     }
-    if (getName === 'departmentName') {
+    if (getName === "departmentName") {
       this.sortAscDepartment = !this.sortAscDepartment;
       this.BusOrderEntrysParams.OrderBy = getName;
       this.BusOrderEntrysParams.isDesc = this.sortAscDepartment;
       this.loadBusOrderEntrys();
     }
-    if (getName === 'dormitory') {
+    if (getName === "dormitory") {
       this.sortAscDormitory = !this.sortAscDormitory;
       this.BusOrderEntrysParams.OrderBy = getName;
       this.BusOrderEntrysParams.isDesc = this.sortAscDormitory;
@@ -155,44 +157,46 @@ export class BusOrderEntryListComponent implements OnInit {
 
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
-    if (status === 'Filter') {
-      $('.filter').addClass('d-none');
+    if (status === "Filter") {
+      $(".filter").addClass("d-none");
       this.BusOrderEntrysParams.date = null;
       this.BusOrderEntrysParams.department = null;
       this.BusOrderEntrysParams.dormitory = null;
-      $('#box').val('');
-      $('#box1').val('');
-      $('#box2').val('');
+      $("#box").val("");
+      $("#box1").val("");
+      $("#box2").val("");
       this.loadBusOrderEntrys();
     } else {
-      $('.filter').removeClass('d-none');
+      $(".filter").removeClass("d-none");
     }
   }
 
   // for delete data
   deleteBusOrderEntrys(id: number) {
     // tslint:disable-next-line: no-use-before-declare
-    confirm.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.busOrderEntryService.deleteBusOrderEntry(id).subscribe(
-          () => {
-            this.sweetAlert.warningDel();
-            this.loadBusOrderEntrys();
-          },
-          error => {
-            this.sweetAlert.warning(error);
-          }
-        );
-      }
-    });
+    confirm
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.value) {
+          this.busOrderEntryService.deleteBusOrderEntry(id).subscribe(
+            () => {
+              this.sweetAlert.warningDel();
+              this.loadBusOrderEntrys();
+            },
+            (error) => {
+              this.sweetAlert.warning(error);
+            }
+          );
+        }
+      });
   }
 
   // for laod data
@@ -208,26 +212,32 @@ export class BusOrderEntryListComponent implements OnInit {
           this.busOrderEntrys = res.result;
           this.pagination = res.pagination;
         },
-        error => {
+        (error) => {
           this.sweetAlert.error(error);
         }
       );
   }
 
   loadDepartment() {
-    this.http.get(environment.apiUrl + 'department').subscribe(response => {
-      this.listDepartments = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+    this.http.get(environment.apiUrl + "department").subscribe(
+      (response) => {
+        this.listDepartments = response;
+      },
+      (error) => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
 
   loadDormitory() {
-    this.http.get(environment.apiUrl + 'DormitoryBlock').subscribe(response => {
-      this.dormitory = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+    this.http.get(environment.apiUrl + "DormitoryBlock").subscribe(
+      (response) => {
+        this.dormitory = response;
+      },
+      (error) => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
 
   loadBusTime() {
@@ -235,46 +245,67 @@ export class BusOrderEntryListComponent implements OnInit {
     const b = [];
     const c = [];
     const d = [];
-    this.http.get(environment.apiUrl + 'BusTime').subscribe(response => {
-      a.push(response);
-      a.map(data => {
-        data.map(item => {
-          if (item.directionEnum === 1) {
-            b.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum});
-          } else if (item.directionEnum === 2) {
-            c.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum });
-          } else if (item.directionEnum === 3) {
-            d.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum });
-          }
+    this.http.get(environment.apiUrl + "BusTime").subscribe(
+      (response) => {
+        a.push(response);
+        a.map((data) => {
+          data.map((item) => {
+            if (item.directionEnum === 1) {
+              b.push({
+                id: item.id,
+                code: item.code,
+                time: item.time,
+                directionEnum: item.directionEnum,
+              });
+            } else if (item.directionEnum === 2) {
+              c.push({
+                id: item.id,
+                code: item.code,
+                time: item.time,
+                directionEnum: item.directionEnum,
+              });
+            } else if (item.directionEnum === 3) {
+              d.push({
+                id: item.id,
+                code: item.code,
+                time: item.time,
+                directionEnum: item.directionEnum,
+              });
+            }
+          });
         });
-      });
-      // tslint:disable-next-line:no-shadowed-variable
-      b.sort((a, b) => a.time.localeCompare(b.time));
-      // tslint:disable-next-line:no-shadowed-variable
-      c.sort((a, b) => a.time.localeCompare(b.time));
-      // tslint:disable-next-line:no-shadowed-variable
-      d.sort((a, b) => a.time.localeCompare(b.time));
-      this.busTime.push(b);
-      this.busTime.push(c);
-      this.busTime.push(d);
-      this.busTime.map(data => {
-        data.map(item => {
-          this.busTime2.push({ id: item.id, code: item.code, time: item.time, directionEnum: item.directionEnum });
+        // tslint:disable-next-line:no-shadowed-variable
+        b.sort((a, b) => a.time.localeCompare(b.time));
+        // tslint:disable-next-line:no-shadowed-variable
+        c.sort((a, b) => a.time.localeCompare(b.time));
+        // tslint:disable-next-line:no-shadowed-variable
+        d.sort((a, b) => a.time.localeCompare(b.time));
+        this.busTime.push(b);
+        this.busTime.push(c);
+        this.busTime.push(d);
+        this.busTime.map((data) => {
+          data.map((item) => {
+            this.busTime2.push({
+              id: item.id,
+              code: item.code,
+              time: item.time,
+              directionEnum: item.directionEnum,
+            });
+          });
         });
-      });
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+      },
+      (error) => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
-
 }
-
 
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger",
   },
-  buttonsStyling: false
+  buttonsStyling: false,
 });
