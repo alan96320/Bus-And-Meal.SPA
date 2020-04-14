@@ -151,7 +151,7 @@ export class UserListComponent implements OnInit {
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
     if (status === "Filter") {
-      this.UsersParams.gddbId = null;
+      this.UsersParams.gddbid = null;
       this.UsersParams.firstname = null;
       this.UsersParams.lastname = null;
       this.UsersParams.fullname = null;
