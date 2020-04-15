@@ -262,6 +262,7 @@ export class BusOrderVerificationListComponent implements OnInit {
             });
           });
         });
+        this.busTime2.sort((a, b) => (a.code > b.code ? 1 : -1));
       },
       (error) => {
         this.sweetAlert.error(error);

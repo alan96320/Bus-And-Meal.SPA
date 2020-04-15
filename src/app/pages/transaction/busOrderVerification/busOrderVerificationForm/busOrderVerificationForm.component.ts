@@ -270,6 +270,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
             });
           });
         });
+        this.busTime2.sort((a, b) => (a.code > b.code ? 1 : -1));
       },
       (error) => {
         this.sweetAlert.error(error);
@@ -294,6 +295,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
               this.model.Orderdate
             );
             this.sweetAlert.warning(error);
+            this.router.navigate(["/busOrderVerification"]);
           }
         );
     } else {
@@ -310,6 +312,7 @@ export class BusOrderVerificationFormComponent implements OnInit {
               this.model.Orderdate
             );
             this.sweetAlert.warning(error);
+            this.router.navigate(["/busOrderVerification"]);
           }
         );
     }

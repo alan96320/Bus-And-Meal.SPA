@@ -353,6 +353,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
               this.model.OrderDate
             );
             this.sweetAlert.warning(error);
+            this.router.navigate(["/mealOrderVerification"]);
           }
         );
     } else {
@@ -371,6 +372,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
               this.model.OrderDate
             );
             this.sweetAlert.warning(error);
+            this.router.navigate(["/mealOrderVerification"]);
           }
         );
     }
