@@ -194,7 +194,9 @@ export class BusOrderEntryFormComponent implements OnInit {
                 });
               });
             });
-            this.busTime2.sort((a, b) => (a.code > b.code ? 1 : -1));
+            this.busTime2.sort((firstEl, nextEl) =>
+              firstEl.code > nextEl.code ? 1 : -1
+            );
             datax.busOrderEntry.busOrderDetails.map((item) => {
               this.busTime2.map((data) => {
                 if (data.BusTimeId === item.busTimeId) {
@@ -217,7 +219,9 @@ export class BusOrderEntryFormComponent implements OnInit {
               });
             });
           });
-          this.busTime2.sort((a, b) => (a.code > b.code ? 1 : -1));
+          this.busTime2.sort((firstEl, nextEl) =>
+            firstEl.code > nextEl.code ? 1 : -1
+          );
         }
       },
       (error) => {

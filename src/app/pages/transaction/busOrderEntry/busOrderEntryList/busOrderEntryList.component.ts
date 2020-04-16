@@ -293,7 +293,9 @@ export class BusOrderEntryListComponent implements OnInit {
             });
           });
         });
-        this.busTime2.sort((a, b) => (a.code > b.code ? 1 : -1));
+        this.busTime2.sort((fisrtEl, nextEl) =>
+          fisrtEl.code > nextEl.code ? 1 : -1
+        );
       },
       (error) => {
         this.sweetAlert.error(error);
