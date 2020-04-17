@@ -167,9 +167,16 @@ export class BusOrderEntryFormComponent implements OnInit {
         c.sort((a, b) => a.time.localeCompare(b.time));
         // tslint:disable-next-line:no-shadowed-variable
         d.sort((a, b) => a.time.localeCompare(b.time));
-        this.busTime.push(b);
-        this.busTime.push(c);
-        this.busTime.push(d);
+        if (b.length > 0) {
+          this.busTime.push(b);
+        }
+        if (c.length > 0) {
+          this.busTime.push(c);
+        }
+        if (d.length > 0) {
+          this.busTime.push(d);
+        }
+
         if (this.id) {
           this.route.data.subscribe((datax) => {
             this.model.OrderEntryDate = this.convertDate.convertBA(

@@ -1,3 +1,16 @@
-.grey-bg {
-  background-color: #ccc;
+.direction1 {
+  background-color: rgba(240, 0, 0, 0.7);
+  /* background-color: rgba(255, 255, 255, 1); */
+}
+.direction2 {
+  background-color: rgba(0, 240, 0, 0.7);
+  /* background-color: rgba(180, 180, 180, 1); */
+}
+.text-direction1 {
+  color: white;
+  font-weight: bold;
+}
+.text-direction2 {
+  color: black;
+  font-weight: bold;
 }
