@@ -30,12 +30,16 @@ export class ConfigurationFormComponent implements OnInit {
 
   loadConfiguration() {
     this.route.data.subscribe((data) => {
-      console.log(data);
-
       this.id = data.configuration[0].id;
-      this.model.lockedBusOrder = data.configuration[0].lockedBusOrder;
+      this.model.lockedBusOrderStart1 =
+        data.configuration[0].lockedBusOrderStart1;
+      this.model.lockedBusOrderEnd1 = data.configuration[0].lockedBusOrderEnd1;
+      this.model.lockedBusOrderStart2 =
+        data.configuration[0].lockedBusOrderStart2;
+      this.model.lockedBusOrderEnd2 = data.configuration[0].lockedBusOrderEnd2;
       this.model.lockedMealOrder = data.configuration[0].lockedMealOrder;
     });
+    console.log(this.model);
   }
   cancel() {
     this.cancelAdd.emit(false);
