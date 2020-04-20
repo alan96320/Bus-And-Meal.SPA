@@ -235,13 +235,24 @@ export class MealOrderVerficationFormComponent implements OnInit {
         this.model.OrderDate = this.convertDate.convertBA(
           data.mealOrderVerification.orderDate.substr(0, 10)
         );
+        console.log(data.mealOrderVerification);
+
         this.mealVerification.map((item, i) => {
-          item.AdjusmentQty =
-            data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
-          item.SwipeQty =
-            data.mealOrderVerification.mealVerificationDetails[i].swipeQty;
-          item.LogBookQty =
-            data.mealOrderVerification.mealVerificationDetails[i].logBookQty;
+          data.mealOrderVerification.map((mov) => {
+            if (item.mealTypeId == mov.mealTypeId) {
+              item.AdjusmentQty = mov.mealVerificationDetails.adjusmentQty;
+              item.SwipeQty = mov.mealVerificationDetails.swipeQty;
+              item.LogBookQty = mov.mealVerificationDetails.logBookQty;
+            }
+          });
+
+          // item.AdjusmentQty =
+          //   data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
+          // item.SwipeQty =
+          //   data.mealOrderVerification.mealVerificationDetails[i].swipeQty;
+          // item.LogBookQty =
+          //   data.mealOrderVerification.mealVerificationDetails[i].logBookQty;
+
           this.ajusment[i] =
             this.ajusment[i] +
             data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;

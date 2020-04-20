@@ -39,7 +39,6 @@ export class ConfigurationFormComponent implements OnInit {
       this.model.lockedBusOrderEnd2 = data.configuration[0].lockedBusOrderEnd2;
       this.model.lockedMealOrder = data.configuration[0].lockedMealOrder;
     });
-    console.log(this.model);
   }
   cancel() {
     this.cancelAdd.emit(false);

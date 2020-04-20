@@ -119,12 +119,19 @@ export class MealOrderEntryFormComponent implements OnInit {
     this.http.get(environment.apiUrl + "MealType").subscribe(
       (response) => {
         this.mealTypes = response;
+        this.mealTypes.sort((firstEl: any, nextEl: any) =>
+          firstEl.code > nextEl.code ? 1 : -1
+        );
         this.mealTypes.map((items, i) => {
           items.MealTypeId = items.id;
           items.MealOrderId = null;
           if (this.id) {
             this.route.data.subscribe((data) => {
-              items.OrderQty = data.mealOrderEntry.mealOrderDetails[i].orderQty;
+              data.mealOrderEntry.mealOrderDetails.map((mod) => {
+                if (mod.mealTypeId == items.id) {
+                  items.OrderQty = mod.orderQty;
+                }
+              });
               items.MealOrderId = data.mealOrderEntry.id;
             });
           }
