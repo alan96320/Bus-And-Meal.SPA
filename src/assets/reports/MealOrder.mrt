@@ -571,10 +571,11 @@
               <Page isRef="9" />
               <Parent isRef="27" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+              <SortType>ByValue</SortType>
               <Text>name</Text>
               <TextBrush>[255:255:255]</TextBrush>
               <TotalGuid>6fc09a718fca4cd8a3e3ce2383207745</TotalGuid>
-              <Value>{orderdetail.mealtypename.name}</Value>
+              <Value>{orderdetail.mealtypename.id}</Value>
             </CrossTab1_Column1>
             <CrossTab1_Sum1 Ref="41" type="CrossSummary" isKey="true">
               <Alias>total</Alias>
@@ -629,14 +630,14 @@
   </ReferencedAssemblies>
   <ReportAlias>Sales Invoice</ReportAlias>
   <ReportAuthor>Stimulsoft</ReportAuthor>
-  <ReportChanged>3/5/2020 11:29:59 AM</ReportChanged>
+  <ReportChanged>4/21/2020 11:44:13 AM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>MealOrder.mrt</ReportFile>
-  <ReportGuid>59a9853048494e42a5d57ea9104816ab</ReportGuid>
+  <ReportFile>D:\project\alcon\busmeal\BusMeal-SPA\src\assets\reports\MealOrder.mrt</ReportFile>
+  <ReportGuid>685812410f7e411aa24c2e245e118c45</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
-  <ReportVersion>2020.2.1.0</ReportVersion>
+  <ReportVersion>2020.2.2.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;

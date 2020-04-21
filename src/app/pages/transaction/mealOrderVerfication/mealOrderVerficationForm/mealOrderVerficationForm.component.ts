@@ -43,6 +43,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
   different: any;
   selectedVendor: any;
   mealVerification: any = [];
+  mealVerifications: any = {};
 
   constructor(
     private mealOrderEntryService: MealOrderEntryService,
@@ -178,6 +179,11 @@ export class MealOrderVerficationFormComponent implements OnInit {
           if (a === false) {
             this.MealOrderEntrys = res.result;
             this.pagination = res.pagination;
+            this.MealOrderEntrys.map((mov) => {
+              return mov.mealOrderDetails.sort((firstEl: any, nextEl: any) =>
+                firstEl.mealTypeId > nextEl.mealTypeId ? 1 : -1
+              );
+            });
           } else {
             this.sweetAlert.message(
               "Data on " +
@@ -204,10 +210,14 @@ export class MealOrderVerficationFormComponent implements OnInit {
     const d = [];
     let b = 0;
     this.mealVerification.splice(0, this.mealVerification.length);
+    // console.log(this.mealVerification);
+    // return;
+
     this.mealTypes.map((item, i) => {
       this.MealOrderEntrys.map((item2) => {
         b += item2.mealOrderDetails[i].orderQty;
       });
+
       a.push(b);
       this.mealVerification.push({
         MealTypeId: item.id,
@@ -222,6 +232,7 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.MealOrderEntrys.map((item) => {
       d.push(item.id);
     });
+
     this.sumData = JSON.parse(JSON.stringify(a));
     this.ajusment = JSON.parse(JSON.stringify(a));
     this.swipData = JSON.parse(JSON.stringify(c));
@@ -230,42 +241,38 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.different = JSON.parse(JSON.stringify(a));
     this.model.OrderList = d;
     this.selectedVendor = this.sumData;
+
     if (this.id) {
       this.route.data.subscribe((data) => {
         this.model.OrderDate = this.convertDate.convertBA(
           data.mealOrderVerification.orderDate.substr(0, 10)
         );
-        console.log(data.mealOrderVerification);
+        this.mealVerifications = data.mealOrderVerification;
+      });
 
-        this.mealVerification.map((item, i) => {
-          data.mealOrderVerification.map((mov) => {
-            if (item.mealTypeId == mov.mealTypeId) {
-              item.AdjusmentQty = mov.mealVerificationDetails.adjusmentQty;
-              item.SwipeQty = mov.mealVerificationDetails.swipeQty;
-              item.LogBookQty = mov.mealVerificationDetails.logBookQty;
-            }
-          });
-
-          // item.AdjusmentQty =
-          //   data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
-          // item.SwipeQty =
-          //   data.mealOrderVerification.mealVerificationDetails[i].swipeQty;
-          // item.LogBookQty =
-          //   data.mealOrderVerification.mealVerificationDetails[i].logBookQty;
-
-          this.ajusment[i] =
-            this.ajusment[i] +
-            data.mealOrderVerification.mealVerificationDetails[i].adjusmentQty;
-          // tslint:disable-next-line:max-line-length
-          this.swipParsing[i] =
-            data.mealOrderVerification.mealVerificationDetails[i].swipeQty +
-            data.mealOrderVerification.mealVerificationDetails[i].logBookQty;
-          this.different[i] = this.ajusment[i] - this.swipParsing[i];
+      this.mealVerification.map((item, i) => {
+        this.mealVerifications.mealVerificationDetails.map((mvd) => {
+          if (item.MealTypeId == mvd.mealTypeId) {
+            item.AdjusmentQty = mvd.adjusmentQty;
+            item.SwipeQty = mvd.swipeQty;
+            item.LogBookQty = mvd.logBookQty;
+            item.Total = mvd.SumOrderQty;
+          }
         });
-        this.selectedVendor =
-          data.mealOrderVerification.mealVerificationDetails;
-        this.model.OrderNo = data.mealOrderVerification.orderNo;
-        this.model.IsClosed = data.mealOrderVerification.isClosed;
+
+        this.selectedVendor = this.mealVerifications.mealVerificationDetails;
+        this.model.OrderNo = this.mealVerifications.orderNo;
+        this.model.IsClosed = this.mealVerifications.isClosed;
+      });
+
+      var sortedDetail = this.mealVerifications.mealVerificationDetails.sort(
+        (a, b) => (a.mealTypeId > b.mealTypeId ? 1 : -1)
+      );
+
+      sortedDetail.map((item, i) => {
+        this.ajusment[i] = item.sumOrderQty + item.adjusmentQty;
+        this.swipParsing[i] = item.swipeQty + item.logBookQty;
+        this.different[i] = this.ajusment[i] - this.swipParsing[i];
       });
 
       this.selectedVendor.map((sVData) => {
@@ -329,6 +336,9 @@ export class MealOrderVerficationFormComponent implements OnInit {
     this.http.get(environment.apiUrl + "MealType").subscribe(
       (response) => {
         this.mealTypes = response;
+        this.mealTypes.sort((firstEl: any, nextEl: any) =>
+          firstEl.code > nextEl.code ? 1 : -1
+        );
       },
       (error) => {
         this.sweetAlert.error(error);

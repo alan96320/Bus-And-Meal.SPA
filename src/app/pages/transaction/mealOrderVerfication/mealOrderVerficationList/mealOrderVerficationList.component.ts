@@ -199,7 +199,6 @@ export class MealOrderVerficationListComponent implements OnInit {
                 firstEl.mealTypeId > nextEl.mealTypeId ? 1 : -1
             );
           });
-          console.log(this.MealOrderVerifications);
         },
         (error) => {
           this.sweetAlert.error(error);
