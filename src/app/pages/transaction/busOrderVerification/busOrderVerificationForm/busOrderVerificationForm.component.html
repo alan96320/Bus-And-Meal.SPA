@@ -75,7 +75,7 @@
                     <th class="sort-custom">Date</th>
                     <th class="sort-custom">Department</th>
                     <th class="sort-custom">Dormitory</th>
-                    <th class="sort-custom">Status</th>
+                    <!-- <th class="sort-custom">Status</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -95,15 +95,20 @@
                     >
                       {{ item.name }}
                     </td>
-                    <td>
-                      <span class="badge badge-default">
+                    <!-- <td>
+                      <span
+                        class="badge badge-default"
+                        [ngClass]="{
+                          'not-close': data.busOrderVerificationId === null
+                        }"
+                      >
                         {{
                           data.busOrderVerificationId === null
                             ? "Open"
                             : "Close"
                         }}
                       </span>
-                    </td>
+                    </td> -->
                   </tr>
                 </tbody>
               </table>
@@ -125,9 +130,9 @@
                     >
                       {{
                         item[0]?.directionEnum === 1
-                          ? "Dormitory to Office"
+                          ? "Dormitory to Alcon 204"
                           : item[0]?.directionEnum === 2
-                          ? "Office to Dormitory"
+                          ? "Alcon 204 to Dormitory"
                           : item[0]?.directionEnum === 3
                           ? "Night"
                           : ""

@@ -579,10 +579,11 @@
               <Page isRef="16" />
               <Parent isRef="34" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+              <SortType>ByValue</SortType>
               <Text>name</Text>
               <TextBrush>White</TextBrush>
               <TotalGuid>93620d18a2e446a0b83bcb56a97c6b03</TotalGuid>
-              <Value>{busVerificationResult_busOrderVerificationDetails_busTime.Relation.name}</Value>
+              <Value>{busVerificationResult_busOrderVerificationDetails_busTime.Relation.id}</Value>
             </CrossTab1_Row1>
             <CrossTab1_Row2 Ref="43" type="CrossRow" isKey="true">
               <Alias>time</Alias>
@@ -675,11 +676,11 @@
   </ReferencedAssemblies>
   <ReportAlias>Sales Invoice</ReportAlias>
   <ReportAuthor>Stimulsoft</ReportAuthor>
-  <ReportChanged>4/16/2020 1:34:22 PM</ReportChanged>
+  <ReportChanged>4/21/2020 12:03:27 PM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>D:\kade\project\alcon\busmeal\BusMeal-SPA\src\assets\reports\BusVerification.mrt</ReportFile>
-  <ReportGuid>baa4daa6f70a40cabeac177f69b64b51</ReportGuid>
+  <ReportFile>D:\project\alcon\busmeal\BusMeal-SPA\src\assets\reports\BusVerification.mrt</ReportFile>
+  <ReportGuid>89abc6c29e2e497597438c0d067f15bc</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.2.0</ReportVersion>

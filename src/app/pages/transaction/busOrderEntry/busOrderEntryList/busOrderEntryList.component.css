@@ -1,3 +1,7 @@
 .grey-bg {
   background-color: #ccc;
 }
+
+.not-ready {
+  background-color: rgba(240, 0, 0, 0.7);
+}

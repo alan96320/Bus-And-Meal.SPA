@@ -123,7 +123,12 @@
                     {{ item.name }}
                   </td>
                   <td class="text-center">
-                    <span class="badge badge-default">
+                    <span
+                      class="badge badge-default"
+                      [ngClass]="[
+                        !data.isReadyToCollect ? 'not-ready' : 'badge-default'
+                      ]"
+                    >
                       {{ data.isReadyToCollect ? "YES" : "NO" }}
                     </span>
                   </td>
@@ -169,9 +174,9 @@
                   >
                     {{
                       item[0]?.directionEnum === 1
-                        ? "Dormitory to Office"
+                        ? "Dormitory to Alcon 204"
                         : item[0]?.directionEnum === 2
-                        ? "Office to Dormitory"
+                        ? "Alcon 204 to Dormitory"
                         : item[0]?.directionEnum === 3
                         ? "Night Shift"
                         : ""

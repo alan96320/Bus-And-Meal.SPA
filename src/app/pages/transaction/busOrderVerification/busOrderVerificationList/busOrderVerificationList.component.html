@@ -84,7 +84,9 @@
                       ><span class="badge badge-default">Closed</span></label
                     >
                     <label *ngIf="!data.isClosed"
-                      ><span class="badge badge-default">Open</span></label
+                      ><span class="badge badge-default not-close"
+                        >Open</span
+                      ></label
                     >
                   </td>
                   <td class="td-actions text-center">
@@ -129,9 +131,9 @@
                   >
                     {{
                       item[0]?.directionEnum === 1
-                        ? "Dormitory to Office"
+                        ? "Dormitory to Alcon 204"
                         : item[0]?.directionEnum === 2
-                        ? "Office to Dormitory"
+                        ? "Alcon 204 to Dormitory"
                         : item[0]?.directionEnum === 3
                         ? "Night"
                         : ""

@@ -30,8 +30,8 @@ export class BusTimeFormComponent implements OnInit {
   ngOnInit() {
     this.loadBusTime();
     this.listDirection = [
-      { id: 1, name: "Dormitory -> Office" },
-      { id: 2, name: "Office -> Dormitory" },
+      { id: 1, name: "Dormitory to Alcon 204" },
+      { id: 2, name: "Alcon 204 to Dormitory" },
       { id: 3, name: "Nigh Shift" },
     ];
     $("#directionEnum").change(function () {
