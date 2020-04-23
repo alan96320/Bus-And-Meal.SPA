@@ -8,13 +8,13 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-configurationForm',
-  templateUrl: './configurationForm.component.html',
+  templateUrl: './configurationForm.component.html'
 })
 export class ConfigurationFormComponent implements OnInit {
   @Output() cancelAdd = new EventEmitter();
   model: any = {};
   configuration: Configuration;
-  id = +this.route.snapshot.params.id;
+  id: any ;
 
   constructor(
     private configurationService: ConfigurationService,
@@ -22,33 +22,38 @@ export class ConfigurationFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loadConfiguration();
   }
 
   loadConfiguration() {
-    if (this.id) {
-      this.route.data.subscribe(data => {
-        this.model.rowGrid = data.configuration.rowGrid;
-        this.model.lockedBusOrder = data.configuration.lockedBusOrder;
-        this.model.lockedMealOrder = data.configuration.lockedMealOrder;
-      });
-    }
+    this.route.data.subscribe(data => {
+      this.id = data.configuration[0].id;
+      this.model.lockedBusOrder = data.configuration[0].lockedBusOrder;
+      this.model.lockedMealOrder = data.configuration[0].lockedMealOrder;
+      console.log(data);
+      
+    });
   }
   cancel() {
     this.cancelAdd.emit(false);
   }
 
   saveConfiguration() {
-    console.log(this.model);
-    this.configurationService.editConfiguration(this.id, this.model).subscribe(() => {
-      this.sweetAlert.successAdd('Edit Successfully');
-      this.router.navigate(['/dashboard']);
-    }, error => {
-      this.sweetAlert.warning(error);
-    });
+    this.model.lockedBusOrder.replace('.', ':');
+    this.model.lockedMealOrder.replace('.', ':');
+    this.configurationService.editConfiguration(this.id, this.model).subscribe(
+      () => {
+        this.sweetAlert.successAdd('Edit Successfully');
+        this.router.navigate(['/dashboard']);
+      },
+      error => {
+        this.sweetAlert.warning(error);
+      }
+    );
   }
-
 }
+
+

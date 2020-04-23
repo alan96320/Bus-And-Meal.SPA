@@ -1,163 +1,327 @@
 <nav class=" navbar navbar-expand-lg bg-custom fixed-top box-shadow-custom">
-   <div class=" container-fluid">
-      <div class=" navbar-wrapper">
-         <div class="logo">
-            <a href="#" class="simple-text-custom logo-mini-custom">
-               <div class="logo-img">
-                  <img src="./assets/img/angular2-logo-white.png" />
-               </div>
-            </a>
-            <a [routerLink]="['/home']" class="simple-text-custom logo-normal-custom">
-               Bus & Meal
-            </a>
-            <!-- <div *ngFor="let item of authService.decodedToken?.role">{{item === 'Bus Order Entry.R' ? "berhasil" : "gagal"}}</div> -->
-
-         </div>
+  <div class=" container-fluid">
+    <div class=" navbar-wrapper">
+      <div class="logo">
+        <a href="#" class="simple-text-custom logo-mini-custom">
+          <div class="logo-img" style="width: 100px; height: 40px;">
+            <img
+              src="./assets/img/alcon-logo-png-300x200.png"
+              height="40px"
+              style="width: 100px;"
+            />
+          </div>
+        </a>
+        <a
+          [routerLink]="['/home']"
+          class="simple-text-custom logo-normal-custom ml-4"
+          style="padding-left: 80px; font-size: 20px;"
+        >
+          Bus & Meal
+        </a>
+        <!-- <div *ngFor="let item of authService.decodedToken?.role">{{item === 'Bus Order Entry.R' ? "berhasil" : "gagal"}}</div> -->
       </div>
-      <button aria-label="Toggle navigation" class=" navbar-toggler" (click)="collapse()"
-         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" id="navigation" type="button">
-         <span class=" navbar-toggler-bar navbar-kebab"> </span>
-         <span class=" navbar-toggler-bar navbar-kebab"> </span>
-         <span class=" navbar-toggler-bar navbar-kebab"> </span>
-      </button>
+    </div>
+    <button
+      aria-label="Toggle navigation"
+      class=" navbar-toggler"
+      (click)="collapse()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample"
+      id="navigation"
+      type="button"
+    >
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+    </button>
 
-      <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
-         <ul *ngIf="loggedIn()" class="navbar-nav mr-auto mt-2 mt-lg-0" style="margin-left: 6.5%;"> <!-- for Menu -->
-<!-- 
-            <li class="nav-item">
-               <a class="nav-link btn btn-success btn-simple animation-on-hover" (click)="destroyActiveLink()" [routerLink]="['/dashboard']" routerLinkActive="active" >Dashboard</a>
-            </li> -->
-
-
-            <li class="nav-item" ngbDropdown> <!-- for transaction -->
-               <a class="btn btn-default animation-on-hover" [ngClass]="{'active': activeTrasaction }" data-toggle="dropdown"
-                   href="javascript:void(0)" ngbDropdownToggle style="color: #ffffff;">
-                  Trasaction
-               </a>
-               <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link" >
-                     <a class="nav-item "  [routerLink]="['/mealOrderEntry']" (click)="activeLinkTrasaction()"  ngbDropdownItem>
-                        Meal Order Entry
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/mealOrderVerification']" (click)="activeLinkTrasaction()" ngbDropdownItem>
-                        Meal Order Verification
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class="nav-item" [routerLink]="['/busOrderEntry']" (click)="activeLinkTrasaction()" ngbDropdownItem>Bus Order Entry</a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/busOrderVerification']" (click)="activeLinkTrasaction()" ngbDropdownItem>
-                        Bus Order Verification
-                     </a>
-                  </li>
-               </ul>
+    <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
+      <ul
+        *ngIf="loggedIn()"
+        class="navbar-nav mr-auto mt-2 mt-lg-0"
+        style="margin-left: 6.5%;"
+      >
+        <li class="nav-item" ngbDropdown>
+          <!-- for transaction -->
+          <a
+            class="btn btn-default animation-on-hover"
+            [ngClass]="{ active: activeTrasaction }"
+            data-toggle="dropdown"
+            href="javascript:void(0)"
+            ngbDropdownToggle
+            style="color: #ffffff;"
+          >
+            Transaction
+          </a>
+          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class=" nav-link">
+              <a
+                class="nav-item "
+                [routerLink]="['/mealOrderEntry']"
+                (click)="activeLinkTrasaction()"
+                ngbDropdownItem
+              >
+                Meal Order Entry
+              </a>
             </li>
-            <li class=" nav-item" ngbDropdown> <!-- for report -->
-               <a class="btn btn-default animation-on-hover" data-toggle="dropdown" [ngClass]="{'active': activeReport }" 
-                  href="javascript:void(0)" ngbDropdownToggle style="color: #ffffff;">
-                  Report
-               </a>
-               <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link">
-                     <a class=" nav-item" href="javascript:void(0)" (click)="activeLinkReport()" ngbDropdownItem>
-                        ?
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" href="javascript:void(0)" (click)="activeLinkReport()" ngbDropdownItem>
-                        ?
-                     </a>
-                  </li>
-               </ul>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/mealOrderVerification']"
+                (click)="activeLinkTrasaction()"
+                ngbDropdownItem
+              >
+                Meal Order Verification
+              </a>
             </li>
-
-            <li class=" nav-item" ngbDropdown> <!-- for configuration -->
-               <a class="btn btn-default animation-on-hover" data-toggle="dropdown" [ngClass]="{'active': activeConfiguration }" 
-                  href="javascript:void(0)" ngbDropdownToggle style="color: #ffffff;">
-                  Configuration
-               </a>
-               <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/department']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Department
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/mealVendor']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Meal Vendor
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/mealType']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Meal Type
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/dormitory']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Dormitory & Blok Area
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/busTime']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Bus Time
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/user']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Users
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/roles']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Roles
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/counter']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Counter
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/employee']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Employee
-                     </a>
-                  </li>
-                  <li class=" nav-link">
-                     <a class=" nav-item" [routerLink]="['/formConfiguration/1']" (click)="activeLinkConfiguration()" ngbDropdownItem>
-                        Configuration
-                     </a>
-                  </li>
-               </ul>
+            <li class=" nav-link">
+              <a
+                class="nav-item"
+                [routerLink]="['/busOrderEntry']"
+                (click)="activeLinkTrasaction()"
+                ngbDropdownItem
+                >Bus Order Entry</a
+              >
             </li>
-         </ul>
-
-
-         <div class="navbar-nav ml-auto"> <!-- for form login -->
-            <form *ngIf="!loggedIn()" class="form-inline" #loginForm="ngForm" (ngSubmit)="login()">
-               <div class="form-group no-border">
-                  <input type="text" class="form-control" placeholder="Username" name="username" required [(ngModel)]="model.username"/>
-               </div>
-               <div class="form-group no-border ml-1">
-                  <input type="password" class="form-control" placeholder="Password" name="password" required [(ngModel)]="model.password"/>
-               </div>
-               <button [disabled]="!loginForm.valid" type="submit" class="btn btn-success btn-icon btn-simple active animation-on-hover">
-                  <i class="tim-icons icon-send"></i>
-               </button>
-            </form>
-         </div>
-
-         <ul *ngIf="loggedIn()" class=" navbar-nav ml-auto"> <!-- for logout and diplay name user -->
-            <h5 class="mt-3 mr-3" style="font-size: 14px;">Welcome, {{authService.decodedToken?.unique_name}}</h5>
-            <li class=" nav-item">
-               <a class="nav-link btn btn-success btn-simple animation-on-hover" ngbTooltip="Logout" href="javascript:void(0)" (click)="logout()">
-                  <i class="tim-icons icon-button-power"> </i>
-                  Logout
-               </a>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/busOrderVerification']"
+                (click)="activeLinkTrasaction()"
+                ngbDropdownItem
+              >
+                Bus Order Verification
+              </a>
             </li>
-         </ul>
+          </ul>
+        </li>
+        <li class=" nav-item" ngbDropdown>
+          <!-- for report -->
+          <a
+            class="btn btn-default animation-on-hover"
+            data-toggle="dropdown"
+            [ngClass]="{ active: activeReport }"
+            href="javascript:void(0)"
+            ngbDropdownToggle
+            style="color: #ffffff;"
+          >
+            Report
+          </a>
+          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/report/mealorder']"
+                href="javascript:void(0)"
+                (click)="activeLinkReport()"
+                ngbDropdownItem
+              >
+                Meal Order
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/report/mealverification']"
+                href="javascript:void(0)"
+                (click)="activeLinkReport()"
+                ngbDropdownItem
+              >
+                Meal Verification
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/report/busorder']"
+                href="javascript:void(0)"
+                (click)="activeLinkReport()"
+                ngbDropdownItem
+              >
+                Bus Order
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/report/busverification']"
+                href="javascript:void(0)"
+                (click)="activeLinkReport()"
+                ngbDropdownItem
+              >
+                Bus Verification
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class=" nav-item" ngbDropdown>
+          <!-- for configuration -->
+          <a
+            class="btn btn-default animation-on-hover"
+            data-toggle="dropdown"
+            [ngClass]="{ active: activeConfiguration }"
+            href="javascript:void(0)"
+            ngbDropdownToggle
+            style="color: #ffffff;"
+          >
+            Master
+          </a>
+          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/department']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Department
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/mealVendor']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Meal Vendor
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/mealType']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Meal Type
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/dormitory']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Dormitory & Block Area
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/busTime']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Bus Time
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/user']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Users
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/counter']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Counter
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/employee']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Employee
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a
+                class=" nav-item"
+                [routerLink]="['/formConfiguration']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
+                Configuration
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a class=" nav-item" [routerLink]="['/audit']" (click)="activeLinkConfiguration()" ngbDropdownItem>
+                Audit
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="navbar-nav ml-auto">
+        <!-- for form login -->
+        <form
+          *ngIf="!loggedIn()"
+          class="form-inline"
+          #loginForm="ngForm"
+          (ngSubmit)="login()"
+        >
+          <div class="form-group no-border">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              name="username"
+              required
+              [(ngModel)]="model.username"
+            />
+          </div>
+          <div class="form-group no-border ml-1">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              name="password"
+              required
+              [(ngModel)]="model.password"
+            />
+          </div>
+          <button
+            [disabled]="!loginForm.valid"
+            type="submit"
+            class="btn btn-success btn-icon btn-simple active animation-on-hover"
+          >
+            <i class="tim-icons icon-send"></i>
+          </button>
+        </form>
       </div>
-   </div>
+
+      <ul *ngIf="loggedIn()" class=" navbar-nav ml-auto">
+        <!-- for logout and diplay name user -->
+        <h5 class="mt-3 mr-3" style="font-size: 14px;">
+          Welcome, {{ authService.decodedToken?.unique_name }}
+        </h5>
+        <li class=" nav-item">
+          <a
+            class="nav-link btn btn-success btn-simple animation-on-hover"
+            ngbTooltip="Logout"
+            href="javascript:void(0)"
+            (click)="logout()"
+          >
+            <i class="tim-icons icon-button-power"> </i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

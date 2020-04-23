@@ -23,7 +23,7 @@ export class DepartmentListResolver implements Resolve<Department[]> {
         this.pageSize = this.departmentService.itemPerPage;
         return this.departmentService.getDepartments(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
+                this.sweetAlert.error(error);
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -44,8 +44,8 @@ export class DepartmentDetailResolver implements Resolve<Department> {
     resolve(route: ActivatedRouteSnapshot): Observable<Department> {
         return this.departmentService.getDepartment(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/depart']);
+                this.sweetAlert.error(error);
+                this.router.navigate(['/department']);
                 // return of;
                 return of(null);
             })

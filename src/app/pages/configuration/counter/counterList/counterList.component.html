@@ -13,13 +13,13 @@
             <div class=" col-sm-6 text-right">
               <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Add New"
                 [routerLink]="['/formCounter']">Add New</button>
-              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Export">Export</button>
+              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Print" [routerLink]="['/report/counter']">Print</button>
             </div>
           </div>
         </div>
         <li class="dropdown-divider"></li>
         <div class=" card-body" style="margin-top: -20px;">
-          <div class=" table-responsive table-custom">
+          <div class=" table-responsive table-custom" style="overflow: auto;">
             <table class="table">
               <thead>
                 <tr>
@@ -32,40 +32,30 @@
                   <th class="sort-custom" (click)="sortActive('location')">Location
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscLocation===false}"></i>
                   </th>
-                  <th class="sort-custom" (click)="sortActive('status')">Status
-                    <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscStatus===false}"></i>
-                  </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Code" #box
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                    <input type="text" class="form-control" placeholder="Filter By Code" #box
+                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value.value);box.value='';box1.value='';box2.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Name" #box1
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                    <input type="text" class="form-control" placeholder="Filter By Name" #box1
+                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value.value);box.value='';box1.value='';box2.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Location" #box2
-                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''" />
+                    <input type="text" class="form-control" placeholder="Filter By Location" #box2
+                      (keyup.enter)="OrderBy(box.value,box1.value,box2.value.value);box.value='';box1.value='';box2.value=''" />
                   </td>
-                  <td class="form-group no-border">
-                    <select class="form-control" #box3 (change)="OrderBy(box.value,box1.value,box2.value,box3.value);box.value='';box1.value='';box2.value='';box3.value=''">
-                      <option value="">Select One..</option>
-                      <option value="1">Active</option>
-                      <option value="0">Not Active</option>
-                    </select>
-                  </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let counter of Counters">
                   <td>{{counter.code}}</td>
                   <td>{{counter.name}}</td>
                   <td>{{counter.location}}</td>
-                  <td>{{counter.status === 1 ? "Active" : "Not Active"}}</td>
                   <td class="td-actions text-right">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"
                       placement="left" type="button" [routerLink]="['/formCounter',counter.id]">
@@ -76,6 +66,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { MealOrderEntry } from '../_models/mealOrderEntry';
 import { PaginatedResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
+import { MealOrder } from '../_models/mealOrder';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,12 @@ export class MealOrderEntryService {
   baseUrl = environment.apiUrl;
   itemPerPage = 5;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
+
+  // get meal order report
+  getMealOrderReport() {
+    return this.http.get(this.baseUrl + 'report/mealorder/');
+  }
 
   addMealOrderEntry(model: any) {
     return this.http.post(this.baseUrl + 'MealOrder/', model);
@@ -31,9 +37,14 @@ export class MealOrderEntryService {
     return this.http.put(this.baseUrl + 'MealOrder/' + id, model);
   }
 
-
-  getMealOrderEntrys(page?, itemsPerPage?, MealOrderEntryParams?): Observable<PaginatedResult<MealOrderEntry[]>> {
-    const paginatedResult: PaginatedResult<MealOrderEntry[]> = new PaginatedResult<MealOrderEntry[]>();
+  getMealOrderEntrys(
+    page?,
+    itemsPerPage?,
+    MealOrderEntryParams?
+  ): Observable<PaginatedResult<MealOrderEntry[]>> {
+    const paginatedResult: PaginatedResult<MealOrderEntry[]> = new PaginatedResult<
+      MealOrderEntry[]
+    >();
 
     let params = new HttpParams();
     if (page != null && itemsPerPage != null) {
@@ -47,22 +58,31 @@ export class MealOrderEntryService {
       if (MealOrderEntryParams.department != null) {
         params = params.append('DepartmentId', MealOrderEntryParams.department);
       }
+      if (MealOrderEntryParams.isReadyToCollect) {
+        params = params.append('isReadyToCollect', MealOrderEntryParams.isReadyToCollect);
+      }
       if (MealOrderEntryParams.OrderBy != null) {
         params = params.append('OrderBy', MealOrderEntryParams.OrderBy);
         params = params.append('isDescending', MealOrderEntryParams.isDesc);
       }
     }
+    // console.log(MealOrderEntryParams.date);
 
-    return this.http.get<MealOrderEntry[]>(this.baseUrl + 'MealOrder/paged', { observe: 'response', params })
+    return this.http
+      .get<MealOrderEntry[]>(this.baseUrl + 'MealOrder/paged', {
+        observe: 'response',
+        params
+      })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
           if (response.headers.get('Pagination') != null) {
-            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+            paginatedResult.pagination = JSON.parse(
+              response.headers.get('Pagination')
+            );
           }
           return paginatedResult;
         })
       );
   }
-
 }

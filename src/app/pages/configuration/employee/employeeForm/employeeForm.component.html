@@ -53,7 +53,7 @@
             <div class="form-group row no-border">
               <label class="col-sm-2 offset-sm-1 col-form-label">Department</label>
               <div class="col-sm-8">
-                <select name="departmentId" class="form-control" required [(ngModel)]="model.departmentId" #departmentId="ngModel" required [ngClass]="{'is-invalid': departmentId.invalid && (departmentId.dirty || departmentId.touched) }">
+                <select name="departmentId" class="form-control"  [(ngModel)]="model.departmentId" #departmentId="ngModel" required [ngClass]="{'is-invalid': departmentId.invalid && (departmentId.dirty || departmentId.touched) }">
                   <option *ngFor="let department of listDepartments" [value]="department.id">
                     {{department.name}}
                   </option>

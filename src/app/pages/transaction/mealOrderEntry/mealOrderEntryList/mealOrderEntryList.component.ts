@@ -7,8 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
-import { DatePipe } from '@angular/common';
-import { getTime } from 'ngx-bootstrap/chronos/utils/date-getters';
+import { environment } from 'src/environments/environment';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-mealOrderEntryList',
@@ -127,6 +126,7 @@ export class MealOrderEntryListComponent implements OnInit {
 
   // for delete data
   deleteMealOrderEntrys(id: number) {
+    // tslint:disable-next-line: no-use-before-declare
     confirm.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
@@ -170,7 +170,7 @@ export class MealOrderEntryListComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
+    this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.listDepartments = response;
     }, error => {
       this.sweetAlert.error(error);
@@ -178,7 +178,7 @@ export class MealOrderEntryListComponent implements OnInit {
   }
 
   loadMealType() {
-    this.http.get('http://localhost:5000/api/MealType').subscribe(response => {
+    this.http.get(environment.apiUrl + 'MealType').subscribe(response => {
       this.mealTypes = response;
     }, error => {
       this.sweetAlert.error(error);

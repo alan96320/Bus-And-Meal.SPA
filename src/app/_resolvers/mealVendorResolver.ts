@@ -9,48 +9,51 @@ import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class MealVendorListResolver implements Resolve<MealVendor[]> {
-    pageNumber: number;
-    pageSize: number;
-    constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private MealVendorService: MealVendorService,
-        private router: Router,
-        private alertify: AlertifyService,
-        private sweetAlert: SweetAlertService,
-    ) { }
+  pageNumber: number;
+  pageSize: number;
+  constructor(
+    // tslint:disable-next-line:no-shadowed-variable
+    private MealVendorService: MealVendorService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private sweetAlert: SweetAlertService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<MealVendor[]> {
-        this.pageNumber = 1;
-        this.pageSize = this.MealVendorService.itemPerPage;
-        return this.MealVendorService.getMealVendors(this.pageNumber, this.pageSize).pipe(
-            catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/home']);
-                // return of;
-                return of(null);
-            })
-        );
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<MealVendor[]> {
+    this.pageNumber = 1;
+    this.pageSize = this.MealVendorService.itemPerPage;
+    return this.MealVendorService.getMealVendors(
+      this.pageNumber,
+      this.pageSize
+    ).pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(['/home']);
+        // return of;
+        return of(null);
+      })
+    );
+  }
 }
 
 @Injectable()
 export class MealVendorDetailResolver implements Resolve<MealVendor> {
-    constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private MealVendorService: MealVendorService,
-        private router: Router,
-        private alertify: AlertifyService,
-        private sweetAlert: SweetAlertService,
-    ) { }
+  constructor(
+    // tslint:disable-next-line:no-shadowed-variable
+    private MealVendorService: MealVendorService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private sweetAlert: SweetAlertService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<MealVendor> {
-        return this.MealVendorService.getMealVendor(route.params.id).pipe(
-            catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/depart']);
-                // return of;
-                return of(null);
-            })
-        );
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<MealVendor> {
+    return this.MealVendorService.getMealVendor(route.params.id).pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(['/mealVendor']);
+        // return of;
+        return of(null);
+      })
+    );
+  }
 }

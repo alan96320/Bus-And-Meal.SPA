@@ -23,7 +23,7 @@ export class MealOrderEntryListResolver implements Resolve<MealOrderEntry[]> {
         this.pageSize = this.mealOrderEntryService.itemPerPage;
         return this.mealOrderEntryService.getMealOrderEntrys(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
+                this.sweetAlert.error(error);
                 this.router.navigate(['/home']);
                 // return of;
                 return of(null);
@@ -44,8 +44,8 @@ export class MealOrderEntryDetailResolver implements Resolve<MealOrderEntry> {
     resolve(route: ActivatedRouteSnapshot): Observable<MealOrderEntry> {
         return this.mealOrderEntryService.getMealOrderEntry(route.params.id).pipe(
             catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/depart']);
+                this.sweetAlert.error(error);
+                this.router.navigate(['/mealOrderEntry']);
                 // return of;
                 return of(null);
             })

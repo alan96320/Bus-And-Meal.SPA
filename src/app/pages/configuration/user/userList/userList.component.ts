@@ -7,19 +7,21 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-userList',
-  templateUrl: './userList.component.html',
+  templateUrl: './userList.component.html'
 })
 export class UserListComponent implements OnInit {
   sortAscHrCoreNo: boolean;
   sortAscFirstname: boolean;
   sortAscLastname: boolean;
   sortAscFullname: boolean;
-  sortAscHIDNo: boolean;
-  sortAscDepartmentId: boolean;
+  sortAscAdmin: boolean;
+  sortAscLock: boolean;
+  sortAscIsActive: boolean;
   filter = true;
 
   listDepartments: any;
@@ -35,13 +37,14 @@ export class UserListComponent implements OnInit {
     private alertify: AlertifyService,
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
-    private http: HttpClient,
-  ) { }
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.users = data.user.result;
       this.pagination = data.user.pagination;
+      console.log(data);
     });
   }
 
@@ -50,10 +53,46 @@ export class UserListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === 'hrCoreNo') {
+    if (getName === 'gddbId') {
       this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscHrCoreNo;
+      this.loadUsers();
+    }
+    if (getName === 'firstName') {
+      this.sortAscFirstname = !this.sortAscFirstname;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscFirstname;
+      this.loadUsers();
+    }
+    if (getName === 'lastName') {
+      this.sortAscLastname = !this.sortAscLastname;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscLastname;
+      this.loadUsers();
+    }
+    if (getName === 'fullName') {
+      this.sortAscFullname = !this.sortAscFullname;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscFullname;
+      this.loadUsers();
+    }
+    if (getName === 'adminStatus') {
+      this.sortAscAdmin = !this.sortAscAdmin;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscAdmin;
+      this.loadUsers();
+    }
+    if (getName === 'lockTransStatus') {
+      this.sortAscLock = !this.sortAscLock;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscLock;
+      this.loadUsers();
+    }
+    if (getName === 'isActive') {
+      this.sortAscIsActive = !this.sortAscIsActive;
+      this.UsersParams.OrderBy = getName;
+      this.UsersParams.isDesc = this.sortAscIsActive;
       this.loadUsers();
     }
   }
@@ -103,13 +142,18 @@ export class UserListComponent implements OnInit {
 
   // kita buat fungsi untuk Order By
   OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
-    if (hrCoreNo !== null || firstname !== null || lastname !== null || fullname !== null || hIDNo !== null || department !== null) {
+    if (
+      hrCoreNo !== null ||
+      firstname !== null ||
+      lastname !== null ||
+      fullname !== null ||
+      hIDNo !== null ||
+      department !== null
+    ) {
       this.UsersParams.hrCoreNo = hrCoreNo;
       this.UsersParams.firstname = firstname;
       this.UsersParams.lastname = lastname;
       this.UsersParams.fullname = fullname;
-      this.UsersParams.hIDNo = hIDNo;
-      this.UsersParams.departmentName = department;
       this.loadUsers();
     }
   }
@@ -121,35 +165,41 @@ export class UserListComponent implements OnInit {
       this.UsersParams.firstname = null;
       this.UsersParams.lastname = null;
       this.UsersParams.fullname = null;
-      this.UsersParams.hIDNo = null;
-      this.UsersParams.departmentName = null;
       this.loadUsers();
     }
   }
 
   // for delete data
   deleteUsers(id: number) {
-    confirm.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.usersService.deleteUser(id).subscribe(
-          () => {
-            this.sweetAlert.warningDel();
-            this.loadUsers();
-          },
-          error => {
-            this.sweetAlert.warning(error);
-          }
-        );
-      }
-    });
+    // tslint:disable-next-line: no-use-before-declare
+    confirm
+      .fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      })
+      .then(result => {
+        if (result.value) {
+          this.usersService.deleteUser(id).subscribe(
+            () => {
+              this.sweetAlert.warningDel();
+              this.loadUsers();
+            },
+            error => {
+              this.sweetAlert.warning(error);
+            }
+          );
+        }
+      });
+  }
+
+  showAll() {
+    this.UsersParams.isActive = false;
+    this.loadUsers();
   }
 
   // for laod data
@@ -172,15 +222,16 @@ export class UserListComponent implements OnInit {
   }
 
   loadDepartment() {
-    this.http.get('http://localhost:5000/api/department').subscribe(response => {
-      this.listDepartments = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+    this.http.get(environment.apiUrl + 'department').subscribe(
+      response => {
+        this.listDepartments = response;
+      },
+      error => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
-
 }
-
 
 // for custom class sweet alert
 const confirm = swal.mixin({

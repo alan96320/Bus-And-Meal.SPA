@@ -9,48 +9,51 @@ import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class MealTypeListResolver implements Resolve<MealType[]> {
-    pageNumber: number;
-    pageSize: number;
-    constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private MealTypeService: MealTypeService,
-        private router: Router,
-        private alertify: AlertifyService,
-        private sweetAlert: SweetAlertService,
-    ) { }
+  pageNumber: number;
+  pageSize: number;
+  constructor(
+    // tslint:disable-next-line:no-shadowed-variable
+    private MealTypeService: MealTypeService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private sweetAlert: SweetAlertService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<MealType[]> {
-        this.pageNumber = 1;
-        this.pageSize = this.MealTypeService.itemPerPage;
-        return this.MealTypeService.getMealTypes(this.pageNumber, this.pageSize).pipe(
-            catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/home']);
-                // return of;
-                return of(null);
-            })
-        );
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<MealType[]> {
+    this.pageNumber = 1;
+    this.pageSize = this.MealTypeService.itemPerPage;
+    return this.MealTypeService.getMealTypes(
+      this.pageNumber,
+      this.pageSize
+    ).pipe(
+      catchError(error => {
+       this.sweetAlert.error(error);
+       this.router.navigate(['/home']);
+        // return of;
+       return of(null);
+      })
+    );
+  }
 }
 
 @Injectable()
 export class MealTypeDetailResolver implements Resolve<MealType> {
-    constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private MealTypeService: MealTypeService,
-        private router: Router,
-        private alertify: AlertifyService,
-        private sweetAlert: SweetAlertService,
-    ) { }
+  constructor(
+    // tslint:disable-next-line:no-shadowed-variable
+    private MealTypeService: MealTypeService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private sweetAlert: SweetAlertService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<MealType> {
-        return this.MealTypeService.getMealType(route.params.id).pipe(
-            catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/depart']);
-                // return of;
-                return of(null);
-            })
-        );
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<MealType> {
+    return this.MealTypeService.getMealType(route.params.id).pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(['/mealType']);
+        // return of;
+        return of(null);
+      })
+    );
+  }
 }

@@ -13,16 +13,25 @@ export class UsersService {
   baseUrl = environment.apiUrl;
   itemPerPage = 5;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
+
+  // get employee report
+  getUsersReport() {
+    return this.http.get(this.baseUrl + 'report/user/');
+  }
 
   getUser(id: any): Observable<Users> {
     return this.http.get<Users>(this.baseUrl + 'User/' + id);
   }
 
-  getUsers(page?, itemsPerPage?, employeeParams?): Observable<PaginatedResult<Users[]>> {
-    const paginatedResult: PaginatedResult<Users[]> = new PaginatedResult<Users[]>();
+  getUsers(
+    page?,
+    itemsPerPage?,
+    userParams?
+  ): Observable<PaginatedResult<Users[]>> {
+    const paginatedResult: PaginatedResult<Users[]> = new PaginatedResult<
+      Users[]
+    >();
 
     let params = new HttpParams();
 
@@ -30,37 +39,40 @@ export class UsersService {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
     }
-    if (employeeParams != null) {
-      if (employeeParams.hrCoreNo != null) {
-        params = params.append('HrCoreNo', employeeParams.hrCoreNo);
+    if (userParams != null) {
+      if (userParams.hrCoreNo != null) {
+        params = params.append('HrCoreNo', userParams.hrCoreNo);
       }
-      if (employeeParams.firstname != null) {
-        params = params.append('firstname', employeeParams.firstname);
+      if (userParams.firstname != null) {
+        params = params.append('firstname', userParams.firstname);
       }
-      if (employeeParams.lastname != null) {
-        params = params.append('Lastname', employeeParams.lastname);
+      if (userParams.lastname != null) {
+        params = params.append('Lastname', userParams.lastname);
       }
-      if (employeeParams.fullname != null) {
-        params = params.append('Fullname', employeeParams.fullname);
+      if (userParams.fullname != null) {
+        params = params.append('Fullname', userParams.fullname);
       }
-      if (employeeParams.hIDNo != null) {
-        params = params.append('HIDNo', employeeParams.hIDNo);
+      if (userParams.isActive != null) {
+        params = params.append('isActive', userParams.isActive);
       }
-      if (employeeParams.departmentName != null) {
-        params = params.append('DepartmentName', employeeParams.departmentName);
-      }
-      if (employeeParams.OrderBy != null) {
-        params = params.append('OrderBy', employeeParams.OrderBy);
-        params = params.append('isDescending', employeeParams.isDesc);
+      if (userParams.OrderBy != null) {
+        params = params.append('OrderBy', userParams.OrderBy);
+        params = params.append('isDescending', userParams.isDesc);
       }
     }
 
-    return this.http.get<Users[]>(this.baseUrl + 'User/paged', { observe: 'response', params })
+    return this.http
+      .get<Users[]>(this.baseUrl + 'User/paged', {
+        observe: 'response',
+        params
+      })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
           if (response.headers.get('Pagination') != null) {
-            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+            paginatedResult.pagination = JSON.parse(
+              response.headers.get('Pagination')
+            );
           }
           return paginatedResult;
         })
@@ -75,5 +87,4 @@ export class UsersService {
     console.log(model);
     return this.http.put(this.baseUrl + 'User/' + id, model);
   }
-
 }

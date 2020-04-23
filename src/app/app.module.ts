@@ -10,7 +10,6 @@ import { NgbModule, NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 
 import { JwtModule } from "@auth0/angular-jwt";
 import { appRouting } from "./routes";
-import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { APP_BASE_HREF, CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { AuthService } from "./_services/auth.service";
@@ -22,7 +21,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { PaginationModule } from "../../node_modules/ngx-bootstrap";
 import { DepartmentListComponent } from "./pages/configuration/department/departmentList/departmentList.component";
 import { DepartmentFormComponent } from "./pages/configuration/department/departmentForm/departmentForm.component";
-// tslint:disable-next-line:max-line-length
+// tslint:disable-next-line: max-line-length
 import { DormitoryBlokAreaListComponent } from "./pages/configuration/dormitoryBlokArea/dormitoryBlokAreaList/dormitoryBlokAreaList.component";
 // tslint:disable-next-line:max-line-length
 import { DormitoryBlokAreaFormComponent } from "./pages/configuration/dormitoryBlokArea/dormitoryBlokAreaForm/dormitoryBlokAreaForm.component";
@@ -30,8 +29,6 @@ import { MealTypeListComponent } from "./pages/configuration/mealType/mealTypeLi
 import { MealTypeFormComponent } from "./pages/configuration/mealType/mealTypeForm/mealTypeForm.component";
 import { MealVendorListComponent } from "./pages/configuration/mealVendor/mealVendorList/mealVendorList.component";
 import { MealVendorFormComponent } from "./pages/configuration/mealVendor/mealVendorForm/mealVendorForm.component";
-import { RolesListComponent } from "./pages/configuration/roles/rolesList/rolesList.component";
-import { RolesFormComponent } from "./pages/configuration/roles/rolesForm/rolesForm.component";
 import { UserListComponent } from "./pages/configuration/user/userList/userList.component";
 import { UserFormComponent } from "./pages/configuration/user/userForm/userForm.component";
 import { BusOrderEntryListComponent } from "./pages/transaction/busOrderEntry/busOrderEntryList/busOrderEntryList.component";
@@ -82,16 +79,61 @@ import {
   UsersDetailResolver
 } from "./_resolvers/usersResolver";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
+import { DepartmentReportComponent } from "./pages/reports/departmentReport/departmentReport.component";
+import { EmployeeReportComponent } from "./pages/reports/employeeReport/employeeReport.component";
+import {
+  DepartmentReportResolver,
+  EmployeeReportResolver,
+  MealTypeReportResolver,
+  DormitoryBlockReportResolver,
+  MealVendorReportResolver,
+  BusTimeReportResolver,
+  CounterReportResolver,
+  UsersReportResolver,
+  MealOrderReportResolver,
+  BusOrderReportResolver,
+  MealVerificationReportResolver,
+  BusVerificationReportResolver
+} from "./_resolvers/reportResolver";
+import { MealTypeReportComponent } from "./pages/reports/mealTypeReport/mealTypeReport.component";
+import { DormitoryBlockReportComponent } from "./pages/reports/dormitoryBlockReport/dormitoryBlockReport.component";
+import { MealVendorReportComponent } from "./pages/reports/mealVendorReport/mealVendorReport.component";
+import { BusTimeReportComponent } from "./pages/reports/busTimeReport/busTimeReport.component";
+import { UsersReportComponent } from "./pages/reports/usersReport/usersReport.component";
+import { CounterReportComponent } from "./pages/reports/CounterReport/CounterReport.component";
+import { MealOrderReportComponent } from "./pages/reports/mealOrderReport/mealOrderReport.component";
+
 import {
   MealOrderEntryListResolver,
   MealOrderEntryDetailResolver
 } from "./_resolvers/mealOrderEntryResolver";
+import {
+  MealOrderVerificationListResolver,
+  MealOrderVerificationDetailResolver
+} from "./_resolvers/mealOrderVerificationResolver";
+import {
+  BusOrderEntryListResolver,
+  BusOrderEntryDetailResolver
+} from "./_resolvers/busOrderEntryResolver";
+import {
+  BusOrderVerificationListResolver,
+  BusOrderVerificationDetailResolver
+} from "./_resolvers/busOrderVerificationResolver";
+import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { CounterFormComponent } from "./pages/configuration/counter/CounterForm/CounterForm.component";
+import { BusOrderReportComponent } from "./pages/reports/busOrderReport/busOrderReport.component";
+import { MealVerificationReportComponent } from "./pages/reports/mealVerificationReport/mealVerificationReport.component";
+import { BusVerificationReportComponent } from "./pages/reports/busVerificationReport/busVerificationReport.component";
+import { AuditComponent } from "./pages/configuration/audit/audit.component";
+import { AuditResolver, AuditDetailResolver } from "./_resolvers/auditResolver";
+import { AuditDetailsComponent } from "./pages/configuration/audit/auditDetails/auditDetails.component";
+import { environment } from "src/environments/environment";
+import { AuthInterceptor } from "./_services/auth.interceptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -104,8 +146,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        whitelistedDomains: ["localhost:5000"],
-        blacklistedRoutes: ["localhost:5000/api/auth"]
+        whitelistedDomains: [environment.apiUrl],
+        blacklistedRoutes: [environment.apiUrl + "auth"]
       }
     }),
     PaginationModule.forRoot(),
@@ -115,7 +157,6 @@ export function tokenGetter() {
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    DashboardComponent,
     // declarations for menu configuration
     DepartmentListComponent,
     DepartmentFormComponent,
@@ -125,8 +166,6 @@ export function tokenGetter() {
     MealTypeFormComponent,
     MealVendorListComponent,
     MealVendorFormComponent,
-    RolesListComponent,
-    RolesFormComponent,
     UserListComponent,
     UserFormComponent,
     BusTimeListComponent,
@@ -138,6 +177,8 @@ export function tokenGetter() {
     EmployeeFormComponent,
     UserListComponent,
     UserFormComponent,
+    AuditComponent,
+    AuditDetailsComponent,
     // decaration for menu transaction
     BusOrderEntryListComponent,
     BusOrderEntryFormComponent,
@@ -146,12 +187,25 @@ export function tokenGetter() {
     MealOrderEntryListComponent,
     MealOrderEntryFormComponent,
     MealOrderVerficationListComponent,
-    MealOrderVerficationFormComponent
+    MealOrderVerficationFormComponent,
 
     // decaration for menu report
+    DepartmentReportComponent,
+    EmployeeReportComponent,
+    MealTypeReportComponent,
+    DormitoryBlockReportComponent,
+    MealVendorReportComponent,
+    BusTimeReportComponent,
+    CounterReportComponent,
+    UsersReportComponent,
+    MealOrderReportComponent,
+    BusOrderReportComponent,
+    MealVerificationReportComponent,
+    BusVerificationReportComponent
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthService,
     DepartmentService,
     DepartmentDetailResolver,
@@ -171,8 +225,29 @@ export function tokenGetter() {
     EmployeeDetailResolver,
     UsersListResolver,
     UsersDetailResolver,
+    DepartmentReportResolver,
+    EmployeeReportResolver,
+    MealTypeReportResolver,
+    DormitoryBlockReportResolver,
+    MealVendorReportResolver,
+    BusTimeReportResolver,
+    CounterReportResolver,
+    UsersReportResolver,
+    MealOrderReportResolver,
+    BusOrderReportResolver,
+    MealVerificationReportResolver,
+    BusVerificationReportResolver,
     MealOrderEntryListResolver,
-    MealOrderEntryDetailResolver
+    MealOrderEntryDetailResolver,
+    MealOrderVerificationListResolver,
+    MealOrderVerificationDetailResolver,
+    BusOrderEntryListResolver,
+    BusOrderEntryDetailResolver,
+    BusOrderVerificationListResolver,
+    BusOrderVerificationDetailResolver,
+    ErrorInterceptorProvider,
+    AuditResolver,
+    AuditDetailResolver
   ],
   bootstrap: [AppComponent]
 })

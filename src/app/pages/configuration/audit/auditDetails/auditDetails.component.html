@@ -1,0 +1,49 @@
+<div class="content content-custom" id="content">
+  <div class=" row">
+    <div class=" col-12">
+      <h2 class=" card-title">Audit Details</h2>
+      <div class=" card">
+        <div class=" card-body">
+          <form>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Table Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="tableName" [(ngModel)]="model.tableName">
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Date Time</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="dateTime" [(ngModel)]="model.dateTime">
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Key Values</label>
+              <div class="col-sm-8">
+                <textarea name="keyValues" class="form-control" [(ngModel)]="model.keyValues" ></textarea>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">Old Value</label>
+              <div class="col-sm-8">
+                <textarea name="oldValues" class="form-control" [(ngModel)]="model.oldValues" ></textarea>
+              </div>
+            </div>
+            <div class="form-group row no-border">
+              <label class="col-sm-2 offset-sm-1 col-form-label">New Value</label>
+              <div class="col-sm-8">
+                <textarea name="newValues" class="form-control" [(ngModel)]="model.newValues" ></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 offset-sm-3">
+                <button class="btn btn-danger animation-on-hover btn-sm" type="button"
+                  [routerLink]="['/audit']">Back</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

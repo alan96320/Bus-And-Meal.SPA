@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   activeTrasaction = false;
   activeReport = false;
   activeConfiguration = false;
@@ -24,10 +23,10 @@ export class NavbarComponent implements OnInit {
     public authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
-    private sweetAlert: SweetAlertService) { }
+    private sweetAlert: SweetAlertService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   activeLinkTrasaction() {
     this.activeTrasaction = true;
@@ -55,14 +54,20 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(next => {
-      this.sweetAlert.success('Welcome to Aplication Bus And Meal, ' + this.model.username);
-    }, error => {
-      this.sweetAlert.error('Incorrect username or password');
-      // this.alertify.warning('Login Failed');
-    }, () => {
-      this.router.navigate(['/home']);
-    });
+    this.authService.login(this.model).subscribe(
+      next => {
+        this.sweetAlert.success(
+          'Welcome to Aplication Bus And Meal, ' + this.model.username
+        );
+      },
+      error => {
+        this.sweetAlert.error(error);
+        // this.alertify.warning('Login Failed');
+      },
+      () => {
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
   loggedIn() {
@@ -72,11 +77,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.model.username = '';
+    this.model.password = '';
     localStorage.removeItem('token');
     localStorage.removeItem('id_user');
-    this.sweetAlert.warning('Logout Sukses');
+    localStorage.removeItem('isAdmin');
+    this.sweetAlert.warning('Logout Success');
     this.router.navigate(['/home']);
   }
-
-
 }

@@ -13,13 +13,13 @@
             <div class=" col-sm-6 text-right">
               <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Add New"
                 [routerLink]="['/formEmployee']">Add New</button>
-              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Export">Export</button>
+              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Print" [routerLink]="['/report/employee']">Print</button>
             </div>
           </div>
         </div>
         <li class="dropdown-divider"></li>
         <div class=" card-body" style="margin-top: -20px;">
-          <div class=" table-responsive table-custom">
+          <div class=" table-responsive table-custom" style="overflow: auto;">
             <table class="table">
               <thead>
                 <tr>
@@ -42,35 +42,36 @@
                     <i class="tim-icons icon-minimal-up ml-2" [ngClass]="{'sort-active': sortAscDepartmentId===false}"></i>
                   </th>
                   <th class="text-right">Actions</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngIf="!filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By HrCore No" #box
+                    <input type="text" class="form-control" placeholder="Filter By HrCore No" #box
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By First Name" #box1
+                    <input type="text" class="form-control" placeholder="Filter By First Name" #box1
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Last Name" #box2
+                    <input type="text" class="form-control" placeholder="Filter By Last Name" #box2
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Full Name" #box3
+                    <input type="text" class="form-control" placeholder="Filter By Full Name" #box3
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By HID No" #box4
+                    <input type="text" class="form-control" placeholder="Filter By HID No" #box4
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Order By Department" #box5
+                    <input type="text" class="form-control" placeholder="Filter By Department" #box5
                       (keyup.enter)="OrderBy(box.value,box1.value,box2.value,box3.value,box4.value,box5.value);box.value='';box1.value='';box2.value='';box3.value='';box4.value='';box5.value=''" />
                   </td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let employee of employees">
                   <td>{{employee.hrCoreNo}}</td>
@@ -89,6 +90,7 @@
                       <i class=" tim-icons icon-simple-remove"></i>
                     </button>
                   </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

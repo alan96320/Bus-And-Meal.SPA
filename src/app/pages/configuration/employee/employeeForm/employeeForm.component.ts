@@ -5,6 +5,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
    // tslint:disable-next-line:component-selector
@@ -55,7 +56,7 @@ export class EmployeeFormComponent implements OnInit {
    }
 
    addEmployee() {
-      console.log(this.model);
+      this.model.isUpdate = false;
       this.employeeService.addEmployee(this.model).subscribe(() => {
          this.sweetAlert.successAdd('Added Successfully');
          this.router.navigate(['/employee']);
@@ -69,7 +70,7 @@ export class EmployeeFormComponent implements OnInit {
    }
 
    updateEmployee() {
-      console.log(this.model);
+      this.model.isUpdate = true;
       this.employeeService.editEmployee(this.id, this.model).subscribe(() => {
          this.sweetAlert.successAdd('Edit Successfully');
          this.router.navigate(['/employee']);
@@ -79,7 +80,7 @@ export class EmployeeFormComponent implements OnInit {
    }
 
    loadDepartment() {
-      this.http.get('http://localhost:5000/api/department').subscribe(response => {
+      this.http.get(environment.apiUrl + 'department').subscribe(response => {
          this.listDepartments = response;
       }, error => {
          this.sweetAlert.error(error);

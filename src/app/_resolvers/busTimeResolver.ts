@@ -9,48 +9,48 @@ import { SweetAlertService } from '../_services/sweetAlert.service';
 
 @Injectable()
 export class BusTimeListResolver implements Resolve<BusTime[]> {
-    pageNumber: number;
-    pageSize: number;
-    constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private BusTimeService: BusTimeService,
-        private router: Router,
-        private alertify: AlertifyService,
-        private sweetAlert: SweetAlertService,
-    ) { }
+  pageNumber: number;
+  pageSize: number;
+  constructor(
+    // tslint:disable-next-line:no-shadowed-variable
+    private BusTimeService: BusTimeService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private sweetAlert: SweetAlertService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<BusTime[]> {
-        this.pageNumber = 1;
-        this.pageSize = this.BusTimeService.itemPerPage;
-        return this.BusTimeService.getBusTimes(this.pageNumber, this.pageSize).pipe(
-            catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/home']);
-                // return of;
-                return of(null);
-            })
-        );
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<BusTime[]> {
+    this.pageNumber = 1;
+    this.pageSize = this.BusTimeService.itemPerPage;
+    return this.BusTimeService.getBusTimes(this.pageNumber, this.pageSize).pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(['/home']);
+        // return of;
+        return of(null);
+      })
+    );
+  }
 }
 
 @Injectable()
 export class BusTimeDetailResolver implements Resolve<BusTime> {
-    constructor(
-        // tslint:disable-next-line:no-shadowed-variable
-        private BusTimeService: BusTimeService,
-        private router: Router,
-        private alertify: AlertifyService,
-        private sweetAlert: SweetAlertService,
-    ) { }
+  constructor(
+    // tslint:disable-next-line:no-shadowed-variable
+    private BusTimeService: BusTimeService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private sweetAlert: SweetAlertService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<BusTime> {
-        return this.BusTimeService.getBusTime(route.params.id).pipe(
-            catchError(error => {
-                this.sweetAlert.error('Problem Retrieving Data ');
-                this.router.navigate(['/depart']);
-                // return of;
-                return of(null);
-            })
-        );
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<BusTime> {
+    return this.BusTimeService.getBusTime(route.params.id).pipe(
+      catchError(error => {
+        this.sweetAlert.error(error);
+        this.router.navigate(['/busTime']);
+        // return of;
+        return of(null);
+      })
+    );
+  }
 }
