@@ -1,6 +1,6 @@
-<nav class=" navbar navbar-expand-lg bg-custom fixed-top box-shadow-custom">
-  <div class=" container-fluid">
-    <div class=" navbar-wrapper">
+<nav class="navbar navbar-expand-lg bg-custom fixed-top box-shadow-custom">
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
       <div class="logo">
         <a href="#" class="simple-text-custom logo-mini-custom">
           <div class="logo-img" style="width: 100px; height: 40px;">
@@ -23,19 +23,19 @@
     </div>
     <button
       aria-label="Toggle navigation"
-      class=" navbar-toggler"
+      class="navbar-toggler"
       (click)="collapse()"
       [attr.aria-expanded]="!isCollapsed"
       aria-controls="collapseExample"
       id="navigation"
       type="button"
     >
-      <span class=" navbar-toggler-bar navbar-kebab"> </span>
-      <span class=" navbar-toggler-bar navbar-kebab"> </span>
-      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class="navbar-toggler-bar navbar-kebab"> </span>
+      <span class="navbar-toggler-bar navbar-kebab"> </span>
+      <span class="navbar-toggler-bar navbar-kebab"> </span>
     </button>
 
-    <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
+    <div class="navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
       <ul
         *ngIf="loggedIn()"
         class="navbar-nav mr-auto mt-2 mt-lg-0"
@@ -53,10 +53,10 @@
           >
             Transaction
           </a>
-          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-            <li class=" nav-link">
+          <ul class="dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class="nav-link">
               <a
-                class="nav-item "
+                class="nav-item"
                 [routerLink]="['/mealOrderEntry']"
                 (click)="activeLinkTrasaction()"
                 ngbDropdownItem
@@ -64,9 +64,9 @@
                 Meal Order Entry
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/mealOrderVerification']"
                 (click)="activeLinkTrasaction()"
                 ngbDropdownItem
@@ -74,7 +74,7 @@
                 Meal Order Verification
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
                 class="nav-item"
                 [routerLink]="['/busOrderEntry']"
@@ -83,9 +83,9 @@
                 >Bus Order Entry</a
               >
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/busOrderVerification']"
                 (click)="activeLinkTrasaction()"
                 ngbDropdownItem
@@ -95,7 +95,7 @@
             </li>
           </ul>
         </li>
-        <li class=" nav-item" ngbDropdown>
+        <li class="nav-item" ngbDropdown>
           <!-- for report -->
           <a
             class="btn btn-default animation-on-hover"
@@ -107,10 +107,10 @@
           >
             Report
           </a>
-          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-            <li class=" nav-link">
+          <ul class="dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/reportmealorder']"
                 href="javascript:void(0)"
                 (click)="activeLinkReport()"
@@ -119,9 +119,9 @@
                 Meal Order
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/reportmealverification']"
                 href="javascript:void(0)"
                 (click)="activeLinkReport()"
@@ -130,9 +130,9 @@
                 Meal Verification
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/reportbusorder']"
                 href="javascript:void(0)"
                 (click)="activeLinkReport()"
@@ -141,9 +141,9 @@
                 Bus Order
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/reportbusverification']"
                 href="javascript:void(0)"
                 (click)="activeLinkReport()"
@@ -155,7 +155,7 @@
           </ul>
         </li>
 
-        <li class=" nav-item" ngbDropdown>
+        <li class="nav-item" ngbDropdown>
           <!-- for configuration -->
           <a
             class="btn btn-default animation-on-hover"
@@ -167,10 +167,10 @@
           >
             Master
           </a>
-          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-            <li class=" nav-link">
+          <ul class="dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/department']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -178,9 +178,9 @@
                 Department
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/mealVendor']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -188,9 +188,9 @@
                 Meal Vendor
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/mealType']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -198,9 +198,9 @@
                 Meal Type
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/dormitory']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -208,9 +208,9 @@
                 Dormitory & Block Area
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/busTime']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -218,9 +218,9 @@
                 Bus Time
               </a>
             </li>
-            <li class=" nav-link">
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/user']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -228,7 +228,7 @@
                 Users
               </a>
             </li>
-            <li class=" nav-link">
+            <!-- <li class=" nav-link">
               <a
                 class=" nav-item"
                 [routerLink]="['/counter']"
@@ -247,10 +247,10 @@
               >
                 Employee
               </a>
-            </li>
-            <li class=" nav-link">
+            </li> -->
+            <li class="nav-link">
               <a
-                class=" nav-item"
+                class="nav-item"
                 [routerLink]="['/formConfiguration']"
                 (click)="activeLinkConfiguration()"
                 ngbDropdownItem
@@ -258,8 +258,13 @@
                 Configuration
               </a>
             </li>
-            <li class=" nav-link">
-              <a class=" nav-item" [routerLink]="['/audit']" (click)="activeLinkConfiguration()" ngbDropdownItem>
+            <li class="nav-link">
+              <a
+                class="nav-item"
+                [routerLink]="['/audit']"
+                (click)="activeLinkConfiguration()"
+                ngbDropdownItem
+              >
                 Audit
               </a>
             </li>
@@ -305,12 +310,12 @@
         </form>
       </div>
 
-      <ul *ngIf="loggedIn()" class=" navbar-nav ml-auto">
+      <ul *ngIf="loggedIn()" class="navbar-nav ml-auto">
         <!-- for logout and diplay name user -->
         <h5 class="mt-3 mr-3" style="font-size: 14px;">
           Welcome, {{ authService.decodedToken?.unique_name }}
         </h5>
-        <li class=" nav-item">
+        <li class="nav-item">
           <a
             class="nav-link btn btn-success btn-simple animation-on-hover"
             ngbTooltip="Logout"

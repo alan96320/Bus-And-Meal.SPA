@@ -1,11 +1,11 @@
 <div class="content">
-  <div class=" row">
-    <div class=" col-12">
-      <h2 class=" card-title">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="card-title">
         {{ !update ? "Add" : "Update" }} Bus Order Entry Data
       </h2>
-      <div class=" card">
-        <div class=" card-body">
+      <div class="card">
+        <div class="card-body">
           <form #FormMealOrder="ngForm" (ngSubmit)="submit()">
             <div class="form-group row no-border">
               <label class="col-sm-1 offset-sm-1 col-form-label">Date</label>
@@ -26,16 +26,16 @@
                 />
                 <div class="invalid-feedback">Is required</div>
               </div>
-              <div class=" form-check col-sm-6 text-right">
-                <label class=" form-check-label">
+              <div class="form-check col-sm-6 text-right">
+                <label class="form-check-label">
                   <input
-                    class=" form-check-input"
+                    class="form-check-input"
                     type="checkbox"
                     name="isReadyToCollect"
                     [(ngModel)]="model.isReadyToCollect"
                   />
-                  <span class=" form-check-sign">
-                    <span class=" check">Ready for Collect</span>
+                  <span class="form-check-sign">
+                    <span class="check">Ready for Collect</span>
                   </span>
                 </label>
               </div>
@@ -99,36 +99,77 @@
                       *ngFor="let item of busTime"
                       [attr.colspan]="item.length"
                       class="text-center"
+                      [ngClass]="[
+                        item[0]?.directionEnum % 2 == 0
+                          ? 'direction2'
+                          : 'direction1'
+                      ]"
                     >
-                      {{
-                        item[0].directionEnum === 1
-                          ? "Dormitory to Office"
-                          : item[0].directionEnum === 2
-                          ? "Office to Dormitory"
-                          : item[0].directionEnum === 3
-                          ? "Night"
-                          : ""
-                      }}
+                      <span
+                        [ngClass]="[
+                          item[0]?.directionEnum % 2 == 0
+                            ? 'text-direction2'
+                            : 'text-direction1'
+                        ]"
+                      >
+                        {{
+                          item[0]?.directionEnum === 1
+                            ? "Dormitory to Alcon 204"
+                            : item[0]?.directionEnum === 2
+                            ? "Alcon 204 to Dormitory"
+                            : item[0]?.directionEnum === 3
+                            ? "Night Shift"
+                            : ""
+                        }}
+                      </span>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th *ngFor="let item of busTime2" class="text-center">
-                      {{ item.time }}
+                  <tr class="text-center">
+                    <th
+                      *ngFor="let item of busTime2"
+                      class="text-center"
+                      [ngClass]="[
+                        item?.directionEnum % 2 == 0
+                          ? 'direction2'
+                          : 'direction1'
+                      ]"
+                    >
+                      <span
+                        [ngClass]="[
+                          item?.directionEnum % 2 == 0
+                            ? 'text-direction2'
+                            : 'text-direction1'
+                        ]"
+                      >
+                        {{ item.time }}
+                      </span>
                     </th>
                   </tr>
-                  <tr>
+                  <tr class="text-center">
                     <td
                       *ngFor="let item of busTime2; let i = index"
-                      style="min-width:100px"
+                      style="min-width: 100px;"
                     >
-                      <div class="form-group no-border">
+                      <div
+                        class="form-group no-border"
+                        [ngClass]="[
+                          item?.directionEnum % 2 == 0
+                            ? 'direction2'
+                            : 'direction1'
+                        ]"
+                      >
                         <input
                           type="number"
                           class="form-control form-control-sm"
                           name="{{ 'OrderQty' + i }}"
                           [(ngModel)]="item.OrderQty"
+                          [ngClass]="[
+                            item?.directionEnum % 2 == 0
+                              ? 'direction2 text-direction2'
+                              : 'direction1 text-direction1'
+                          ]"
                         />
                       </div>
                     </td>

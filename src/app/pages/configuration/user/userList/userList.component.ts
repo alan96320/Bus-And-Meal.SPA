@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/_services/users.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { Users } from 'src/app/_models/users';
-import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from "@angular/core";
+import { UsersService } from "src/app/_services/users.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { ActivatedRoute } from "@angular/router";
+import { Users } from "src/app/_models/users";
+import { Pagination, PaginatedResult } from "src/app/_models/pagination";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import swal from "sweetalert2";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'app-userList',
-  templateUrl: './userList.component.html'
+  selector: "app-userList",
+  templateUrl: "./userList.component.html",
 })
 export class UserListComponent implements OnInit {
   sortAscHrCoreNo: boolean;
@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
+    this.route.data.subscribe((data) => {
       this.users = data.user.result;
       this.pagination = data.user.pagination;
     });
@@ -52,43 +52,43 @@ export class UserListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === 'gddbId') {
+    if (getName === "gddbId") {
       this.sortAscHrCoreNo = !this.sortAscHrCoreNo;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscHrCoreNo;
       this.loadUsers();
     }
-    if (getName === 'firstName') {
+    if (getName === "firstName") {
       this.sortAscFirstname = !this.sortAscFirstname;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscFirstname;
       this.loadUsers();
     }
-    if (getName === 'lastName') {
+    if (getName === "lastName") {
       this.sortAscLastname = !this.sortAscLastname;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscLastname;
       this.loadUsers();
     }
-    if (getName === 'fullName') {
+    if (getName === "fullName") {
       this.sortAscFullname = !this.sortAscFullname;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscFullname;
       this.loadUsers();
     }
-    if (getName === 'adminStatus') {
+    if (getName === "adminStatus") {
       this.sortAscAdmin = !this.sortAscAdmin;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscAdmin;
       this.loadUsers();
     }
-    if (getName === 'lockTransStatus') {
+    if (getName === "lockTransStatus") {
       this.sortAscLock = !this.sortAscLock;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscLock;
       this.loadUsers();
     }
-    if (getName === 'isActive') {
+    if (getName === "isActive") {
       this.sortAscIsActive = !this.sortAscIsActive;
       this.UsersParams.OrderBy = getName;
       this.UsersParams.isDesc = this.sortAscIsActive;
@@ -140,27 +140,18 @@ export class UserListComponent implements OnInit {
   }
 
   // kita buat fungsi untuk Order By
-  OrderBy(hrCoreNo, firstname, lastname, fullname, hIDNo, department) {
-    if (
-      hrCoreNo !== null ||
-      firstname !== null ||
-      lastname !== null ||
-      fullname !== null ||
-      hIDNo !== null ||
-      department !== null
-    ) {
-      this.UsersParams.hrCoreNo = hrCoreNo;
-      this.UsersParams.firstname = firstname;
-      this.UsersParams.lastname = lastname;
-      this.UsersParams.fullname = fullname;
-      this.loadUsers();
-    }
+  OrderBy(gddbid, firstname, lastname, fullname) {
+    gddbid !== null ? (this.UsersParams.gddbid = gddbid) : null;
+    firstname !== null ? (this.UsersParams.firstname = firstname) : null;
+    lastname !== null ? (this.UsersParams.lastname = lastname) : null;
+    fullname !== null ? (this.UsersParams.fullname = fullname) : null;
+    this.loadUsers();
   }
 
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
-    if (status === 'Filter') {
-      this.UsersParams.hrCoreNo = null;
+    if (status === "Filter") {
+      this.UsersParams.gddbid = null;
       this.UsersParams.firstname = null;
       this.UsersParams.lastname = null;
       this.UsersParams.fullname = null;
@@ -173,22 +164,22 @@ export class UserListComponent implements OnInit {
     // tslint:disable-next-line: no-use-before-declare
     confirm
       .fire({
-        title: 'Are you sure?',
-        text: 'You won\'t be able to revert this!',
-        icon: 'question',
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "question",
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
       })
-      .then(result => {
+      .then((result) => {
         if (result.value) {
           this.usersService.deleteUser(id).subscribe(
             () => {
               this.sweetAlert.warningDel();
               this.loadUsers();
             },
-            error => {
+            (error) => {
               this.sweetAlert.warning(error);
             }
           );
@@ -214,18 +205,18 @@ export class UserListComponent implements OnInit {
           this.users = res.result;
           this.pagination = res.pagination;
         },
-        error => {
+        (error) => {
           this.sweetAlert.error(error);
         }
       );
   }
 
   loadDepartment() {
-    this.http.get(environment.apiUrl + 'department').subscribe(
-      response => {
+    this.http.get(environment.apiUrl + "department").subscribe(
+      (response) => {
         this.listDepartments = response;
       },
-      error => {
+      (error) => {
         this.sweetAlert.error(error);
       }
     );
@@ -235,8 +226,8 @@ export class UserListComponent implements OnInit {
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger",
   },
-  buttonsStyling: false
+  buttonsStyling: false,
 });

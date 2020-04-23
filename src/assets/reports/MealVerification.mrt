@@ -622,10 +622,11 @@
               <Page isRef="12" />
               <Parent isRef="30" />
               <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+              <SortType>ByValue</SortType>
               <Text>name</Text>
               <TextBrush>[255:255:255]</TextBrush>
               <TotalGuid>60073537f7b04faaa2a62587edc2c8f3</TotalGuid>
-              <Value>{mealOrderResult_mealVerificationDetails.mealOrderResult_mealVerificationDetails_mealType.name}</Value>
+              <Value>{mealOrderResult_mealVerificationDetails.mealOrderResult_mealVerificationDetails_mealType.id}</Value>
             </CrossTab1_Column1>
             <CrossTab1_Sum1 Ref="44" type="CrossSummary" isKey="true">
               <Alias>sumOrderQty</Alias>
@@ -738,6 +739,7 @@
           </Components>
           <Conditions isList="true" count="0" />
           <CrossTabStyleIndex>15</CrossTabStyleIndex>
+          <DataRelationName />
           <DataSourceName>mealOrderResult_mealVerificationDetails</DataSourceName>
           <EmptyValue />
           <Filters isList="true" count="0" />
@@ -768,11 +770,11 @@
   </ReferencedAssemblies>
   <ReportAlias>Sales Invoice</ReportAlias>
   <ReportAuthor>Stimulsoft</ReportAuthor>
-  <ReportChanged>3/5/2020 11:29:59 AM</ReportChanged>
+  <ReportChanged>4/21/2020 11:46:24 AM</ReportChanged>
   <ReportCreated>5/19/2016 4:32:36 PM</ReportCreated>
   <ReportDescription>The sample demonstrates how to create the sales invoice</ReportDescription>
-  <ReportFile>MealVerification.mrt</ReportFile>
-  <ReportGuid>b68a80eaf2b74c2282448c981ef6ad2c</ReportGuid>
+  <ReportFile>D:\project\alcon\busmeal\BusMeal-SPA\src\assets\reports\MealVerification.mrt</ReportFile>
+  <ReportGuid>bf8ac201d74446c2ae46b12dc42e0b6a</ReportGuid>
   <ReportName>Sales Invoice</ReportName>
   <ReportUnit>HundredthsOfInch</ReportUnit>
   <ReportVersion>2020.2.2.0</ReportVersion>

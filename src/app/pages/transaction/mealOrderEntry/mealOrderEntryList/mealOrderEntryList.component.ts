@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
-import { MealOrderEntry } from 'src/app/_models/mealOrderEntry';
-import { MealOrderEntryService } from 'src/app/_services/mealOrderEntry.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-import { HttpClient } from '@angular/common/http';
-import swal from 'sweetalert2';
-import { environment } from 'src/environments/environment';
-import { ConvertDateService } from 'src/app/_services/convertDate.service';
+import { Component, OnInit } from "@angular/core";
+import { Pagination, PaginatedResult } from "src/app/_models/pagination";
+import { MealOrderEntry } from "src/app/_models/mealOrderEntry";
+import { MealOrderEntryService } from "src/app/_services/mealOrderEntry.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { ActivatedRoute } from "@angular/router";
+import { SweetAlertService } from "src/app/_services/sweetAlert.service";
+import { HttpClient } from "@angular/common/http";
+import swal from "sweetalert2";
+import { environment } from "src/environments/environment";
+import { ConvertDateService } from "src/app/_services/convertDate.service";
 declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'app-mealOrderEntryList',
-  templateUrl: './mealOrderEntryList.component.html',
-  styleUrls: ['./mealOrderEntryList.component.css']
+  selector: "app-mealOrderEntryList",
+  templateUrl: "./mealOrderEntryList.component.html",
+  styleUrls: ["./mealOrderEntryList.component.css"],
 })
 export class MealOrderEntryListComponent implements OnInit {
   sortAscDate: boolean;
@@ -35,29 +35,36 @@ export class MealOrderEntryListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
-    private convertDate: ConvertDateService,
+    private convertDate: ConvertDateService
   ) {}
 
   ngOnInit() {
-    const newDate = $('#box');
+    const newDate = $("#box");
     newDate.datepicker({
-      format: 'dd-mm-yyyy',
-      autoHide: true
+      format: "dd-mm-yyyy",
+      autoHide: true,
     });
     this.loadDepartment();
     this.loadMealType();
-    this.route.data.subscribe(data => {
+    this.route.data.subscribe((data) => {
       this.MealOrderEntrys = data.mealOrderEntry.result;
       this.pagination = data.mealOrderEntry.pagination;
+      this.MealOrderEntrys.map((moe) => {
+        return moe.mealOrderDetails.sort((firstEl: any, nextEl: any) =>
+          firstEl.mealTypeId > nextEl.mealTypeId ? 1 : -1
+        );
+      });
     });
     newDate.change(() => {
-      this.MealOrderEntrysParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
-      if ($('#box1').val() !== '') {
-        this.MealOrderEntrysParams.department = $('#box1').val();
+      this.MealOrderEntrysParams.date = this.convertDate.convertAB(
+        newDate.datepicker("getDate", true)
+      );
+      if ($("#box1").val() !== "") {
+        this.MealOrderEntrysParams.department = $("#box1").val();
       }
       this.loadMealOrderEntrys();
     });
-    $('#box1').change(function() {
+    $("#box1").change(function () {
       $(this).blur();
     });
   }
@@ -67,13 +74,13 @@ export class MealOrderEntryListComponent implements OnInit {
   }
 
   sortActive(getName) {
-    if (getName === 'date') {
+    if (getName === "date") {
       this.sortAscDate = !this.sortAscDate;
       this.MealOrderEntrysParams.OrderBy = getName;
       this.MealOrderEntrysParams.isDesc = this.sortAscDate;
       this.loadMealOrderEntrys();
     }
-    if (getName === 'departmentName') {
+    if (getName === "departmentName") {
       this.sortAscDepartmentName = !this.sortAscDepartmentName;
       this.MealOrderEntrysParams.OrderBy = getName;
       this.MealOrderEntrysParams.isDesc = this.sortAscDepartmentName;
@@ -135,42 +142,44 @@ export class MealOrderEntryListComponent implements OnInit {
 
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
-    if (status === 'Filter') {
-      $('.filter').addClass('d-none');
+    if (status === "Filter") {
+      $(".filter").addClass("d-none");
       this.MealOrderEntrysParams.date = null;
       this.MealOrderEntrysParams.department = null;
-      $('#box').val('');
-      $('#box1').val('');
+      $("#box").val("");
+      $("#box1").val("");
       this.loadMealOrderEntrys();
     } else {
-      $('.filter').removeClass('d-none');
+      $(".filter").removeClass("d-none");
     }
   }
 
   // for delete data
   deleteMealOrderEntrys(id: number) {
     // tslint:disable-next-line: no-use-before-declare
-    confirm.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.mealOrderEntryService.deleteMealOrderEntry(id).subscribe(
-          () => {
-            this.sweetAlert.warningDel();
-            this.loadMealOrderEntrys();
-          },
-          error => {
-            this.sweetAlert.warning(error);
-          }
-        );
-      }
-    });
+    confirm
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.value) {
+          this.mealOrderEntryService.deleteMealOrderEntry(id).subscribe(
+            () => {
+              this.sweetAlert.warningDel();
+              this.loadMealOrderEntrys();
+            },
+            (error) => {
+              this.sweetAlert.warning(error);
+            }
+          );
+        }
+      });
   }
 
   // for laod data
@@ -185,37 +194,49 @@ export class MealOrderEntryListComponent implements OnInit {
         (res: PaginatedResult<MealOrderEntry[]>) => {
           this.MealOrderEntrys = res.result;
           this.pagination = res.pagination;
+          this.MealOrderEntrys.map((moe) => {
+            return moe.mealOrderDetails.sort((firstEl: any, nextEl: any) =>
+              firstEl.mealTypeId > nextEl.mealTypeId ? 1 : -1
+            );
+          });
         },
-        error => {
+        (error) => {
           this.sweetAlert.error(error);
         }
       );
   }
 
   loadDepartment() {
-    this.http.get(environment.apiUrl + 'department').subscribe(response => {
-      this.listDepartments = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+    this.http.get(environment.apiUrl + "department").subscribe(
+      (response) => {
+        this.listDepartments = response;
+      },
+      (error) => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
 
   loadMealType() {
-    this.http.get(environment.apiUrl + 'MealType').subscribe(response => {
-      this.mealTypes = response;
-    }, error => {
-      this.sweetAlert.error(error);
-    });
+    this.http.get(environment.apiUrl + "MealType").subscribe(
+      (response) => {
+        this.mealTypes = response;
+        this.mealTypes.sort((firstEl: any, nextEl: any) =>
+          firstEl.code > nextEl.code ? 1 : -1
+        );
+      },
+      (error) => {
+        this.sweetAlert.error(error);
+      }
+    );
   }
-
 }
-
 
 // for custom class sweet alert
 const confirm = swal.mixin({
   customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger",
   },
-  buttonsStyling: false
+  buttonsStyling: false,
 });
