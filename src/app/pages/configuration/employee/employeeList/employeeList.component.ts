@@ -43,7 +43,6 @@ export class EmployeeListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.employees = data.employee.result;
       this.pagination = data.employee.pagination;
-      // console.log(data['employee'].department.id);
     });
     this.loadDepartment();
   }

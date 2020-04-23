@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { environment } from "src/environments/environment";
-import { Observable } from "rxjs";
-import { BusOrderVerification } from "../_models/busOrderVerification";
-import { PaginatedResult } from "../_models/pagination";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { BusOrderVerification } from '../_models/busOrderVerification';
+import { PaginatedResult } from '../_models/pagination';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class BusOrderVerificationService {
   baseUrl = environment.apiUrl;
@@ -17,25 +17,25 @@ export class BusOrderVerificationService {
 
   // get meal order report
   getBusVerificationReport() {
-    return this.http.get(this.baseUrl + "report/busverification/");
+    return this.http.get(this.baseUrl + 'report/busverification/');
   }
 
   addBusOrderVerification(model: any) {
-    return this.http.post(this.baseUrl + "BusOrderVerification/", model);
+    return this.http.post(this.baseUrl + 'BusOrderVerification/', model);
   }
 
   editBusOrderVerification(id: any, model: any) {
-    return this.http.put(this.baseUrl + "BusOrderVerification/" + id, model);
+    return this.http.put(this.baseUrl + 'BusOrderVerification/' + id, model);
   }
 
   getBusOrderVerification(id: any): Observable<BusOrderVerification> {
     return this.http.get<BusOrderVerification>(
-      this.baseUrl + "BusOrderVerification/" + id
+      this.baseUrl + 'BusOrderVerification/' + id
     );
   }
 
   deleteBusOrderVerification(id: any) {
-    return this.http.delete(this.baseUrl + "BusOrderVerification/" + id);
+    return this.http.delete(this.baseUrl + 'BusOrderVerification/' + id);
   }
 
   getBusOrderVerifications(
@@ -49,43 +49,42 @@ export class BusOrderVerificationService {
 
     let params = new HttpParams();
     if (page != null && itemsPerPage != null) {
-      params = params.append("pageNumber", page);
-      params = params.append("pageSize", itemsPerPage);
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
     }
     if (BusOrderVerificationParams != null) {
       if (BusOrderVerificationParams.date != null) {
         params = params.append(
-          "OrderEntryDate",
+          'OrderDate',
           BusOrderVerificationParams.date
         );
       }
-      if (BusOrderVerificationParams.department != null) {
+      if (BusOrderVerificationParams.OrderNo != null) {
         params = params.append(
-          "DepartmentId",
-          BusOrderVerificationParams.department
+          'OrderNo',
+          BusOrderVerificationParams.OrderNo
         );
       }
       if (BusOrderVerificationParams.OrderBy != null) {
-        params = params.append("OrderBy", BusOrderVerificationParams.OrderBy);
+        params = params.append('OrderBy', BusOrderVerificationParams.OrderBy);
         params = params.append(
-          "isDescending",
+          'isDescending',
           BusOrderVerificationParams.isDesc
         );
       }
     }
-    // console.log(BusOrderVerificationParams.date);
 
     return this.http
       .get<BusOrderVerification[]>(
-        this.baseUrl + "BusOrderVerification/paged",
-        { observe: "response", params }
+        this.baseUrl + 'BusOrderVerification/paged',
+        { observe: 'response', params }
       )
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
-          if (response.headers.get("Pagination") != null) {
+          if (response.headers.get('Pagination') != null) {
             paginatedResult.pagination = JSON.parse(
-              response.headers.get("Pagination")
+              response.headers.get('Pagination')
             );
           }
           return paginatedResult;

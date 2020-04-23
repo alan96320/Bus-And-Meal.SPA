@@ -8,7 +8,8 @@ import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-busOrderVerificationList',
@@ -37,14 +38,27 @@ export class BusOrderVerificationListComponent implements OnInit {
     private route: ActivatedRoute,
     private sweetAlert: SweetAlertService,
     private http: HttpClient,
+    private convertDate: ConvertDateService,
   ) { }
 
   ngOnInit() {
+    const newDate = $('#box');
+    newDate.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
     this.loadDepartment();
     this.loadBusTime();
     this.route.data.subscribe(data => {
       this.busOrderVerifications = data.busOrderVerification.result;
       this.pagination = data.busOrderVerification.pagination;
+    });
+    newDate.change(() => {
+      this.BusOrderVerificationsParams.date = this.convertDate.convertAB(newDate.datepicker('getDate', true));
+      if ($('#box1').val() !== '') {
+        this.BusOrderVerificationsParams.OrderNo = $('#box1').val();
+      }
+      this.loadBusOrderVerification();
     });
   }
 
@@ -111,10 +125,10 @@ export class BusOrderVerificationListComponent implements OnInit {
   }
 
   // kita buat fungsi untuk Order By
-  OrderBy(date, department) {
-    if (date !== null || department !== null) {
-      this.BusOrderVerificationsParams.date = date;
-      this.BusOrderVerificationsParams.department = department;
+  OrderBy(date, OrderNo) {
+    if (date !== null || OrderNo !== null) {
+      this.BusOrderVerificationsParams.date = this.convertDate.convertAB(date);
+      this.BusOrderVerificationsParams.OrderNo = OrderNo;
       this.loadBusOrderVerification();
     }
   }
@@ -122,9 +136,14 @@ export class BusOrderVerificationListComponent implements OnInit {
   // lkita buat fungsi cancel Filter
   cancelFilter(status) {
     if (status === 'Filter') {
+      $('.filter').addClass('d-none');
       this.BusOrderVerificationsParams.date = null;
-      this.BusOrderVerificationsParams.department = null;
+      this.BusOrderVerificationsParams.OrderNo = null;
+      $('#box').val('');
+      $('#box1').val('');
       this.loadBusOrderVerification();
+    } else {
+      $('.filter').removeClass('d-none');
     }
   }
 

@@ -20,6 +20,8 @@ export class MealOrderEntryFormComponent implements OnInit {
   update = false;
   id = +this.route.snapshot.params.id;
   listDepartments: any;
+  validDepartment: any;
+  userDepartment:any;
   deptUser: any;
   mealTypes: any;
   currenDate = new Date();
@@ -40,6 +42,7 @@ export class MealOrderEntryFormComponent implements OnInit {
       format: 'dd-mm-yyyy',
       autoHide: true
     });
+
     this.loadDepartment();
     this.loadMealType();
     this.converCurrenDate();
@@ -47,21 +50,24 @@ export class MealOrderEntryFormComponent implements OnInit {
     newDate.change(() => {
       this.model.OrderEntryDate = newDate.datepicker('getDate', true);
     });
+    $('[name="DepartmentId"]').change(function() {
+      $(this).blur();
+    });
   }
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
         this.model.OrderEntryDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-' + month + '-' + this.currenDate.getFullYear();
       }
     } else {
       this.model.OrderEntryDate = day + '-' + month + '-' + this.currenDate.getFullYear();
@@ -71,24 +77,25 @@ export class MealOrderEntryFormComponent implements OnInit {
   loadDepartment() {
     const id = localStorage.getItem('id_user');
     const isAdmin = localStorage.getItem('isAdmin');
+
     this.http.get(environment.apiUrl + 'department').subscribe(response => {
       this.listDepartments = response;
+      this.validDepartment = response;
     }, error => {
       this.sweetAlert.error(error);
     });
+
     if (isAdmin === 'false') {
-      this.http.get(environment.apiUrl + 'user/' + id).subscribe(response => {
-        this.deptUser = response;
-        this.deptUser.userDepartments.map((data, i) => {
+      this.http.get(environment.apiUrl + 'userDepartment/paged?userid=' + id).subscribe(response => {
+        this.userDepartment = response;
+        this.validDepartment = [];
+        this.userDepartment.map((data, i) => {
           this.listDepartments.map(datax => {
             if (data.departmentId === datax.id) {
-              data.name = datax.name;
-              data.id = datax.id;
+              this.validDepartment.push(datax)
             }
           });
         });
-        this.listDepartments = this.deptUser.userDepartments;
-        this.listDepartments.unshift({ id: '', name: '' });
       }, error => {
         this.sweetAlert.error(error);
       });
@@ -141,6 +148,7 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Add Successfully');
         this.router.navigate(['/mealOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     } else {
@@ -149,6 +157,7 @@ export class MealOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Edit Successfully');
         this.router.navigate(['/mealOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     }

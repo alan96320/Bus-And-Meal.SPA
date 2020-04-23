@@ -7,9 +7,10 @@ import { ReportService } from 'src/app/_services/report.service';
 import { PaginatedResult } from 'src/app/_models/pagination';
 import { BusOrder } from 'src/app/_models/busOrder';
 import { environment } from 'src/environments/environment';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
 
 declare var Stimulsoft: any;
-
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-busOrderReport',
@@ -44,56 +45,36 @@ export class BusOrderReportComponent implements OnInit {
   ];
 
   constructor(
-    private route: ActivatedRoute,
-    private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     private http: HttpClient,
     private sweetAlert: SweetAlertService,
-    private reportService: ReportService
-  ) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
-  }
+    private reportService: ReportService,
+    private converDate: ConvertDateService
+  ) { }
 
-  onDateSelection(date: NgbDate) {
-    if (!this.fromDate && !this.toDate) {
-      this.fromDate = date;
-    } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
-      this.toDate = date;
-    } else {
-      this.toDate = null;
-      this.fromDate = date;
-    }
-  }
-
-  isHovered(date: NgbDate) {
-    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
-  }
-
-  isInside(date: NgbDate) {
-    return date.after(this.fromDate) && date.before(this.toDate);
-  }
-
-  isRange(date: NgbDate) {
-    return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
-  }
-
-  validateInput(currentValue: NgbDate, input: string): NgbDate {
-    const parsed = this.formatter.parse(input);
-    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+  ngOnInit() {
+    const start = $('#start');
+    const end = $('#end');
+    start.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
+    end.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
+    this.loadDepartment();
+    // this.loadReport();
+    $('#department').change(function() {
+      $(this).blur();
+    });
   }
 
   Print(depart) {
-    // console.log();
-    const startDate = this.fromDate.year + '-' + this.fromDate.month + '-' + this.fromDate.day;
-    const endDate = this.toDate.year + '-' + this.toDate.month + '-' + this.toDate.day;
-    const department = depart;
-    this.busOrderReportParams.startDate = startDate;
-    this.busOrderReportParams.endDate = endDate;
-    this.busOrderReportParams.department = department;
+    this.busOrderReportParams.startDate = this.converDate.convertAB($('#start').val());
+    this.busOrderReportParams.endDate = this.converDate.convertAB($('#end').val());
+    this.busOrderReportParams.department = depart;
     this.loadReport();
-
-
   }
 
   loadDepartment() {
@@ -115,20 +96,24 @@ export class BusOrderReportComponent implements OnInit {
       this.busOrderReport.dormitoryblock = this.busOrderResource.dormitoryblockResult;
       this.busOrderReport.busorder.map(bo => {
         bo.date = this.convertDate(bo.orderEntryDate);
+        bo.collected = bo.busOrderVerificationId > 0 ? 'Yes' : 'No'
       });
 
+      Stimulsoft.Base.StiLicense.loadFromFile('../assets/reports/license.key');
       const report = Stimulsoft.Report.StiReport.createNewReport();
       const options = new Stimulsoft.Viewer.StiViewerOptions();
       report.loadFile('../assets/reports/BusOrder.mrt');
       report.dictionary.variables.getByName('title').valueObject =
         'Bus Order List';
-
+      report.reportName = 'BusMeal-Bus Order Report';
       report.dictionary.databases.clear();
       report.regData('BusOrder', 'BusOrder', this.busOrderReport);
+             
 
       options.width = '100%';
       options.height = '850px';
       options.appearance.scrollbarsMode = true;
+      options.appearance.fullScreenMode = true;
 
       const viewer = new Stimulsoft.Viewer.StiViewer(options, 'StiViewer', false);
       viewer.report = report;
@@ -151,10 +136,5 @@ export class BusOrderReportComponent implements OnInit {
       this.monthName[d.getMonth()],
       d.getFullYear()
     ].join(' ');
-  }
-
-  ngOnInit() {
-    this.loadDepartment();
-    this.loadReport();
   }
 }

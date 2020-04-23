@@ -6,6 +6,7 @@ import { BusTime } from 'src/app/_models/busTime';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
 import swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -45,6 +46,9 @@ export class BusTimeListComponent implements OnInit {
       { id: 2, name: 'Office -> Domitory' },
       { id: 3, name: 'Office -> Domitory(Night)' }
     ];
+    $('#box2').change(function() {
+      $(this).blur();
+    });
   }
 
   arrayPage() {

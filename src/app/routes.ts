@@ -307,62 +307,62 @@ export const appRouting: Routes = [
 
       // for menu reports
       {
-        path: 'report/department',
+        path: 'reportdepartment',
         component: DepartmentReportComponent,
         resolve: { department: DepartmentReportResolver }
       },
       {
-        path: 'report/employee',
+        path: 'reportemployee',
         component: EmployeeReportComponent,
         resolve: { employee: EmployeeReportResolver }
       },
       {
-        path: 'report/mealtype',
+        path: 'reportmealtype',
         component: MealTypeReportComponent,
         resolve: { mealtype: MealTypeReportResolver }
       },
       {
-        path: 'report/dormitoryblock',
+        path: 'reportdormitoryblock',
         component: DormitoryBlockReportComponent,
         resolve: { dormitoryblock: DormitoryBlockReportResolver }
       },
       {
-        path: 'report/mealvendor',
+        path: 'reportmealvendor',
         component: MealVendorReportComponent,
         resolve: { mealvendor: MealVendorReportResolver }
       },
       {
-        path: 'report/bustime',
+        path: 'reportbustime',
         component: BusTimeReportComponent,
         resolve: { bustime: BusTimeReportResolver }
       },
       {
-        path: 'report/counter',
+        path: 'reportcounter',
         component: CounterReportComponent,
         resolve: { counter: CounterReportResolver }
       },
       {
-        path: 'report/users',
+        path: 'reportusers',
         component: UsersReportComponent,
         resolve: { users: UsersReportResolver }
       },
       {
-        path: 'report/mealorder',
+        path: 'reportmealorder',
         component: MealOrderReportComponent,
         resolve: { mealorder: MealOrderReportResolver }
       },
       {
-        path: 'report/mealverification',
+        path: 'reportmealverification',
         component: MealVerificationReportComponent,
         resolve: { mealverification: MealVerificationReportResolver }
       },
       {
-        path: 'report/busorder',
+        path: 'reportbusorder',
         component: BusOrderReportComponent,
         resolve: { busorder: BusOrderReportResolver }
       },
       {
-        path: 'report/busverification',
+        path: 'reportbusverification',
         component: BusVerificationReportComponent,
         resolve: { busverification: BusVerificationReportResolver }
       }

@@ -25,7 +25,8 @@
               <label class="col-sm-2 offset-sm-1 col-form-label">Department</label>
               <div class="col-sm-4 24hr-example">
                 <select name="DepartmentId" class="form-control" [(ngModel)]="model.DepartmentId" required #DepartmentId="ngModel">
-                  <option *ngFor="let department of listDepartments" [value]="department.id" >
+                  <option value="">Select Department</option>
+                  <option *ngFor="let department of validDepartment" [value]="department.id" >
                     {{department.name}}
                   </option>
                 </select>
@@ -68,6 +69,3 @@
     </div>
   </div>
 </div>
-
-
-<!-- <p *ngFor="let item of mealType">{{item.name}} Panjang = {{mealType.length}}</p> -->

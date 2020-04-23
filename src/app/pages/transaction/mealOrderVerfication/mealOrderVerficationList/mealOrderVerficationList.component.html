@@ -35,21 +35,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="!filter">
+                <tr class="d-none filter">
                   <td class="form-group no-border">
-                    <input type="date" class="form-control" #box (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input type="text" class="form-control" #box id="box" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="number" class="form-control" #box1 (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
+                    <input type="text" class="form-control" #box1 id="box1" (keyup.enter)="OrderBy(box.value,box1.value);" />
                   </td>
                   <td colspan="2"></td>
                 </tr>
                 <tr *ngFor="let data of MealOrderVerifications">
-                  <td>{{data.orderDate | date}}</td>
+                  <td>{{data.orderDate | date:'d MMM y'}}</td>
                   <td>{{data.orderNo}}</td>
                   <td class="form-row">
-                    <label class="col mt-1" *ngIf="data.isClosed" >Closed</label>
-                    <label class="col mt-1" *ngIf="!data.isClosed">Open</label>
+                    <span class="badge badge-default mt-1" *ngIf="data.isClosed">Closed</span>
+                    <span class="badge badge-default mt-1" *ngIf="!data.isClosed">Open</span>
                   </td>
                   <td class="td-actions text-center">
                     <button class=" btn btn-link btn-success btn-icon btn-sm" container="body" ngbTooltip="Edit Data"

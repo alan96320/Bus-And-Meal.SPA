@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs/internal/Observable";
-import { MealOrderVerification } from "../_models/mealOrderVerification";
-import { PaginatedResult } from "../_models/pagination";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { MealOrderVerification } from '../_models/mealOrderVerification';
+import { PaginatedResult } from '../_models/pagination';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class MealOrderVerificationService {
   baseUrl = environment.apiUrl;
@@ -17,25 +17,25 @@ export class MealOrderVerificationService {
 
   // get meal order report
   getMealVerificationReport() {
-    return this.http.get(this.baseUrl + "report/mealverification/");
+    return this.http.get(this.baseUrl + 'report/mealverification/');
   }
 
   addMealOrderVerification(model: any) {
-    return this.http.post(this.baseUrl + "MealOrderVerification/", model);
+    return this.http.post(this.baseUrl + 'MealOrderVerification/', model);
   }
 
   getMealOrderVerification(id: any): Observable<MealOrderVerification> {
     return this.http.get<MealOrderVerification>(
-      this.baseUrl + "MealOrderVerification/" + id
+      this.baseUrl + 'MealOrderVerification/' + id
     );
   }
 
   deleteMealOrderVerification(id: any) {
-    return this.http.delete(this.baseUrl + "MealOrderVerification/" + id);
+    return this.http.delete(this.baseUrl + 'MealOrderVerification/' + id);
   }
 
   editMealOrderVerificationVerification(id: any, model: any) {
-    return this.http.put(this.baseUrl + "MealOrderVerification/" + id, model);
+    return this.http.put(this.baseUrl + 'MealOrderVerification/' + id, model);
   }
 
   getMealOrderVerifications(
@@ -49,43 +49,42 @@ export class MealOrderVerificationService {
 
     let params = new HttpParams();
     if (page != null && itemsPerPage != null) {
-      params = params.append("pageNumber", page);
-      params = params.append("pageSize", itemsPerPage);
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
     }
     if (MealOrderVerificationParams != null) {
       if (MealOrderVerificationParams.date != null) {
         params = params.append(
-          "OrderEntryDate",
+          'OrderDate',
           MealOrderVerificationParams.date
         );
       }
-      if (MealOrderVerificationParams.department != null) {
+      if (MealOrderVerificationParams.OrderNo != null) {
         params = params.append(
-          "DepartmentId",
-          MealOrderVerificationParams.department
+          'OrderNo',
+          MealOrderVerificationParams.OrderNo
         );
       }
       if (MealOrderVerificationParams.OrderBy != null) {
-        params = params.append("OrderBy", MealOrderVerificationParams.OrderBy);
+        params = params.append('OrderBy', MealOrderVerificationParams.OrderBy);
         params = params.append(
-          "isDescending",
+          'isDescending',
           MealOrderVerificationParams.isDesc
         );
       }
     }
-    // console.log(MealOrderVerificationParams.date);
 
     return this.http
       .get<MealOrderVerification[]>(
-        this.baseUrl + "MealOrderVerification/paged",
-        { observe: "response", params }
+        this.baseUrl + 'MealOrderVerification/paged',
+        { observe: 'response', params }
       )
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
-          if (response.headers.get("Pagination") != null) {
+          if (response.headers.get('Pagination') != null) {
             paginatedResult.pagination = JSON.parse(
-              response.headers.get("Pagination")
+              response.headers.get('Pagination')
             );
           }
           return paginatedResult;

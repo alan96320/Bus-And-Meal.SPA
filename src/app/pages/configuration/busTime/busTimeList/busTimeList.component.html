@@ -12,7 +12,7 @@
             </div>
             <div class=" col-sm-6 text-right">
               <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Add New" [routerLink]="['/formBusTime']">Add New</button>
-              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Print" [routerLink]="['/report/bustime']">Print</button>
+              <button class="btn btn-default animation-on-hover" type="button" ngbTooltip="Print" [routerLink]="['/reportbustime']">Print</button>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
                       (keyup.enter)="OrderBy(box.value,box1.value);box.value='';box1.value=''" />
                   </td>
                   <td class="form-group no-border">
-                    <select class="form-control" #box2 (change)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''">
+                    <select class="form-control" #box2 id="box2" (change)="OrderBy(box.value,box1.value,box2.value);box.value='';box1.value='';box2.value=''">
                       <option value="">Select One..</option>
                       <option *ngFor="let item of listDirection" value="{{item.id}}">{{item.name}}</option>
                     </select>

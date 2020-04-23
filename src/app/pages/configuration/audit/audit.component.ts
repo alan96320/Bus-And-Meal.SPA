@@ -8,6 +8,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuditService } from 'src/app/_services/audit.service';
 import swal from 'sweetalert2';
+import { ConvertDateService } from 'src/app/_services/convertDate.service';
+declare var $: any;
 
 @Component({
   selector: 'app-audit',
@@ -32,12 +34,26 @@ constructor(
   private route: ActivatedRoute,
   private sweetAlert: SweetAlertService,
   private auditService: AuditService,
+  private convertDate: ConvertDateService
 ) { }
 
 ngOnInit() {
+  const newDate = $('#box1');
+  newDate.datepicker({
+      format: 'dd-mm-yyyy',
+      autoHide: true
+    });
   this.route.data.subscribe(data => {
     this.audits = data.audit.result;
     this.pagination = data.audit.pagination;
+  });
+
+  newDate.change(() => {
+    this.departmentParams.time = this.convertDate.convertAB(newDate.datepicker('getDate', true));
+    if ($('#box').val() !== '') {
+      this.departmentParams.table = $('#box').val();
+    }
+    this.loadAudit();
   });
 }
 
@@ -110,7 +126,7 @@ changeSize(size) {
 OrderBy(table, time) {
   if (table !== null || time !== null) {
     this.departmentParams.table = table;
-    this.departmentParams.time = time;
+    this.departmentParams.time = this.convertDate.convertAB(time);
     this.loadAudit();
   }
 }
@@ -118,9 +134,14 @@ OrderBy(table, time) {
 // lkita buat fungsi cancel Filter
 cancelFilter(status) {
   if (status === 'Filter') {
+    $('.filter').addClass('d-none');
     this.departmentParams.table = null;
     this.departmentParams.time = null;
+    $('#box').val('');
+    $('#box1').val('');
     this.loadAudit();
+  } else {
+    $('.filter').removeClass('d-none');
   }
 }
 

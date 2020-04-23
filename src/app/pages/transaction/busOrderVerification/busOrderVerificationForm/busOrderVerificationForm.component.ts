@@ -84,15 +84,15 @@ export class BusOrderVerificationFormComponent implements OnInit {
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.Orderdate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.Orderdate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
         this.model.Orderdate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.Orderdate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.Orderdate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
-        this.model.Orderdate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.Orderdate = '0' + day + '-' + month + '-' + this.currenDate.getFullYear();
       }
     } else {
       this.model.Orderdate = day + '-' + month + '-' + this.currenDate.getFullYear();
@@ -257,23 +257,23 @@ export class BusOrderVerificationFormComponent implements OnInit {
       if (c) {
         this.sweetAlert.message('There was a change of data on the meal order...');
       }
-      // const date = this.model.Orderdate;
-      // const d = date.substr(0, 2);
-      // const m = date.substr(3, 2);
-      // const y = date.substr(6, 4);
       this.model.Orderdate = this.convertDate.convertAB(this.model.Orderdate);
       if (!this.update) {
+        this.model.isUpdate = false;
         this.busOrderVerificationService.addBusOrderVerification(this.model).subscribe(() => {
           this.sweetAlert.successAdd('Add Successfully');
           this.router.navigate(['/busOrderVerification']);
         }, error => {
+          this.model.Orderdate = this.convertDate.convertBA(this.model.Orderdate);
           this.sweetAlert.warning(error);
         });
       } else {
+        this.model.isUpdate = true;
         this.busOrderVerificationService.editBusOrderVerification(this.id, this.model).subscribe(() => {
           this.sweetAlert.successAdd('Edit Successfully');
           this.router.navigate(['/busOrderVerification']);
         }, error => {
+          this.model.Orderdate = this.convertDate.convertBA(this.model.Orderdate);
           this.sweetAlert.warning(error);
         });
       }

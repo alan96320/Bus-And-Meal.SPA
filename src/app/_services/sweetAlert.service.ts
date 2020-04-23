@@ -42,7 +42,7 @@ export class SweetAlertService {
   warningDel() {
     // tslint:disable-next-line: no-use-before-declare
     Toast.fire({
-      icon: 'warning',
+      icon: 'error',
       title: 'Your file has been deleted.'
     });
   }

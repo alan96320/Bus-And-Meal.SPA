@@ -36,19 +36,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="!filter">
+                <tr class="d-none filter">
                   <td class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Filter By Table Name" #box (keyup.enter)=" 
-                    OrderBy(box.value, box1.value); box.value = ''; box1.value = '' " />
+                    <input type="text" class="form-control" placeholder="Filter By Table Name" #box (keyup.enter)="OrderBy(box.value, box1.value);" />
                   </td>
                   <td class="form-group no-border">
-                    <input type="date" class="form-control" placeholder="Filter By Date Time" #box1 (keyup.enter)="OrderBy(box.value, box1.value); box.value = ''; box1.value = '' " (blur)="OrderBy(box.value, box1.value); box.value = ''; box1.value = '' " />
+                    <input type="text" id="box1" class="form-control" placeholder="Filter By Date Time" #box1 />
                   </td>
                   <td colspan="4"></td>
                 </tr>
                 <tr *ngFor="let data of audits">
                   <td>{{ data.tableName }}</td>
-                  <td>{{ data.dateTime | date }}</td>
+                  <td>{{ data.dateTime | date:'d MMM y' }}</td>
                   <td>
                     <p style="width: 300px;">{{ data.keyValues }}</p>
                   </td>

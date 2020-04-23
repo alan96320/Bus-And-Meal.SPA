@@ -50,21 +50,27 @@ export class BusOrderEntryFormComponent implements OnInit {
     newDate.change(() => {
       this.model.OrderEntryDate = newDate.datepicker('getDate', true);
     });
+    $('[name="DepartmentId"]').change(function() {
+      $(this).blur();
+    });
+    $('[name="DormitoryBlockId"]').change(function() {
+      $(this).blur();
+    });
   }
   converCurrenDate() {
     const month = this.currenDate.getMonth() + 1;
     const day = this.currenDate.getDate();
     if (month < 10) {
       if (day < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
         this.model.OrderEntryDate = day + '-0' + month + '-' + this.currenDate.getFullYear();
       }
     } else if (day < 10) {
       if (month < 10) {
-        this.model.OrderEntryDate = day + '-0' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-0' + month + '-' + this.currenDate.getFullYear();
       } else {
-        this.model.OrderEntryDate = day + '-' + month + '-0' + this.currenDate.getFullYear();
+        this.model.OrderEntryDate = '0' + day + '-' + month + '-' + this.currenDate.getFullYear();
       }
     } else {
       this.model.OrderEntryDate = day + '-' + month + '-' + this.currenDate.getFullYear();
@@ -80,9 +86,9 @@ export class BusOrderEntryFormComponent implements OnInit {
       this.sweetAlert.error(error);
     });
     if (isAdmin === 'false') {
-      this.http.get(environment.apiUrl + 'user/' + id).subscribe(response => {
+      this.http.get(environment.apiUrl + 'userDepartment/paged?userid=' + id).subscribe(response => {
         this.deptUser = response;
-        this.deptUser.userDepartments.map((data, i) => {
+        this.deptUser.map((data, i) => {
           this.listDepartments.map(datax => {
             if (data.departmentId === datax.id) {
               data.name = datax.name;
@@ -90,8 +96,7 @@ export class BusOrderEntryFormComponent implements OnInit {
             }
           });
         });
-        this.listDepartments = this.deptUser.userDepartments;
-        this.listDepartments.unshift({ id: '', name: '' });
+        this.listDepartments = this.deptUser;
       }, error => {
         this.sweetAlert.error(error);
       });
@@ -185,6 +190,7 @@ export class BusOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Add Successfully');
         this.router.navigate(['/busOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     } else {
@@ -193,6 +199,7 @@ export class BusOrderEntryFormComponent implements OnInit {
         this.sweetAlert.successAdd('Edit Successfully');
         this.router.navigate(['/busOrderEntry']);
       }, error => {
+        this.model.OrderEntryDate = this.convertDate.convertBA(this.model.OrderEntryDate);
         this.sweetAlert.warning(error);
       });
     }

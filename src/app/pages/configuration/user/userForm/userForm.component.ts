@@ -107,6 +107,8 @@ export class UserFormComponent implements OnInit {
 
     if (this.model.lockTransStatus === true) {
       this.model.lockTransStatus = 1;
+    }else{
+      this.model.lockTransStatus = 0;
     }
     // update model with new data before send to server
     this.model.userDepartments = this.departmentSubmit;

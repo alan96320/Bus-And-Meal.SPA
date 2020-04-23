@@ -4,7 +4,7 @@ import { BusTimeService } from 'src/app/_services/busTime.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'src/app/_services/sweetAlert.service';
-
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-busTimeForm',
@@ -34,6 +34,9 @@ export class BusTimeFormComponent implements OnInit {
       { id: 2, name: 'Office -> Domitory' },
       { id: 3, name: 'Office -> Domitory(Night)' }
     ];
+    $('#directionEnum').change(function () {
+      $(this).blur();
+    });
   }
   loadBusTime() {
     if (this.id) {
